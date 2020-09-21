@@ -219,7 +219,7 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = React.useState("balanceGroup");
   const [selected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { globalDispach } = useContext(Contex);
 
   const handleRequestSort = (event, property) => {

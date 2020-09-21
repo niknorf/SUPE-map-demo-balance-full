@@ -253,7 +253,7 @@ const ShowDataState = () => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Назвавание</TableCell>
+              <TableCell align="left">Название</TableCell>
               <TableCell align="right">Тип</TableCell>
             </TableRow>
           </TableHead>

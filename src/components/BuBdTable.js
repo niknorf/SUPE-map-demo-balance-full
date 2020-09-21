@@ -32,11 +32,12 @@ import yellow_marker from "../img/yellow.png";
 function createData(
   address,
   percent_probability,
+  type,
   probability_type,
   report,
   status
 ) {
-  return { address, percent_probability, probability_type, report, status };
+  return { address, percent_probability, type, probability_type,  report, status };
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -199,6 +200,7 @@ export default function EnhancedTable() {
   const { globalDispach } = useContext(Contex);
 
   const handleRequestSort = (event, property) => {
+    console.log(property);
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -217,16 +219,20 @@ export default function EnhancedTable() {
 
   table_data.map((item) => {
     let percent_probability;
+    let percent_type;
 
     if (item.percent_probability_BD === 0) {
       percent_probability = item.percent_probability_BU;
+      percent_type = 'BU'
     } else {
       percent_probability = item.percent_probability_BD;
+      percent_type = 'BD'
     }
     rows.push(
       createData(
         item.address,
         percent_probability,
+        percent_type,
         "Безучетное потребление",
         "Добавить акт",
         "Новое"
@@ -255,6 +261,13 @@ export default function EnhancedTable() {
   const tableRowClick = (event, row) => {
 
     row.tp = "данные подгружаются";
+    if(row.type === "BU"){
+      row.percent_probability_BU = row.percent_probability;
+      row.percent_probability_BD = 0;
+    }else{
+      row.percent_probability_BD = row.percent_probability;
+      row.percent_probability_BU = 0;
+    }
 
     globalDispach({
       type: "BUBD",

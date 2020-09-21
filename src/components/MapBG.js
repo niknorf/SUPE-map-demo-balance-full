@@ -155,7 +155,7 @@ const GeneralMap = () => {
   };
 
   const mapStyle = {
-    height: "70vh",
+    height: "80vh",
   };
 
   const handleClick = (event) => {

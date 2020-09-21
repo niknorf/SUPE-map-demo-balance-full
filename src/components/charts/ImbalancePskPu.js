@@ -197,7 +197,7 @@ const ImbalancePskPu = () => {
           <Paper className={clsx(fixedHeightPaper, classes.paperStyles)}>
             <Box className={classes.header}>
               <Typography className={classes.graphText}>
-                График небалансов между показаниями ПСК и ПУ, в кВтч от ПУ
+                График небалансов между показаниями ПСК и ПУ, в кВтч
               </Typography>
               {IsPhantomicIncluded(globalState.balance_index) ? (
                 <Box

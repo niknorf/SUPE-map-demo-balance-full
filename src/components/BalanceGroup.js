@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   BalanceTableStyles: {
-    height: "100%",
+    height: "80vh",
   },
 }));
 
