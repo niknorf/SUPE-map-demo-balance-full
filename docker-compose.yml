@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+  upe_frontend:
+    image: "upe_frontend:${TAG}"
+    build:
+      context: ./
+      dockerfile: UPE_FrontEnd.Dockerfile

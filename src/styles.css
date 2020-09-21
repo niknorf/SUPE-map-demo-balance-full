@@ -1,0 +1,14 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.MuiDrawer-paper.MuiDrawer-paperAnchorLeft {
+  background-color: #252f4a;
+  width: 68px;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 42px;
+}

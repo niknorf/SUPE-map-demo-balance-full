@@ -1,0 +1,35 @@
+.paper-graph {
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06) !important;
+  margin: 12px;
+  padding: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.second-block .js-plotly-plot {
+  flex-basis: 50%;
+}
+
+.first-graph .trace.bars .point path {
+  fill: #00ebd3 !important;
+}
+
+.second-graph .trace.bars .point path {
+  fill: #00caff !important;
+}
+
+.third-graph .trace.bars .point path {
+  fill: #a9ff94 !important;
+}
+
+.fourth-graph .trace.bars .point path {
+  fill: #4a9cff !important;
+}
+
+.pie-charts .plot-container .svg-container {
+  width: 241px !important;
+}
+
+.pie-charts .js-plotly-plot .plotly .main-svg {
+  width: 241px;
+}

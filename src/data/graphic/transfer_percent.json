@@ -1,0 +1,1472 @@
+[
+  {
+    "balance_index": 0,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 1,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 2,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 1
+  },
+  {
+    "balance_index": 3,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 4,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 5,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 18
+  },
+  {
+    "balance_index": 6,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 7,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 8,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 9,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 10,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 11,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 12,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 13,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 14,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 15,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 1
+  },
+  {
+    "balance_index": 16,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 17,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 1
+  },
+  {
+    "balance_index": 18,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 19,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 20,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 21,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 22,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 23,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 1
+  },
+  {
+    "balance_index": 24,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 25,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 2
+  },
+  {
+    "balance_index": 26,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 27,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 28,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 21
+  },
+  {
+    "balance_index": 29,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 2
+  },
+  {
+    "balance_index": 30,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 31,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 32,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 33,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 34,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 35,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 36,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 37,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 38,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 39,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 40,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 41,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 42,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 43,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 44,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 45,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 46,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 47,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 48,
+    "date_month": 5,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 0,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 1,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 2,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 3,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 4,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 5,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 6,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 7,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 8,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 9,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 10,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 11,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 12,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 13,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 14,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 15,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 16,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 17,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 18,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 19,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 20,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 21,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 22,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 23,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 24,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 25,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 26,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 27,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 28,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 29,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 30,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 1
+  },
+  {
+    "balance_index": 31,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 32,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 33,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 34,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 35,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 41
+  },
+  {
+    "balance_index": 36,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 37,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 38,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 21
+  },
+  {
+    "balance_index": 39,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 40,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 41,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 42,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 43,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 44,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 2
+  },
+  {
+    "balance_index": 45,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 46,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 47,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 48,
+    "date_month": 6,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 0,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 1,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 2,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 3,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 4,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 5,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 6,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 7,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 18
+  },
+  {
+    "balance_index": 8,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 9,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 10,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 11,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 21
+  },
+  {
+    "balance_index": 12,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 13,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 14,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 18
+  },
+  {
+    "balance_index": 15,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 16,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 17,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 18,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 19,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 38
+  },
+  {
+    "balance_index": 20,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 21,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 22,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 23,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 24,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 25,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 26,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 27,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 28,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 29,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 30,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 31,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 32,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 33,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 34,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 35,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 36,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 37,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 21
+  },
+  {
+    "balance_index": 38,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 39,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 40,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 41,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 42,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 43,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 44,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 45,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 46,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 47,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 48,
+    "date_month": 7,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 0,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 1,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 2,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 3,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 4,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 5,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 6,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 7,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 8,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 9,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 10,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 11,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 12,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 13,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 14,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 15,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 16,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 17,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 18,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 19,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 20,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 3
+  },
+  {
+    "balance_index": 21,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 22,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 23,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 24,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 25,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 26,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 27,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 33
+  },
+  {
+    "balance_index": 28,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 29,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 30,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 31,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 32,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 1
+  },
+  {
+    "balance_index": 33,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 34,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 35,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 36,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 37,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 38,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 39,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 40,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 41,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 42,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 16
+  },
+  {
+    "balance_index": 43,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 44,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 45,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 46,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 47,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 48,
+    "date_month": 8,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 0,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 1,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 9
+  },
+  {
+    "balance_index": 2,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 3,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 4,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 57
+  },
+  {
+    "balance_index": 5,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 6,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 7,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 8,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 9,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 10,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 11,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 12,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 13,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 14,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 15,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 16,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 17,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 18,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 23
+  },
+  {
+    "balance_index": 19,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 6
+  },
+  {
+    "balance_index": 20,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 12
+  },
+  {
+    "balance_index": 21,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 22,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 23,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 24,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 25,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 26,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 27,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 21
+  },
+  {
+    "balance_index": 28,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 22
+  },
+  {
+    "balance_index": 29,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 30,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 10
+  },
+  {
+    "balance_index": 31,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 19
+  },
+  {
+    "balance_index": 32,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 24
+  },
+  {
+    "balance_index": 33,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 34,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 5
+  },
+  {
+    "balance_index": 35,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 8
+  },
+  {
+    "balance_index": 36,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 25
+  },
+  {
+    "balance_index": 37,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 38,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 7
+  },
+  {
+    "balance_index": 39,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 13
+  },
+  {
+    "balance_index": 40,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 11
+  },
+  {
+    "balance_index": 41,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 17
+  },
+  {
+    "balance_index": 42,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 20
+  },
+  {
+    "balance_index": 43,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 71
+  },
+  {
+    "balance_index": 44,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 15
+  },
+  {
+    "balance_index": 45,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 18
+  },
+  {
+    "balance_index": 46,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 4
+  },
+  {
+    "balance_index": 47,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 14
+  },
+  {
+    "balance_index": 48,
+    "date_month": 9,
+    "date_year": 2020,
+    "difference_unbalance": 2
+  }
+]

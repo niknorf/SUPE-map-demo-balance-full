@@ -1,0 +1,371 @@
+[
+  {
+    "address": "Заречная, 37",
+    "lat": 60.082023,
+    "lon": 30.33847,
+    "date_period": "авг.20",
+    "loss_probability": "15,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Заречная, 35 к1",
+    "lat": 60.081121,
+    "lon": 30.336493,
+    "date_period": "авг.20",
+    "loss_probability": "20,1",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Заречная, 33",
+    "lat": 60.0809648,
+    "lon": 30.3330084,
+    "date_period": "авг.20",
+    "loss_probability": "52,1",
+    "type": "БУ и БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Валерия Гаврилина, 15",
+    "lat": 60.0801615,
+    "lon": 30.3346655,
+    "date_period": "авг.20",
+    "loss_probability": "5,3",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Валерия Гаврилина, 13 к1",
+    "lat": 60.0797011,
+    "lon": 30.335997,
+    "date_period": "авг.20",
+    "loss_probability": "6,1",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Валерия Гаврилина, 11 к1 ст1",
+    "lat": 60.078567,
+    "lon": 30.33659,
+    "date_period": "авг.20",
+    "loss_probability": "10,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Николая Рубцова, 13",
+    "lat": 60.0776665,
+    "lon": 30.3363625,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Николая Рубцова, 11 к1",
+    "lat": 60.077513,
+    "lon": 30.337941,
+    "date_period": "авг.20",
+    "loss_probability": "2,1",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Николая Рубцова, 9",
+    "lat": 60.0768538,
+    "lon": 30.3409394,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Фёдора Абрамова, 16 к1",
+    "lat": 60.078329,
+    "lon": 30.342135,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Фёдора Абрамова, 18 к1",
+    "lat": 60.0798196,
+    "lon": 30.3417414,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Фёдора Абрамова, 20 к1",
+    "lat": 60.0810272,
+    "lon": 30.3409889,
+    "date_period": "авг.20",
+    "loss_probability": "15,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 16 к2 ст1",
+    "lat": 60.0782351,
+    "lon": 30.3420767,
+    "date_period": "авг.20",
+    "loss_probability": "17,1",
+    "type": "БУ и БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Николая Рубцова, 12 к1",
+    "lat": 60.07653,
+    "lon": 30.3359386,
+    "date_period": "авг.20",
+    "loss_probability": "10,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Валерия Гаврилина, 5",
+    "lat": 60.0745992,
+    "lon": 30.3353551,
+    "date_period": "авг.20",
+    "loss_probability": "31,5",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Валерия Гаврилина, 3 к1",
+    "lat": 60.0745989,
+    "lon": 30.331856,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Валерия Гаврилина, 3 к2",
+    "lat": 60.0731729,
+    "lon": 30.3320471,
+    "date_period": "авг.20",
+    "loss_probability": "1,1",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Заречная, 25",
+    "lat": 60.0740859,
+    "lon": 30.3293973,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Михаила Дудина, 25 к2",
+    "lat": 60.0714229,
+    "lon": 30.3264538,
+    "date_period": "авг.20",
+    "loss_probability": "5,9",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Михаила Дудина, 25 к1",
+    "lat": 60.0714229,
+    "lon": 30.3264538,
+    "date_period": "авг.20",
+    "loss_probability": "7,9",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Михаила Дудина, 23 к1",
+    "lat": 60.0695269,
+    "lon": 30.3297324,
+    "date_period": "авг.20",
+    "loss_probability": "9,9",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 4",
+    "lat": 60.0703505,
+    "lon": 30.3350722,
+    "date_period": "авг.20",
+    "loss_probability": "11,7",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 8",
+    "lat": 60.0737243,
+    "lon": 30.3384076,
+    "date_period": "авг.20",
+    "loss_probability": "14,9",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "​Фёдора Абрамова, 6 ст2",
+    "lat": 60.072567,
+    "lon": 30.334795,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Михаила Дудина, 23 к2",
+    "lat": 60.0695269,
+    "lon": 30.3297324,
+    "date_period": "авг.20",
+    "loss_probability": "24,7",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "​Михаила Дудина, 25 к3 лит А",
+    "lat": 60.0714229,
+    "lon": 30.3264538,
+    "date_period": "авг.20",
+    "loss_probability": "1,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Заречная, 45 к1 ст1",
+    "lat": 60.08196,
+    "lon": 30.350507,
+    "date_period": "авг.20",
+    "loss_probability": "13,4",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Заречная, 45 к2",
+    "lat": 60.08196,
+    "lon": 30.350507,
+    "date_period": "авг.20",
+    "loss_probability": "4,7",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Заречная, 41 ст1",
+    "lat": 60.082305,
+    "lon": 30.343842,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Фёдора Абрамова, 23 к1",
+    "lat": 60.0815043,
+    "lon": 30.3454636,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Фёдора Абрамова, 23 к2",
+    "lat": 60.0813849,
+    "lon": 30.3472094,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Фёдора Абрамова, 21 к3 ст1",
+    "lat": 60.0802415,
+    "lon": 30.3443823,
+    "date_period": "авг.20",
+    "loss_probability": "31,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 21 к1",
+    "lat": 60.0802415,
+    "lon": 30.3443823,
+    "date_period": "авг.20",
+    "loss_probability": "9,1",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 21 к2",
+    "lat": 60.0802415,
+    "lon": 30.3443823,
+    "date_period": "авг.20",
+    "loss_probability": "22,7",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 19 к1",
+    "lat": 60.0787674,
+    "lon": 30.3447306,
+    "date_period": "авг.20",
+    "loss_probability": "27,6",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 17",
+    "lat": 60.0718895,
+    "lon": 30.3384076,
+    "date_period": "авг.20",
+    "loss_probability": "32,5",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Фёдора Абрамова, 15",
+    "lat": 60.0774381,
+    "lon": 30.3451841,
+    "date_period": "авг.20",
+    "loss_probability": "37,4",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Николая Рубцова, 5 ст1",
+    "lat": 60.0758924,
+    "lon": 30.3437306,
+    "date_period": "авг.20",
+    "loss_probability": "42,3",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "Михаила Дудина, 11",
+    "lat": 60.0696451,
+    "lon": 30.3427774,
+    "date_period": "авг.20",
+    "loss_probability": 0,
+    "type": "none",
+    "comments": "none"
+  },
+  {
+    "address": "Михаила Дудина, 17 лит Д",
+    "lat": 60.0689997,
+    "lon": 30.3412519,
+    "date_period": "авг.20",
+    "loss_probability": "13,4",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  },
+  {
+    "address": "​Михаила Дудина, 15 к1 лит А​",
+    "lat": 60.0671146,
+    "lon": 30.3397392,
+    "date_period": "авг.20",
+    "loss_probability": "11,2",
+    "type": "БД",
+    "comments": "на основе анализа актов БУ и БД"
+  }
+]

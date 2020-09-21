@@ -1,0 +1,77 @@
+.modal {
+  font-size: 12px;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: 0;
+  top: 0;
+  font-size: 24px;
+  background: none;
+  border: none;
+}
+
+.popup-overlay {
+  background: rgba(37, 47, 74, 0.82);
+  backdrop-filter: blur(4px);
+  z-index: 9999 !important;
+}
+
+.popup-content {
+  background: #ffffff;
+  color: #252f4a;
+  -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+  border-radius: 4px;
+  width: 396px;
+}
+
+.content {
+  font-family: PFDinTextCondPro-Regular !important;
+}
+
+.info {
+  padding-top: 16px;
+}
+
+.input-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.significance {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+th:nth-child(even) {
+  padding-left: 36px;
+}
+
+td:nth-child(even) {
+  padding-left: 36px;
+}
