@@ -25,7 +25,7 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 
 import Contex from "../store/context";
-import balance_group_items from "../data/balance_result_full_full.json";
+import balance_group_items from "../data/balance_result_simple.json";
 import info_icon from "../img/info_icon.svg";
 import triangle_icon from "../img/triangle_icon.svg";
 
