@@ -95,8 +95,8 @@ const SearchComponent = () => {
         getOptionLabel={(option) => option.name}
         style={{ width: 300 }}
         onChange={handleChange}
-        disableListWrap={true}
-        disablePortal={true}
+        // disableListWrap={true}
+        // disablePortal={true}
         noOptionsText='Варинты не найдены'
         autoSelect={true}
         renderInput={(params) => (

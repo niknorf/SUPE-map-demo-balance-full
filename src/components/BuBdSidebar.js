@@ -183,7 +183,7 @@ export default function SimplePaper() {
                 </tr>
                 <tr>
                   <td>данные SPARK</td>
-                  <td>{globalState.markerValue.spark}%</td>
+                  <td>{globalState.markerValue.SPARK}%</td>
                 </tr>
               </table>
             </div>
@@ -238,7 +238,7 @@ export default function SimplePaper() {
               ТП: &nbsp;
             </Typography>
             <Typography className={classes.value}>
-              {globalState.markerValue.tp}
+              {globalState.markerValue.TP}
             </Typography>
           </Box>
           <Box className={clsx(classes.infoItem, classes.comment)}>
