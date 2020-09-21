@@ -32,7 +32,7 @@ function createData(
 const createRows = () => {
   var rows = [];
   table_down.map((item) => {
-    if (item.month === 9) {
+    if (item.month === 7 && item.year === 2020) {
       rows.push(
         createData(
           item.balance_id,
