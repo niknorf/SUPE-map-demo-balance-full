@@ -21,35 +21,23 @@ function createData(
   balanceGroup,
   imbalancePercent,
   imbalanceKwh,
-  technicalPercent,
-  technicalKwt,
-  notTechnicalPecent,
-  notTechnicalKwt
 ) {
   return {
     balanceGroup,
     imbalancePercent,
     imbalanceKwh,
-    technicalPercent,
-    technicalKwt,
-    notTechnicalPecent,
-    notTechnicalKwt,
   };
 }
 
 const createRows = () => {
   var rows = [];
   table_down.map((item) => {
-    if (item.date_month === "сентябрь") {
+    if (item.month === 9) {
       rows.push(
         createData(
           item.balance_id,
           item.imbalance_percent,
           item.imbalance_kwh,
-          item.technical_losses_percent,
-          item.technical_losses_kwh,
-          item.non_technical_losses_percent,
-          item.non_technical_losses_kwh
         )
       );
     }

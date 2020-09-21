@@ -282,10 +282,6 @@ const GraphicGroup = () => {
                         month={month}
                         balance_index={globalState.balance_index}
                       />
-                      {/* <DisplayPieChart month={month} balance_index={globalState.balance_index} type={difference_percent} obj_name='index_compliance_forecast_present_unbalance' /> */}
-                      {/* <DisplayPieChart month={month} balance_index={globalState.balance_index} type={person_trust_index} obj_name='trust_index_PSK_fiz' /> */}
-                      {/* <DisplayPieChart month={month} balance_index={globalState.balance_index} type={house_trust_index} obj_name='trust_index_PSK_ODN' /> */}
-                      {/* <DisplayPieChart month={month} balance_index={globalState.balance_index} type={compnay_trust_index} obj_name='trust_index_PSK_urik' /> */}
                     </Box>
                   </Paper>
                 </Grid>
@@ -311,11 +307,12 @@ const GraphicGroup = () => {
                   <Paper
                     className={clsx(classes.barPaper, classes.lastBlockPaper)}
                   >
-                    <DisplayBarChart
-                      balance_index={globalState.balance_index}
-                      type={balance_group_tech_loss}
-                      obj_name="imbalance_kwh"
-                    />
+                    <Box style={{height:'180px', marginLeft: "100px",
+                       marginBottom: "100px",marginTop: "100px", marginLeft: "100px", flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                      <Typography style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        Недостаточно данных для расчета технических потерь
+                      </Typography>
+                    </Box>
                     <DisplayBarChart
                       balance_index={globalState.balance_index}
                       type={meter_avg}
@@ -344,6 +341,7 @@ const DisplayBarChart = ({ balance_index, type, obj_name }) => {
   if (obj_name === 'imbalance_kwh'){
     type.data = [];
     type.layout.title.text = "Недостаточно данных для расчета технических потерь";
+
   }
 
   return (<Plot
@@ -408,9 +406,9 @@ const DisplayPieChart = ({ month, balance_index }) => {
   };
 
   const boxStyle = (value) => {
-    if (typeof value === "undefined" || value === "" || !value) {
+    if (typeof value === "undefined" || value === 0 || value === null) {
       return boxGreyStyle;
-    } else if (parseInt(value) > 50 || parseInt(value) < 0) {
+    } else if ((parseInt(value) > 50 && parseInt(value) !== 100) || parseInt(value) < 0) {
       return boxRedStyle;
     }else{
       return boxGreenStyle;
@@ -420,7 +418,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
   const textStyle = (value) => {
     if (typeof value === "undefined" || value === 0 || value === null) {
       return textGreyStyle;
-    } else if (parseInt(value) > 50 || parseInt(value) < 0) {
+    } else if ((parseInt(value) > 50 && parseInt(value) !== 100) || parseInt(value) < 0) {
       return textRedStyle;
     }else{
       return textGreenStyle;
@@ -428,7 +426,6 @@ const DisplayPieChart = ({ month, balance_index }) => {
   };
 
   const textValue = (value) => {
-    console.log(value);
     if (typeof value === "undefined" || value === 0 || value === null) {
       return 'Данные для расчета показателя обновляются';
     } else {
@@ -488,16 +485,16 @@ const DisplayPieChart = ({ month, balance_index }) => {
       </Grid>
       <Grid item >
         <Box className={classes.boxStyle}
-          style={boxStyle(value[0].trust_index_PSK_fiz)}>
+          style={boxStyle(0)}>
           <Typography className={classes.boxTopText}>
-            Индекс доверия показаниям физических лиц в ПСК
+            Индекс доверия показаниям юридических лиц в ПСК
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
           </Icon> */}
           <Typography className={classes.boxMiddleText}
-            style={textStyle(value[0].trust_index_PSK_fiz)}>
-            {textValue(value[0].trust_index_PSK_fiz)}
+            style={textStyle(0)}>
+            {textValue(0)}
           </Typography>
         </Box>
       </Grid>
