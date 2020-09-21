@@ -167,7 +167,7 @@ export default function SimplePaper() {
                 </tr>
                 <tr>
                   <td>Сезонность</td>
-                  <td>none</td>
+                  <td>нет</td>
                 </tr>
                 <tr>
                   <td>Производственный календарь</td>

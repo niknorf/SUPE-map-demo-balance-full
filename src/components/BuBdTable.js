@@ -26,7 +26,7 @@ import PropTypes from "prop-types";
 import grey_marker from "../img/grey.png";
 import orange_marker from "../img/orange.png";
 import red_marker from "../img/red.png";
-import table_data from "../data/bu_bd_new.json";
+import table_data from "../data/bu_bd_new_new.json";
 import yellow_marker from "../img/yellow.png";
 
 function createData(
@@ -35,9 +35,38 @@ function createData(
   type,
   probability_type,
   report,
-  status
+  status,
+  SPARK,
+  TP,
+  data_PSK,
+  date_month,
+  date_year,
+  holidays,
+  imbalance,
+importance_PSK_ODN,
+importance_PSK_fiz_face,
+importance_PSK_ur_face,
+percent_transmission_PU
 ) {
-  return { address, percent_probability, type, probability_type,  report, status };
+  return {
+    address,
+    percent_probability,
+    type,
+    probability_type,
+    report,
+    status,
+    SPARK,
+    TP,
+    data_PSK,
+    date_month,
+    date_year,
+    holidays,
+    imbalance,
+    importance_PSK_ODN,
+    importance_PSK_fiz_face,
+    importance_PSK_ur_face,
+    percent_transmission_PU
+    };
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -235,7 +264,18 @@ export default function EnhancedTable() {
         percent_type,
         "Безучетное потребление",
         "Добавить акт",
-        "Новое"
+        "Новое",
+        item.SPARK,
+        item.TP,
+        item.data_PSK,
+        item.date_month,
+        item.date_year,
+        item.holidays,
+        item.imbalance,
+        item.importance_PSK_ODN,
+        item.importance_PSK_fiz_face,
+        item.importance_PSK_ur_face,
+        item.percent_transmission_PU
       )
     );
     return rows;
