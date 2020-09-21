@@ -17,7 +17,7 @@ import clsx from "clsx";
 import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
 import indexes from "../data/graphic/indexes.json";
-import full_res from "../data/graphic/full_res_imbalance.json";
+import full_res from "../data/graphic/res_imbalance_front.json";
 import "../css/graphic.css";
 import info_icon from "../img/info_icon.svg";
 const Plot = createPlotlyComponent(Plotly);
