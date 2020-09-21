@@ -405,20 +405,20 @@ const DisplayPieChart = ({ month, balance_index }) => {
     marginTop: "74px",
   };
 
-  const boxStyle = (value) => {
+  const boxStyle = (value, compare) => {
     if (typeof value === "undefined" || value === 0 || value === null) {
       return boxGreyStyle;
-    } else if ((parseInt(value) > 50 && parseInt(value) !== 100) || parseInt(value) < 0) {
+    } else if (Math.abs(parseInt(value)) > compare) {
       return boxRedStyle;
     }else{
       return boxGreenStyle;
     }
   };
 
-  const textStyle = (value) => {
+  const textStyle = (value, compare) => {
     if (typeof value === "undefined" || value === 0 || value === null) {
       return textGreyStyle;
-    } else if ((parseInt(value) > 50 && parseInt(value) !== 100) || parseInt(value) < 0) {
+    } else if (Math.abs(parseInt(value)) > compare) {
       return textRedStyle;
     }else{
       return textGreenStyle;
@@ -438,7 +438,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
       <Grid item>
         <Box
           className={`${classes.boxStyle}`}
-          style={boxStyle(value[0].percent_transmission_PU)}
+          style={boxStyle(value[0].percent_transmission_PU, 80)}
         >
           <Typography className={classes.boxTopText}>
             Процент передачи показаний приборов технического учета за месяц
@@ -447,7 +447,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
             <img className={classes.imageIcon} src={info_icon} alt="" />
           </Icon> */}
           <Typography
-            style={textStyle(value[0].percent_transmission_PU)}
+            style={textStyle(value[0].percent_transmission_PU, 80)}
             className={classes.boxMiddleText} >
             {textValue(value[0].percent_transmission_PU)}
           </Typography>
@@ -455,30 +455,30 @@ const DisplayPieChart = ({ month, balance_index }) => {
       </Grid>
       <Grid item >
         <Box className={classes.boxStyle}
-          style={boxStyle(value[0].index_compliance_forecast_present_unbalance)}>
+          style={boxStyle(value[0].index_compliance_forecast_present_unbalance, 30)}>
           <Typography className={classes.boxTopText}>
-            Процент соответствия предиктивного и фактического небалансов
+            Процент несоответствия предиктивного и фактического небалансов
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
           </Icon> */}
           <Typography className={classes.boxMiddleText}
-            style={textStyle(value[0].index_compliance_forecast_present_unbalance)}>
+            style={textStyle(value[0].index_compliance_forecast_present_unbalance, 30)}>
             {textValue(value[0].index_compliance_forecast_present_unbalance)}
           </Typography>
         </Box>
       </Grid>
       <Grid item>
         <Box className={classes.boxStyle}
-          style={boxStyle(value[0].trust_index_PSK_fiz)}>
+          style={boxStyle(value[0].trust_index_PSK_fiz, 20)}>
           <Typography className={classes.boxTopText}>
-            Индекс доверия показаниям физических лиц в ПСК
+            Индекс несоответствия показаний физических лиц в ПСК
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
           </Icon> */}
           <Typography className={classes.boxMiddleText}
-            style={textStyle(value[0].trust_index_PSK_fiz)}>
+            style={textStyle(value[0].trust_index_PSK_fiz, 20)}>
             {textValue(value[0].trust_index_PSK_fiz)}
           </Typography>
         </Box>
@@ -487,7 +487,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
         <Box className={classes.boxStyle}
           style={boxStyle(0)}>
           <Typography className={classes.boxTopText}>
-            Индекс доверия показаниям юридических лиц в ПСК
+            Индекс несоответствия показаний юридических лиц в ПСК
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
@@ -500,15 +500,15 @@ const DisplayPieChart = ({ month, balance_index }) => {
       </Grid>
       <Grid item >
         <Box className={classes.boxStyle}
-          style={boxStyle(value[0].trust_index_PSK_ODN)}>
+          style={boxStyle(value[0].trust_index_PSK_ODN, 20)}>
           <Typography className={classes.boxTopText}>
-            Индекс доверия показаниям общедомовых нужд в ПСК
+            Индекс несоответствия показаний общедомовых нужд в ПСК
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
           </Icon> */}
           <Typography className={classes.boxMiddleText}
-            style={textStyle(value[0].trust_index_PSK_ODN)}>
+            style={textStyle(value[0].trust_index_PSK_ODN, 20)}>
             {textValue(value[0].trust_index_PSK_ODN)}
           </Typography>
         </Box>
