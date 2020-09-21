@@ -405,25 +405,36 @@ const DisplayPieChart = ({ month, balance_index }) => {
     marginTop: "74px",
   };
 
-  const boxStyle = (value, compare) => {
+  const boxStyle = (value, compare, sign) => {
+    let condition = Math.abs(parseInt(value)) > compare;
+    if(sign === '<'){
+      condition = Math.abs(parseInt(value)) < compare
+    }
+
     if (typeof value === "undefined" || value === 0 || value === null) {
       return boxGreyStyle;
-    } else if (Math.abs(parseInt(value)) > compare) {
+    } else if (condition) {
       return boxRedStyle;
     }else{
       return boxGreenStyle;
     }
   };
 
-  const textStyle = (value, compare) => {
+  const textStyle = (value, compare, sign) => {
+    let condition = Math.abs(parseInt(value)) > compare;
+    if(sign === '<'){
+      condition = Math.abs(parseInt(value)) < compare
+    }
+
     if (typeof value === "undefined" || value === 0 || value === null) {
       return textGreyStyle;
-    } else if (Math.abs(parseInt(value)) > compare) {
+    } else if (condition) {
       return textRedStyle;
     }else{
       return textGreenStyle;
     }
   };
+
 
   const textValue = (value) => {
     if (typeof value === "undefined" || value === 0 || value === null) {
@@ -438,7 +449,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
       <Grid item>
         <Box
           className={`${classes.boxStyle}`}
-          style={boxStyle(value[0].percent_transmission_PU, 80)}
+          style={boxStyle(value[0].percent_transmission_PU, 80, '<')}
         >
           <Typography className={classes.boxTopText}>
             Процент передачи показаний приборов технического учета за месяц
@@ -447,7 +458,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
             <img className={classes.imageIcon} src={info_icon} alt="" />
           </Icon> */}
           <Typography
-            style={textStyle(value[0].percent_transmission_PU, 80)}
+            style={textStyle(value[0].percent_transmission_PU, 80, '<')}
             className={classes.boxMiddleText} >
             {textValue(value[0].percent_transmission_PU)}
           </Typography>
