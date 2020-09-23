@@ -18,6 +18,8 @@ import buildingsPolygon from "../building_polygon.json";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
+let phantomicLayer = {};
+
 const PhantomicBuildingstyle = {
   fillColor: "rgba(241, 158, 105, 0.4)",
   weight: 1,
@@ -34,10 +36,8 @@ const NonPhantomicBuildingstyle = {
   fillOpacity: 0.7,
 };
 
-/*TODO CHNAGE KGISID TO FIAS // IDEA: */
 const PhantomicBuilding = (fiasId) => {
   var temp;
-console.log(fiasId);
   temp = buildingsPolygon.map((building) => {
     if (building.properties.fiasId === fiasId) {
       return building;
@@ -47,7 +47,9 @@ console.log(fiasId);
   temp = temp.filter((obj) => {
     return typeof obj !== "undefined";
   });
-  return <GeoJSON key={fiasId} data={temp} style={PhantomicBuildingstyle} />;
+  return <GeoJSON key={fiasId} data={temp} style={PhantomicBuildingstyle} ref={(ref) => {
+    phantomicLayer = ref;
+  }}/>;
 };
 
 const NonePhantomicBuilding = (globalState) => {
@@ -179,18 +181,28 @@ const GeneralMap = () => {
     });
   };
 
+if(phantomicLayer){
+  if(typeof phantomicLayer.leafletElement !== 'undefined'){
+    console.log(phantomicLayer.leafletElement.getBounds());
+
+  }else{
+    console.log(phantomicLayer);
+  }
+
+}
+
   return (
-    <LoadingOverlay
-      active={false}
-      spinner={<CircularProgress />}
-      text=""
-      styles={{
-        overlay: (base) => ({
-          ...base,
-          background: "rgba(34, 47, 74, 0.3)",
-        }),
-      }}
-    >
+    // <LoadingOverlay
+    //   active={false}
+    //   spinner={<CircularProgress />}
+    //   text=""
+    //   styles={{
+    //     overlay: (base) => ({
+    //       ...base,
+    //       background: "rgba(34, 47, 74, 0.3)",
+    //     }),
+    //   }}
+    // >
       <Map
         className="markercluster-map"
         center={position}
@@ -216,7 +228,7 @@ const GeneralMap = () => {
 
         {globalState.objSelected ? checkDisplay(globalState) : null}
       </Map>
-    </LoadingOverlay>
+    // </LoadingOverlay>
   );
 };
 

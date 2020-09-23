@@ -26,7 +26,7 @@ import PropTypes from "prop-types";
 import grey_marker from "../img/grey.png";
 import orange_marker from "../img/orange.png";
 import red_marker from "../img/red.png";
-import table_data from "../data/bu_bd_new_new.json";
+import table_data from "../data/bu_bd.json";
 import yellow_marker from "../img/yellow.png";
 
 function createData(
