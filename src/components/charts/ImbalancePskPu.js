@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import clsx from "clsx";
 import Contex from "../../store/context";
-import full_res from "../../data/graphic/full_res_imbalance.json";
+import full_res from "../../data/graphic/res_imbalance_front.json";
 import full_res_phantom from "../../data/graphic/imbalance_phantom.json";
 import phantomic_buildings from "../../data/balance_phantom_dict.json";
 
