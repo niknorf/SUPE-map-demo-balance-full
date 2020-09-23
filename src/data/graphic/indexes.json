@@ -1,1 +1,2702 @@
-[{"balance_id":17,"date_month":7,"date_year":2020,"percent_transmission_PU":70.6,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":13,"date_month":7,"date_year":2020,"percent_transmission_PU":99.9,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":162,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":141,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-93.0,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":-9.0,"trust_index_PSK_urik":null},{"balance_id":9,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":755,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":57.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":719,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-283.0,"trust_index_PSK_fiz":7.0,"trust_index_PSK_ODN":2.0,"trust_index_PSK_urik":null},{"balance_id":46,"date_month":7,"date_year":2020,"percent_transmission_PU":88.2,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":2.0,"trust_index_PSK_urik":null},{"balance_id":372,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":110.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-10.0,"trust_index_PSK_urik":null},{"balance_id":392,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-998.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":13.0,"trust_index_PSK_urik":null},{"balance_id":20,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":462,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":107.0,"trust_index_PSK_fiz":-8.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":347,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-667.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":66,"date_month":7,"date_year":2020,"percent_transmission_PU":0.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-25.0,"trust_index_PSK_urik":null},{"balance_id":398,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-83.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":103,"date_month":7,"date_year":2020,"percent_transmission_PU":93.9,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":161,"date_month":7,"date_year":2020,"percent_transmission_PU":99.8,"index_compliance_forecast_present_unbalance":-29.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":12,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":154,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":51,"date_month":7,"date_year":2020,"percent_transmission_PU":99.8,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":8,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":24929.0,"trust_index_PSK_fiz":4.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":186,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":69,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":35,"date_month":7,"date_year":2020,"percent_transmission_PU":99.8,"index_compliance_forecast_present_unbalance":3191.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":2.0,"trust_index_PSK_urik":null},{"balance_id":114,"date_month":7,"date_year":2020,"percent_transmission_PU":99.6,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":48,"date_month":7,"date_year":2020,"percent_transmission_PU":0.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":79,"date_month":7,"date_year":2020,"percent_transmission_PU":73.6,"index_compliance_forecast_present_unbalance":-42.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":672,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2725.0,"trust_index_PSK_fiz":6.0,"trust_index_PSK_ODN":-22.0,"trust_index_PSK_urik":null},{"balance_id":253,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":246,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-295.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":21,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-166.0,"trust_index_PSK_fiz":4.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":613,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-241.0,"trust_index_PSK_fiz":14.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":275,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-289.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-12.0,"trust_index_PSK_urik":null},{"balance_id":565,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-122.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":139,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-68.0,"trust_index_PSK_fiz":-10.0,"trust_index_PSK_ODN":-8.0,"trust_index_PSK_urik":null},{"balance_id":536,"date_month":7,"date_year":2020,"percent_transmission_PU":75.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":109,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-147.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-7.0,"trust_index_PSK_urik":null},{"balance_id":236,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":393,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-557.0,"trust_index_PSK_fiz":4.0,"trust_index_PSK_ODN":-9.0,"trust_index_PSK_urik":null},{"balance_id":252,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":285,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-402.0,"trust_index_PSK_fiz":6.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":72,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-201.0,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":496,"date_month":7,"date_year":2020,"percent_transmission_PU":99.2,"index_compliance_forecast_present_unbalance":-847.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":529,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2618.0,"trust_index_PSK_fiz":-20.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":464,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-803.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-37.0,"trust_index_PSK_urik":null},{"balance_id":494,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-835.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":-7.0,"trust_index_PSK_urik":null},{"balance_id":471,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":331,"date_month":7,"date_year":2020,"percent_transmission_PU":80.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":5.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":182,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":544.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":296,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":479,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":231.0,"trust_index_PSK_fiz":7.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":633,"date_month":7,"date_year":2020,"percent_transmission_PU":50.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":400,"date_month":7,"date_year":2020,"percent_transmission_PU":99.2,"index_compliance_forecast_present_unbalance":1945.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":54,"date_month":7,"date_year":2020,"percent_transmission_PU":75.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":437,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":676,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-139.0,"trust_index_PSK_fiz":-5.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":107,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2930.0,"trust_index_PSK_fiz":-33.0,"trust_index_PSK_ODN":19.0,"trust_index_PSK_urik":null},{"balance_id":146,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-487.0,"trust_index_PSK_fiz":5.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":535,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":558,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":104.0,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":18.0,"trust_index_PSK_urik":null},{"balance_id":314,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-125.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":5.0,"trust_index_PSK_urik":null},{"balance_id":734,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":78.0,"trust_index_PSK_fiz":-11.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":480,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-25.0,"trust_index_PSK_fiz":-30.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":760,"date_month":7,"date_year":2020,"percent_transmission_PU":99.9,"index_compliance_forecast_present_unbalance":37.0,"trust_index_PSK_fiz":-22.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":671,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":79.0,"trust_index_PSK_fiz":-12.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":537,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-652.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":624,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1394.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-15.0,"trust_index_PSK_urik":null},{"balance_id":108,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2737.0,"trust_index_PSK_fiz":-5.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":173,"date_month":7,"date_year":2020,"percent_transmission_PU":87.5,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":148,"date_month":7,"date_year":2020,"percent_transmission_PU":91.7,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":204,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-48379.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":258,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":416,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-4654.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":312,"date_month":7,"date_year":2020,"percent_transmission_PU":98.4,"index_compliance_forecast_present_unbalance":-1926.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-16.0,"trust_index_PSK_urik":null},{"balance_id":19,"date_month":7,"date_year":2020,"percent_transmission_PU":87.5,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-9.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":307,"date_month":7,"date_year":2020,"percent_transmission_PU":0.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":433,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-144.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":446,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":34,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-259.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":-36.0,"trust_index_PSK_urik":null},{"balance_id":223,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":44,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1095.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-10.0,"trust_index_PSK_urik":null},{"balance_id":628,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":284,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-1892.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":9.0,"trust_index_PSK_urik":null},{"balance_id":572,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-18571.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":13.0,"trust_index_PSK_urik":null},{"balance_id":538,"date_month":7,"date_year":2020,"percent_transmission_PU":92.0,"index_compliance_forecast_present_unbalance":-357.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-10.0,"trust_index_PSK_urik":null},{"balance_id":751,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-396.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":98,"date_month":7,"date_year":2020,"percent_transmission_PU":87.5,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":3.0,"trust_index_PSK_urik":null},{"balance_id":30,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-246.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-14.0,"trust_index_PSK_urik":null},{"balance_id":166,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-83.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":606,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-840.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":8.0,"trust_index_PSK_urik":null},{"balance_id":493,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":158.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":487,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":335.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":73,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-466.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-25.0,"trust_index_PSK_urik":null},{"balance_id":653,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-634.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":698,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":204.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-10.0,"trust_index_PSK_urik":null},{"balance_id":292,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2321.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":3.0,"trust_index_PSK_urik":null},{"balance_id":358,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":92105.0,"trust_index_PSK_fiz":27.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":680,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":518.0,"trust_index_PSK_fiz":-9.0,"trust_index_PSK_ODN":26.0,"trust_index_PSK_urik":null},{"balance_id":130,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-616.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":743,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":12.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":10.0,"trust_index_PSK_urik":null},{"balance_id":202,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":561,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":374,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":622,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":321,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":744,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":33.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":16.0,"trust_index_PSK_urik":null},{"balance_id":36,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-168.0,"trust_index_PSK_fiz":-8.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":548,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-10864.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-10.0,"trust_index_PSK_urik":null},{"balance_id":551,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":167.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-58.0,"trust_index_PSK_urik":null},{"balance_id":59,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-163.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":50,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2336.0,"trust_index_PSK_fiz":-177.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":29,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1589.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":245,"date_month":7,"date_year":2020,"percent_transmission_PU":66.7,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":49,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-206.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":155,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":75.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":282,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-449.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-13.0,"trust_index_PSK_urik":null},{"balance_id":189,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-690.0,"trust_index_PSK_fiz":-6.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":101,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":180,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":752,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":39.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":696,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-423.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":344,"date_month":7,"date_year":2020,"percent_transmission_PU":88.9,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":585,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-63.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":85,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-108.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":568,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":507,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-13744.0,"trust_index_PSK_fiz":4.0,"trust_index_PSK_ODN":-10.0,"trust_index_PSK_urik":null},{"balance_id":690,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":778.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-7.0,"trust_index_PSK_urik":null},{"balance_id":124,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-671.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":2.0,"trust_index_PSK_urik":null},{"balance_id":226,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":2.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":26,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2198.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":120,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-353.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":340,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-136.0,"trust_index_PSK_fiz":-10.0,"trust_index_PSK_ODN":-85.0,"trust_index_PSK_urik":null},{"balance_id":627,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":19487.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":221,"date_month":7,"date_year":2020,"percent_transmission_PU":93.5,"index_compliance_forecast_present_unbalance":-42.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":13.0,"trust_index_PSK_urik":null},{"balance_id":670,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-653.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":499,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":33.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":217,"date_month":7,"date_year":2020,"percent_transmission_PU":98.4,"index_compliance_forecast_present_unbalance":10.0,"trust_index_PSK_fiz":-32.0,"trust_index_PSK_ODN":-7.0,"trust_index_PSK_urik":null},{"balance_id":742,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-63.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":728,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":37.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":583,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":17.0,"trust_index_PSK_fiz":7.0,"trust_index_PSK_ODN":6.0,"trust_index_PSK_urik":null},{"balance_id":594,"date_month":7,"date_year":2020,"percent_transmission_PU":93.5,"index_compliance_forecast_present_unbalance":74.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":12.0,"trust_index_PSK_urik":null},{"balance_id":685,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-496.0,"trust_index_PSK_fiz":-7.0,"trust_index_PSK_ODN":-7.0,"trust_index_PSK_urik":null},{"balance_id":43,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":227,"date_month":7,"date_year":2020,"percent_transmission_PU":88.9,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":229,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1228.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":546,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":380,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-4714.0,"trust_index_PSK_fiz":5.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":730,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-298.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-8.0,"trust_index_PSK_urik":null},{"balance_id":185,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":116,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":25,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-169.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-24.0,"trust_index_PSK_urik":null},{"balance_id":547,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":468,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":216,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":92,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-91.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":269,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":11.0,"trust_index_PSK_urik":null},{"balance_id":424,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-201.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-14.0,"trust_index_PSK_urik":null},{"balance_id":463,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-105.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":724,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-34.0,"trust_index_PSK_fiz":-16.0,"trust_index_PSK_ODN":-33.0,"trust_index_PSK_urik":null},{"balance_id":286,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":21.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":626,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-145.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":27,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":156,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-192.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":442,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":8566.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":396,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":203,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":52.0,"trust_index_PSK_fiz":6.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":763,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-65.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":738,"date_month":7,"date_year":2020,"percent_transmission_PU":4.6,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":61,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":196,"date_month":7,"date_year":2020,"percent_transmission_PU":80.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":332,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":120.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":144,"date_month":7,"date_year":2020,"percent_transmission_PU":50.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":136,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-1.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":237,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":299,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":544,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-1858.0,"trust_index_PSK_fiz":7.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":209,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":2,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":6.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":386,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1584.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-248.0,"trust_index_PSK_urik":null},{"balance_id":265,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-887.0,"trust_index_PSK_fiz":6.0,"trust_index_PSK_ODN":-56.0,"trust_index_PSK_urik":null},{"balance_id":181,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-135.0,"trust_index_PSK_fiz":11.0,"trust_index_PSK_ODN":6.0,"trust_index_PSK_urik":null},{"balance_id":211,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-10155.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":-20.0,"trust_index_PSK_urik":null},{"balance_id":151,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":230.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":436,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":11467.0,"trust_index_PSK_fiz":-13.0,"trust_index_PSK_ODN":-6.0,"trust_index_PSK_urik":null},{"balance_id":83,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-195.0,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":-30.0,"trust_index_PSK_urik":null},{"balance_id":67,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-150.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":71,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":300.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":172,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-135.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":620,"date_month":7,"date_year":2020,"percent_transmission_PU":99.9,"index_compliance_forecast_present_unbalance":95.0,"trust_index_PSK_fiz":-17.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":727,"date_month":7,"date_year":2020,"percent_transmission_PU":99.9,"index_compliance_forecast_present_unbalance":0.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-59.0,"trust_index_PSK_urik":null},{"balance_id":740,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-192.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-1250.0,"trust_index_PSK_urik":null},{"balance_id":668,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1193.0,"trust_index_PSK_fiz":4.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":595,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-28.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":632,"date_month":7,"date_year":2020,"percent_transmission_PU":99.2,"index_compliance_forecast_present_unbalance":456.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":658,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-8081.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":636,"date_month":7,"date_year":2020,"percent_transmission_PU":99.8,"index_compliance_forecast_present_unbalance":-351.0,"trust_index_PSK_fiz":-5.0,"trust_index_PSK_ODN":-16.0,"trust_index_PSK_urik":null},{"balance_id":679,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":124.0,"trust_index_PSK_fiz":-18.0,"trust_index_PSK_ODN":-8.0,"trust_index_PSK_urik":null},{"balance_id":754,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":85.0,"trust_index_PSK_fiz":-19.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":640,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-1081.0,"trust_index_PSK_fiz":-20.0,"trust_index_PSK_ODN":6.0,"trust_index_PSK_urik":null},{"balance_id":562,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":22.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":2.0,"trust_index_PSK_urik":null},{"balance_id":311,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":434593.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":486,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":768.0,"trust_index_PSK_fiz":5.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":688,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":40.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":194,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2281.0,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":697,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-9.0,"trust_index_PSK_urik":null},{"balance_id":732,"date_month":7,"date_year":2020,"percent_transmission_PU":97.8,"index_compliance_forecast_present_unbalance":2058.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-22.0,"trust_index_PSK_urik":null},{"balance_id":338,"date_month":7,"date_year":2020,"percent_transmission_PU":93.5,"index_compliance_forecast_present_unbalance":-220.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":-24.0,"trust_index_PSK_urik":null},{"balance_id":665,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":5053.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-2.0,"trust_index_PSK_urik":null},{"balance_id":705,"date_month":7,"date_year":2020,"percent_transmission_PU":93.5,"index_compliance_forecast_present_unbalance":184.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-11.0,"trust_index_PSK_urik":null},{"balance_id":691,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":-78.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":675,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":39.0,"trust_index_PSK_fiz":13.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":692,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-1162.0,"trust_index_PSK_fiz":-29.0,"trust_index_PSK_ODN":5.0,"trust_index_PSK_urik":null},{"balance_id":191,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1133.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":345,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":707,"date_month":7,"date_year":2020,"percent_transmission_PU":78.0,"index_compliance_forecast_present_unbalance":518.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":717,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":175.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":532,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-173.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":-26.0,"trust_index_PSK_urik":null},{"balance_id":452,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":38.0,"trust_index_PSK_fiz":-18.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":460,"date_month":7,"date_year":2020,"percent_transmission_PU":33.7,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":706,"date_month":7,"date_year":2020,"percent_transmission_PU":33.7,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":373,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":4083.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":402,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-369.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":439,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-1314.0,"trust_index_PSK_fiz":-4.0,"trust_index_PSK_ODN":-12.0,"trust_index_PSK_urik":null},{"balance_id":14,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-4162.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":726,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":35219.0,"trust_index_PSK_fiz":-7.0,"trust_index_PSK_ODN":1.0,"trust_index_PSK_urik":null},{"balance_id":520,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-400.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":703,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-529.0,"trust_index_PSK_fiz":-7.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":700,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":3798.0,"trust_index_PSK_fiz":12.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":371,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-57.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":647,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":450,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-26.0,"trust_index_PSK_fiz":6.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":666,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-38.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":646,"date_month":7,"date_year":2020,"percent_transmission_PU":93.5,"index_compliance_forecast_present_unbalance":1315.0,"trust_index_PSK_fiz":5.0,"trust_index_PSK_ODN":-202.0,"trust_index_PSK_urik":null},{"balance_id":238,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":138.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":2.0,"trust_index_PSK_urik":null},{"balance_id":683,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":138.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-8.0,"trust_index_PSK_urik":null},{"balance_id":530,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1537.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":459,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":9857.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-9.0,"trust_index_PSK_urik":null},{"balance_id":206,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2185.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":3.0,"trust_index_PSK_urik":null},{"balance_id":233,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-3718.0,"trust_index_PSK_fiz":-14.0,"trust_index_PSK_ODN":-4.0,"trust_index_PSK_urik":null},{"balance_id":77,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-895.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":12.0,"trust_index_PSK_urik":null},{"balance_id":370,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":614.0,"trust_index_PSK_fiz":-6.0,"trust_index_PSK_ODN":4.0,"trust_index_PSK_urik":null},{"balance_id":641,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-186.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":3.0,"trust_index_PSK_urik":null},{"balance_id":611,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2468.0,"trust_index_PSK_fiz":-13.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":168,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":725,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-188.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":556,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":8862.0,"trust_index_PSK_fiz":-14.0,"trust_index_PSK_ODN":3.0,"trust_index_PSK_urik":null},{"balance_id":225,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":51.0,"trust_index_PSK_fiz":-8.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":167,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-156.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":-11.0,"trust_index_PSK_urik":null},{"balance_id":385,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-663.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null},{"balance_id":731,"date_month":7,"date_year":2020,"percent_transmission_PU":99.2,"index_compliance_forecast_present_unbalance":-11585.0,"trust_index_PSK_fiz":3.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":87,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":22.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":3.0,"trust_index_PSK_urik":null},{"balance_id":501,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":78.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":-55.0,"trust_index_PSK_urik":null},{"balance_id":694,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":94.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":13.0,"trust_index_PSK_urik":null},{"balance_id":756,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1046.0,"trust_index_PSK_fiz":7.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":383,"date_month":7,"date_year":2020,"percent_transmission_PU":98.3,"index_compliance_forecast_present_unbalance":-261.0,"trust_index_PSK_fiz":-1.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":492,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":284.0,"trust_index_PSK_fiz":4.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":318,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1423.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":455,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":4542.0,"trust_index_PSK_fiz":-12.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":684,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":696.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":542,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-2948.0,"trust_index_PSK_fiz":2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":353,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-252.0,"trust_index_PSK_fiz":9.0,"trust_index_PSK_ODN":6.0,"trust_index_PSK_urik":null},{"balance_id":199,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-870.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":659,"date_month":7,"date_year":2020,"percent_transmission_PU":99.2,"index_compliance_forecast_present_unbalance":1753.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":579,"date_month":7,"date_year":2020,"percent_transmission_PU":99.7,"index_compliance_forecast_present_unbalance":-7961.0,"trust_index_PSK_fiz":-3.0,"trust_index_PSK_ODN":null,"trust_index_PSK_urik":null},{"balance_id":599,"date_month":7,"date_year":2020,"percent_transmission_PU":50.0,"index_compliance_forecast_present_unbalance":null,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-3.0,"trust_index_PSK_urik":null},{"balance_id":219,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":110.0,"trust_index_PSK_fiz":-2.0,"trust_index_PSK_ODN":10.0,"trust_index_PSK_urik":null},{"balance_id":630,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":1546.0,"trust_index_PSK_fiz":1.0,"trust_index_PSK_ODN":-5.0,"trust_index_PSK_urik":null},{"balance_id":674,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":260.0,"trust_index_PSK_fiz":-12.0,"trust_index_PSK_ODN":0.0,"trust_index_PSK_urik":null},{"balance_id":461,"date_month":7,"date_year":2020,"percent_transmission_PU":100.0,"index_compliance_forecast_present_unbalance":-189.0,"trust_index_PSK_fiz":0.0,"trust_index_PSK_ODN":-26.0,"trust_index_PSK_urik":null},{"balance_id":609,"date_month":7,"date_year":2020,"percent_transmission_PU":96.8,"index_compliance_forecast_present_unbalance":99.0,"trust_index_PSK_fiz":null,"trust_index_PSK_ODN":-1.0,"trust_index_PSK_urik":null}]
+[
+  {
+    "balance_id": 17,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 70.6,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 13,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.9,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 162,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 141,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 18.0,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 9,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 755,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 1.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 719,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -11.0,
+    "trust_index_PSK_fiz": -12.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 46,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 88.2,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 372,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 2.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -10.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 392,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -7.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 11.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 20,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 462,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1932.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 347,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 22.0,
+    "trust_index_PSK_fiz": -11.0,
+    "trust_index_PSK_ODN": -35.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 66,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 0.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 398,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 103,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 93.9,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 161,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.8,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 12,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 154,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 51,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.8,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 8,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -76.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 186,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 69,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 35,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.8,
+    "index_compliance_forecast_present_unbalance": 285.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -12.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 114,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.6,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 48,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 0.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 79,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 73.6,
+    "index_compliance_forecast_present_unbalance": 83.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 672,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -624.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 253,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 246,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -65.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 21,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -8.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -14.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 613,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 3.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 275,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 2.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 565,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 0.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 139,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -56.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 536,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 75.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 109,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -34.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 236,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 393,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 4.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 252,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 285,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -44.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 72,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -2.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 496,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.2,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 529,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 9.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 464,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 6.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 494,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 471,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 331,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 80.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": -5.0,
+    "trust_index_PSK_ODN": 8.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 182,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -92.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 296,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 479,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 8.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -10.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 633,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 50.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 400,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.2,
+    "index_compliance_forecast_present_unbalance": 54.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -30.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 54,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 75.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 437,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 676,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -4.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 107,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 146.0,
+    "trust_index_PSK_fiz": 6.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 146,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -26.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": 5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 535,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 558,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 3.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 314,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 31.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 734,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -12.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 480,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 3.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 760,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.9,
+    "index_compliance_forecast_present_unbalance": 29.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 671,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -3.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 537,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 149.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 624,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 181.0,
+    "trust_index_PSK_fiz": -19.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 108,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 986.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 173,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 87.5,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 148,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 91.7,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 204,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -77.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 258,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 416,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 93.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 312,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 98.4,
+    "index_compliance_forecast_present_unbalance": 18.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": -13.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 19,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 87.5,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": -8.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 307,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 0.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 433,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 0.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 11.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 446,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 34,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -26.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 223,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 44,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 100.0,
+    "trust_index_PSK_fiz": 7.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 628,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 284,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -6.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 572,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -21.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": -5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 538,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 92.0,
+    "index_compliance_forecast_present_unbalance": 32.0,
+    "trust_index_PSK_fiz": -14.0,
+    "trust_index_PSK_ODN": -18.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 751,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 6.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 98,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 87.5,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": -6.0,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 30,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -48.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -21.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 166,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 8.0,
+    "trust_index_PSK_fiz": -9.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 606,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 26.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 493,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 11.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 487,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 2.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 73,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 9474.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 653,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 698,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 10.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 292,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -508.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": 25.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 358,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 304.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 680,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 308.0,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 130,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 111.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": 52.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 743,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 23.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 202,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 561,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 374,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 7.0,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": -22.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 622,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 321,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 744,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 16.0,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 36,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 541.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 548,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -58.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 551,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -6.0,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": 13.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 59,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -4.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 50,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -18.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 29,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -110.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 245,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 66.7,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 49,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -24.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 155,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 12.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 282,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -107.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 189,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 101,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 180,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 752,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -2.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 696,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -132.0,
+    "trust_index_PSK_fiz": 7.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 344,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 88.9,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 585,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -104.0,
+    "trust_index_PSK_fiz": -17.0,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 85,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -32.0,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 568,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 507,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 1619.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 31.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 690,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 27.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 8.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 124,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -187.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 226,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 16.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 26,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -35.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 120,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -31.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 340,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": -19.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 627,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": -136.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 221,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 93.5,
+    "index_compliance_forecast_present_unbalance": 1.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 670,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 499,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 217,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 98.4,
+    "index_compliance_forecast_present_unbalance": 19.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 742,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 22.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 728,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 9.0,
+    "trust_index_PSK_fiz": 8.0,
+    "trust_index_PSK_ODN": 7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 583,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": 5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 594,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 93.5,
+    "index_compliance_forecast_present_unbalance": 3.0,
+    "trust_index_PSK_fiz": -5.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 685,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 26.0,
+    "trust_index_PSK_fiz": -10.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 43,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 227,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 88.9,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 229,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -79.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 546,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 380,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 141.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 730,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -20.0,
+    "trust_index_PSK_fiz": 6.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 185,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 116,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 25,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -53.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 547,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 468,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 216,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 92,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 269,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 424,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 225.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 463,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -4.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 724,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -4.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": -5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 286,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 21.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": -8.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 626,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 0.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 16.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 27,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 156,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -78.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -33.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 442,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -266.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 396,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 203,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 3.0,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": -36.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 763,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 1.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 20.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 738,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 4.6,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 6.0,
+    "trust_index_PSK_ODN": 7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 61,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 196,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 80.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": -6.0,
+    "trust_index_PSK_ODN": 16.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 332,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 77.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": -30.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 144,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 50.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 136,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -7.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 237,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 299,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 544,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -66.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 209,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 2,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 0.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 386,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 107.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -37.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 265,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 2.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 181,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": -5.0,
+    "trust_index_PSK_ODN": 1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 211,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -85.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 151,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -139.0,
+    "trust_index_PSK_fiz": 6.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 436,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 645.0,
+    "trust_index_PSK_fiz": 7.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 83,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 67,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -14.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 71,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 6.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 172,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -49.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": 19.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 620,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.9,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 9.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 727,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.9,
+    "index_compliance_forecast_present_unbalance": 12.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 740,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 668,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -100.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 595,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 632,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.2,
+    "index_compliance_forecast_present_unbalance": 22.0,
+    "trust_index_PSK_fiz": -8.0,
+    "trust_index_PSK_ODN": 11.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 658,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -47.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": -11.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 636,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.8,
+    "index_compliance_forecast_present_unbalance": -2.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": -8.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 679,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 160.0,
+    "trust_index_PSK_fiz": 17.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 754,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 4.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 640,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -390.0,
+    "trust_index_PSK_fiz": 540.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 562,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 311,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 7.0,
+    "trust_index_PSK_fiz": -4.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 486,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 30.0,
+    "trust_index_PSK_fiz": -5.0,
+    "trust_index_PSK_ODN": -5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 688,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 16.0,
+    "trust_index_PSK_fiz": -8.0,
+    "trust_index_PSK_ODN": -13.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 194,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 9.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 697,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": 12.0,
+    "trust_index_PSK_ODN": 5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 732,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 97.8,
+    "index_compliance_forecast_present_unbalance": 3.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 338,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 93.5,
+    "index_compliance_forecast_present_unbalance": 13.0,
+    "trust_index_PSK_fiz": 13.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 665,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": -89.0,
+    "trust_index_PSK_fiz": -6.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 705,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 93.5,
+    "index_compliance_forecast_present_unbalance": 53.0,
+    "trust_index_PSK_fiz": 9.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 691,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": -3.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -19.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 675,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": 1.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 692,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -40.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 191,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 129.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 345,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 707,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 78.0,
+    "index_compliance_forecast_present_unbalance": 85.0,
+    "trust_index_PSK_fiz": -18.0,
+    "trust_index_PSK_ODN": -32.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 717,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -2.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 532,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -1.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -3043.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 452,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 37.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 460,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 33.7,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 706,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 33.7,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 373,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -37.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 15.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 402,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 506.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 439,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -64.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 9.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 14,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 726,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -724.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 8.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 520,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -429.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 10.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 703,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 97.0,
+    "trust_index_PSK_fiz": -8.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 700,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -103.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 9.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 371,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 14.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 647,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 450,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 666,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -84.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 5.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 646,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 93.5,
+    "index_compliance_forecast_present_unbalance": 30.0,
+    "trust_index_PSK_fiz": -9.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 238,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 683,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": 94.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 530,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 4.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 459,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -19.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -18.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 206,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 9.0,
+    "trust_index_PSK_fiz": 8.0,
+    "trust_index_PSK_ODN": 10.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 233,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 0.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -51.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 77,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 148.0,
+    "trust_index_PSK_fiz": -6.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 370,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 30.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 641,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 29.0,
+    "trust_index_PSK_fiz": 12.0,
+    "trust_index_PSK_ODN": 3.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 611,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 8.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": 4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 168,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -3.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -188.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 725,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 26.0,
+    "trust_index_PSK_fiz": -2.0,
+    "trust_index_PSK_ODN": 12.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 556,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 11.0,
+    "trust_index_PSK_fiz": -1.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 225,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -5.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": 2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 167,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 63.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 12.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 385,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -10.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": 7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 731,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.2,
+    "index_compliance_forecast_present_unbalance": 160.0,
+    "trust_index_PSK_fiz": 5.0,
+    "trust_index_PSK_ODN": 6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 87,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 64.0,
+    "trust_index_PSK_fiz": 18.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 501,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 16.0,
+    "trust_index_PSK_fiz": 16.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 694,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 23.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": -12.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 756,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 69.0,
+    "trust_index_PSK_fiz": 6.0,
+    "trust_index_PSK_ODN": -6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 383,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 98.3,
+    "index_compliance_forecast_present_unbalance": -51.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 492,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -23.0,
+    "trust_index_PSK_fiz": -3.0,
+    "trust_index_PSK_ODN": -92.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 318,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 58.0,
+    "trust_index_PSK_fiz": 2.0,
+    "trust_index_PSK_ODN": -7.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 455,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -104.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 684,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": -607.0,
+    "trust_index_PSK_fiz": 3.0,
+    "trust_index_PSK_ODN": -1.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 542,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 356.0,
+    "trust_index_PSK_fiz": -10.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 353,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 7.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -56.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 199,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 4.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": -11.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 659,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.2,
+    "index_compliance_forecast_present_unbalance": 78.0,
+    "trust_index_PSK_fiz": -5.0,
+    "trust_index_PSK_ODN": -4.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 579,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 99.7,
+    "index_compliance_forecast_present_unbalance": 313.0,
+    "trust_index_PSK_fiz": 0.0,
+    "trust_index_PSK_ODN": 6.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 599,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 50.0,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 219,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": 20.0,
+    "trust_index_PSK_fiz": 4.0,
+    "trust_index_PSK_ODN": 0.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 630,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 272.0,
+    "trust_index_PSK_fiz": 6.0,
+    "trust_index_PSK_ODN": -14.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 674,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": 0.0,
+    "trust_index_PSK_fiz": 1.0,
+    "trust_index_PSK_ODN": -68.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 461,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 100.0,
+    "index_compliance_forecast_present_unbalance": 5.0,
+    "trust_index_PSK_fiz": -7.0,
+    "trust_index_PSK_ODN": -2.0,
+    "trust_index_PSK_urik": null
+  },
+  {
+    "balance_id": 609,
+    "date_month": 7,
+    "date_year": 2020,
+    "percent_transmission_PU": 96.8,
+    "index_compliance_forecast_present_unbalance": null,
+    "trust_index_PSK_fiz": null,
+    "trust_index_PSK_ODN": null,
+    "trust_index_PSK_urik": null
+  }
+]
