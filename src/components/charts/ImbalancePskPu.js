@@ -112,16 +112,16 @@ const CreateImabalancePSK = ({ balance_index, object, switchState }) => {
         }
         if (item.year.toString() === "2018") {
           year_2018.x.push(item.month);
-          year_2018.y.push(item.out_phantom_kwh);
+          year_2018.y.push(item.imbalance_phantom_kwh);
         }
         if (item.year.toString() === "2019") {
           year_2019.x.push(item.month);
-          year_2019.y.push(item.out_phantom_kwh);
+          year_2019.y.push(item.imbalance_phantom_kwh);
         }
 
         if (item.year.toString() === "2020") {
           year_2020.x.push(item.month);
-          year_2020.y.push(item.out_phantom_kwh);
+          year_2020.y.push(item.imbalance_phantom_kwh);
         }
       }
       return item;
