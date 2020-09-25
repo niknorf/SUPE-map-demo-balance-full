@@ -20,7 +20,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import React, { useContext } from "react";
-import full_res from "../data/graphic/full_res_imbalance.json";
+import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 
@@ -200,24 +200,39 @@ const ShowDataState = () => {
       ? "(" + globalState.building_address + ")"
       : "";
 
-    let value  = full_res.map(function(item) {
-      if(item.balance_id.toString() === balance_id.toString() && item.year === 2020){
-        return item;
+    // let value  = full_res.map(function(item) {
+    //   if(item.balance_id.toString() === balance_id.toString() && item.year === 2020){
+    //     return item;
+    //   }
+    // });
+
+    let input_month = 0;
+    let imbalance_kwh = 0;
+
+    let temp_array = [];
+
+    /*TODO SEARCHED BASED ON LATERS MONTH AND YEAR*/
+    for(var i=0; i < full_res.length; i++){
+      if(full_res[i].balance_id.toString() === balance_id.toString() && full_res[i].year === 2020 && full_res[i].month === "Июл"){
+      // temp_array.push(full_res[i])
+      /*Temp solution waiting fro month_number inside res_imbalance_front*/
+      input_month = full_res[i].input_month;
+      imbalance_kwh = full_res[i].imbalance_kwh;
+
       }
-    });
-    value = value.filter((obj) => {
-      return typeof obj !== "undefined";
-    });
-
-    let biggest_month = Math.max.apply(Math, value.map(function(o) { return o.month; }))
-
-    value = value.filter((obj) => {
-      return obj.month === biggest_month;
-    });
-
-    let input_month = value[0].input_month;
-    let imbalance_kwh = value[0].imbalance_kwh;
-
+    }
+    /*DO NOT REMOVE*/
+    // const max = temp_array.reduce(function(prev, current) {
+    // return (prev.month > current.month) ? prev : current
+    // });
+    //
+    // for(var i=0; i < temp_array.length; i++){
+    //   if(full_res[i].month === max.month){
+    //     console.log(full_res[i]);
+    //     input_month = full_res[i].input_month;
+    //     imbalance_kwh = full_res[i].imbalance_kwh;
+    //   }
+    // }
   var rows = [];
 
   balance_group_items.map((item) => {
