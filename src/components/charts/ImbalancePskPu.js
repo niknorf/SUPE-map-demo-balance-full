@@ -151,8 +151,6 @@ const CreateImabalancePSK = ({ balance_index, object, switchState }) => {
     });
   }
 
-  console.log(year_2019);
-
   object.data.push(year_2017, year_2018, year_2019, year_2020);
 
   return (

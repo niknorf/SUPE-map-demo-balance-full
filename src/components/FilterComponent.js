@@ -1,12 +1,9 @@
 import { Autocomplete } from "@material-ui/lab";
-import { FormControl, TextField } from "@material-ui/core";
+import { FormControl, TextField, Typography } from "@material-ui/core";
 import React, { useContext } from "react";
-import {
-  GetBalanceGroupObj,
-  GetBalanceIndexIsClean,
-} from "../scripts/kgisid_mapping.js";
+import { GetBalanceGroupObj,} from "../scripts/mapHelpers.js";
+import { GetStreetAdresses,} from "../scripts/filtersHelpers.js";
 import Contex from "../store/context";
-import building_polygons from "../building_polygon.json";
 import ts_balance_dict from "../data/ts_balance_dict.json";
 
 const TsSearchComponent = () => {
@@ -49,60 +46,45 @@ const SearchComponent = () => {
   const { globalDispach } = useContext(Contex);
 
   const handleChange = (event, value) => {
-    // map.leafletElement.fitBounds(event.sourceTarget.getBounds());
-      globalDispach({
-        type: "FILTERCOMPONENT",
-        kgis_id: value === null ? "" : value.kgisId,
-        fiasId: value === null ? "" : value.fiasId,
-        isPhantomic: value === null ? "" : value.isPhantomic,
-        balance_index:
-          value === null
-            ? ""
-            : GetBalanceIndexIsClean(GetBalanceGroupObj(value.fiasId))
-                .balance_index,
-        isClean:
-          value === null
-            ? ""
-            : GetBalanceIndexIsClean(GetBalanceGroupObj(value.fiasId)).isClean,
-        objSelected: value === null ? false : true,
-        fromTsFilter: false,
-        obj_from: "street_select",
-        isInPSK: value === null ? false : value.isInPSK,
-        isLoading: true,
-      });
+    let obj = {
+      balance_index: '',
+      isClean: false,
+    }
+    
+    if(value !== null){
+      obj = GetBalanceGroupObj(value.fiasId);
+    }
 
+    globalDispach({
+      type: "FILTERCOMPONENT",
+      fiasId: value === null ? "" : value.fiasId,
+      isPhantomic: value === null ? "" : value.isPhantomic,
+      balance_index: value === null ? "": obj.balance_index,
+      isClean: value === null ? "" : obj.isClean,
+      objSelected: value === null ? false : true,
+      fromTsFilter: false,
+      obj_from: "street_select",
+      isInPSK: value === null ? false : value.isInPSK,
+      isLoading: true,
+    });
   };
 
-  //Create array of the steet from the building_polygon file
-  var street_array = [];
-
-  building_polygons.map((obj) => {
-    let temp_obj = {};
-    temp_obj.name = obj.properties.name;
-    temp_obj.fiasId = obj.properties.fiasId;
-    temp_obj.isPhantomic = obj.properties.isPhantomic;
-    temp_obj.isInPSK = obj.properties.isInPSK;
-    street_array.push(temp_obj);
-
-    return obj;
-  });
+  let options = GetStreetAdresses();
 
   return (
     <FormControl>
       <Autocomplete
         id="street_search"
-        options={street_array}
+        options={options}
         getOptionLabel={(option) => option.name}
         style={{ width: 300 }}
         onChange={handleChange}
-        // disableListWrap={true}
-        // disablePortal={true}
-        noOptionsText='Варинты не найдены'
-        autoSelect={true}
+        filterOptions={(options, state) => options}
+        noOptionsText="Варианты не найдены"
         renderInput={(params) => (
           <TextField {...params} label="Найти адрес" margin="normal" />
         )}
-      />
+        />
     </FormControl>
   );
 };

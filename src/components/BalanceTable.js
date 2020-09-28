@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 import {
   GetIsCleanByBalanceIndex,
   GetKgisIdByBranchId,
-} from "../scripts/kgisid_mapping.js";
+} from "../scripts/mapHelpers.js";
 import Contex from "../store/context";
 import table_down from "../data/table_down.json";
 
@@ -231,10 +231,10 @@ export default function EnhancedTable() {
 
     globalDispach({
       type: "FILTERCOMPONENT",
-      kgis_id:
-        typeof building_obj !== "undefined"
-          ? GetKgisIdByBranchId(building_obj.branch_id)
-          : "",
+      // kgis_id:
+      //   typeof building_obj !== "undefined"
+      //     ? GetKgisIdByBranchId(building_obj.branch_id)
+      //     : "",
       isPhantomic: false,
       balance_index: balance_index,
       isClean:

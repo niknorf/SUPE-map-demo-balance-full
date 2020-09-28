@@ -17,6 +17,7 @@ const reducer = (state, action) => {
 				obj_from: action.obj_from,
 				balance_index_array: action.balance_index_array,
 				isLoading: action.isLoading,
+				mapRef: action.mapRef,
 			};
 			case "BUBD":
 			return{
@@ -33,6 +34,7 @@ const useGlobalState = () => {
 	const [globalState, globalDispach] = useReducer(reducer, {
 		kgis_id: '',
 		fiasId: '',
+		mapRef: '',
 		isPhantomic: false,
 		balance_index_array: [],
 		balance_index: '',

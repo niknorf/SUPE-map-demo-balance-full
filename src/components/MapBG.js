@@ -4,21 +4,19 @@ import { CircularProgress } from "@material-ui/core";
 import { Map, TileLayer, GeoJSON } from "react-leaflet";
 import L from "leaflet";
 import LoadingOverlay from "react-loading-overlay";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import {
   GetBalanceGroupObj,
   GetAllObjBalanaceId,
-  GetBalanceIndexIsClean,
   GetAllBuildingByFiasList,
   GetAllSubstationsByFiasList,
   GetPhantomicBuildingsObjects,
-} from "../scripts/kgisid_mapping.js";
+  GetSingleBuildingByFiasId,
+} from "../scripts/mapHelpers.js";
 import Contex from "../store/context";
-import buildingsPolygon from "../building_polygon.json";
+import buildingsPolygon from "../data/building_polygon.json";
 
 delete L.Icon.Default.prototype._getIconUrl;
-
-let phantomicLayer = {};
 
 const PhantomicBuildingstyle = {
   fillColor: "rgba(241, 158, 105, 0.4)",
@@ -36,36 +34,62 @@ const NonPhantomicBuildingstyle = {
   fillOpacity: 0.7,
 };
 
-const PhantomicBuilding = (fiasId) => {
-  var temp;
-  temp = buildingsPolygon.map((building) => {
-    if (building.properties.fiasId === fiasId) {
-      return building;
-    }
-});
+const PhantomicBuilding = (fiasId, mapRef) => {
+  let final_array = [];
 
-  temp = temp.filter((obj) => {
-    return typeof obj !== "undefined";
-  });
-  return <GeoJSON key={fiasId} data={temp} style={PhantomicBuildingstyle} ref={(ref) => {
-    phantomicLayer = ref;
-  }}/>;
+  final_array =  GetSingleBuildingByFiasId(fiasId);
+
+
+  const phantomicLayerAdded = (event)=>{
+    let bounds = event.target.getBounds();
+    mapRef.current.leafletElement.fitBounds(bounds);
+  }
+
+  const phantomicLayerRemoved = (event)=>{
+    console.log('phantom layer removed');
+  }
+
+  return <GeoJSON
+    key={fiasId}
+    data={final_array}
+    onAdd={phantomicLayerAdded}
+    onRemove={phantomicLayerRemoved}
+    style={PhantomicBuildingstyle}
+  />;
 };
 
-const NonePhantomicBuilding = (globalState) => {
+const NonePhantomicBuilding = (globalState, mapRef) => {
   let bi = globalState.balance_index;
-  let fiasId_building_list = GetAllObjBalanaceId(bi);
-  let phantomic_building_objects = GetPhantomicBuildingsObjects(bi);
-  let building_objects = GetAllBuildingByFiasList(
-    fiasId_building_list.concat(phantomic_building_objects)
-  );
-  let substations = GetAllSubstationsByFiasList(fiasId_building_list);
-  let final_array = [...substations, ...building_objects];
+  let fiasId = globalState.fiasId;
+  let final_array = [];
+
+  if(bi === '' && globalState.isClean === "balance_id_not_found"){
+    final_array =  GetSingleBuildingByFiasId(fiasId);
+  }else{
+    let fiasId_building_list = GetAllObjBalanaceId(bi);
+    let phantomic_building_objects = GetPhantomicBuildingsObjects(bi);
+    let building_objects = GetAllBuildingByFiasList(
+      fiasId_building_list.concat(phantomic_building_objects)
+    );
+    let substations = GetAllSubstationsByFiasList(fiasId_building_list);
+    final_array = [...substations, ...building_objects];
+  }
+
+  const nonPhantomicLayerAdded = (event)=>{
+    let bounds = event.target.getBounds();
+    mapRef.current.leafletElement.fitBounds(bounds);
+  }
+
+  const nonPhantomicLayerRemoved = (event)=>{
+    console.log('non phantomic layer removed');
+  }
 
   return (
     <GeoJSON
       key={bi}
       data={final_array}
+      onAdd={nonPhantomicLayerAdded}
+      onRemove={nonPhantomicLayerRemoved}
       style={(features) => {
         return features.properties.isPhantomic
           ? PhantomicBuildingstyle
@@ -75,23 +99,19 @@ const NonePhantomicBuilding = (globalState) => {
   );
 };
 
-
 const DisplayMultipleBalanceGroups = (globalState) => {
   const { globalDispach } = useContext(Contex);
 
   const handleTsClick = (event) => {
+    let balance_group_obj = GetBalanceGroupObj(event.sourceTarget.feature.properties.fiasId);
+
     if (globalState.balance_index_array.length > 1) {
       globalDispach({
         type: "FILTERCOMPONENT",
-        kgis_id: event.sourceTarget.feature.properties.kgisId,
         fiasId: event.sourceTarget.feature.properties.fiasId,
         isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
-        balance_index: GetBalanceIndexIsClean(
-          GetBalanceGroupObj(event.sourceTarget.feature.properties.fiasId)
-        ).balance_index,
-        isClean: GetBalanceIndexIsClean(
-          GetBalanceGroupObj(event.sourceTarget.feature.properties.fiasId)
-        ).isClean,
+        balance_index: balance_group_obj.balance_index,
+        isClean: balance_group_obj.isClean,
         objSelected: true,
         building_address: event.sourceTarget.feature.properties.name,
         obj_from: "map_click",
@@ -100,7 +120,7 @@ const DisplayMultipleBalanceGroups = (globalState) => {
     }
   };
 
-  const style = {
+  const NonPhantomicStyle = {
     fillColor: "rgba(37, 47, 74, 0.24)",
     weight: 1,
     opacity: 1,
@@ -128,7 +148,7 @@ const DisplayMultipleBalanceGroups = (globalState) => {
         key={obj[0]}
         data={GetAllBuildingByFiasList(obj)}
         style={(features) => {
-          return features.properties.isPhantomic ? PhantomicStyle : style;
+          return features.properties.isPhantomic ? PhantomicStyle : NonPhantomicStyle;
         }}
         onClick={handleTsClick}
       />
@@ -139,15 +159,10 @@ const DisplayMultipleBalanceGroups = (globalState) => {
 };
 
 const GeneralMap = () => {
-  const { globalState } = useContext(Contex);
-  const { globalDispach } = useContext(Contex);
-
+  const { globalState, globalDispach } = useContext(Contex);
+  const mapRef = useRef();
   const position = [60.04506711185432, 30.39647037897212];
   const zoom_level = 15;
-
-  let map = "";
-  let basic_layer = "";
-
   const style_main = {
     fillColor: "rgba(74, 156, 255, 0.25)",
     weight: 1,
@@ -155,41 +170,27 @@ const GeneralMap = () => {
     color: "#4A9CFF", //Outline color
     // fillOpacity: 0.7
   };
-
   const mapStyle = {
     height: "80vh",
   };
 
   const handleClick = (event) => {
-    // map.leafletElement.fitBounds(event.sourceTarget.getBounds());
+    mapRef.current.leafletElement.fitBounds(event.sourceTarget.getBounds());
+
+    let balance_group_obj = GetBalanceGroupObj(event.sourceTarget.feature.properties.fiasId);
 
     globalDispach({
       type: "FILTERCOMPONENT",
-      kgis_id: event.sourceTarget.feature.properties.kgisId,
       fiasId: event.sourceTarget.feature.properties.fiasId,
       isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
-      balance_index: GetBalanceIndexIsClean(
-        GetBalanceGroupObj(event.sourceTarget.feature.properties.fiasId)
-      ).balance_index,
-      isClean: GetBalanceIndexIsClean(
-        GetBalanceGroupObj(event.sourceTarget.feature.properties.fiasId)
-      ).isClean,
+      balance_index: balance_group_obj.balance_index,
+      isClean: balance_group_obj.isClean,
       objSelected: true,
       building_address: event.sourceTarget.feature.properties.name,
       obj_from: "map_click",
       isInPSK: event.sourceTarget.feature.properties.isInPSK,
     });
   };
-
-if(phantomicLayer){
-  if(typeof phantomicLayer.leafletElement !== 'undefined'){
-    console.log(phantomicLayer.leafletElement.getBounds());
-
-  }else{
-    console.log(phantomicLayer);
-  }
-
-}
 
   return (
     // <LoadingOverlay
@@ -207,9 +208,7 @@ if(phantomicLayer){
         className="markercluster-map"
         center={position}
         zoom={zoom_level}
-        ref={(ref) => {
-          map = ref;
-        }}
+        ref={mapRef}
         style={mapStyle}
       >
         <TileLayer
@@ -220,27 +219,25 @@ if(phantomicLayer){
           key={"building_polygons"}
           data={buildingsPolygon}
           onClick={handleClick}
-          ref={(ref) => {
-            basic_layer = ref;
-          }}
           style={style_main}
         />
 
-        {globalState.objSelected ? checkDisplay(globalState) : null}
+        {globalState.objSelected ? checkDisplay(globalState, mapRef) : null}
       </Map>
     // </LoadingOverlay>
   );
 };
 
-const checkDisplay = (globalState) => {
+const checkDisplay = (globalState, mapRef) => {
   if (globalState.obj_from === "ts_select") {
-    return DisplayMultipleBalanceGroups(globalState);
+    return DisplayMultipleBalanceGroups(globalState, mapRef);
   } else {
     if (globalState.isPhantomic) {
-      return PhantomicBuilding(globalState.fiasId);
+      return PhantomicBuilding(globalState.fiasId, mapRef);
     } else {
-      return NonePhantomicBuilding(globalState);
+      return NonePhantomicBuilding(globalState, mapRef);
     }
   }
+
 };
 export default GeneralMap;
