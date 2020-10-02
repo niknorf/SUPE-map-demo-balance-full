@@ -89,11 +89,11 @@ export default function ProfileNoAuth() {
               <Box className={classes.links}>
                 <Link href="#" className={classes.link}>
                   <InfoOutlined style={{ fontSize: '17px', marginRight: '6px', color: '#4A9CFF' }} />
-                  Информация о проекте
+                  Информация о системе
                 </Link>
                 <Link href="#" className={classes.link}>
                   <InfoOutlined style={{ fontSize: "17px", marginRight: '6px', color: '#4A9CFF' }} />
-                  Документация
+                  Руководство пользователя
                 </Link>
               </Box>
             </Typography>
