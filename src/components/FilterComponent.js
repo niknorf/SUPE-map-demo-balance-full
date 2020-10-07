@@ -14,7 +14,7 @@ const TsSearchComponent = () => {
       type: "FILTERCOMPONENT",
       balance_index_array: value === null ? "" : value.bg_index,
       objSelected: value === null ? false : true,
-      obj_from: "ts_select",
+      obj_from: value === null ? "" : "ts_select",
     });
   };
 
@@ -50,7 +50,7 @@ const SearchComponent = () => {
       balance_index: '',
       isClean: false,
     }
-    
+
     if(value !== null){
       obj = GetBalanceGroupObj(value.fiasId);
     }
@@ -58,12 +58,12 @@ const SearchComponent = () => {
     globalDispach({
       type: "FILTERCOMPONENT",
       fiasId: value === null ? "" : value.fiasId,
-      isPhantomic: value === null ? "" : value.isPhantomic,
+      isPhantomic: value === null ? false : value.isPhantomic,
       balance_index: value === null ? "": obj.balance_index,
       isClean: value === null ? "" : obj.isClean,
       objSelected: value === null ? false : true,
       fromTsFilter: false,
-      obj_from: "street_select",
+      obj_from: value === null ? "" : "street_select",
       isInPSK: value === null ? false : value.isInPSK,
       isLoading: true,
     });

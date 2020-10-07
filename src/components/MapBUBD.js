@@ -9,7 +9,7 @@ import markers from "../data/bu_bd.json";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
-const GeneralMap = () => {
+const BUBDMap = () => {
   // const [tp, setTp] = useState("");
   const { globalDispach } = useContext(Contex);
   // const { globalState } = useContext(Contex);
@@ -83,4 +83,4 @@ const MarkerColor = (item) => {
 };
 
 
-export default GeneralMap;
+export default BUBDMap;

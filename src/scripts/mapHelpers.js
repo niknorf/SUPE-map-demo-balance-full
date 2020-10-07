@@ -2,7 +2,9 @@ import balance_result_full from "../data/balance_result_full_full.json";
 import kgis_upe from "../data/kgis_upe.json";
 import buildingsPolygon from "../data/building_polygon.json";
 import substations from "../data/substation_other.json";
-import phantomic_buildings from "../data/balance_phantom_dict.json"
+import phantomic_buildings from "../data/balance_phantom_dict.json";
+import ksgis_upeid from "../data/kgis_upe.json";
+import axios from 'axios';
 
 /*
     Function returns all building objects by fias building list
@@ -116,7 +118,7 @@ const GetKgisIdByBranchId = (branch_id) => {
 const GetAllObjBalanaceId = (balance_index) => {
   //get all the balance group objects
   var object_ep_list = balance_result_full.filter((element) => {
-    return element.balance_index.toString() === balance_index.toString();
+    return element.balance_index.toString() === balance_index.toString() && element.type !== 'ACLineSegment';
   });
 
   //extract to array branch ids
@@ -124,6 +126,95 @@ const GetAllObjBalanaceId = (balance_index) => {
 
   return result;
 };
+
+const GetBuildingObjBalanaceId = (balance_index) => {
+  //get all the balance group objects
+  var object_ep_list = balance_result_full.filter((element) => {
+    return element.balance_index.toString() === balance_index.toString() && element.type === 'ConsumerBuilding';
+  });
+
+  //extract to array branch ids
+  let result = object_ep_list.map((a) => a.branch_id);
+
+  return result;
+};
+
+const GetAllLinesBalanaceId = (balance_index) => {
+  //get all the balance group objects
+  var object_ep_list = balance_result_full.filter((element) => {
+    return element.balance_index.toString() === balance_index.toString() && element.type === 'ACLineSegment';
+  });
+
+  //extract to array branch ids
+  let result = object_ep_list.map((a) => a.branch_id);
+
+let finla =   upeIdToKgisId(result);
+
+
+console.log(finla);
+  return null;
+};
+
+const upeIdToKgisId = (upeid_array) =>{
+
+let kgis_array = [];
+  for(const upeid of upeid_array){
+    for(const mapper of ksgis_upeid){
+      if(upeid === mapper.upe_id){
+        kgis_array.push(mapper.kgis_id);
+      }
+    }
+  }
+
+  console.log(upeid_array, kgis_array);
+
+  let final_obj = [];
+  let kgisId  = [2394732,2399817,2390296];
+
+
+  // axios.get("/line_data", {
+	// headers: {
+	//   'Access-Control-Allow-Origin': '*',
+	// },
+	// proxy: {
+	//   host: 'http://localhost',
+	//   port: 5000
+	// }
+	// }).then(response => {
+  //     console.log(response);
+  // });
+axios.post("/line_data", {},
+   {
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
+    params: { kgisId }
+}).then(response => {
+  
+    return response.data;
+  });
+
+
+//   axios({
+//     method: 'post',
+//     url: `${'http://localhost:3000/data.php'}`,
+//     headers: { 'content-type': 'application/json' },
+//     data: kgisId
+//   })
+//     .then(result => {
+// console.log(result);
+//     })
+//     .catch(error => {console.log('error occured');});
+
+  // for(const kgisId of kgis_array){
+  //   for(const obj of line_1)
+  //   if(kgisId === obj.properties.kgis_id){
+  //     final_obj.push(obj);
+  //   }
+  // }
+
+}
 
 export {
   GetAllObjBalanaceId,
@@ -134,4 +225,6 @@ export {
   GetAllSubstationsByFiasList,
   GetPhantomicBuildingsObjects,
   GetSingleBuildingByFiasId,
+  GetAllLinesBalanaceId,
+  GetBuildingObjBalanaceId,
 };
