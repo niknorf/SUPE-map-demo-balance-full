@@ -153,7 +153,7 @@ const GeneralMap = () => {
   const mapRef = useRef();
   const layerRef = createRef();
   const position = [60.059873444307016, 30.37063139051443];
-  const zoom_level = 15;
+  const zoom_level = 12;
   const style_main = {
     fillColor: "rgba(74, 156, 255, 0.25)",
     weight: 1,
