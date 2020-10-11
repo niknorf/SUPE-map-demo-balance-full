@@ -231,7 +231,7 @@ const GeneralMap = () => {
   return (
     <LoadingOverlay
       active={loading}
-      spinner={<CircularProgress />}
+      spinner={<CircularProgress style={{'color': '#252F4A'}}/>}
       text=""
       styles={{
         overlay: (base) => ({
@@ -248,7 +248,7 @@ const GeneralMap = () => {
       style={mapStyle}
     >
       <TileLayer
-        url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       <GeoJSON
