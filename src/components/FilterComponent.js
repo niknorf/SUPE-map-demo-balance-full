@@ -32,10 +32,10 @@ const TsSearchComponent = () => {
         id="ts_search"
         options={ts_search}
         getOptionLabel={(option) => option.ts_name}
-        style={{ width: 300 }}
+        style={{ width: 450}}
         onChange={handleChange}
         renderInput={(params) => (
-          <TextField {...params} label="Выберете из списка " margin="normal" />
+          <TextField {...params} label="Трансформаторная подстанция" margin="normal" placeholder="Выберете из списка" />
         )}
       />
     </FormControl>
@@ -54,8 +54,6 @@ const SearchComponent = () => {
     if(value !== null){
       obj = GetBalanceGroupObj(value.fiasId);
     }
-
-    console.log(value);
 
     globalDispach({
       type: "FILTERCOMPONENT",
@@ -80,12 +78,12 @@ const SearchComponent = () => {
         id="street_search"
         options={options}
         getOptionLabel={(option) => option.name}
-        style={{ width: 300 }}
+        style={{ width: 450 }}
         onChange={handleChange}
         filterOptions={(options, state) => options}
         noOptionsText="Варианты не найдены"
         renderInput={(params) => (
-          <TextField {...params} label="Найти адрес" margin="normal" />
+          <TextField {...params} label="Найти адрес" margin="normal" placeholder="Выберете из списка" />
         )}
         />
     </FormControl>

@@ -163,7 +163,7 @@ const BalanceGroup = () => {
               <Grid item xs={12}>
                 <Paper className={classes.balanceGroupSelectors}>
                   {/* SEARCH STREET COMPONENT */}
-                  <Grid item xs={12} sm={6} md={6} lg={6}>
+                  <Grid item xs={6} sm={6} md={6} lg={6}>
                     <SearchComponent />
                   </Grid>
                   {/* SELECT COMPONENT */}

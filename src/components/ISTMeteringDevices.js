@@ -14,8 +14,6 @@ import {
   Table,
   TableBody,
   Grid,
-  Tabs,
-  Tab
 } from "@material-ui/core";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -25,9 +23,7 @@ import React, { useContext } from "react";
 import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
-import {BalanceGroupContent} from "./ISTBalanceGroupContent.js";
-import MeteringDevices from "./ISTMeteringDevices.js";
-// import BDProbability from "./infoSectionTables/ISTBUBDProbability.js";
+
 import Contex from "../store/context";
 import balance_group_items from "../data/balance_result_simple.json";
 import info_icon from "../img/info_icon.svg";
@@ -83,53 +79,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "40px",
     textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
   },
-
-  tabsContainer: {
-    background: '#F1F2F3',
-    height: '40px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    borderRadius: '8px',
-    fontFamily: 'PF Din Text Cond Pro',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '12px',
-    lineHeight: '14px',
-    color: '#252F4A',
-    textTransform: 'none',
-
-
-  }
 }));
-
-const InitialState = () => {
-  const classes = useStyles();
-  return (
-    <Container>
-      <Typography>Балансовая группа</Typography>
-      <Icon classes={{ root: classes.iconRoot }}>
-        <img className={classes.imageIcon} src={info_icon} alt="" />
-      </Icon>
-      <Typography>
-        Чтобы посмотреть балансовую группу, выберите обьект на карте или
-        воспользуйтесь поиском или фильтрацией
-      </Typography>
-    </Container>
-  );
-};
-
-const WarningState = ({ label }) => {
-  const classes = useStyles();
-
-  return (
-    <Container>
-      <Typography>Балансовая группа</Typography>
-      <Icon classes={{ root: classes.iconRoot }}>
-        <img className={classes.imageIcon} src={triangle_icon} alt="" />
-      </Icon>
-      <Typography>{label}</Typography>
-    </Container>
-  );
-};
 
 function createData(name, type) {
   return { name, type };
@@ -198,19 +148,14 @@ function TablePaginationActions(props) {
   );
 }
 
-const ShowDataState = () => {
+const MeteringDevices = () => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [value, setValue] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const { globalState } = useContext(Contex);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  };
-
-  const handleChange = (event, newValue) => {
-  setValue(newValue);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -225,42 +170,39 @@ const ShowDataState = () => {
       ? "(" + globalState.building_address + ")"
       : "";
 
-  // let value  = full_res.map(function(item) {
-  //   if(item.balance_id.toString() === balance_id.toString() && item.year === 2020){
-  //     return item;
-  //   }
-  // });
+    // let value  = full_res.map(function(item) {
+    //   if(item.balance_id.toString() === balance_id.toString() && item.year === 2020){
+    //     return item;
+    //   }
+    // });
 
-  let input_month = 0;
-  let imbalance_kwh = 0;
+    let input_month = 0;
+    let imbalance_kwh = 0;
 
-  let temp_array = [];
+    let temp_array = [];
 
-  /*TODO SEARCHED BASED ON LATERS MONTH AND YEAR*/
-  for (var i = 0; i < full_res.length; i++) {
-    if (
-      full_res[i].balance_id.toString() === balance_id.toString() &&
-      full_res[i].year === 2020 &&
-      full_res[i].month === "Июл"
-    ) {
+    /*TODO SEARCHED BASED ON LATERS MONTH AND YEAR*/
+    for(var i=0; i < full_res.length; i++){
+      if(full_res[i].balance_id.toString() === balance_id.toString() && full_res[i].year === 2020 && full_res[i].month === "Июл"){
       // temp_array.push(full_res[i])
       /*Temp solution waiting fro month_number inside res_imbalance_front*/
       input_month = full_res[i].input_month;
       imbalance_kwh = full_res[i].imbalance_kwh;
+
+      }
     }
-  }
-  /*DO NOT REMOVE*/
-  // const max = temp_array.reduce(function(prev, current) {
-  // return (prev.month > current.month) ? prev : current
-  // });
-  //
-  // for(var i=0; i < temp_array.length; i++){
-  //   if(full_res[i].month === max.month){
-  //     console.log(full_res[i]);
-  //     input_month = full_res[i].input_month;
-  //     imbalance_kwh = full_res[i].imbalance_kwh;
-  //   }
-  // }
+    /*DO NOT REMOVE*/
+    // const max = temp_array.reduce(function(prev, current) {
+    // return (prev.month > current.month) ? prev : current
+    // });
+    //
+    // for(var i=0; i < temp_array.length; i++){
+    //   if(full_res[i].month === max.month){
+    //     console.log(full_res[i]);
+    //     input_month = full_res[i].input_month;
+    //     imbalance_kwh = full_res[i].imbalance_kwh;
+    //   }
+    // }
   var rows = [];
 
   balance_group_items.map((item) => {
@@ -274,51 +216,7 @@ const ShowDataState = () => {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <Typography>
-      Балансовая группа №{balance_id} {address_name}
-      <Grid container spacing={2}>
-        <Grid item xs={5}>
-          <Box className={classes.boxStyle}>
-            <Typography className={classes.boxTopText}>Небалансы</Typography>
-            <Typography className={classes.boxMiddleText}>
-              {imbalance_kwh} кВтч
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={5}>
-          <Box className={classes.boxStyle}>
-            <Typography className={classes.boxTopText}>
-              Отпуск в сеть
-            </Typography>
-            <Typography className={classes.boxMiddleText}>
-              {input_month} кВтч
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
-      {/* <Box className={classes.tabsContainer}> */}
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-          // indicatorColor="#4A9CFF"
-          TabIndicatorProps={{style: {background:'#4A9CFF' }}}
-        >
-          <Tab style={{textTransform: 'none'}} label="Состав балансовой группы" {...a11yProps(0)} />
-          <Tab style={{textTransform: 'none'}} label="Приборы учета" {...a11yProps(1)} />
-          <Tab style={{textTransform: 'none'}} label="Вероятность БУ/БД" {...a11yProps(2)} />
-        </Tabs>
-      {/* </Box> */}
-      <TabPanel value={value} index={0}>
-        <BalanceGroupContent/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        В разработке
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        В разработке
-      </TabPanel>
-      {/* <TableContainer component={Paper}>
+      <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -362,42 +260,9 @@ const ShowDataState = () => {
             </TableRow>
           </TableFooter>
         </Table>
-      </TableContainer> */}
-    </Typography>
+      </TableContainer>
   );
 };
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 
 TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
@@ -406,34 +271,5 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const InfoSection = () => {
-  const { globalState } = useContext(Contex);
 
-  return (
-    <Box>
-      {(() => {
-        if (globalState.isPhantomic && globalState.balance_index === "") {
-          return (
-            <WarningState label="Не удалось определить балансовую группу для выбранного обьекта" />
-          );
-        } else if (
-          globalState.balance_index === "" &&
-          globalState.isClean === "balance_id_not_found"
-        ) {
-          return <WarningState label="balance_id_not_found" />;
-        } else if (!globalState.isClean && globalState.balance_index !== "") {
-          return (
-            <WarningState label="Рекомендуем проверить наличие ПУ в данной балансовой группе и при необходимости доставить их, с целью расчета небалансов" />
-          );
-        }
-        if (globalState.balance_index !== "" && globalState.isClean) {
-          return <ShowDataState />;
-        } else {
-          return <InitialState />;
-        }
-      })()}
-    </Box>
-  );
-};
-
-export { InfoSection };
+export { MeteringDevices };
