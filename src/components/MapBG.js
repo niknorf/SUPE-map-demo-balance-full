@@ -151,7 +151,7 @@ const GeneralMap = () => {
   const [layerData, setLayer] = useState([]);
   const { globalState, globalDispach } = useContext(Contex);
   const mapRef = useRef();
-  const layerRef = createRef();
+  const layerRef = useRef();
   const position = [60.059873444307016, 30.37063139051443];
   const zoom_level = 12;
   const style_main = {
@@ -186,7 +186,7 @@ const GeneralMap = () => {
   };
 
   useEffect(() => {
-    let kgisId = [2394732, 2399817, 2390296];
+
     axios
       .post(
         "/line_data",
@@ -208,7 +208,12 @@ const GeneralMap = () => {
       )
       .then((response) => {
         layerRef.current.leafletElement.clearLayers().addData(response.data);
+        let bounds =layerRef.current.leafletElement.getBounds();
+        if(bounds.isValid()){
+          mapRef.current.leafletElement.flyToBounds(bounds);
+        }
         setLayer(response.data);
+
       });
   }, [
     globalState.balance_index,
@@ -216,8 +221,6 @@ const GeneralMap = () => {
     globalState.fiasId,
     globalState.isClean,
   ]);
-
-  console.log(layerData);
 
   return (
     // <LoadingOverlay
@@ -245,7 +248,7 @@ const GeneralMap = () => {
       <GeoJSON
         key={"building_polygons"}
         data={buildingsPolygon}
-        // onClick={handleClick}
+        onClick={handleClick}
         style={style_main}
       />
       <GeoJSON key={"ts_polygons"} data={substation_other} style={style_main} />
@@ -253,8 +256,6 @@ const GeneralMap = () => {
         key="dynamic_layer"
         data={layerData}
         ref={layerRef}
-        // onAdd={nonPhantomicLayerAdded}
-        // onRemove={nonPhantomicLayerRemoved}
         style={(params) => LayerStyle(params)}
       />
 

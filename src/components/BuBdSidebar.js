@@ -107,11 +107,8 @@ export default function SimplePaper() {
   const { globalState, globalDispach } = useContext(Contex);
   const classes = useStyles();
 
-
-  console.log(globalState);
-
   const handleClose = () => {
-    globalDispach({ type: "BUBD", isOpenSidebar: false });
+    globalDispach({ type: "BUBD", isOpenSidebar: false, markerValue: {} });
   };
 
   var description;

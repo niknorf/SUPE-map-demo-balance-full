@@ -43,10 +43,13 @@ function createData(
   date_year,
   holidays,
   imbalance,
-importance_PSK_ODN,
-importance_PSK_fiz_face,
-importance_PSK_ur_face,
-percent_transmission_PU
+  importance_PSK_ODN,
+  importance_PSK_fiz_face,
+  importance_PSK_ur_face,
+  percent_transmission_PU,
+  lat,
+  lon,
+  kgis_id
 ) {
   return {
     address,
@@ -65,7 +68,10 @@ percent_transmission_PU
     importance_PSK_ODN,
     importance_PSK_fiz_face,
     importance_PSK_ur_face,
-    percent_transmission_PU
+    percent_transmission_PU,
+    lat,
+    lon,
+    kgis_id
     };
 }
 
@@ -275,7 +281,10 @@ export default function EnhancedTable() {
         item.importance_PSK_ODN,
         item.importance_PSK_fiz_face,
         item.importance_PSK_ur_face,
-        item.percent_transmission_PU
+        item.percent_transmission_PU,
+        item.lat,
+        item.lon,
+        item.kgis_id
       )
     );
     return rows;
