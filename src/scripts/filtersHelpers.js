@@ -11,6 +11,7 @@ const GetStreetAdresses = () => {
     temp_obj.name = building_polygons[key].properties.name;
     temp_obj.key = building_polygons[key].properties.fiasId;
     temp_obj.fiasId = building_polygons[key].properties.fiasId;
+    temp_obj.kgisId = building_polygons[key].properties.kgisId;
     temp_obj.isPhantomic = building_polygons[key].properties.isPhantomic;
     temp_obj.isInPSK = building_polygons[key].properties.isInPSK;
     street_array.push(temp_obj);

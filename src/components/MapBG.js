@@ -149,6 +149,7 @@ const DisplayMultipleBalanceGroups = (globalState) => {
 
 const GeneralMap = () => {
   const [layerData, setLayer] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { globalState, globalDispach } = useContext(Contex);
   const mapRef = useRef();
   const layerRef = useRef();
@@ -174,6 +175,7 @@ const GeneralMap = () => {
 
     globalDispach({
       type: "FILTERCOMPONENT",
+      kgisId: event.sourceTarget.feature.properties.kgisId,
       fiasId: event.sourceTarget.feature.properties.fiasId,
       isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
       balance_index: balance_group_obj.balance_index,
@@ -187,6 +189,7 @@ const GeneralMap = () => {
 
   useEffect(() => {
 
+    setLoading(true);
     axios
       .post(
         "/line_data",
@@ -198,6 +201,7 @@ const GeneralMap = () => {
           },
           //Send the needed params to the server side
           params: {
+            kgisId: globalState.kgisId,
             fiasId: globalState.fiasId,
             isPhantomic: globalState.isPhantomic,
             balance_index: globalState.balance_index,
@@ -208,14 +212,16 @@ const GeneralMap = () => {
       )
       .then((response) => {
         layerRef.current.leafletElement.clearLayers().addData(response.data);
+        setLayer(response.data);
+        setLoading(false);
         let bounds =layerRef.current.leafletElement.getBounds();
         if(bounds.isValid()){
           mapRef.current.leafletElement.flyToBounds(bounds);
         }
-        setLayer(response.data);
 
       });
   }, [
+    globalState.kgisId,
     globalState.balance_index,
     globalState.isPhantomic,
     globalState.fiasId,
@@ -223,17 +229,17 @@ const GeneralMap = () => {
   ]);
 
   return (
-    // <LoadingOverlay
-    //   active={false}
-    //   spinner={<CircularProgress />}
-    //   text=""
-    //   styles={{
-    //     overlay: (base) => ({
-    //       ...base,
-    //       background: "rgba(34, 47, 74, 0.3)",
-    //     }),
-    //   }}
-    // >
+    <LoadingOverlay
+      active={loading}
+      spinner={<CircularProgress />}
+      text=""
+      styles={{
+        overlay: (base) => ({
+          ...base,
+          background: "rgba(34, 47, 74, 0.3)",
+        }),
+      }}
+    >
     <Map
       className="markercluster-map"
       center={position}
@@ -260,7 +266,7 @@ const GeneralMap = () => {
       />
 
     </Map>
-    // </LoadingOverlay>
+    </LoadingOverlay>
   );
 };
 

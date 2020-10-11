@@ -55,8 +55,11 @@ const SearchComponent = () => {
       obj = GetBalanceGroupObj(value.fiasId);
     }
 
+    console.log(value);
+
     globalDispach({
       type: "FILTERCOMPONENT",
+      kgisId: value === null ? "" : value.kgisId,
       fiasId: value === null ? "" : value.fiasId,
       isPhantomic: value === null ? false : value.isPhantomic,
       balance_index: value === null ? "": obj.balance_index,

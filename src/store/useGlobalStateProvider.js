@@ -5,7 +5,7 @@ const reducer = (state, action) => {
 	switch (action.type) {
 		case "FILTERCOMPONENT":
 			return {
-				kgis_id: action.kgis_id,
+				kgisId: action.kgisId,
 				fiasId: action.fiasId,
 				isPhantomic: action.isPhantomic,
 				isInPSK: action.isInPSK,
@@ -32,7 +32,7 @@ const reducer = (state, action) => {
 
 const useGlobalState = () => {
 	const [globalState, globalDispach] = useReducer(reducer, {
-		kgis_id: '',
+		kgisId: '',
 		fiasId: '',
 		mapRef: '',
 		isPhantomic: false,

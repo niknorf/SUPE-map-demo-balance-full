@@ -61,9 +61,9 @@ const GetBalanceGroupObj = (fiasId) => {
   if (fiasId !== "" && typeof fiasId !== "undefined") {
     let balance_group_obj = {};
     for(var i = 0; i < balance_result_full.length; i++){
-      if(balance_result_full[i].branch_id.toString() === fiasId.toString()){
-          balance_group_obj = balance_result_full[i];
-      }
+        if(balance_result_full[i].branch_id === fiasId){
+            balance_group_obj = balance_result_full[i];
+        }
     }
 
     var temp_obj = {
@@ -191,7 +191,7 @@ axios.post("/line_data", {},
     },
     params: { kgisId }
 }).then(response => {
-  
+
     return response.data;
   });
 
