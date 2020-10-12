@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import BuBdAct from './BuBdAct';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import CloseIcon from '@material-ui/icons/Close';
@@ -11,6 +12,11 @@ import Contex from "../store/context";
 import clsx from 'clsx';
 import Popup from 'reactjs-popup';
 import '../css/popup.css';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -100,6 +106,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: '#FFF',
     },
+    actPopup: {
+      width: '800px'
+    }
   }
 }));
 
@@ -107,8 +116,11 @@ export default function SimplePaper() {
   const { globalState, globalDispach } = useContext(Contex);
   const classes = useStyles();
 
+
+  console.log(globalState);
+
   const handleClose = () => {
-    globalDispach({ type: "BUBD", isOpenSidebar: false, markerValue: {} });
+    globalDispach({ type: "BUBD", isOpenSidebar: false });
   };
 
   var description;
@@ -190,6 +202,72 @@ export default function SimplePaper() {
     </Popup>
   );
 
+  const ModalAct = () => (
+    <Popup
+      className="act-popup"
+      trigger={<Button variant="contained" color="primary" className={classes.showActButton}>
+      Посмотреть акт
+    </Button>}
+      modal
+      nested
+    >
+      {close => (
+        <div className="modal">
+          <div className="act-content">
+            <span className="act-title">Акт о неучетном (безучетном) потреблении электроэнергии</span>
+            <div className="address-box">
+              <span class="address">Адрес: </span>
+              <span class="address-value">{globalState.markerValue.address}</span>
+            </div>
+            <FormControl component="fieldset" className="radio">
+              <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                <FormControlLabel value="bd" control={<Radio color="primary" />} label="Бездоговорное потребление" />
+                <FormControlLabel value="bu" control={<Radio color="primary" />} label="Безучетное потребление" />
+              </RadioGroup>
+            </FormControl>
+            <form className="act-date-time" noValidate autoComplete="off">
+              <TextField id="standard-basic" className="act-date-time__field one" label="Акт № *" placeholder="Введите данные" />
+              <TextField id="standard-basic" className="act-date-time__field two" label="Дата и время проведения проверки *" placeholder="Введите данные" />
+            </form>
+            <form className="characteristics" noValidate autoComplete="off">
+              <TextField id="standard-basic" className="characteristics__field" label="Характеристики вводных проводов (кабелей)" placeholder="Введите данные" />
+            </form>
+            <FormControl component="fieldset" className="radio tech">
+              <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                <FormControlLabel className="tech-first" value="consumer" control={<Radio color="primary" />} label="Технические характеристики проводов (кабелей) предоставлены потребителем" />
+                <FormControlLabel value="visual" control={<Radio color="primary" />} label="Технические характеристики проводов (кабелей) установлены по результатам визуального осмотра" />
+              </RadioGroup>
+            </FormControl>
+            <form className="postavki" noValidate autoComplete="off">
+              <TextField id="standard-basic" className="postavki-field" label="Р (кВт) в точке поставки" placeholder="Введите данные" />
+            </form>
+            <Typography className="comment-label">
+              Комментарии:
+            </Typography>
+            <TextField
+              id="filled-multiline-static"
+              className="comments"
+              multiline
+              rows={6}
+              variant="filled"
+            />
+            <div className="buttons-bottom">
+              <Button className="button-button first" variant="outlined" color="primary">
+                Вернуться к карте БУ/БД
+              </Button>
+              <Button className="button-button second" variant="contained" color="primary">
+                Отправить акт
+              </Button>
+            </div>
+            <Typography className="note">
+              * - обязательные для заполнения поля
+            </Typography>
+          </div>
+        </div>
+      )}
+    </Popup>
+  );
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={0}>
@@ -248,9 +326,7 @@ export default function SimplePaper() {
           </Box>
         </Box>
         <Box className={classes.bottomButtons}>
-          <Button variant="contained" color="primary" className={classes.showActButton}>
-            Посмотреть акт
-          </Button>
+          <ModalAct />
           <Button variant="contained" color="primary" className={classes.createTaskButton}>
             Создать задание
           </Button>

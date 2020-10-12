@@ -75,3 +75,143 @@ th:nth-child(even) {
 td:nth-child(even) {
   padding-left: 36px;
 }
+
+/* Act */
+/* .act-modal {
+  width: 831px;
+  height: 890px;
+} */
+
+.act-popup-content {
+  width: 831px;
+}
+
+.act-content {
+  padding: 80px;
+}
+
+.act-title {
+  font-size: 24px;
+  line-height: 29px;
+  font-family: PFDinTextCondPro-Regular !important;
+}
+
+.address-box {
+  margin-top: 16px;
+}
+
+.address {
+  font-family: PFDinTextCondPro-Regular !important;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.address-value {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.act-date-time {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.MuiFormControl-root.radio {
+  margin: 40px 0;
+  width: 80%;
+}
+
+.radio .MuiFormGroup-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.act-date-time__field {
+  flex-basis: 50%;
+}
+
+.act-date-time__field.one {
+  margin-right: 9px;
+}
+
+.act-date-time__field.two {
+  margin-left: 9px;
+}
+
+.characteristics .characteristics__field {
+  width: 100%;
+}
+
+.radio.tech {
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.radio.tech .MuiFormGroup-row {
+  flex-wrap: nowrap;
+}
+
+.tech-first.MuiFormControlLabel-root {
+  margin-right: 33px;
+}
+
+.postavki-field.MuiFormControl-root {
+  width: calc(50% - 9px);
+  margin-bottom: 32px;
+}
+
+.comments {
+  width: 100%;
+  height: 154px;
+}
+
+.comment-label {
+  margin-bottom: 10px;
+  font-family: PFDinTextCondPro-Regular !important;
+}
+
+.comments .MuiFilledInput-underline:before {
+  border-bottom: none;
+}
+
+.comments .MuiFilledInput-multiline {
+  height: 154px;
+  background-color: #f5f6f8;
+}
+
+.buttons-bottom {
+  display: flex;
+  margin-top: 15px;
+}
+
+.button-button.MuiButtonBase-root {
+  width: 50%;
+  text-transform: none;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 13px;
+}
+
+.button-button.first {
+  margin-right: 11px;
+  color: #4a9cff;
+  border: 1px solid #4a9cff;
+}
+
+.button-button.second {
+  margin-left: 11px;
+  font-family: PFDinTextCondPro-Bold !important;
+  background: #4a9cff;
+  box-shadow: 0px 4px 10px rgba(74, 156, 255, 0.33);
+}
+
+.button-button.second:hover {
+  background: #4a9cff;
+}
+
+.note.MuiTypography-body1 {
+  font-size: 11px;
+  line-height: 13px;
+  margin-top: 24px;
+  color: #818e9b;
+}
