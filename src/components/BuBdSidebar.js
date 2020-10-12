@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import BuBdAct from './BuBdAct';
+// import BuBdAct from './BuBdAct';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import CloseIcon from '@material-ui/icons/Close';
