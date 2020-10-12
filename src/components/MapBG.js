@@ -149,7 +149,8 @@ const DisplayMultipleBalanceGroups = (globalState) => {
 
 const GeneralMap = () => {
   const [layerData, setLayer] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //TODO Set to true
+  const [loading, setLoading] = useState(false);
   const { globalState, globalDispach } = useContext(Contex);
   const mapRef = useRef();
   const layerRef = useRef();
@@ -189,7 +190,8 @@ const GeneralMap = () => {
 
   useEffect(() => {
 
-    setLoading(true);
+    //TODO set back to true
+    setLoading(false);
     axios
       .post(
         "/line_data",

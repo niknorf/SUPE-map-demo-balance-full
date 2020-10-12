@@ -25,7 +25,8 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 
 import Contex from "../store/context";
-import balance_group_items from "../data/balance_result_simple.json";
+import balance_group_items from "../data/balance_result_full_full.json";
+import bubd from "../data/bu_bd.json";
 import info_icon from "../img/info_icon.svg";
 import triangle_icon from "../img/triangle_icon.svg";
 
@@ -166,6 +167,10 @@ const BDProbability = () => {
   const balance_id = globalState.balance_index;
 
   var rows = [];
+
+  for(var i =0; i< balance_group_items.length; i++){
+    // for()
+  }
 
   // balance_group_items.map((item) => {
   //   if (item.balance_index.toString() === balance_id.toString()) {
