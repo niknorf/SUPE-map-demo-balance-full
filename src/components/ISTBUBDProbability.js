@@ -82,8 +82,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(name, type) {
-  return { name, type };
+function createData(address, probability) {
+  return { address, probability };
 }
 
 function TablePaginationActions(props) {
@@ -169,15 +169,15 @@ const BDProbability = () => {
   var rows = [];
 
   for(var i =0; i< balance_group_items.length; i++){
-    // for()
+    for(var j = 0; j< bubd.length; j++){
+      if(balance_group_items[i].branch_id === bubd[j].fias_id){
+        //TODO chnage dynamicallt to BU BD
+        rows.push(createData(bubd[j].address, bubd[j].percent_probability_BU));
+      }
+    }
   }
 
-  // balance_group_items.map((item) => {
-  //   if (item.balance_index.toString() === balance_id.toString()) {
-  //     rows.push(createData(item.name, item.type));
-  //   }
-  //   return item;
-  // });
+  console.log(rows);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -186,8 +186,9 @@ const BDProbability = () => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Название</TableCell>
-              <TableCell align="right">Тип</TableCell>
+              <TableCell align="left">Адрес</TableCell>
+              <TableCell align="right">Вероятность БУ/БД</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -195,9 +196,9 @@ const BDProbability = () => {
               ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : rows
             ).map((row) => (
-              <TableRow key={row.id}>
+              <TableRow key={row.address}>
                 <TableCell>{row.address}</TableCell>
-                <TableCell align="right">{row.probability}</TableCell>
+                <TableCell align="right">{row.probability}%</TableCell>
                 <TableCell align="right">Создать задание</TableCell>
               </TableRow>
             ))}

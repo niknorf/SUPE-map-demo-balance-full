@@ -313,10 +313,11 @@ const ShowDataState = () => {
         <BalanceGroupContent/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        В разработке
+В разработке
       </TabPanel>
       <TabPanel value={value} index={2}>
-        В разработке
+
+        <BDProbability/>
       </TabPanel>
       {/* <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
