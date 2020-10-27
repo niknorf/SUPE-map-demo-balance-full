@@ -27,29 +27,31 @@ const BUBDMap = () => {
     if (Object.keys(globalState.markerValue).length > 0) {
       let markerReference = markerRef.current[globalState.markerValue.kgis_id];
 
-      let popupText = '<span class="popup-text">Вероятность бездоговорного потребления: </span>';
-      let popupNumber = globalState.markerValue.percent_probability_BD;
+      if(typeof markerReference !== 'undefined'){
+        let popupText = '<span class="popup-text">Вероятность бездоговорного потребления: </span>';
+        let popupNumber = globalState.markerValue.percent_probability_BD;
 
-      if (popupNumber === 0) {
-        popupText = '<span class="popup-text">Вероятность безучетного потребления: </span>';
-        popupNumber = globalState.markerValue.percent_probability_BU;
+        if (popupNumber === 0) {
+          popupText = '<span class="popup-text">Вероятность безучетного потребления: </span>';
+          popupNumber = globalState.markerValue.percent_probability_BU;
+        }
+
+        let binedPopup = markerReference.leafletElement.bindPopup(
+          '<div class="popup-div">' +
+            popupText +
+            '<span class="popup-number"><b>' +
+            popupNumber +
+            '%<b></span></div>'
+        );
+
+        let latlng = L.latLng(
+          globalState.markerValue.lat,
+          globalState.markerValue.lon
+        );
+        mapRef.current.leafletElement.setView(latlng, 17);
+
+        binedPopup.openPopup();
       }
-
-      let binedPopup = markerReference.leafletElement.bindPopup(
-        '<div class="popup-div">' +
-          popupText +
-          '<span class="popup-number"><b>' +
-          popupNumber +
-          '%<b></span></div>'
-      );
-
-      let latlng = L.latLng(
-        globalState.markerValue.lat,
-        globalState.markerValue.lon
-      );
-      mapRef.current.leafletElement.setView(latlng, 17);
-
-      binedPopup.openPopup();
     }
   }, [globalState.markerValue]);
 
