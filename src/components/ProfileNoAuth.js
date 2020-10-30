@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import Popup from "reactjs-popup";
+import Button from "@material-ui/core/Button";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +41,84 @@ const useStyles = makeStyles((theme) => ({
   },
   outerBox: {
     padding: '74px 77px 50px;'
-  }
+  },
+  close: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  justificationButton: {
+    textTransform: "none",
+    textDecoration: "underline",
+    fontSize: "14px",
+    lineHeight: "17px",
+    color: "#252F4A",
+    marginTop: "17px",
+    marginBottom: "24px",
+    justifyContent: "end",
+  },
 }));
+
+
 
 export default function ProfileNoAuth() {
   const classes = useStyles();
+
+  const Modal = () => (
+    <Popup
+      trigger={
+        <Button
+          className={classes.justificationButton}
+          startIcon={<InfoOutlinedIcon style={{ color: "#4A9CFF" }} />}
+        >
+          Информация о системе
+        </Button>
+      }
+      modal
+      nested
+    >
+      {(close) => (
+        <div className="modal">
+          <button className="close" onClick={close}>
+            &times;
+          </button>
+          <div className="content">
+            <span className="title">Информация о системе</span>
+            <div className="info">
+              <table>
+                <tr>
+                </tr>
+                <tr>
+                  <td>Полное наименование:</td>
+                  <td>Информационная система управления передачей электроэнергии с
+                    использованием технологий “больших данных” ПАО «Россети Ленэнерго».</td>
+                </tr>
+                <tr>
+                  <td>Краткое наименование:</td>
+                  <td>УПЭ.</td>
+                </tr>
+                <tr>
+                  <td>Описание:</td>
+                  <td>Система УПЭ адаптирует результаты работы нейросети по обнаружению безучетного/бездоговорного потребления в доступном и удобном для понимания виде, а также преобразует систему задач в электронный формат.
+В системе УПЭ реализован эргономичный человеко-машинного интерфейс в области визуализации и анализа транспорта электроэнергии.</td>
+                </tr>
+                <tr>
+                  <td>Разработчики:</td>
+                  <td>
+                    АО "ФИЦ"
+                    info@ftc-energo.ru;
+                    ФГБОУ ВолгГТУ
+                    maxim.shcherbakov@gmail.com
+                  </td>
+                </tr>
+
+              </table>
+
+            </div>
+          </div>
+        </div>
+      )}
+    </Popup>
+  );
 
   return (
     <div className={classes.root}>
@@ -87,14 +163,20 @@ export default function ProfileNoAuth() {
                 </Box>
               </Box>
               <Box className={classes.links}>
-                <Link href="#" className={classes.link}>
+                {/* <Link href="#" className={classes.link}>
                   <InfoOutlined style={{ fontSize: '17px', marginRight: '6px', color: '#4A9CFF' }} />
                   Информация о системе
-                </Link>
-                <Link href="#" className={classes.link}>
-                  <InfoOutlined style={{ fontSize: "17px", marginRight: '6px', color: '#4A9CFF' }} />
+                </Link> */}
+                <Modal/>
+                <Button
+                  className={classes.justificationButton}
+                >
+
+                <Link href="Руководство пользователя.docx" download className={classes.link}>
+                  <InfoOutlined style={{marginRight: '6px', color: '#4A9CFF' }} />
                   Руководство пользователя
                 </Link>
+                </Button>
               </Box>
             </Typography>
           </Paper>
