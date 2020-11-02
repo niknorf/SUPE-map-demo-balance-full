@@ -121,7 +121,7 @@ export default function Home() {
       type="button"
       className={clsx(classes.button, classes.buttonTasks)}
       onClick={() => {
-        history.push("/home");
+        history.push("/tasks");
       }}
     >
       <WorkOutlineOutlinedIcon className={classes.icon} />

@@ -9,6 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import React from "react";
 import BalanceGroup from "./components/BalanceGroup";
 import BuBd from "./components/BuBd";
+import Tasks from "./components/Tasks";
 import Drawer from "./components/Drawer";
 import GlobalStateProvider from "./store/GlobalStateProvider";
 import Home from "./components/Home";
@@ -71,6 +72,7 @@ export default function App() {
               render={(props) => <Profile {...props} />}
             />
             <Route exact path="/bubd" render={(props) => <BuBd {...props} />} />
+            <Route exact path="/tasks" render={(props) => <Tasks {...props} />} />
           </Switch>
         </ThemeProvider>
       </div>
