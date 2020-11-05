@@ -162,7 +162,7 @@ const GraphicGroup = () => {
     layout: {
       width: 550,
       title: {
-        text: "График суммарных помесчных показаний от ПСК, кВтч",
+        text: "График суммарных помесячных показаний гарантирующих поставщиков, кВтч",
         font: column_title_font,
       },
     },
@@ -485,7 +485,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
         <Box className={classes.boxStyle}
           style={boxStyle(value.trust_index_PSK_fiz, 20)}>
           <Typography className={classes.boxTopText}>
-            Индекс несоответствия показаний физических лиц в ПСК
+            Индекс несоответствия показаний физических лиц гарантирующих поставщиков
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
@@ -500,7 +500,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
         <Box className={classes.boxStyle}
           style={boxStyle(0)}>
           <Typography className={classes.boxTopText}>
-            Индекс несоответствия показаний юридических лиц в ПСК
+            Индекс несоответствия показаний юридических лиц гарантирующих поставщиков
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />
@@ -515,7 +515,7 @@ const DisplayPieChart = ({ month, balance_index }) => {
         <Box className={classes.boxStyle}
           style={boxStyle(value.trust_index_PSK_ODN, 20)}>
           <Typography className={classes.boxTopText}>
-            Индекс несоответствия показаний общедомовых нужд в ПСК
+            Индекс несоответствия показаний общедомовых нужд гарантирующих поставщиков
           </Typography>
           {/* <Icon classes={classes.boxTopIcon }>
             <img className={classes.imageIcon} src={info_icon} alt="" />

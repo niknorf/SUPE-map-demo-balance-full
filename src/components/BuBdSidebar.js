@@ -159,15 +159,15 @@ export default function SimplePaper() {
                   <th align="left">Значимость</th>
                 </tr>
                 <tr>
-                  <td>Индекс доверия ПСК (физ.лица)</td>
+                  <td>Индекс доверия гарантирующих поставщиков (физ.лица)</td>
                   <td>{globalState.markerValue.importance_PSK_fiz_face}%</td>
                 </tr>
                 <tr>
-                  <td>Индекс доверия ПСК (юр.лица)</td>
+                  <td>Индекс доверия гарантирующих поставщиков (юр.лица)</td>
                   <td>{globalState.markerValue.importance_PSK_ur_face}%</td>
                 </tr>
                 <tr>
-                  <td>Индекс доверия ПСК (ОДН)</td>
+                  <td>Индекс доверия гарантирующих поставщиков (ОДН)</td>
                   <td>{globalState.markerValue.importance_PSK_ODN}%</td>
                 </tr>
                 <tr>
@@ -183,7 +183,7 @@ export default function SimplePaper() {
                   <td>{globalState.markerValue.holidays}%</td>
                 </tr>
                 <tr>
-                  <td>Профиль ПСК (показания за месяц)</td>
+                  <td>Профиль гарантирующих поставщиков (показания за месяц)</td>
                   <td>{globalState.markerValue.data_PSK}%</td>
                 </tr>
                 <tr>
