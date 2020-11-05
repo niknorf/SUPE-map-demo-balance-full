@@ -15,19 +15,19 @@ import {
   TableBody,
   Grid,
   Tabs,
-  Tab
+  Tab,
 } from "@material-ui/core";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
-import {BalanceGroupContent} from "./ISTBalanceGroupContent.js";
-// import {MeteringDevices} from "./ISTMeteringDevices.js";
-import {BDProbability} from "./ISTBUBDProbability.js";
+import { BalanceGroupContent } from "./ISTBalanceGroupContent.js";
+// import { MeteringDevices } from "./ISTMeteringDevices.js";
+import { BDProbability } from "./ISTBUBDProbability.js";
 import Contex from "../store/context";
 import balance_group_items from "../data/balance_result_simple.json";
 import info_icon from "../img/info_icon.svg";
@@ -85,20 +85,18 @@ const useStyles = makeStyles((theme) => ({
   },
 
   tabsContainer: {
-    background: '#F1F2F3',
-    height: '40px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    borderRadius: '8px',
-    fontFamily: 'PF Din Text Cond Pro',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '12px',
-    lineHeight: '14px',
-    color: '#252F4A',
-    textTransform: 'none',
-
-
-  }
+    background: "#F1F2F3",
+    height: "40px",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    borderRadius: "8px",
+    fontFamily: "PF Din Text Cond Pro",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "12px",
+    lineHeight: "14px",
+    color: "#252F4A",
+    textTransform: "none",
+  },
 }));
 
 const InitialState = () => {
@@ -210,7 +208,7 @@ const ShowDataState = () => {
   };
 
   const handleChange = (event, newValue) => {
-  setValue(newValue);
+    setValue(newValue);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -297,73 +295,40 @@ const ShowDataState = () => {
         </Grid>
       </Grid>
       {/* <Box className={classes.tabsContainer}> */}
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-          // indicatorColor="#4A9CFF"
-          TabIndicatorProps={{style: {background:'#4A9CFF' }}}
-        >
-          <Tab style={{textTransform: 'none'}} label="Состав балансовой группы" {...a11yProps(0)} />
-          <Tab style={{textTransform: 'none'}} label="Приборы учета" {...a11yProps(1)} />
-          <Tab style={{textTransform: 'none'}} label="Вероятность БУ/БД" {...a11yProps(2)} />
-        </Tabs>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="simple tabs example"
+        // indicatorColor="#4A9CFF"
+        TabIndicatorProps={{ style: { background: "#4A9CFF" } }}
+      >
+        <Tab
+          style={{ textTransform: "none" }}
+          label="Состав балансовой группы"
+          {...a11yProps(0)}
+        />
+        <Tab
+          style={{ textTransform: "none" }}
+          label="Приборы учета"
+          {...a11yProps(1)}
+        />
+        <Tab
+          style={{ textTransform: "none" }}
+          label="Вероятность БУ/БД"
+          {...a11yProps(2)}
+        />
+      </Tabs>
       {/* </Box> */}
       <TabPanel value={value} index={0}>
-        <BalanceGroupContent/>
+        <BalanceGroupContent />
       </TabPanel>
       <TabPanel value={value} index={1}>
-В разработке
+        В разработке
+        {/* <MeteringDevices /> */}
       </TabPanel>
       <TabPanel value={value} index={2}>
-
-        <BDProbability/>
+        <BDProbability />
       </TabPanel>
-      {/* <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Название</TableCell>
-              <TableCell align="right">Тип</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row) => (
-              <TableRow key={row.name}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell align="right">{row.type}</TableCell>
-              </TableRow>
-            ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                colSpan={3}
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: { "aria-label": "rows per page" },
-                  native: true,
-                }}
-                labelRowsPerPage={"Строк на странице"}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer> */}
     </Typography>
   );
 };
@@ -396,7 +361,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -408,7 +373,35 @@ TablePaginationActions.propTypes = {
 };
 
 const InfoSection = () => {
+  const [network_imbalance, setNetworkImbalance] = useState([]);
+  // const [imbalance, setSubstation] = useState('');
   const { globalState } = useContext(Contex);
+
+  useEffect(() => {
+    if (globalState.balance_index !== "" && globalState.isClean) {
+      /*TODO set loading true, creating loading for whoel page*/
+      // setLoading(true);
+
+      console.log(globalState.balance_index);
+
+      fetch("/api/Results/GetResImbalanceFrontKWH/" + globalState.balance_index)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            //method for небалансы отпуск в сеть
+            // console.log(result);
+            // setNetworkImbalance(result);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    }
+  }, [globalState.balance_index, globalState.isClean]);
 
   return (
     <Box>

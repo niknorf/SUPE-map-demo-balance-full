@@ -70,7 +70,7 @@ const PhantomicBuilding = (fiasId, mapRef) => {
   };
 
   const phantomicLayerRemoved = (event) => {
-    console.log("phantom layer removed");
+
   };
 
   return (
@@ -101,7 +101,7 @@ const DisplayMultipleBalanceGroups = (globalState) => {
         isClean: balance_group_obj.isClean,
         objSelected: true,
         building_address: event.sourceTarget.feature.properties.name,
-        obj_from: "map_click",
+        obj_from: "ts_select",
         isInPSK: false,
       });
     }
@@ -149,11 +149,15 @@ const DisplayMultipleBalanceGroups = (globalState) => {
 
 const GeneralMap = () => {
   const [layerData, setLayer] = useState([]);
-  //TODO Set to true
+  const [substationData, setSubstation] = useState([]);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { globalState, globalDispach } = useContext(Contex);
   const mapRef = useRef();
   const layerRef = useRef();
+  const substationsRef = useRef();
+  const polygonRef = useRef();
+
+  const { globalState, globalDispach } = useContext(Contex);
   const position = [60.059873444307016, 30.37063139051443];
   const zoom_level = 12;
   const style_main = {
@@ -183,57 +187,198 @@ const GeneralMap = () => {
       isClean: balance_group_obj.isClean,
       objSelected: true,
       building_address: event.sourceTarget.feature.properties.name,
-      obj_from: "map_click",
+      obj_from: "map_address",
       isInPSK: event.sourceTarget.feature.properties.isInPSK,
     });
   };
 
-  useEffect(() => {
+  const callManager = (values) => {
+    setLoading(true);
+    switch (values.obj_from) {
+      case "ts_select":
+        // console.log("ts select");
+        break;
+      case "table_click":
+        // console.log("table click");
+        getBalanceGroupObjectsByIndex(values.balance_index);
+        break;
+      case "map_address":
 
-    //TODO set back to true
-    setLoading(false);
-    axios
-      .post(
-        "/line_data",
-        {}, //Keep it empty
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-          //Send the needed params to the server side
-          params: {
-            kgisId: globalState.kgisId,
-            fiasId: globalState.fiasId,
-            isPhantomic: globalState.isPhantomic,
-            balance_index: globalState.balance_index,
-            obj_from: globalState.obj_from,
-            isClean: globalState.isClean,
-          },
+        if (values.isPhantomic) {
+          // console.log('phantomic');
+          getObjectPolygonByFias(values.fiasId);
+        } else {
+          // console.log('non phantomic');
+          getBalanceIndexObjectsByFias(values.fiasId);
         }
-      )
-      .then((response) => {
-        layerRef.current.leafletElement.clearLayers().addData(response.data);
-        setLayer(response.data);
+
+        break;
+
+      default:
         setLoading(false);
-        let bounds =layerRef.current.leafletElement.getBounds();
-        if(bounds.isValid()){
-          mapRef.current.leafletElement.flyToBounds(bounds);
-        }
+    }
+  };
 
-      });
-  }, [
-    globalState.kgisId,
-    globalState.balance_index,
-    globalState.isPhantomic,
-    globalState.fiasId,
-    globalState.isClean,
-  ]);
+  const getBalanceIndexObjectsByFias = (fiasId) => {
+
+    fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
+      .then((res) => res.json())
+      .then(
+        (balance_index) => {
+          // console.log(balance_index);
+          setLoading(false);
+          // fetch("/api/Results/GetBalanceGroupObjects/" + balance_index)
+          //   .then((res) => res.json())
+          //   .then(
+          //     (result) => {
+          //       console.log(result);
+          //       // layerRef.current.leafletElement.clearLayers().addData(result);
+          //       setLayer(result);
+          //       setLoading(false);
+          //       // let bounds = layerRef.current.leafletElement.getBounds();
+          //       // if (bounds.isValid()) {
+          //       //   // mapRef.current.leafletElement.flyToBounds(bounds);
+          //       // }
+          //     },
+          //     // Note: it's important to handle errors here
+          //     // instead of a catch() block so that we don't swallow
+          //     // exceptions from actual bugs in components.
+          //     (error) => {
+          //       setLoading(true);
+          //       setError(error);
+          //     }
+          //   );
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
+  };
+
+  const getObjectPolygonByFias = (fiasId) => {
+    fetch("/api/GeoData/GetBuildingsGeometry/" + fiasId)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          /*Remove when error will be fixed*/
+          result.geometry.type = "Polygon";
+
+          layerRef.current.leafletElement.clearLayers().addData(result);
+          setLayer(result);
+          setLoading(false);
+          let bounds = layerRef.current.leafletElement.getBounds();
+          if (bounds.isValid()) {
+            mapRef.current.leafletElement.flyToBounds(bounds);
+          }
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
+  };
+
+  const getBalanceGroupObjectsByIndex = (balance_index) => {
+    fetch("/api/Results/GetBalanceGroupObjects/" + balance_index)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setLoading(false);
+          // console.log(result);
+          // layerRef.current.leafletElement.clearLayers().addData(result);
+          // setLayer(result);
+          // setLoading(false);
+          // let bounds = layerRef.current.leafletElement.getBounds();
+          // if (bounds.isValid()) {
+          //   // mapRef.current.leafletElement.flyToBounds(bounds);
+          // }
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
+  };
+
+  const getBalanceIndexByFias = (fiasId) => {
+    // console.log(fiasId);
+    fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          // console.log(result);
+          // layerRef.current.leafletElement.clearLayers().addData(result);
+          // setLayer(result);
+          // setLoading(false);
+          // let bounds = layerRef.current.leafletElement.getBounds();
+          // if (bounds.isValid()) {
+          //   // mapRef.current.leafletElement.flyToBounds(bounds);
+          // }
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
+  };
+
+  useEffect(() => {
+    // setLoading(true);
+
+    callManager(globalState, layerRef);
+
+
+  }, [globalState.balance_index, globalState.fiasId]);
+
+  useEffect(() => {
+    // setLoading(true);
+    // const polygon_request = axios.get("/api/GeoData/GetBuildingsGeometry");
+    // const substations_request = axios.get("/api/GeoData/GetSubstationGeometry");
+    /*TODO add API call for address filter and for ts filter*/
+    // axios
+    //   .all([polygon_request, substations_request])
+    //   .then(
+    //     axios.spread((...responses) => {
+    //       console.log(responses);
+    //       setLoading(false);
+    //
+    //       /*TODO finish respones
+    //         set the response[0] to */
+    //
+    //       // polygonRef.current.leafletElement.clearLayers().addData(response[0]);
+    //       // setSubstation(result); /*TODO do we need it?*/
+    //
+    //       // substationsRef.current.leafletElement.clearLayers().addData(response[1]);
+    //       // setSubstation(result); /*TODO do we need it?*/
+    //       // const responseOne = responses[0];
+    //       // const responseTwo = responses[1];
+    //       // const responesThree = responses[2];
+    //       // use/access the results
+    //     })
+    //   )
+    //   .catch((errors) => {
+    //     /*TODO set erros*/
+    //     // react on errors.
+    //   });
+  }, []);
 
   return (
     <LoadingOverlay
       active={loading}
-      spinner={<CircularProgress style={{'color': '#252F4A'}}/>}
+      spinner={<CircularProgress style={{ color: "#252F4A" }} />}
       text=""
       styles={{
         overlay: (base) => ({
@@ -242,50 +387,41 @@ const GeneralMap = () => {
         }),
       }}
     >
-    <Map
-      className="markercluster-map"
-      center={position}
-      zoom={zoom_level}
-      ref={mapRef}
-      style={mapStyle}
-    >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <GeoJSON
-        key={"building_polygons"}
-        data={buildingsPolygon}
-        onClick={handleClick}
-        style={style_main}
-      />
-      <GeoJSON key={"ts_polygons"} data={substation_other} style={style_main} />
-      <GeoJSON
-        key="dynamic_layer"
-        data={layerData}
-        ref={layerRef}
-        style={(params) => LayerStyle(params)}
-      />
-
-    </Map>
+      <Map
+        className="markercluster-map"
+        center={position}
+        zoom={zoom_level}
+        ref={mapRef}
+        style={mapStyle}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <GeoJSON
+          key={"building_polygons"}
+          data={buildingsPolygon}
+          ref={polygonRef}
+          onClick={handleClick}
+          style={style_main}
+        />
+        <GeoJSON
+          key={"ts_polygons"}
+          data={substationData}
+          ref={substationsRef}
+          style={style_main}
+        />
+        <GeoJSON
+          key="dynamic_layer"
+          data={layerData}
+          ref={layerRef}
+          style={(params) => LayerStyle(params)}
+        />
+      </Map>
     </LoadingOverlay>
   );
 };
 
-// const PhantomicBuilding = (fiasId, mapRef) => {
-//   let final_array = [];
-//
-//   final_array =  GetSingleBuildingByFiasId(fiasId);
-//
-//
-//   const phantomicLayerAdded = (event)=>{
-//     let bounds = event.target.getBounds();
-//     mapRef.current.leafletElement.fitBounds(bounds);
-//   }
-//
-//   const phantomicLayerRemoved = (event)=>{
-//     console.log('phantom layer removed');
-//   }
 
 const LayerStyle = (param) => {
   let style = TStyle;

@@ -19,7 +19,7 @@ import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
@@ -163,54 +163,36 @@ const MeteringDevices = () => {
     setPage(0);
   };
 
-  const balance_id = globalState.balance_index;
-
-  const address_name =
-    globalState.building_address !== ""
-      ? "(" + globalState.building_address + ")"
-      : "";
-
-    // let value  = full_res.map(function(item) {
-    //   if(item.balance_id.toString() === balance_id.toString() && item.year === 2020){
-    //     return item;
-    //   }
-    // });
-
-    let input_month = 0;
-    let imbalance_kwh = 0;
-
-    let temp_array = [];
-
-    /*TODO SEARCHED BASED ON LATERS MONTH AND YEAR*/
-    for(var i=0; i < full_res.length; i++){
-      if(full_res[i].balance_id.toString() === balance_id.toString() && full_res[i].year === 2020 && full_res[i].month === "Июл"){
-      // temp_array.push(full_res[i])
-      /*Temp solution waiting fro month_number inside res_imbalance_front*/
-      input_month = full_res[i].input_month;
-      imbalance_kwh = full_res[i].imbalance_kwh;
-
-      }
-    }
-    /*DO NOT REMOVE*/
-    // const max = temp_array.reduce(function(prev, current) {
-    // return (prev.month > current.month) ? prev : current
-    // });
-    //
-    // for(var i=0; i < temp_array.length; i++){
-    //   if(full_res[i].month === max.month){
-    //     console.log(full_res[i]);
-    //     input_month = full_res[i].input_month;
-    //     imbalance_kwh = full_res[i].imbalance_kwh;
-    //   }
+  useEffect(() => {
+    // Currently shows nothing
+    // if (globalState.balance_index !== "") {
+    //   fetch("/api/Results/GetBalanceGroupMeterpointsInfo/" + globalState.balance_index)
+    //     .then((res) => res.json())
+    //     .then(
+    //       (result) => {
+    //         // console.log(result);
+    //         // translateText(result);
+    //       },
+    //       // Note: it's important to handle errors here
+    //       // instead of a catch() block so that we don't swallow
+    //       // exceptions from actual bugs in components.
+    //       (error) => {
+    //         // setLoading(true);
+    //         // setError(error);
+    //       }
+    //     );
     // }
+    // setLoading(true);
+  }, [globalState.balance_index]);
+
   var rows = [];
 
-  balance_group_items.map((item) => {
-    if (item.balance_index.toString() === balance_id.toString()) {
-      rows.push(createData(item.name, item.type));
-    }
-    return item;
-  });
+  // balance_group_items.map((item) => {
+  //   if (item.balance_index.toString() === balance_id.toString()) {
+  //     rows.push(createData(item.name, item.type));
+  //   }
+  //   return item;
+  // });
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);

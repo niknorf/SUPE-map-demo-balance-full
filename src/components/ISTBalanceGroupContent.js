@@ -19,14 +19,13 @@ import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 
 import Contex from "../store/context";
 import balance_group_items from "../data/balance_result_simple.json";
-
 
 const useStyles = makeStyles((theme) => ({
   imageIcon: {
@@ -79,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
   },
 }));
-
 
 function createData(name, type) {
   return { name, type };
@@ -150,9 +148,55 @@ function TablePaginationActions(props) {
 
 const BalanceGroupContent = () => {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setBgContent] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const { globalState } = useContext(Contex);
+
+  useEffect(() => {
+    if (globalState.balance_index !== "") {
+      fetch("/api/Results/GetBalanceResultFull/" + globalState.balance_index)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            translateText(result);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    }
+    // setLoading(true);
+  }, [globalState.balance_index]);
+
+  const translateText = (original) => {
+    let translation = [
+      { original: "PowerTransformer", rus_translate: "Силовой трансформатор" },
+      { original: "ConsumerBuilding", rus_translate: "Здание" },
+      { original: "ACLineSegment", rus_translate: "Кабельная линия" },
+      { original: "LVSwitchGear", rus_translate: "Кабельный киоск/разъединитель"},
+      { original: "LVCabinet", rus_translate: "ГРЩ" },
+      { original: "LoadBreakSwitch", rus_translate: "Переключатель нагрузки" },
+    ];
+    let temp = [];
+    for (let i = 0; i < original.length; i++) {
+      if (original[i].type !== "Link") {
+        for (let j = 0; j < translation.length; j++) {
+          if (original[i].type === translation[j].original) {
+            original[i].type = translation[j].rus_translate;
+          }
+        }
+        temp.push(createData(original[i].name, original[i].type));
+      }
+    }
+
+    setBgContent(temp);
+
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -165,64 +209,64 @@ const BalanceGroupContent = () => {
 
   const balance_id = globalState.balance_index;
 
-  var rows = [];
-
-  balance_group_items.map((item) => {
-    if (item.balance_index.toString() === balance_id.toString()) {
-      rows.push(createData(item.name, item.type));
-    }
-    return item;
-  });
+  // var rows = [];
+  //
+  // balanceGroupContent.map((item) => {
+  //   // if (item.balance_index.toString() === balance_id.toString()) {
+  //     rows.push(createData(item.name, item.type));
+  //   // }
+  //   // return item;
+  // });
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Название</TableCell>
-              <TableCell align="right">Тип</TableCell>
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="left">Название</TableCell>
+            <TableCell align="right">Тип</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
+            <TableRow key={row.name}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell align="right">{row.type}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row) => (
-              <TableRow key={row.name}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell align="right">{row.type}</TableCell>
-              </TableRow>
-            ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                colSpan={3}
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: { "aria-label": "rows per page" },
-                  native: true,
-                }}
-                labelRowsPerPage={"Строк на странице"}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
+          ))}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
             </TableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer>
+          )}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              colSpan={3}
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              SelectProps={{
+                inputProps: { "aria-label": "rows per page" },
+                native: true,
+              }}
+              labelRowsPerPage={"Строк на странице"}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+          </TableRow>
+        </TableFooter>
+      </Table>
+    </TableContainer>
   );
 };
 
@@ -232,6 +276,5 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
-
 
 export { BalanceGroupContent };
