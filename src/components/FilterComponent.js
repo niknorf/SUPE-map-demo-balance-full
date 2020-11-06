@@ -64,7 +64,7 @@ const SearchComponent = () => {
       isClean: value === null ? "" : obj.isClean,
       objSelected: value === null ? false : true,
       fromTsFilter: false,
-      obj_from: value === null ? "" : "street_select",
+      obj_from: value === null ? "" : "map_address",
       isInPSK: value === null ? false : value.isInPSK,
       isLoading: true,
     });
