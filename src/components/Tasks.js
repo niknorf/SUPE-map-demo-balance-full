@@ -5,8 +5,13 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import CalendarTodayOutlinedIcon from '@material-ui/icons/CalendarTodayOutlined';
+import BlueDot from "../img/blue-dot.svg";
+import YellowDot from "../img/yellow-dot.svg";
+import GreenDot from "../img/green-dot.svg";
+import RedDot from "../img/red-dot.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +45,53 @@ const useStyles = makeStyles((theme) => ({
   },
   taskNavigation: {
     marginTop: '11px'
+  },
+  titleDot: {
+    marginRight: '8px',
+    marginLeft: '16px',
+  },
+  title: {
+    fontSize: '14px',
+    lineHeight: '42px'
+  },
+  taskCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '16px',
+    marginBottom: '17px',
+    boxShadow: '4px 6px 18px rgba(0, 0, 0, 0.06)'
+  },
+  address: {
+    fontSize: '10px',
+    lineHeight: '12px',
+    color: '#8C949E',
+    marginBottom: '5px',
+  },
+  taskNumber: {
+    fontSize: '16px',
+    lineHeight: '20px',
+    marginBottom: '9px',
+  },
+  description: {
+    fontSize: '14px',
+    lineHeight: '17px',
+    marginBottom: '11px',
+    fontFamily: "PFDinTextCondPro-Regular !important",
+  },
+  progress: {
+    fontSize: '14px',
+    lineHeight: '17px',
+    color: '#8C949E',
+    fontFamily: "PFDinTextCondPro-Regular !important",
+  },
+  taskDot: {
+    marginRight: '6px'
+  },
+  pregressIcon: {
+    color: '#8C949E',
+    width: '13px',
+    height: '13px',
+    marginRight: '6px'
   }
 }));
 
@@ -80,9 +132,135 @@ export default function AutoGrid() {
                 </Paper>
               </Grid>
             </Grid>
+            <Grid container spacing={3}>
+              <Grid item xs={3}>
+                <img src={BlueDot} className={classes.titleDot}></img>
+                <span className={classes.title}>Новые (3)</span>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={BlueDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={BlueDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={BlueDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+              </Grid>
+              <Grid item xs={3}>
+              <img src={YellowDot} className={classes.titleDot}></img>
+                <span className={classes.title}>В процессе (2)</span>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={YellowDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={YellowDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+              </Grid>
+              <Grid item xs={3}>
+              <img src={GreenDot} className={classes.titleDot}></img>
+                <span className={classes.title}>Выполнено (3)</span>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={GreenDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={GreenDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={GreenDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+              </Grid>
+              <Grid item xs={3}>
+              <img src={RedDot} className={classes.titleDot}></img>
+                <span className={classes.title}>Просрочено (1)</span>
+                <Paper className={classes.taskCard}>
+                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+                  <div>
+                    <img src={RedDot} className={classes.taskDot}></img>
+                    <span className={classes.taskNumber}>Задание №1334</span>
+                  </div>
+                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+                  <div>
+                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                    <span className={classes.progress}>В работе 10 дней</span>
+                  </div>
+                </Paper>
+              </Grid>
+            </Grid>
           </Box>
         </Grid>
-      </Grid>
+        </Grid>
     </div>
-  );
+      );
 }
