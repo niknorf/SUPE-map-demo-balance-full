@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
   },
+  boxImabalnceGraphic:{
+    // width: "100%",
+    // height: "100%",
+  }
 }));
 
 const OrangeSwitch = withStyles({
@@ -154,7 +158,7 @@ const CreateImabalancePSK = ({ balance_index, object, switchState }) => {
   object.data.push(year_2017, year_2018, year_2019, year_2020);
 
   return (
-    <Plot data={object.data} layout={object.layout} config={object.config} />
+    <Plot style={{width: "100%", height:"100%"}} useResizeHandler data={object.data} layout={object.layout} config={object.config} />
   );
 };
 
@@ -171,8 +175,9 @@ const ImbalancePskPu = () => {
   var imbalance_psk_pu = {
     layout: {
       hoverinfo: "none",
+      autosize: true,
       //title: "График небалансов между <br>показаниями ПСК и ПУ, в кВтч от ПУ",
-      width: 550,
+      // width: 550,
     },
     data: [],
     config: {
@@ -186,51 +191,55 @@ const ImbalancePskPu = () => {
         "hoverCompareCartesian",
       ],
       displaylogo: false,
+      responsive: true,
     },
   };
 
   return globalState.balance_index !== "" && globalState.isClean
     ? [
-        <Grid item xs={12} md={6} lg={6} className={classes.pskGrid}>
-          <Paper className={clsx(fixedHeightPaper, classes.paperStyles)}>
-            <Box className={classes.header}>
-              <Typography className={classes.graphText}>
-                График небалансов между показаниями гарантирующих поставщиков и ПУ, в кВтч
-              </Typography>
-              {IsPhantomicIncluded(globalState.balance_index) ? (
-                <Box
-                  className={classes.swith}
-                  component="label"
-                  container
-                  alignItems="center"
-                  justify="flex-end"
-                  direction="row"
-                  spacing={1}
-                >
-                  <Box item className={classes.switchLeftText}>
-                    Без фантомных обьектов
-                  </Box>
-                  <Box item>
-                    <OrangeSwitch
-                      checked={switchState}
-                      onChange={handleSwitchChange}
-                      name="checkedA"
-                    />
-                  </Box>
-                  <Grid item className={classes.switchRightText}>
-                    Включая фантомные обьекты
-                  </Grid>
+        // <Grid item xs={12} md={6} lg={6} className={classes.pskGrid}>
+        //   <Paper className={clsx(fixedHeightPaper, classes.paperStyles)}>
+        <>
+          <Box className={classes.header}>
+            <Typography className={classes.graphText}>
+              График небалансов между показаниями гарантирующих поставщиков и
+              ПУ, в кВтч
+            </Typography>
+            {IsPhantomicIncluded(globalState.balance_index) ? (
+              <Box
+                className={classes.swith}
+                component="label"
+                container
+                alignItems="center"
+                justify="flex-end"
+                direction="row"
+                spacing={1}
+              >
+                <Box item className={classes.switchLeftText}>
+                  Без фантомных обьектов
                 </Box>
-              ) : null}
-            </Box>
+                <Box item>
+                  <OrangeSwitch
+                    checked={switchState}
+                    onChange={handleSwitchChange}
+                    name="checkedA"
+                  />
+                </Box>
+                <Grid item className={classes.switchRightText}>
+                  Включая фантомные обьекты
+                </Grid>
+              </Box>
+            ) : null}
+          </Box>
 
+          <Box>
             <CreateImabalancePSK
               balance_index={globalState.balance_index}
               object={imbalance_psk_pu}
               switchState={switchState}
             />
-          </Paper>
-        </Grid>,
+          </Box>
+        </>,
       ]
     : null;
 };

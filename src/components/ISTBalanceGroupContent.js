@@ -77,6 +77,10 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "40px",
     textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
   },
+  tableBalance: {
+    height: "60vh",
+    padding: "0 15px",
+  },
 }));
 
 function createData(name, type) {
@@ -178,7 +182,10 @@ const BalanceGroupContent = () => {
       { original: "PowerTransformer", rus_translate: "Силовой трансформатор" },
       { original: "ConsumerBuilding", rus_translate: "Здание" },
       { original: "ACLineSegment", rus_translate: "Кабельная линия" },
-      { original: "LVSwitchGear", rus_translate: "Кабельный киоск/разъединитель"},
+      {
+        original: "LVSwitchGear",
+        rus_translate: "Кабельный киоск/разъединитель",
+      },
       { original: "LVCabinet", rus_translate: "ГРЩ" },
       { original: "LoadBreakSwitch", rus_translate: "Переключатель нагрузки" },
     ];
@@ -195,7 +202,6 @@ const BalanceGroupContent = () => {
     }
 
     setBgContent(temp);
-
   };
 
   const handleChangePage = (event, newPage) => {
@@ -222,8 +228,12 @@ const BalanceGroupContent = () => {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+    <TableContainer className={classes.tableBalance}>
+      <Table
+        // className={classes.table}
+        // aria-labelledby="tableTitle"
+        aria-label="enhanced table"
+      >
         <TableHead>
           <TableRow>
             <TableCell align="left">Название</TableCell>

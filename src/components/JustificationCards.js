@@ -1,0 +1,398 @@
+import React, { useContext } from "react";
+import {
+  Container,
+  Grid,
+  Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Box,
+  Typography,
+  Icon,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Contex from "../store/context";
+import clsx from "clsx";
+import Plotly from "plotly.js";
+import createPlotlyComponent from "react-plotly.js/factory";
+import indexes from "../data/graphic/indexes.json";
+import full_res from "../data/graphic/res_imbalance_front.json";
+import "../css/graphic.css";
+import info_icon from "../img/info_icon.svg";
+const Plot = createPlotlyComponent(Plotly);
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  bigContainer: {
+    padding: "0",
+  },
+  formControlBox: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  textPadding: {
+    paddingLeft: "24px",
+    paddingTop: "26px",
+  },
+
+  textStyle: {
+    // position: "relative",
+    fontSize: "12px",
+    lineHeight: "14px",
+    color: "#252F4A",
+  },
+
+  selectPadding: {
+    paddingRight: "24px",
+    paddingTop: "26px",
+  },
+  paddingsCardBox:{
+    paddingLeft: "24px",
+    paddingRight: "24px",
+    // paddingTop: "26px",
+  },
+  reasonText: {
+    margin: "8px",
+  },
+  barPaper: {
+    display: "flex",
+    justifyContent: "space-around",
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
+  },
+  chartsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    padding: "0 16px",
+  },
+  chartsPaper: {
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
+    margin: "12px 0",
+  },
+  lastBlockPaper: {
+    marginTop: "12px",
+  },
+  boxStyle: {
+    marginRight: theme.spacing(1),
+    // marginTop: theme.spacing(2.5),
+    marginBottom: theme.spacing(2.5),
+    height: 141,
+    width: 200,
+    borderRadius: "4px",
+    boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
+    wordWrap: "break-word",
+    // flex: 1,
+    // flexWrap: 'wrap'
+  },
+  boxTopText: {
+    position: "absolute",
+    height: "43px",
+    fontFamily: "PF Din Text Cond Pro",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "12px",
+    lineHeight: "14px",
+    marginTop: "16px",
+    marginLeft: "16px",
+    marginRight: "16px",
+    color: "#818E9B",
+    width: 168,
+    display: "inline-block",
+    wordWrap: "break-word",
+  },
+  boxMiddleText: {
+    position: "absolute",
+    height: "58px",
+    marginBottom: "9px",
+    marginLeft: "16px",
+    marginTop: "40px",
+    fontFamily: "PF Din Text Cond Pro",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "48px",
+    lineHeight: "58px",
+    letterSpacing: "0.01em",
+    wordWrap: "break-word",
+  },
+  boxTopIcon: {
+    position: "relative",
+    marginTop: "10px",
+    marginLeft: "10px",
+  },
+  imageIcon: {
+    width: 13.33,
+    height: 13.33,
+  },
+}));
+
+const column_title_font = {
+  size: 12,
+  color: "#252F4A",
+};
+
+const JustificationCards = () => {
+  const [month, setMonth] = React.useState(7);
+  const { globalState } = useContext(Contex);
+  const classes = useStyles();
+
+  const handleMonthChange = (event) => {
+    console.log(event.target.value);
+    setMonth(event.target.value);
+  };
+
+  return (
+    <div>
+      {(() => {
+        if (globalState.isClean && globalState.balance_index !== "") {
+          return (
+            <Grid container spacing={2}>
+              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                <Box className={classes.formControlBox}>
+                  <Box className={classes.textPadding}>
+                    <Typography className={classes.textStyle}>
+                      Обоснование
+                    </Typography>
+                  </Box>
+                  <Box className={classes.selectPadding}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel shrink id="demo-simple-select-label">
+                        Месяц
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={month}
+                        onChange={handleMonthChange}
+                      >
+                        {/* <MenuItem value={5}>Май</MenuItem>
+                            <MenuItem value={6}>Июнь</MenuItem> */}
+                        <MenuItem value={7}>Июль</MenuItem>
+                        {/* <MenuItem value={8}>Август</MenuItem>
+                            <MenuItem value={9}>Сентябрь</MenuItem> */}
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Box>
+                {/* <Box className={classes.chartsContainer}>
+
+                </Box> */}
+              </Grid>
+              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                <Box className={classes.paddingsCardBox}>
+                  <DisplayPieChart
+                    month={month}
+                    balance_index={globalState.balance_index}
+                  />
+                </Box>
+
+              </Grid>
+            </Grid>
+          );
+        }
+      })()}
+    </div>
+  );
+};
+
+const DisplayPieChart = ({ month, balance_index }) => {
+  const classes = useStyles();
+  let value = indexes.map((item) => {
+    if (
+      item.balance_id.toString() === balance_index.toString() &&
+      item.date_year === 2020 &&
+      item.date_month === month
+    ) {
+      return item;
+    }
+  });
+
+  value = value.filter((obj) => {
+    return typeof obj !== "undefined";
+  });
+
+  value = typeof value[0] !== "undefined" ? value[0] : {};
+
+  let boxRedStyle = {
+    background: "rgba(222, 32, 19, 0.1)",
+  };
+
+  let boxGreenStyle = {
+    background: "rgba(96, 200, 125, 0.1)",
+  };
+
+  let boxGreyStyle = {
+    background: "rgba(140, 148, 158, 0.1)",
+    color: "#8C949E",
+  };
+
+  let textRedStyle = {
+    color: "#D33126",
+    marginTop: "74px",
+  };
+
+  let textGreenStyle = {
+    color: "#21BA49",
+    marginTop: "74px",
+  };
+
+  let textGreyStyle = {
+    color: "#8C949E",
+    fontFamily: "PF Din Text Cond Pro",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "12px",
+    lineHeight: "14px",
+    letterSpacing: "0.01em",
+    width: 168,
+    display: "inline-block",
+    wordWrap: "break-word",
+    marginTop: "74px",
+  };
+
+  const boxStyle = (value, compare, sign) => {
+    let condition = Math.abs(parseInt(value)) > compare;
+    if (sign === "<") {
+      condition = Math.abs(parseInt(value)) < compare;
+    }
+
+    if (typeof value === "undefined" || value === 0 || value === null) {
+      return boxGreyStyle;
+    } else if (condition) {
+      return boxRedStyle;
+    } else {
+      return boxGreenStyle;
+    }
+  };
+
+  const textStyle = (value, compare, sign) => {
+    let condition = Math.abs(parseInt(value)) > compare;
+    if (sign === "<") {
+      condition = Math.abs(parseInt(value)) < compare;
+    }
+
+    if (typeof value === "undefined" || value === 0 || value === null) {
+      return textGreyStyle;
+    } else if (condition) {
+      return textRedStyle;
+    } else {
+      return textGreenStyle;
+    }
+  };
+
+  const textValue = (value) => {
+    if (typeof value === "undefined" || value === 0 || value === null) {
+      return "Данные для расчета показателя обновляются";
+    } else {
+      return value + "%";
+    }
+  };
+
+  return (
+    <Grid container spacing={3}>
+      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+        <Box
+          className={`${classes.boxStyle}`}
+          style={boxStyle(value.percent_transmission_PU, 80, "<")}
+        >
+          <Typography className={classes.boxTopText}>
+            Процент передачи показаний приборов технического учета за месяц
+          </Typography>
+
+          <Typography
+            style={textStyle(value.percent_transmission_PU, 80, "<")}
+            className={classes.boxMiddleText}
+          >
+            {textValue(value.percent_transmission_PU)}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+        <Box
+          className={classes.boxStyle}
+          style={boxStyle(
+            value.index_compliance_forecast_present_unbalance,
+            30
+          )}
+        >
+          <Typography className={classes.boxTopText}>
+            Процент несоответствия предиктивного и фактического небалансов
+          </Typography>
+          {/* <Icon classes={classes.boxTopIcon }>
+            <img className={classes.imageIcon} src={info_icon} alt="" />
+          </Icon> */}
+          <Typography
+            className={classes.boxMiddleText}
+            style={textStyle(
+              value.index_compliance_forecast_present_unbalance,
+              30
+            )}
+          >
+            {textValue(value.index_compliance_forecast_present_unbalance)}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+        <Box
+          className={classes.boxStyle}
+          style={boxStyle(value.trust_index_PSK_fiz, 20)}
+        >
+          <Typography className={classes.boxTopText}>
+            Индекс несоответствия показаний физических лиц гарантирующих
+            поставщиков
+          </Typography>
+          {/* <Icon classes={classes.boxTopIcon }>
+            <img className={classes.imageIcon} src={info_icon} alt="" />
+          </Icon> */}
+          <Typography
+            className={classes.boxMiddleText}
+            style={textStyle(value.trust_index_PSK_fiz, 20)}
+          >
+            {textValue(value.trust_index_PSK_fiz)}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+        <Box className={classes.boxStyle} style={boxStyle(0)}>
+          <Typography className={classes.boxTopText}>
+            Индекс несоответствия показаний юридических лиц гарантирующих
+            поставщиков
+          </Typography>
+          {/* <Icon classes={classes.boxTopIcon }>
+            <img className={classes.imageIcon} src={info_icon} alt="" />
+          </Icon> */}
+          <Typography className={classes.boxMiddleText} style={textStyle(0)}>
+            {textValue(0)}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+        <Box
+          className={classes.boxStyle}
+          style={boxStyle(value.trust_index_PSK_ODN, 20)}
+        >
+          <Typography className={classes.boxTopText}>
+            Индекс несоответствия показаний общедомовых нужд гарантирующих
+            поставщиков
+          </Typography>
+          {/* <Icon classes={classes.boxTopIcon }>
+            <img className={classes.imageIcon} src={info_icon} alt="" />
+          </Icon> */}
+          <Typography
+            className={classes.boxMiddleText}
+            style={textStyle(value.trust_index_PSK_ODN, 20)}
+          >
+            {textValue(value.trust_index_PSK_ODN)}
+          </Typography>
+        </Box>
+      </Grid>
+    </Grid>
+  );
+};
+
+export { JustificationCards };

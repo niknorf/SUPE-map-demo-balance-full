@@ -27,12 +27,11 @@ const TsSearchComponent = () => {
   }
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <Autocomplete
         id="ts_search"
         options={ts_search}
         getOptionLabel={(option) => option.ts_name}
-        style={{ width: 450}}
         onChange={handleChange}
         renderInput={(params) => (
           <TextField {...params} label="Трансформаторная подстанция" margin="normal" placeholder="Выберете из списка" />
@@ -73,12 +72,11 @@ const SearchComponent = () => {
   let options = GetStreetAdresses();
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <Autocomplete
         id="street_search"
         options={options}
         getOptionLabel={(option) => option.name}
-        style={{ width: 450 }}
         onChange={handleChange}
         filterOptions={(options, state) => options}
         noOptionsText="Варианты не найдены"

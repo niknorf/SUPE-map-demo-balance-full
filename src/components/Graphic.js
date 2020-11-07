@@ -9,7 +9,7 @@ import {
   MenuItem,
   Box,
   Typography,
-  Icon
+  Icon,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "16px",
     color: "#818E9B",
     width: 168,
-    display:'inline-block',
+    display: "inline-block",
     wordWrap: "break-word",
   },
   boxMiddleText: {
@@ -106,10 +106,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginLeft: "10px",
   },
-  imageIcon:{
+  imageIcon: {
     width: 13.33,
     height: 13.33,
-  }
+  },
 }));
 
 const column_title_font = {
@@ -119,7 +119,7 @@ const column_title_font = {
 
 const GraphicGroup = () => {
   const [month, setMonth] = React.useState(7);
-  const {globalState } = useContext(Contex);
+  const { globalState } = useContext(Contex);
   const classes = useStyles();
 
   const handleMonthChange = (event) => {
@@ -130,7 +130,7 @@ const GraphicGroup = () => {
   /* Bar charts */
   var input_month = {
     layout: {
-      width: 550,
+      autosize: true,
       title: {
         text:
           "График суммарных помесчных показаний согласно приборам учета, кВтч",
@@ -156,13 +156,15 @@ const GraphicGroup = () => {
         "hoverCompareCartesian",
       ],
       displaylogo: false,
+      responsive: true,
     },
   };
   var out_psk_month = {
     layout: {
-      width: 550,
+      autosize: true,
       title: {
-        text: "График суммарных помесячных показаний гарантирующих поставщиков, кВтч",
+        text:
+          "График суммарных помесячных показаний гарантирующих поставщиков, кВтч",
         font: column_title_font,
       },
     },
@@ -185,11 +187,12 @@ const GraphicGroup = () => {
         "hoverCompareCartesian",
       ],
       displaylogo: false,
+      responsive: true,
     },
   };
   var balance_group_tech_loss = {
     layout: {
-      width: 550,
+      autosize: true,
       title: {
         text: "Технические потери на балансовой группе, кВтч",
         font: column_title_font,
@@ -214,11 +217,12 @@ const GraphicGroup = () => {
         "hoverCompareCartesian",
       ],
       displaylogo: false,
+      responsive: true,
     },
   };
   var meter_avg = {
     layout: {
-      width: 550,
+      autosize: true,
       title: {
         text: "Передача показаний приборов технического учета, %",
         font: column_title_font,
@@ -243,89 +247,88 @@ const GraphicGroup = () => {
         "hoverCompareCartesian",
       ],
       displaylogo: false,
+      responsive: true,
     },
   };
 
   return (
-    <div>
+    <>
       {(() => {
         if (globalState.isClean && globalState.balance_index !== "") {
           return (
-            <Container className={classes.bigContainer}>
-              <Grid container spacing={3}>
-                <Grid item xs={6} md={12} lg={12}>
-                  <Paper className={classes.chartsPaper}>
-                    <Box className={classes.formControlBox}>
-                      <Typography className={classes.reasonText}>
-                        Обоснование
-                      </Typography>
-                      <FormControl className={classes.formControl}>
-                        <InputLabel shrink id="demo-simple-select-label">
-                          Месяц
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          value={month}
-                          onChange={handleMonthChange}
+            <>
+              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                <Paper elevation={1}>
+                  <Box>
+                    <Grid container>
+                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                        <DisplayBarChart
+                          balance_index={globalState.balance_index}
+                          type={input_month}
+                          obj_name="input_month"
+                        />
+                      </Grid>
+                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                        <DisplayBarChart
+                          balance_index={globalState.balance_index}
+                          type={out_psk_month}
+                          obj_name="out_psk_month"
+                        />
+                      </Grid>
+                    </Grid>
+                    <Box align="center">
+                      <Typography>2018 2019 2020</Typography>
+                    </Box>
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                <Paper elevation={1}>
+                  <Box>
+                    <Grid container>
+                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                        <Box
+                          style={{
+                            height: "180px",
+                            marginLeft: "100px",
+                            marginBottom: "100px",
+                            marginTop: "100px",
+                            marginLeft: "100px",
+                            flex: 1,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
                         >
-                          {/* <MenuItem value={5}>Май</MenuItem>
-                          <MenuItem value={6}>Июнь</MenuItem> */}
-                          <MenuItem value={7}>Июль</MenuItem>
-                          {/* <MenuItem value={8}>Август</MenuItem>
-                          <MenuItem value={9}>Сентябрь</MenuItem> */}
-                        </Select>
-                      </FormControl>
+                          <Typography
+                            style={{
+                              flex: 1,
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            Недостаточно данных для расчета технических потерь
+                          </Typography>
+                        </Box>
+                      </Grid>
+                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                        <DisplayBarChart
+                          balance_index={globalState.balance_index}
+                          type={meter_avg}
+                          obj_name="na_meter_avg"
+                        />
+                      </Grid>
+                    </Grid>
+                    <Box align="center">
+                      <Typography>2018 2019 2020</Typography>
                     </Box>
-                    <Box className={classes.chartsContainer}>
-                      <DisplayPieChart
-                        month={month}
-                        balance_index={globalState.balance_index}
-                      />
-                    </Box>
-                  </Paper>
-                </Grid>
+                  </Box>
+                </Paper>
               </Grid>
-              <Grid container spacing={3}>
-                <Grid item xs={6} md={12} lg={12}>
-                  <Paper className={classes.barPaper}>
-                    <DisplayBarChart
-                      balance_index={globalState.balance_index}
-                      type={input_month}
-                      obj_name="input_month"
-                    />
-                    <DisplayBarChart
-                      balance_index={globalState.balance_index}
-                      type={out_psk_month}
-                      obj_name="out_psk_month"
-                    />
-                  </Paper>
-                </Grid>
-              </Grid>
-              <Grid container spacing={3}>
-                <Grid item xs={6} md={12} lg={12}>
-                  <Paper
-                    className={clsx(classes.barPaper, classes.lastBlockPaper)}
-                  >
-                    <Box style={{height:'180px', marginLeft: "100px",
-                       marginBottom: "100px",marginTop: "100px", marginLeft: "100px", flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                      <Typography style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        Недостаточно данных для расчета технических потерь
-                      </Typography>
-                    </Box>
-                    <DisplayBarChart
-                      balance_index={globalState.balance_index}
-                      type={meter_avg}
-                      obj_name="na_meter_avg"
-                    />
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Container>
+            </>
           );
         }
       })()}
-    </div>
+    </>
   );
 };
 
@@ -338,195 +341,20 @@ const DisplayBarChart = ({ balance_index, type, obj_name }) => {
     return type;
   });
 
-  if (obj_name === 'imbalance_kwh'){
+  if (obj_name === "imbalance_kwh") {
     type.data = [];
-    type.layout.title.text = "Недостаточно данных для расчета технических потерь";
-
+    type.layout.title.text =
+      "Недостаточно данных для расчета технических потерь";
   }
 
-  return (<Plot
-    data={type.data}
-    layout={type.layout}
-    config={type.config}
-  />)
-};
-
-const DisplayPieChart = ({ month, balance_index }) => {
-  const classes = useStyles();
-  let value = indexes.map((item) => {
-    if (
-      item.balance_id.toString() === balance_index.toString() &&
-      item.date_year === 2020 &&
-      item.date_month === month
-    ) {
-      return item;
-    }
-  });
-
-  value = value.filter((obj) => {
-    return typeof obj !== "undefined";
-  });
-
-  value = typeof value[0] !== 'undefined' ? value[0] : {};
-
-
-  let boxRedStyle = {
-    background: "rgba(222, 32, 19, 0.1)",
-  };
-
-  let boxGreenStyle = {
-    background: "rgba(96, 200, 125, 0.1)",
-  };
-
-  let boxGreyStyle = {
-    background: "rgba(140, 148, 158, 0.1)",
-    color: "#8C949E",
-  };
-
-  let textRedStyle = {
-    color: "#D33126",
-    marginTop: "74px",
-  };
-
-  let textGreenStyle = {
-    color: "#21BA49",
-    marginTop: "74px",
-  };
-
-  let textGreyStyle = {
-    color: "#8C949E",
-    fontFamily: 'PF Din Text Cond Pro',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '12px',
-    lineHeight: '14px',
-    letterSpacing: '0.01em',
-    width: 168,
-    display:'inline-block',
-    wordWrap: "break-word",
-    marginTop: "74px",
-  };
-
-  const boxStyle = (value, compare, sign) => {
-    let condition = Math.abs(parseInt(value)) > compare;
-    if(sign === '<'){
-      condition = Math.abs(parseInt(value)) < compare
-    }
-
-    if (typeof value === "undefined" || value === 0 || value === null) {
-      return boxGreyStyle;
-    } else if (condition) {
-      return boxRedStyle;
-    }else{
-      return boxGreenStyle;
-    }
-  };
-
-  const textStyle = (value, compare, sign) => {
-    let condition = Math.abs(parseInt(value)) > compare;
-    if(sign === '<'){
-      condition = Math.abs(parseInt(value)) < compare
-    }
-
-    if (typeof value === "undefined" || value === 0 || value === null) {
-      return textGreyStyle;
-    } else if (condition) {
-      return textRedStyle;
-    }else{
-      return textGreenStyle;
-    }
-  };
-
-
-  const textValue = (value) => {
-    if (typeof value === "undefined" || value === 0 || value === null) {
-      return 'Данные для расчета показателя обновляются';
-    } else {
-      return value + '%';
-    }
-  };
-
   return (
-    <Grid container spacing={4}>
-      <Grid item>
-        <Box
-          className={`${classes.boxStyle}`}
-          style={boxStyle(value.percent_transmission_PU, 80, '<')}
-        >
-          <Typography className={classes.boxTopText}>
-            Процент передачи показаний приборов технического учета за месяц
-          </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
-          <Typography
-            style={textStyle(value.percent_transmission_PU, 80, '<')}
-            className={classes.boxMiddleText} >
-            {textValue(value.percent_transmission_PU)}
-          </Typography>
-        </Box>
-      </Grid>
-      <Grid item >
-        <Box className={classes.boxStyle}
-          style={boxStyle(value.index_compliance_forecast_present_unbalance, 30)}>
-          <Typography className={classes.boxTopText}>
-            Процент несоответствия предиктивного и фактического небалансов
-          </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
-          <Typography className={classes.boxMiddleText}
-            style={textStyle(value.index_compliance_forecast_present_unbalance, 30)}>
-            {textValue(value.index_compliance_forecast_present_unbalance)}
-          </Typography>
-        </Box>
-      </Grid>
-      <Grid item>
-        <Box className={classes.boxStyle}
-          style={boxStyle(value.trust_index_PSK_fiz, 20)}>
-          <Typography className={classes.boxTopText}>
-            Индекс несоответствия показаний физических лиц гарантирующих поставщиков
-          </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
-          <Typography className={classes.boxMiddleText}
-            style={textStyle(value.trust_index_PSK_fiz, 20)}>
-            {textValue(value.trust_index_PSK_fiz)}
-          </Typography>
-        </Box>
-      </Grid>
-      <Grid item >
-        <Box className={classes.boxStyle}
-          style={boxStyle(0)}>
-          <Typography className={classes.boxTopText}>
-            Индекс несоответствия показаний юридических лиц гарантирующих поставщиков
-          </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
-          <Typography className={classes.boxMiddleText}
-            style={textStyle(0)}>
-            {textValue(0)}
-          </Typography>
-        </Box>
-      </Grid>
-      <Grid item >
-        <Box className={classes.boxStyle}
-          style={boxStyle(value.trust_index_PSK_ODN, 20)}>
-          <Typography className={classes.boxTopText}>
-            Индекс несоответствия показаний общедомовых нужд гарантирующих поставщиков
-          </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
-          <Typography className={classes.boxMiddleText}
-            style={textStyle(value.trust_index_PSK_ODN, 20)}>
-            {textValue(value.trust_index_PSK_ODN)}
-          </Typography>
-        </Box>
-      </Grid>
-    </Grid>
+    <Plot
+      style={{ width: "100%", height: "100%" }}
+      useResizeHandler
+      data={type.data}
+      layout={type.layout}
+      config={type.config}
+    />
   );
 };
 

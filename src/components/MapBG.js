@@ -168,7 +168,7 @@ const GeneralMap = () => {
     // fillOpacity: 0.7
   };
   const mapStyle = {
-    height: "80vh",
+    // height: "100%",
   };
 
   const handleClick = (event) => {
@@ -203,12 +203,12 @@ const GeneralMap = () => {
         getBalanceGroupObjectsByIndex(values.balance_index);
         break;
       case "map_address":
-
+console.log(values);
         if (values.isPhantomic) {
-          // console.log('phantomic');
+          console.log('phantomic');
           getObjectPolygonByFias(values.fiasId);
         } else {
-          // console.log('non phantomic');
+          console.log('non phantomic');
           getBalanceIndexObjectsByFias(values.fiasId);
         }
 
@@ -376,6 +376,7 @@ const GeneralMap = () => {
   }, []);
 
   return (
+    <div style={{ height: "100%" }}>
     <LoadingOverlay
       active={loading}
       spinner={<CircularProgress style={{ color: "#252F4A" }} />}
@@ -419,6 +420,8 @@ const GeneralMap = () => {
         />
       </Map>
     </LoadingOverlay>
+  </div>
+
   );
 };
 

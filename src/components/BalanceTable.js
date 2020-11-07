@@ -1,10 +1,18 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
+// import Table from "@material-ui/core/Table";
+// import TableBody from "@material-ui/core/TableBody";
+// import TableCell from "@material-ui/core/TableCell";
+import {
+  Table,
+  Container,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+} from "@material-ui/core";
+// import TableContainer from "@material-ui/core/TableContainer";
+// import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
@@ -17,11 +25,7 @@ import {
 import Contex from "../store/context";
 import table_down from "../data/table_down.json";
 
-function createData(
-  balanceGroup,
-  imbalancePercent,
-  imbalanceKwh,
-) {
+function createData(balanceGroup, imbalancePercent, imbalanceKwh) {
   return {
     balanceGroup,
     imbalancePercent,
@@ -34,11 +38,7 @@ const createRows = () => {
   table_down.map((item) => {
     if (item.month === 7 && item.year === 2020) {
       rows.push(
-        createData(
-          item.balance_id,
-          item.imbalance_percent,
-          item.imbalance_kwh,
-        )
+        createData(item.balance_id, item.imbalance_percent, item.imbalance_kwh)
       );
     }
     return item;
@@ -173,15 +173,11 @@ EnhancedTableHead.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    padding: "0 15px",
-    height: "95%",
+    // width: "100%",
+    // padding: "0 15px",
+    // height: "95%",
   },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-  },
-  table: {},
+
   visuallyHidden: {
     border: 0,
     clip: "rect(0 0 0 0)",
@@ -198,6 +194,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableBalance: {
     height: "100%",
+    padding: "0 15px",
   },
 }));
 
@@ -247,7 +244,7 @@ export default function EnhancedTable() {
   };
 
   return (
-    <div className={classes.root}>
+    <>
       <TableContainer id="balance-table" className={classes.tableBalance}>
         <Table
           className={classes.table}
@@ -301,6 +298,6 @@ export default function EnhancedTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
         labelRowsPerPage={"Строк на странице"}
       />
-    </div>
+    </>
   );
 }

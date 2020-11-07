@@ -5,6 +5,7 @@ import {
   Link,
   Paper,
   Typography,
+  Box,
 } from "@material-ui/core";
 import {
   ThemeProvider,
@@ -16,6 +17,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { GraphicGroup } from "./Graphic";
+import { JustificationCards } from "./JustificationCards";
 import { ImbalancePskPu } from "./charts/ImbalancePskPu";
 import { InfoSection } from "./InfoSectionBG";
 import { SearchComponent, TsSearchComponent } from "./FilterComponent";
@@ -86,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "32px",
     lineHeight: "38px",
   },
+  balanceTextContainer: {
+    paddingTop: "40px",
+  },
   balanceGroupSelectors: {
     display: "flex",
     alignItems: "center",
@@ -135,9 +140,6 @@ const useStyles = makeStyles((theme) => ({
   balancePaper: {
     height: "100%",
   },
-  BalanceTableStyles: {
-    height: "80vh",
-  },
 }));
 
 const BalanceGroup = () => {
@@ -145,65 +147,95 @@ const BalanceGroup = () => {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
-    <div className={classes.root}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <main className={classes.content}>
-          <Container maxWidth="lg" className={classes.container}>
-            <div className={classes.header}>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="xl">
+        <Grid
+          container
+          spacing={3}
+          alignContent="stretch"
+          alignItems="stretch"
+          direction="row"
+          display="flex"
+        >
+          {/* Title */}
+          <Grid
+            item
+            lg={12}
+            md={12}
+            sm={12}
+            xl={12}
+            xs={12}
+            style={{ height: "100%" }}
+          >
+            <Box className={classes.balanceTextContainer}>
               <Typography
                 className={classes.balanceText}
                 variant="h2"
                 gutterBottom
               >
                 Балансовые группы
-                </Typography>
-            </div>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper className={classes.balanceGroupSelectors}>
-                  {/* SEARCH STREET COMPONENT */}
-                  <Grid item xs={6} sm={6} md={6} lg={6}>
+              </Typography>
+            </Box>
+          </Grid>
+          {/* Filter */}
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper elevation={1}>
+              <Container maxWidth="xl">
+                <Grid
+                  container
+                  spacing={2}
+                  justify="flex-start"
+                  alignContent="center"
+                  alignItems="center"
+                  direction="row"
+                  wrap="wrap"
+                >
+                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
                     <SearchComponent />
                   </Grid>
-                  {/* SELECT COMPONENT */}
-                  <Grid item xs={6} sm={6} md={6} lg={6}>
+                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
                     <TsSearchComponent />
                   </Grid>
-                </Paper>
-              </Grid>
-            </Grid>
-
-            <Grid container spacing={3}>
-              {/* MAP SECTION */}
-              <Grid item xs={12} sm={12} md={12} lg={8}>
-                <GeneralMap />
-              </Grid>
-              {/* INFO SECTION */}
-              <Grid className={classes.tableContainer} item xs={4}>
-                <Paper className={clsx(classes.paper, classes.balancePaper)}>
-                  <BalanceTable className={classes.BalanceTableStyles} />
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Paper
-                  className={clsx(fixedHeightPaper, classes.infoSectionStyles)}
-                >
-                  <InfoSection />
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                {/* IMBALACE GRAPHIC */}
-                <ImbalancePskPu />
-              </Grid>
-            </Grid>
-
-            {/* GRAPHIC SECTION */}
-            <GraphicGroup />
-          </Container>
-        </main>
-      </ThemeProvider>
-    </div>
+                </Grid>
+              </Container>
+            </Paper>
+          </Grid>
+          {/* Map */}
+          <Grid
+            item
+            lg={8}
+            md={7}
+            sm={12}
+            xl={9}
+            xs={12}
+          >
+            <GeneralMap />
+          </Grid>
+          {/* Table */}
+          <Grid item lg={4} md={5} sm={6} xl={3} xs={12}>
+            <Paper elevation={1} style={{ height: "100%" }}>
+              <BalanceTable />
+            </Paper>
+          </Grid>
+          {/* Infor section */}
+          <InfoSection />
+          {/* Imbalance graphic */}
+          <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
+            <Paper elevation={1} style={{ height: "100%" }}>
+              <ImbalancePskPu />
+            </Paper>
+          </Grid>
+          {/* 5 values */}
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper elevation={1}>
+              <JustificationCards />
+            </Paper>
+          </Grid>
+          {/* 4 graphics */}
+          <GraphicGroup />
+        </Grid>
+      </Container>
+    </ThemeProvider>
   );
 };
 
