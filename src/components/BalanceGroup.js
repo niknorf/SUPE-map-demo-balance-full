@@ -16,7 +16,7 @@ import {
 import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { GraphicGroup } from "./Graphic";
+import { GraphicGroup, OutInputMonthGraphic } from "./Graphic";
 import { JustificationCards } from "./JustificationCards";
 import { ImbalancePskPu } from "./charts/ImbalancePskPu";
 import { InfoSection } from "./InfoSectionBG";
@@ -232,7 +232,17 @@ const BalanceGroup = () => {
             </Paper>
           </Grid>
           {/* 4 graphics */}
-          <GraphicGroup />
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper elevation={1}>
+              <OutInputMonthGraphic/>
+            </Paper>
+          </Grid>
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper elevation={1}>
+              <GraphicGroup />
+            </Paper>
+          </Grid>
+
         </Grid>
       </Container>
     </ThemeProvider>

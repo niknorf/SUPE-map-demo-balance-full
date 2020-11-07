@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -16,7 +16,7 @@ import Contex from "../store/context";
 import clsx from "clsx";
 import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
-import indexes from "../data/graphic/indexes.json";
+import indexesFile from "../data/graphic/indexes.json";
 import full_res from "../data/graphic/res_imbalance_front.json";
 import "../css/graphic.css";
 import info_icon from "../img/info_icon.svg";
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "24px",
     paddingTop: "26px",
   },
-  paddingsCardBox:{
+  paddingsCardBox: {
     paddingLeft: "24px",
     paddingRight: "24px",
     // paddingTop: "26px",
@@ -137,14 +137,40 @@ const column_title_font = {
 };
 
 const JustificationCards = () => {
-  const [month, setMonth] = React.useState(7);
+  const [indexesData, setIndexes] = useState({});
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
-  const handleMonthChange = (event) => {
-    console.log(event.target.value);
-    setMonth(event.target.value);
+  const emptyIndexes = {
+    date_month: null,
+    date_year: null,
+    percent_transmission_pu: null,
+    index_compliance_forecast_percent_unbalance: null,
+    trust_index_psk_fiz: null,
+    trust_index_psk_odn: null,
+    trust_index_psk_urik: null,
   };
+
+  useEffect(() => {
+    if (globalState.balance_index !== "") {
+      fetch("/api/Results/GetResultIndexes/" + globalState.balance_index)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            if (result === undefined || result.length === 0) {
+              setIndexes(emptyIndexes);
+            } else {
+              setIndexes(result[0]);
+            }
+
+          },
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    }
+  }, [globalState.balance_index]);
 
   return (
     <div>
@@ -160,7 +186,10 @@ const JustificationCards = () => {
                     </Typography>
                   </Box>
                   <Box className={classes.selectPadding}>
-                    <FormControl className={classes.formControl}>
+                    <Typography className={classes.textStyle}>
+                      Значения за: {indexesData.date_month}.{indexesData.date_year}                      
+                    </Typography>
+                    {/* <FormControl className={classes.formControl}>
                       <InputLabel shrink id="demo-simple-select-label">
                         Месяц
                       </InputLabel>
@@ -172,25 +201,22 @@ const JustificationCards = () => {
                       >
                         {/* <MenuItem value={5}>Май</MenuItem>
                             <MenuItem value={6}>Июнь</MenuItem> */}
-                        <MenuItem value={7}>Июль</MenuItem>
-                        {/* <MenuItem value={8}>Август</MenuItem>
+                    {/* <MenuItem value={7}>Июль</MenuItem> */}
+                    {/* <MenuItem value={8}>Август</MenuItem>
                             <MenuItem value={9}>Сентябрь</MenuItem> */}
-                      </Select>
-                    </FormControl>
+                    {/* </Select> */}
+                    {/* </FormControl> */}
                   </Box>
                 </Box>
-                {/* <Box className={classes.chartsContainer}>
-
-                </Box> */}
               </Grid>
               <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
                 <Box className={classes.paddingsCardBox}>
                   <DisplayPieChart
-                    month={month}
+                    month={7}
                     balance_index={globalState.balance_index}
+                    indexes={indexesData}
                   />
                 </Box>
-
               </Grid>
             </Grid>
           );
@@ -200,23 +226,25 @@ const JustificationCards = () => {
   );
 };
 
-const DisplayPieChart = ({ month, balance_index }) => {
+const DisplayPieChart = ({ month, balance_index, indexes }) => {
   const classes = useStyles();
-  let value = indexes.map((item) => {
-    if (
-      item.balance_id.toString() === balance_index.toString() &&
-      item.date_year === 2020 &&
-      item.date_month === month
-    ) {
-      return item;
-    }
-  });
 
-  value = value.filter((obj) => {
-    return typeof obj !== "undefined";
-  });
-
-  value = typeof value[0] !== "undefined" ? value[0] : {};
+  /*TODO to remove*/
+  // let value = indexesFile.map((item) => {
+  //   if (
+  //     item.balance_id.toString() === balance_index.toString() &&
+  //     item.date_year === 2020 &&
+  //     item.date_month === month
+  //   ) {
+  //     return item;
+  //   }
+  // });
+  //
+  // value = value.filter((obj) => {
+  //   return typeof obj !== "undefined";
+  // });
+  //
+  // value = typeof value[0] !== "undefined" ? value[0] : {};
 
   let boxRedStyle = {
     background: "rgba(222, 32, 19, 0.1)",
@@ -298,17 +326,17 @@ const DisplayPieChart = ({ month, balance_index }) => {
       <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
         <Box
           className={`${classes.boxStyle}`}
-          style={boxStyle(value.percent_transmission_PU, 80, "<")}
+          style={boxStyle(indexes.percent_transmission_pu, 80, "<")}
         >
           <Typography className={classes.boxTopText}>
             Процент передачи показаний приборов технического учета за месяц
           </Typography>
 
           <Typography
-            style={textStyle(value.percent_transmission_PU, 80, "<")}
+            style={textStyle(indexes.percent_transmission_pu, 80, "<")}
             className={classes.boxMiddleText}
           >
-            {textValue(value.percent_transmission_PU)}
+            {textValue(indexes.percent_transmission_pu)}
           </Typography>
         </Box>
       </Grid>
@@ -316,44 +344,38 @@ const DisplayPieChart = ({ month, balance_index }) => {
         <Box
           className={classes.boxStyle}
           style={boxStyle(
-            value.index_compliance_forecast_present_unbalance,
+            indexes.index_compliance_forecast_percent_unbalance,
             30
           )}
         >
           <Typography className={classes.boxTopText}>
             Процент несоответствия предиктивного и фактического небалансов
           </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
           <Typography
             className={classes.boxMiddleText}
             style={textStyle(
-              value.index_compliance_forecast_present_unbalance,
+              indexes.index_compliance_forecast_percent_unbalance,
               30
             )}
           >
-            {textValue(value.index_compliance_forecast_present_unbalance)}
+            {textValue(indexes.index_compliance_forecast_percent_unbalance)}
           </Typography>
         </Box>
       </Grid>
       <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
         <Box
           className={classes.boxStyle}
-          style={boxStyle(value.trust_index_PSK_fiz, 20)}
+          style={boxStyle(indexes.trust_index_psk_fiz, 20)}
         >
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний физических лиц гарантирующих
             поставщиков
           </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
           <Typography
             className={classes.boxMiddleText}
-            style={textStyle(value.trust_index_PSK_fiz, 20)}
+            style={textStyle(indexes.trust_index_psk_fiz, 20)}
           >
-            {textValue(value.trust_index_PSK_fiz)}
+            {textValue(indexes.trust_index_psk_fiz)}
           </Typography>
         </Box>
       </Grid>
@@ -363,9 +385,6 @@ const DisplayPieChart = ({ month, balance_index }) => {
             Индекс несоответствия показаний юридических лиц гарантирующих
             поставщиков
           </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
           <Typography className={classes.boxMiddleText} style={textStyle(0)}>
             {textValue(0)}
           </Typography>
@@ -374,20 +393,17 @@ const DisplayPieChart = ({ month, balance_index }) => {
       <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
         <Box
           className={classes.boxStyle}
-          style={boxStyle(value.trust_index_PSK_ODN, 20)}
+          style={boxStyle(indexes.trust_index_psk_odn, 20)}
         >
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний общедомовых нужд гарантирующих
             поставщиков
           </Typography>
-          {/* <Icon classes={classes.boxTopIcon }>
-            <img className={classes.imageIcon} src={info_icon} alt="" />
-          </Icon> */}
           <Typography
             className={classes.boxMiddleText}
-            style={textStyle(value.trust_index_PSK_ODN, 20)}
+            style={textStyle(indexes.trust_index_psk_odn, 20)}
           >
-            {textValue(value.trust_index_PSK_ODN)}
+            {textValue(indexes.trust_index_psk_odn)}
           </Typography>
         </Box>
       </Grid>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -10,7 +10,11 @@ import {
   Box,
   Typography,
   Icon,
+  Button,
+  ButtonGroup,
 } from "@material-ui/core";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
 import clsx from "clsx";
@@ -118,78 +122,48 @@ const column_title_font = {
 };
 
 const GraphicGroup = () => {
-  const [month, setMonth] = React.useState(7);
+  const [month, setMonth] = useState(7);
+  const [outMonth, setOutMonth] = useState([]);
+  const [inputMonth, setInputMonth] = useState([]);
+  const [year, setFilterYear] = useState("2020");
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
-  const handleMonthChange = (event) => {
-    console.log(event.target.value);
-    setMonth(event.target.value);
-  };
+
+
+  // useEffect(() => {
+  //   if (globalState.balance_index !== "") {
+  //     fetch(
+  //       "/api/Results/GetResImbalanceFrontOutMonth/" + globalState.balance_index
+  //     )
+  //       .then((res) => res.json())
+  //       .then(
+  //         (result) => {
+  //           setOutMonth(result);
+  //         },
+  //         (error) => {
+  //           // setLoading(true);
+  //           // setError(error);
+  //         }
+  //       );
+  //
+  //       fetch(
+  //         "/api/Results/GetResImbalanceFrontInputMonth/" + globalState.balance_index
+  //       )
+  //         .then((res) => res.json())
+  //         .then(
+  //           (result) => {
+  //             setInputMonth(result);
+  //           },
+  //           (error) => {
+  //             // setLoading(true);
+  //             // setError(error);
+  //           }
+  //         );
+  //   }
+  // }, [globalState.balance_index]);
 
   /* Bar charts */
-  var input_month = {
-    layout: {
-      autosize: true,
-      title: {
-        text:
-          "График суммарных помесчных показаний согласно приборам учета, кВтч",
-        font: column_title_font,
-      },
-    },
-    data: [
-      {
-        x: [],
-        y: [],
-        marker: { color: "#00ebd3" },
-        type: "bar",
-      },
-    ],
-    config: {
-      modeBarButtonsToRemove: [
-        "pan2d",
-        "select2d",
-        "lasso2d",
-        "resetScale2d",
-        "toggleSpikelines",
-        "hoverClosestCartesian",
-        "hoverCompareCartesian",
-      ],
-      displaylogo: false,
-      responsive: true,
-    },
-  };
-  var out_psk_month = {
-    layout: {
-      autosize: true,
-      title: {
-        text:
-          "График суммарных помесячных показаний гарантирующих поставщиков, кВтч",
-        font: column_title_font,
-      },
-    },
-    data: [
-      {
-        x: [],
-        y: [],
-        marker: { color: "#00caff" },
-        type: "bar",
-      },
-    ],
-    config: {
-      modeBarButtonsToRemove: [
-        "pan2d",
-        "select2d",
-        "lasso2d",
-        "resetScale2d",
-        "toggleSpikelines",
-        "hoverClosestCartesian",
-        "hoverCompareCartesian",
-      ],
-      displaylogo: false,
-      responsive: true,
-    },
-  };
   var balance_group_tech_loss = {
     layout: {
       autosize: true,
@@ -251,106 +225,219 @@ const GraphicGroup = () => {
     },
   };
 
-  return (
-    <>
-      {(() => {
-        if (globalState.isClean && globalState.balance_index !== "") {
-          return (
-            <>
-              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-                <Paper elevation={1}>
-                  <Box>
-                    <Grid container>
-                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
-                        <DisplayBarChart
-                          balance_index={globalState.balance_index}
-                          type={input_month}
-                          obj_name="input_month"
-                        />
-                      </Grid>
-                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
-                        <DisplayBarChart
-                          balance_index={globalState.balance_index}
-                          type={out_psk_month}
-                          obj_name="out_psk_month"
-                        />
-                      </Grid>
-                    </Grid>
-                    <Box align="center">
-                      <Typography>2018 2019 2020</Typography>
+  return globalState.balance_index !== "" && globalState.isClean
+    ? [
+                <Grid container>
+                  <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                    <Box
+                      style={{
+                        height: "180px",
+                        marginLeft: "100px",
+                        marginBottom: "100px",
+                        marginTop: "100px",
+                        marginLeft: "100px",
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Typography
+                        style={{
+                          flex: 1,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        Недостаточно данных для расчета технических потерь
+                      </Typography>
                     </Box>
-                  </Box>
-                </Paper>
-              </Grid>
-              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-                <Paper elevation={1}>
-                  <Box>
-                    <Grid container>
-                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
-                        <Box
-                          style={{
-                            height: "180px",
-                            marginLeft: "100px",
-                            marginBottom: "100px",
-                            marginTop: "100px",
-                            marginLeft: "100px",
-                            flex: 1,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Typography
-                            style={{
-                              flex: 1,
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            Недостаточно данных для расчета технических потерь
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
-                        <DisplayBarChart
-                          balance_index={globalState.balance_index}
-                          type={meter_avg}
-                          obj_name="na_meter_avg"
-                        />
-                      </Grid>
-                    </Grid>
-                    <Box align="center">
-                      <Typography>2018 2019 2020</Typography>
+                  </Grid>
+                  <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                    <Box>
+                      <DisplayBarChart
+                        balance_index={globalState.balance_index}
+                        type={meter_avg}
+                        obj_name="na_meter_avg"
+                        resultData={[]}
+                      />
                     </Box>
-                  </Box>
-                </Paper>
-              </Grid>
-            </>
-          );
-        }
-      })()}
-    </>
-  );
+
+                  </Grid>
+                </Grid>
+      ]
+    : null;
 };
 
-const DisplayBarChart = ({ balance_index, type, obj_name }) => {
-  full_res.map(function (item) {
-    if (item.balance_id.toString() === balance_index.toString()) {
-      type.data[0].x.push(item.month);
-      type.data[0].y.push(item[obj_name]);
-    }
-    return type;
-  });
+const OutInputMonthGraphic = () => {
+  const [month, setMonth] = useState(7);
+  const [outMonth, setOutMonth] = useState([]);
+  const [inputMonth, setInputMonth] = useState([]);
+  // const [year, setFilterYear] = useState('2020');
+  const { globalState } = useContext(Contex);
+  const classes = useStyles();
 
-  if (obj_name === "imbalance_kwh") {
-    type.data = [];
-    type.layout.title.text =
-      "Недостаточно данных для расчета технических потерь";
-  }
+  // const handleYearChange = (event, value) => {
+  //   console.log(value);
+  //     setFilterYear(value);
+  // };
+/*TODO add year filter*/
+  useEffect(() => {
+    if (globalState.balance_index !== "") {
+      fetch(
+        "/api/Results/GetResImbalanceFrontOutMonth/" + globalState.balance_index
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setOutMonth(result);
+          },
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+
+        fetch(
+          "/api/Results/GetResImbalanceFrontInputMonth/" + globalState.balance_index
+        )
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              setInputMonth(result);
+            },
+            (error) => {
+              // setLoading(true);
+              // setError(error);
+            }
+          );
+    }
+  }, [globalState.balance_index]);
+
+  /* Bar charts */
+  var input_month = {
+    layout: {
+      autosize: true,
+      title: {
+        text:
+          "График суммарных помесчных показаний согласно приборам учета, кВтч",
+        font: column_title_font,
+      },
+    },
+    data: [
+      {
+        x: [],
+        y: [],
+        marker: { color: "#00ebd3" },
+        type: "bar",
+      },
+    ],
+    config: {
+      // modeBarButtonsToRemove: [
+      //   "pan2d",
+      //   "select2d",
+      //   "lasso2d",
+      //   "resetScale2d",
+      //   "toggleSpikelines",
+      //   "hoverClosestCartesian",
+      //   "hoverCompareCartesian",
+      // ],
+      displayModeBar: false,
+      displaylogo: false,
+      responsive: true,
+    },
+  };
+  var out_psk_month = {
+    layout: {
+      autosize: true,
+      title: {
+        text:
+          "График суммарных помесячных показаний гарантирующих поставщиков, кВтч",
+        font: column_title_font,
+      },
+    },
+    data: [
+      {
+        x: [],
+        y: [],
+        marker: { color: "#00caff" },
+        type: "bar",
+      },
+    ],
+    config: {
+      // modeBarButtonsToRemove: [
+      //   "pan2d",
+      //   "select2d",
+      //   "lasso2d",
+      //   "resetScale2d",
+      //   "toggleSpikelines",
+      //   "hoverClosestCartesian",
+      //   "hoverCompareCartesian",
+      // ],
+      displayModeBar: false,
+
+      displaylogo: false,
+      responsive: true,
+    },
+  };
+
+
+  return globalState.balance_index !== "" && globalState.isClean
+    ? [
+        <Grid container>
+          <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+            <Box>
+              <DisplayBarChart
+                balance_index={globalState.balance_index}
+                type={input_month}
+                obj_name="input_month"
+                resultData={inputMonth}
+              />
+            </Box>
+
+
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+            <Box>
+              <DisplayBarChart
+                balance_index={globalState.balance_index}
+                type={out_psk_month}
+                obj_name="out_month"
+                resultData={outMonth}
+              />
+            </Box>
+
+          </Grid>
+        </Grid>
+
+      ]
+    : null;
+};
+
+
+
+const DisplayBarChart = ({ balance_index, type, obj_name, resultData }) => {
+
+    if (resultData.length > 0) {
+      for (let i = 0; i < resultData.length; i++) {
+        if(resultData[i].year === 2019){
+          type.data[0].x.push(resultData[i].month_rus);
+          type.data[0].y.push(resultData[i].[obj_name]);
+        }
+      }
+    }else{
+      full_res.map(function (item) {
+        if (item.balance_id.toString() === balance_index.toString()) {
+          type.data[0].x.push(item.month);
+          type.data[0].y.push(item[obj_name]);
+        }
+        return type;
+      });
+    }
 
   return (
     <Plot
       style={{ width: "100%", height: "100%" }}
-      useResizeHandler
+      // useResizeHandler
       data={type.data}
       layout={type.layout}
       config={type.config}
@@ -358,4 +445,4 @@ const DisplayBarChart = ({ balance_index, type, obj_name }) => {
   );
 };
 
-export { GraphicGroup };
+export { GraphicGroup, OutInputMonthGraphic };

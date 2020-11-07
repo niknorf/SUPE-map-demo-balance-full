@@ -1,7 +1,7 @@
 import { Grid, Paper, Switch, Typography, Box } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Plotly from "plotly.js";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import clsx from "clsx";
 import Contex from "../../store/context";
@@ -69,7 +69,7 @@ const IsPhantomicIncluded = (balance_index) => {
     : true;
 };
 
-const CreateImabalancePSK = ({ balance_index, object, switchState }) => {
+const CreateImabalancePSK = ({ balance_index, object, switchState, imbalanceData, imbalancePhantomData }) => {
   let year_2017 = {
     x: [],
     y: [],
@@ -108,51 +108,53 @@ const CreateImabalancePSK = ({ balance_index, object, switchState }) => {
   };
 
   if (switchState) {
-    full_res_phantom.map(function (item) {
+    imbalancePhantomData.map(function (item) {
       if (item.balance_id.toString() === balance_index.toString()) {
         if (item.year.toString() === "2017") {
-          year_2017.x.push(item.month);
+          year_2017.x.push(item.month_rus);
           year_2017.y.push(item.imbalance_phantom_kwh);
         }
         if (item.year.toString() === "2018") {
-          year_2018.x.push(item.month);
+          year_2018.x.push(item.month_rus);
           year_2018.y.push(item.imbalance_phantom_kwh);
         }
         if (item.year.toString() === "2019") {
-          year_2019.x.push(item.month);
+          year_2019.x.push(item.month_rus);
           year_2019.y.push(item.imbalance_phantom_kwh);
         }
 
         if (item.year.toString() === "2020") {
-          year_2020.x.push(item.month);
+          year_2020.x.push(item.month_rus);
           year_2020.y.push(item.imbalance_phantom_kwh);
         }
       }
       return item;
     });
   } else {
-    full_res.map(function (item) {
-      if (item.balance_id.toString() === balance_index.toString()) {
-        if (item.year.toString() === "2017") {
-          year_2017.x.push(item.month);
-          year_2017.y.push(item.imbalance_kwh);
-        }
-        if (item.year.toString() === "2018") {
-          year_2018.x.push(item.month);
-          year_2018.y.push(item.imbalance_kwh);
-        }
-        if (item.year.toString() === "2019") {
-          year_2019.x.push(item.month);
-          year_2019.y.push(item.imbalance_kwh);
-        }
+    if(imbalanceData.length > 0){
+      imbalanceData.map(function (item) {
+        if (item.balance_id.toString() === balance_index.toString()) {
+          if (item.year.toString() === "2017") {
+            year_2017.x.push(item.month_rus);
+            year_2017.y.push(item.imbalance_kwh);
+          }
+          if (item.year.toString() === "2018") {
+            year_2018.x.push(item.month_rus);
+            year_2018.y.push(item.imbalance_kwh);
+          }
+          if (item.year.toString() === "2019") {
+            year_2019.x.push(item.month_rus);
+            year_2019.y.push(item.imbalance_kwh);
+          }
 
-        if (item.year.toString() === "2020") {
-          year_2020.x.push(item.month);
-          year_2020.y.push(item.imbalance_kwh);
+          if (item.year.toString() === "2020") {
+            year_2020.x.push(item.month_rus);
+            year_2020.y.push(item.imbalance_kwh);
+          }
         }
-      }
-      return item;
-    });
+        return item;
+      });
+    }
   }
 
   object.data.push(year_2017, year_2018, year_2019, year_2020);
@@ -164,9 +166,42 @@ const CreateImabalancePSK = ({ balance_index, object, switchState }) => {
 
 const ImbalancePskPu = () => {
   const [switchState, setState] = useState(false);
+  const [chartData, setChartData] = useState([]);
+  const [chartPhantomData, setChartPhantomData] = useState([]);
   const { globalState } = useContext(Contex);
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  useEffect(() => {
+    if (globalState.balance_index !== "") {
+      fetch("/api/Results/GetResImbalanceFront/" + globalState.balance_index)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+              setChartData(result);
+
+          },
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    }
+    if (globalState.balance_index !== "") {
+      fetch("/api/Results/GetImbalancePhantom/" + globalState.balance_index)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+              setChartPhantomData(result);
+
+          },
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    }
+  }, [globalState.balance_index]);
 
   const handleSwitchChange = (event) => {
     setState(event.target.checked);
@@ -197,8 +232,6 @@ const ImbalancePskPu = () => {
 
   return globalState.balance_index !== "" && globalState.isClean
     ? [
-        // <Grid item xs={12} md={6} lg={6} className={classes.pskGrid}>
-        //   <Paper className={clsx(fixedHeightPaper, classes.paperStyles)}>
         <>
           <Box className={classes.header}>
             <Typography className={classes.graphText}>
@@ -237,6 +270,8 @@ const ImbalancePskPu = () => {
               balance_index={globalState.balance_index}
               object={imbalance_psk_pu}
               switchState={switchState}
+              imbalanceData={chartData}
+              imbalancePhantomData={chartPhantomData}
             />
           </Box>
         </>,
