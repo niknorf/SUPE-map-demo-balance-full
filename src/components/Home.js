@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
@@ -42,12 +43,19 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
   },
+  buttonTasks: {
+    background: "linear-gradient(127.52deg, #5EDDFF 20.68%, #4A9CFF 80.9%)",
+    marginBottom: "24px",
+  },
   buttonBalance: {
-    background: "linear-gradient(127.52deg, #00CAFF 20.68%, #4A9CFF 80.9%)",
-    marginRight: "24px",
+    background: "linear-gradient(122.56deg, #4A91FF 15.82%, #225899 82.63%)",
+    marginBottom: "24px",
   },
   ButtonBuBd: {
-    background: "linear-gradient(122.56deg, #4A9CFF 15.82%, #3671B9 82.63%)",
+    background: "linear-gradient(122.56deg, #4A9CFF 15.82%, #225899 82.63%)",
+  },
+  ButtonPost: {
+    background: 'linear-gradient(127.52deg, #5EDDFF 20.68%, #4A9CFF 80.9%)',
   },
   buttonText: {
     fontFamily: "PFDinTextCondPro-Regular !important",
@@ -55,10 +63,15 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "29px",
     display: "inline-flex",
   },
+  topButtons: {
+    marginBottom: '24px'
+  },
   icon: {
     position: "absolute",
     top: "15px",
     left: "14px",
+    width: '30px',
+    height: '30px'
   },
   pieChartPaper: {
     padding: "30px",
@@ -80,10 +93,6 @@ const useStyles = makeStyles((theme) => ({
   },
   boxPaper: {
     display: "flex",
-  },
-  buttonTasks: {
-    background: "linear-gradient(127.52deg, #00CAFF 20.68%, #4A9CFF 80.9%);",
-    marginRight: "24px",
   },
   graph: {
     marginTop: "24px",
@@ -164,6 +173,23 @@ export default function Home() {
     </button>
   ));
 
+  const ButtonPost = withRouter(({ history }) => (
+    <button
+      type="button"
+      className={clsx(classes.button, classes.ButtonPost)}
+      onClick={() => {
+        history.push("/post");
+      }}
+    >
+      <HomeOutlinedIcon className={classes.icon} />
+      <div className={classes.buttonContainer}>
+        <span className={classes.buttonText}>Статистика</span>
+        <span className={classes.buttonText}>гарантирующих</span>
+        <span className={classes.buttonText}>поставщиков</span>
+      </div>
+    </button>
+  ));
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -172,32 +198,39 @@ export default function Home() {
             <Paper
               className={clsx(classes.pieChartPaper, classes.leftPieChart)}
             >
-              <img src={pieChart} className={classes.pieChartImage} alt=''/>
+              <img src={pieChart} className={classes.pieChartImage} alt='' />
             </Paper>
           </Grid>
           <Grid item xs={6}>
             <Paper
               className={clsx(classes.pieChartPaper, classes.rightPieChart)}
             >
-              <img src={pieChart} className={classes.pieChartImage} alt=''/>
+              <img src={pieChart} className={classes.pieChartImage} alt='' />
             </Paper>
           </Grid>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphOne)}>
-              <img src={graphOne} className={classes.graphOneImage} alt=''/>
+              <img src={graphOne} className={classes.graphOneImage} alt='' />
             </Paper>
           </Grid>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphTwo)}>
-              <img src={graphTwo} className={classes.graphTwoImage} alt=''/>
+              <img src={graphTwo} className={classes.graphTwoImage} alt='' />
             </Paper>
           </Grid>
         </Grid>
         <Grid item xs={6}>
           <Box className={classes.boxPaper}>
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
             <ButtonTasks />
+                <ButtonBuBd />
+              </Grid>
+              <Grid item xs={6}>
             <ButtonBalance />
-            <ButtonBuBd />
+                <ButtonPost />
+              </Grid>
+            </Grid>
           </Box>
           <Paper className={classes.bubdTable}>
             <BuBdTable />
