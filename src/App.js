@@ -8,6 +8,7 @@ import {
 import CssBaseline from "@material-ui/core/CssBaseline";
 import React from "react";
 import BalanceGroup from "./components/BalanceGroup";
+import GuaranteedSuppliers from "./components/GuaranteedSuppliers";
 import BuBd from "./components/BuBd";
 import Tasks from "./components/Tasks";
 import Drawer from "./components/Drawer";
@@ -65,6 +66,11 @@ export default function App() {
               exact
               from="/balancegroup"
               render={(props) => <BalanceGroup {...props} />}
+            />
+            <Route
+              exact
+              from="/guaranteedsuppliers"
+              render={(props) => <GuaranteedSuppliers {...props} />}
             />
             <Route
               exact

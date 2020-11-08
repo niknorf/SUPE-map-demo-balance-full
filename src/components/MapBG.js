@@ -203,7 +203,6 @@ const GeneralMap = () => {
         getBalanceGroupObjectsByIndex(values.balance_index);
         break;
       case "map_address":
-console.log(values);
         if (values.isPhantomic) {
           console.log('phantomic');
           getObjectPolygonByFias(values.fiasId);
@@ -221,11 +220,11 @@ console.log(values);
 
   const getBalanceIndexObjectsByFias = (fiasId) => {
 
-    fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
+    fetch("/api/Results/GetHouseBalanceInfo/a14a4f20-e6a3-4d37-a9f6-7d35fea251fb")
       .then((res) => res.json())
       .then(
-        (balance_index) => {
-          // console.log(balance_index);
+        (result) => {
+          console.log(result);
           setLoading(false);
           // fetch("/api/Results/GetBalanceGroupObjects/" + balance_index)
           //   .then((res) => res.json())

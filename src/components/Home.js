@@ -178,7 +178,7 @@ export default function Home() {
       type="button"
       className={clsx(classes.button, classes.ButtonPost)}
       onClick={() => {
-        history.push("/post");
+        history.push("/guaranteedsuppliers");
       }}
     >
       <HomeOutlinedIcon className={classes.icon} />

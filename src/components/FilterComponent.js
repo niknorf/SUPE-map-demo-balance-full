@@ -1,10 +1,41 @@
 import { Autocomplete } from "@material-ui/lab";
 import { FormControl, TextField, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { GetBalanceGroupObj } from "../scripts/mapHelpers.js";
+// import { GetBalanceGroupObj } from "../scripts/mapHelpers.js";
 import { GetStreetAdresses } from "../scripts/filtersHelpers.js";
 import Contex from "../store/context";
 import ts_balance_dict from "../data/ts_balance_dict.json";
+import { List, AutoSizer } from "react-virtualized";
+import {matchSorter} from 'match-sorter';
+
+const ListboxComponent = React.forwardRef(function ListboxComponent(
+  props,
+  ref
+) {
+  const { children, role, ...other } = props;
+  const itemCount = Array.isArray(children) ? children.length : 0;
+  const itemSize = 36;
+  return (
+        <div ref={ref}>
+          <div {...other}>
+            <List
+              height={250}
+              width={420}
+              rowHeight={itemSize}
+              overscanCount={5}
+              rowCount={itemCount}
+              rowRenderer={props => {
+                return React.cloneElement(children[props.index], {
+                  style: props.style
+                });
+              }}
+              role={role}
+            />
+          </div>
+        </div>
+
+  );
+});
 
 const TsSearchComponent = () => {
   const { globalDispach } = useContext(Contex);
@@ -31,7 +62,7 @@ const TsSearchComponent = () => {
       <Autocomplete
         id="ts_search"
         options={ts_search}
-        getOptionLabel={(option) => option.ts_name}
+        // getOptionLabel={(option) => option.ts_name}
         onChange={handleChange}
         renderInput={(params) => (
           <TextField
@@ -49,6 +80,7 @@ const TsSearchComponent = () => {
 const SearchComponent = () => {
   const { globalDispach } = useContext(Contex);
   const [streets, setStreets] = useState([]);
+  const [fiasId, setFiasId] = useState('');
 
   const handleStreetChange = (event, value) => {
     let obj = {
@@ -56,11 +88,11 @@ const SearchComponent = () => {
       isClean: false,
     };
 
-    console.log(value === null);
-
     if (value !== null) {
-      obj = GetBalanceGroupObj(value.fias);
+      setFiasId(value.fias);
+    //   obj = GetBalanceGroupObj(value.fias);
     }
+
 
     globalDispach({
       type: "FILTERCOMPONENT",
@@ -71,11 +103,12 @@ const SearchComponent = () => {
       isClean: value === null ? "" : obj.isClean,
       objSelected: value === null ? false : true,
       obj_from: value === null ? "" : "map_address",
-      /*TODO change to value.isPhantomic*/
+      /*TODO change to value.isInPsk*/
       isInPSK: value === null ? false : true,
       isLoading: true,
     });
   };
+
 
   useEffect(() => {
     fetch("/api/DataCompare/GetBuildingAddressByFias")
@@ -93,7 +126,12 @@ const SearchComponent = () => {
       );
   }, []);
 
+/*TODO when they add isPhantomic to the address list and the reques twill be made from maps side*/
+
   /*TODO fix filtering of the address filter*/
+
+  const filterOptions = (options, { inputValue }) =>
+  matchSorter(options, inputValue, {keys: ['address']});
 
   return (
     <FormControl fullWidth>
@@ -102,7 +140,9 @@ const SearchComponent = () => {
         options={streets}
         getOptionLabel={(option) => option.address}
         onChange={handleStreetChange}
-        filterOptions={(options, state) => options}
+        // disableListWrap
+        ListboxComponent={ListboxComponent}
+      filterOptions={filterOptions}
         noOptionsText="Варианты не найдены"
         renderInput={(params) => (
           <TextField

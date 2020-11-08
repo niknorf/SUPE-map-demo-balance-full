@@ -15,14 +15,11 @@ import {
 } from "@material-ui/core/styles";
 import React from "react";
 import PropTypes from "prop-types";
+import { SearchComponent } from "./FilterComponent";
+import { InfoSectionGS } from "./InfoSectionGS";
+import { BottomSectionGS } from "./BottomSectionGS";
 import clsx from "clsx";
-import { GraphicGroup, OutInputMonthGraphic } from "./Graphic";
-import { JustificationCards } from "./JustificationCards";
-import { ImbalancePskPu } from "./charts/ImbalancePskPu";
-import { InfoSection } from "./InfoSectionBG";
-import { SearchComponent, TsSearchComponent } from "./FilterComponent";
-import BalanceTable from "./BalanceTable";
-import GeneralMap from "./MapBG";
+
 import PFDinRegularWoff from "../fonts/PFDinTextCondPro-Regular.woff";
 
 const pfdinRegular = {
@@ -142,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BalanceGroup = () => {
+const GuaranteedSuppliers = () => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -165,15 +162,14 @@ const BalanceGroup = () => {
             sm={12}
             xl={12}
             xs={12}
-            style={{ height: "100%" }}
-          >
+            >
             <Box className={classes.balanceTextContainer}>
               <Typography
                 className={classes.balanceText}
                 variant="h2"
                 gutterBottom
-              >
-                Балансовые группы
+                >
+                Статистика гарантирующих поставщиков
               </Typography>
             </Box>
           </Grid>
@@ -189,68 +185,37 @@ const BalanceGroup = () => {
                   alignItems="center"
                   direction="row"
                   wrap="wrap"
-                >
-                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
+                  >
+                  <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
                     <SearchComponent />
-                  </Grid>
-                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
-                    <TsSearchComponent />
                   </Grid>
                 </Grid>
               </Container>
             </Paper>
           </Grid>
-          {/* Map */}
-          <Grid
-            item
-            lg={8}
-            md={7}
-            sm={12}
-            xl={9}
-            xs={12}
-          >
-            <GeneralMap />
-          </Grid>
-          {/* Table */}
-          <Grid item lg={4} md={5} sm={6} xl={3} xs={12}>
+          {/* Info section */}
+          <InfoSectionGS/>
+          {/* 2 charts */}
+          <Grid item lg={6} md={6} sm={6} xl={6} xs={12}>
             <Paper elevation={1} style={{ height: "100%" }}>
-              <BalanceTable />
-            </Paper>
-          </Grid>
-          {/* Infor section */}
-          <InfoSection />
-          {/* Imbalance graphic */}
-          <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
-            <Paper elevation={1} style={{ height: "100%" }}>
-              <ImbalancePskPu />
-            </Paper>
-          </Grid>
-          {/* 5 values */}
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
-              <JustificationCards />
-            </Paper>
-          </Grid>
-          {/* 4 graphics */}
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
-              <OutInputMonthGraphic/>
-            </Paper>
-          </Grid>
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
-              <GraphicGroup />
+              {/* <BalanceTable /> */}
             </Paper>
           </Grid>
 
+          {/* Bottom section */}
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper elevation={1}>
+              <BottomSectionGS/>
+            </Paper>
+          </Grid>
         </Grid>
       </Container>
     </ThemeProvider>
   );
 };
 
-BalanceGroup.propTypes = {
+GuaranteedSuppliers.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(useStyles)(BalanceGroup);
+export default withStyles(useStyles)(GuaranteedSuppliers);
