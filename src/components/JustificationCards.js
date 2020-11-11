@@ -187,7 +187,7 @@ const JustificationCards = () => {
                   </Box>
                   <Box className={classes.selectPadding}>
                     <Typography className={classes.textStyle}>
-                      Значения за: {indexesData.date_month}.{indexesData.date_year}                      
+                      Значения за: {indexesData.date_month}.{indexesData.date_year}
                     </Typography>
                     {/* <FormControl className={classes.formControl}>
                       <InputLabel shrink id="demo-simple-select-label">
@@ -322,8 +322,8 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
   };
 
   return (
-    <Grid container spacing={3}>
-      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+    <Grid container spacing={1}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
         <Box
           className={`${classes.boxStyle}`}
           style={boxStyle(indexes.percent_transmission_pu, 80, "<")}
@@ -340,7 +340,7 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
         <Box
           className={classes.boxStyle}
           style={boxStyle(
@@ -362,7 +362,7 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
         <Box
           className={classes.boxStyle}
           style={boxStyle(indexes.trust_index_psk_fiz, 20)}
@@ -379,7 +379,7 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={2} md={3} sm={6} xl={2} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
         <Box className={classes.boxStyle} style={boxStyle(0)}>
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний юридических лиц гарантирующих

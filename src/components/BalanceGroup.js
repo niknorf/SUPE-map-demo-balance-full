@@ -6,24 +6,49 @@ import {
   Paper,
   Typography,
   Box,
+  TableCell,
+  TableRow,
+  useMediaQuery,
 } from "@material-ui/core";
 import {
   ThemeProvider,
   createMuiTheme,
   makeStyles,
   withStyles,
+  useTheme,
 } from "@material-ui/core/styles";
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { GraphicGroup, OutInputMonthGraphic } from "./Graphic";
 import { JustificationCards } from "./JustificationCards";
-import { ImbalancePskPu } from "./charts/ImbalancePskPu";
+import { ImbalancePskPu } from "./ImbalancePskPu";
 import { InfoSection } from "./InfoSectionBG";
 import { SearchComponent, TsSearchComponent } from "./FilterComponent";
-import BalanceTable from "./BalanceTable";
+import TableTemplate from "./TableTemplate";
 import GeneralMap from "./MapBG";
+import Contex from "../store/context";
 import PFDinRegularWoff from "../fonts/PFDinTextCondPro-Regular.woff";
+import balance_table from "../data/balance_groups_table.json";
+
+function useWidth() {
+  const theme = useTheme();
+  const keys = [...theme.breakpoints.keys].reverse();
+  return (
+    keys.reduce((output, key) => {
+      const matches = useMediaQuery(theme.breakpoints.up(key));
+      return !output && matches ? key : output;
+    }, null) || "xs"
+  );
+}
+function createData(balanceGroup, imbalancePercent, imbalanceKwh, isClean) {
+  return {
+    balanceGroup,
+    imbalancePercent,
+    imbalanceKwh,
+    isClean,
+  };
+}
 
 const pfdinRegular = {
   fontFamily: "PFDinTextCondPro-Regular",
@@ -49,6 +74,18 @@ const theme = createMuiTheme({
         "@font-face": [pfdinRegular],
       },
     },
+  },
+  palette: {
+    primary: {
+      main: "#4A9CFF",
+      contrastText: "#fff",
+    },
+    // secondary: {
+    //     light: '#55dab3',
+    //     main: '#00a883',
+    //     dark: '#007856',
+    //     contrastText: '#000',
+    // }
   },
 });
 
@@ -144,7 +181,86 @@ const useStyles = makeStyles((theme) => ({
 
 const BalanceGroup = () => {
   const classes = useStyles();
+  const { globalDispach } = useContext(Contex);
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const tableColumns = [
+    {
+      id: "balanceGroup",
+      numeric: true,
+      disablePadding: false,
+      label: "Балансовая группа",
+    },
+    {
+      id: "imbalancePercent",
+      numeric: true,
+      disablePadding: true,
+      label: "Небалансы (%)",
+    },
+    {
+      id: "imbalanceKwh",
+      numeric: true,
+      disablePadding: false,
+      label: "Небалансы (кВтч)",
+    },
+  ];
+  const BalanceTableRows = (row) => {
+    return (
+      <TableRow
+        key={row.balanceGroup}
+        hover
+        onClick={(event) =>
+          handleRowClick(event, row.balanceGroup, row.isClean)
+        }
+      >
+        <TableCell component="th" scope="row" style={{ width: 400 }}>
+          Балансовая группа №{row.balanceGroup}
+        </TableCell>
+        <TableCell style={{ width: 40 }} align="right">
+          {(Math.round(row.imbalancePercent * 100) / 100).toFixed(2)}
+        </TableCell>
+        <TableCell style={{ width: 40 }} align="right">
+          {(Math.round(row.imbalanceKwh * 100) / 100).toFixed(2)}
+        </TableCell>
+      </TableRow>
+    );
+  };
+  const BalanceTableData = () => {
+    let tableRows = [];
+    /*TODO change to data from api call*/
+    for (let i = 0; i < balance_table.length; i++) {
+      if (balance_table[i].month === 8 && balance_table[i].year === 2020) {
+        tableRows.push(
+          createData(
+            balance_table[i].balance_id,
+            balance_table[i].imbalance_percent,
+            balance_table[i].imbalance_kwh,
+            true
+          )
+        );
+      }
+    }
+    return tableRows;
+  };
+  let rowsPerPage = 12;
+  let width = useWidth();
+
+  width === "md" ? (rowsPerPage = 12) : (rowsPerPage = 13);
+
+  const handleRowClick = (event, balance_index, isClean) => {
+    /*Search for the ConsumerBuilding which belongs to selected balance group, in order to get is_clean and branch_id*/
+    // var building_obj = GetIsCleanByBalanceIndex(balance_index);
+
+    globalDispach({
+      type: "FILTERCOMPONENT",
+      isPhantomic: false,
+      balance_index: balance_index,
+      isClean: isClean,
+      objSelected: true,
+      building_address: "",
+      obj_from: "table_click",
+      isInPSK: false,
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -201,20 +317,19 @@ const BalanceGroup = () => {
             </Paper>
           </Grid>
           {/* Map */}
-          <Grid
-            item
-            lg={8}
-            md={7}
-            sm={12}
-            xl={9}
-            xs={12}
-          >
+          <Grid item lg={8} md={7} sm={12} xl={8} xs={12}>
             <GeneralMap />
           </Grid>
           {/* Table */}
-          <Grid item lg={4} md={5} sm={6} xl={3} xs={12}>
+          {/* style={{ height: "100%" }} */}
+          <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
             <Paper elevation={1} style={{ height: "100%" }}>
-              <BalanceTable />
+              <TableTemplate
+                rows={BalanceTableData()}
+                columns={tableColumns}
+                rowsSettings={BalanceTableRows}
+                rowsPerPage={rowsPerPage}
+              />
             </Paper>
           </Grid>
           {/* Infor section */}
@@ -233,16 +348,11 @@ const BalanceGroup = () => {
           </Grid>
           {/* 4 graphics */}
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
-              <OutInputMonthGraphic/>
-            </Paper>
+            <OutInputMonthGraphic />
           </Grid>
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
-              <GraphicGroup />
-            </Paper>
+            <GraphicGroup />
           </Grid>
-
         </Grid>
       </Container>
     </ThemeProvider>

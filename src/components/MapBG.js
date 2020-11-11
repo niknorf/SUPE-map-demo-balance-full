@@ -376,7 +376,7 @@ const GeneralMap = () => {
 
   return (
     <div style={{ height: "100%" }}>
-    <LoadingOverlay
+    {/* <LoadingOverlay
       active={loading}
       spinner={<CircularProgress style={{ color: "#252F4A" }} />}
       text=""
@@ -386,7 +386,7 @@ const GeneralMap = () => {
           background: "rgba(34, 47, 74, 0.3)",
         }),
       }}
-    >
+    > */}
       <Map
         className="markercluster-map"
         center={position}
@@ -418,7 +418,7 @@ const GeneralMap = () => {
           style={(params) => LayerStyle(params)}
         />
       </Map>
-    </LoadingOverlay>
+    {/* </LoadingOverlay> */}
   </div>
 
   );

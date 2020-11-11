@@ -1,241 +1,101 @@
-import { makeStyles } from "@material-ui/core/styles";
-import React, { useContext } from "react";
-// import Table from "@material-ui/core/Table";
-// import TableBody from "@material-ui/core/TableBody";
-// import TableCell from "@material-ui/core/TableCell";
-import {
-  Table,
-  Container,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-} from "@material-ui/core";
-// import TableContainer from "@material-ui/core/TableContainer";
-// import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import PropTypes from "prop-types";
-
-import {
-  GetIsCleanByBalanceIndex,
-  GetKgisIdByBranchId,
-} from "../scripts/mapHelpers.js";
+import { Typography, TableRow, TableCell, Link, Grid, useMediaQuery } from "@material-ui/core";
+import React, { useContext, useEffect, useState } from "react";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
-import table_down from "../data/table_down.json";
+import InfoWindow from "./InfoWindow.js";
 
-function createData(balanceGroup, imbalancePercent, imbalanceKwh) {
-  return {
-    balanceGroup,
-    imbalancePercent,
-    imbalanceKwh,
-  };
-}
+const useStyles = makeStyles((theme) => ({}));
 
-const createRows = () => {
-  var rows = [];
-  table_down.map((item) => {
-    if (item.month === 7 && item.year === 2020) {
-      rows.push(
-        createData(item.balance_id, item.imbalance_percent, item.imbalance_kwh)
-      );
-    }
-    return item;
-  });
-  return rows;
-};
-
-const rows = createRows();
-
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
-const headCells = [
-  {
-    id: "balanceGroup",
-    numeric: true,
-    disablePadding: true,
-    label: "Балансовая группа",
-  },
-  {
-    id: "imbalancePercent",
-    numeric: true,
-    disablePadding: false,
-    label: "Небалансы (%)",
-  },
-  {
-    id: "imbalanceKwh",
-    numeric: true,
-    disablePadding: false,
-    label: "Небалансы (кВтч)",
-  },
-  // {
-  //   id: "technicalPercent",
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: "Технические (%)",
-  // },
-  // {
-  //   id: "technicalKwt",
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: "Технические (кВт)",
-  // },
-  // {
-  //   id: "notTechnicalPecent",
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: "Нетехнические потери (%)",
-  // },
-  // {
-  //   id: "notTechnicalKwt",
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: "Нетехнические потери (кВт)",
-  // },
-];
-
-function EnhancedTableHead(props) {
-  const {
-    classes,
-    order,
-    orderBy,
-    // numSelected,
-    // rowCount,
-    onRequestSort,
-  } = props;
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
-
-  return (
-    <TableHead>
-      <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "default"}
-            sortDirection={orderBy === headCell.id ? order : false}
-            className={classes.headCellStyle}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </span>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-}
-
-EnhancedTableHead.propTypes = {
-  classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-};
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // width: "100%",
-    // padding: "0 15px",
-    // height: "95%",
-  },
-
-  visuallyHidden: {
-    border: 0,
-    clip: "rect(0 0 0 0)",
-    height: 1,
-    margin: -1,
-    overflow: "hidden",
-    padding: 0,
-    position: "absolute",
-    top: 20,
-    width: 1,
-  },
-  headCellStyle: {
-    fontWeight: "bold",
-  },
-  tableBalance: {
-    height: "100%",
-    padding: "0 15px",
-  },
-}));
-
-export default function EnhancedTable() {
+const BalanceGroupList = () => {
   const classes = useStyles();
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("balanceGroup");
-  const [selected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const { globalDispach } = useContext(Contex);
+  const [rows, setBgContent] = useState([]);
+  const { globalState } = useContext(Contex);
 
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
+  let rowsPerPage = 12;
+  let width = useWidth();
+
+  width === "md" ? (rowsPerPage = 12) : (rowsPerPage = 13);
+
+  useEffect(() => {
+      fetch("/api/Results/GetResImbalanceFrontKWH")
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            console.log(result);
+            setBgContent(result);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    // setLoading(true);
+  }, []);
+
+  function useWidth() {
+    const theme = useTheme();
+    const keys = [...theme.breakpoints.keys].reverse();
+    return (
+      keys.reduce((output, key) => {
+        const matches = useMediaQuery(theme.breakpoints.up(key));
+        return !output && matches ? key : output;
+      }, null) || "xs"
+    );
+  }
+
+  const tableColumns = [
+    {
+      id: "balanceGroup",
+      numeric: true,
+      disablePadding: false,
+      label: "Балансовая группа",
+    },
+    {
+      id: "imbalancePercent",
+      numeric: true,
+      disablePadding: true,
+      label: "Небалансы (%)",
+    },
+    {
+      id: "imbalanceKwh",
+      numeric: true,
+      disablePadding: false,
+      label: "Небалансы (кВтч)",
+    },
+  ];
+  const BalanceTableRows = (row) => {
+    return (
+      <TableRow
+        key={row.balance_id}
+        hover
+        // onClick={(event) =>
+        //   handleRowClick(event, row.balanceGroup, row.is_clean)
+        // }
+      >
+        <TableCell component="th" scope="row" style={{ width: 400 }}>
+          Балансовая группа №{row.balance_id}
+        </TableCell>
+        <TableCell style={{ width: 40 }} align="right">
+          {(Math.round(row.imbalance_percent * 100) / 100).toFixed(2)}
+        </TableCell>
+        <TableCell style={{ width: 40 }} align="right">
+          {(Math.round(row.imbalance_kwh * 100) / 100).toFixed(2)}
+        </TableCell>
+      </TableRow>
+    );
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const handleRowClick = (event, balance_index) => {
-    /*Search for the ConsumerBuilding which belongs to selected balance group, in order to get is_clean and branch_id*/
-    var building_obj = GetIsCleanByBalanceIndex(balance_index);
+  const handleRowClick = (event, balance_index, isClean) => {
 
     globalDispach({
       type: "FILTERCOMPONENT",
-      // kgis_id:
-      //   typeof building_obj !== "undefined"
-      //     ? GetKgisIdByBranchId(building_obj.branch_id)
-      //     : "",
       isPhantomic: false,
       balance_index: balance_index,
-      isClean:
-        typeof building_obj !== "undefined" ? building_obj.is_clean : false,
+      isClean: isClean,
       objSelected: true,
       building_address: "",
       obj_from: "table_click",
@@ -243,61 +103,16 @@ export default function EnhancedTable() {
     });
   };
 
-  return (
-    <>
-      <TableContainer id="balance-table" className={classes.tableBalance}>
-        <Table
-          className={classes.table}
-          aria-labelledby="tableTitle"
-          aria-label="enhanced table"
-        >
-          <EnhancedTableHead
-            classes={classes}
-            numSelected={selected.length}
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-            rowCount={rows.length}
-          />
-          <TableBody>
-            {stableSort(rows, getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow
-                    hover
-                    tabIndex={-1}
-                    key={row.balanceGroup}
-                    onClick={(event) => handleRowClick(event, row.balanceGroup)}
-                    // selected ={true}
-                  >
-                    <TableCell component="th" scope="row" padding="none">
-                      Балансовая группа №{row.balanceGroup}
-                    </TableCell>
-                    <TableCell align="right">{row.imbalancePercent}</TableCell>
-                    <TableCell align="right">{row.imbalanceKwh}</TableCell>
-                    {/* <TableCell align="right">{row.technicalPercent}</TableCell> */}
-                    {/* <TableCell align="right">{row.technicalKwt}</TableCell> */}
-                    {/* <TableCell align="right">
-                      {row.notTechnicalPecent}
-                    </TableCell> */}
-                    {/* <TableCell align="right">{row.notTechnicalKwt}</TableCell> */}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        labelRowsPerPage={"Строк на странице"}
-      />
-    </>
-  );
-}
+  return rows.length > 0
+    ? [
+        <TableTemplate
+          rows={rows}
+          columns={tableColumns}
+          rowsSettings={BalanceTableRows}
+          rowsPerPage={rowsPerPage}
+        />,
+      ]
+    : [<InfoWindow label="Нет данных" icon="info" />];
+};
+
+export { BalanceGroupList };
