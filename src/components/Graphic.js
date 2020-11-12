@@ -165,7 +165,7 @@ const GraphicGroup = () => {
   const handleYearChange = (event, value) => {
     //Cannot be unselected
     if(value !== null){
-      setFilterYear(value);
+      // setFilterYear(value);
     }
   };
 
