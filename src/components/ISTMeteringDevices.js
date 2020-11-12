@@ -7,10 +7,6 @@ import InfoWindow from "./InfoWindow.js"
 
 const useStyles = makeStyles((theme) => ({}));
 
-function createData(name, place) {
-  return {id, name, place, };
-}
-
 const MeteringDevices = () => {
   const classes = useStyles();
   const [rows, setBgContent] = useState([]);

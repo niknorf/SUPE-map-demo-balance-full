@@ -168,7 +168,7 @@ const HouseStatisticsChart = () => {
   // };
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     if (globalState.fiasId !== "") {
       axios
         .all([requestOne, requestTwo, requestThree])
@@ -180,6 +180,7 @@ const HouseStatisticsChart = () => {
           })
         )
         .catch((errors) => {
+          setLoading(false);
           // react on errors.
         });
     }
