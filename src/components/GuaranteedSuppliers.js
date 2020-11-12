@@ -13,11 +13,13 @@ import {
   makeStyles,
   withStyles,
 } from "@material-ui/core/styles";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { SearchComponent } from "./FilterComponent";
 import { InfoSectionGS } from "./InfoSectionGS";
 import { BottomSectionGS } from "./BottomSectionGS";
+import { HouseStatisticsChart } from "./ChartGS";
+import Contex from "../store/context";
 import clsx from "clsx";
 
 import PFDinRegularWoff from "../fonts/PFDinTextCondPro-Regular.woff";
@@ -142,6 +144,14 @@ const useStyles = makeStyles((theme) => ({
 const GuaranteedSuppliers = () => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const { globalDispach } = useContext(Contex);
+
+  useEffect(() => {
+    // globalDispach({
+    //   type: "FILTERCOMPONENT",
+    //   fiasId: 'fdb3ba07-4915-420c-a9aa-f5e909d3fe16',
+    // });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -198,7 +208,7 @@ const GuaranteedSuppliers = () => {
           {/* 2 charts */}
           <Grid item lg={6} md={6} sm={6} xl={6} xs={12}>
             <Paper elevation={1} style={{ height: "100%" }}>
-              {/* <BalanceTable /> */}
+              <HouseStatisticsChart />
             </Paper>
           </Grid>
 

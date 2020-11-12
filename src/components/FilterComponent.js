@@ -19,8 +19,8 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(
         <div ref={ref}>
           <div {...other}>
             <List
-              height={250}
-              width={420}
+              height={300}
+              width={600}
               rowHeight={itemSize}
               overscanCount={5}
               rowCount={itemCount}
@@ -111,7 +111,7 @@ const SearchComponent = () => {
 
 
   useEffect(() => {
-    fetch("/api/DataCompare/GetBuildingAddressByFias")
+    fetch("/api/DataCompare/GetBuildingAddressByFiasOnlyPoly")
       .then((res) => res.json())
       .then(
         (result) => {
