@@ -5,9 +5,14 @@ import L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import React, { useContext, useEffect, useRef } from "react";
 import Contex from "../store/context";
+import "leaflet/dist/leaflet.css";
 import markers from "../data/bu_bd.json";
-
+import iconYellow from "../img/yellow.png";
+import iconRed from "../img/red.png";
+import iconGrey from "../img/grey.png";
+import iconOrange from "../img/orange.png";
 delete L.Icon.Default.prototype._getIconUrl;
+
 
 const BUBDMap = () => {
   // const [tp, setTp] = useState("");
@@ -24,16 +29,19 @@ const BUBDMap = () => {
   };
 
   useEffect(() => {
-    if(typeof globalState.markerValue !== 'undefined'){
+    if (typeof globalState.markerValue !== "undefined") {
       if (Object.keys(globalState.markerValue).length > 0) {
-        let markerReference = markerRef.current[globalState.markerValue.kgis_id];
+        let markerReference =
+          markerRef.current[globalState.markerValue.kgis_id];
 
-        if(typeof markerReference !== 'undefined'){
-          let popupText = '<span class="popup-text">Вероятность бездоговорного потребления: </span>';
+        if (typeof markerReference !== "undefined") {
+          let popupText =
+            '<span class="popup-text">Вероятность бездоговорного потребления: </span>';
           let popupNumber = globalState.markerValue.percent_probability_BD;
 
           if (popupNumber === 0) {
-            popupText = '<span class="popup-text">Вероятность безучетного потребления: </span>';
+            popupText =
+              '<span class="popup-text">Вероятность безучетного потребления: </span>';
             popupNumber = globalState.markerValue.percent_probability_BU;
           }
 
@@ -42,7 +50,7 @@ const BUBDMap = () => {
               popupText +
               '<span class="popup-number"><b>' +
               popupNumber +
-              '%<b></span></div>'
+              "%<b></span></div>"
           );
 
           let latlng = L.latLng(
@@ -55,7 +63,6 @@ const BUBDMap = () => {
         }
       }
     }
-
   }, [globalState.markerValue]);
 
   const mapStyle = {
@@ -82,17 +89,17 @@ const BUBDMap = () => {
           opacity: 0,
         }}
       >
-        {markers.map((item, i) => (
-          <Marker
-            extra_data={item}
-            position={[item.lat, item.lon]}
-            // key={item.kgis_id}
-            ref={(reference) => (markerRef.current[item.kgis_id] = reference)}
-            icon={MarkerColor(item)}
-            onClick={handleChange}
-          />
-        ))}
-        {/* <PlaceMarkers/> */}
+      {markers.map((item, i) => (
+        <Marker
+          extra_data={item}
+          position={[item.lat, item.lon]}
+          key={i}
+          ref={(reference) => (markerRef.current[item.kgis_id] = reference)}
+          icon={MarkerColor(item)}
+          onClick={handleChange}
+        />
+      ))}
+      {/* <PlaceMarkers/> */}
       </MarkerClusterGroup>
     </Map>
   );
@@ -108,7 +115,8 @@ const createClusterCustomIcon = (cluster) => {
 };
 
 const MarkerColor = (item) => {
-  let color = "grey.png";
+
+  let color = iconGrey;
   let comparator;
 
   if (item.percent_probability_BU === 0) {
@@ -118,17 +126,17 @@ const MarkerColor = (item) => {
   }
 
   if (parseInt(comparator) > 75) {
-    color = "red.png";
+    color = iconRed;
   } else if (parseInt(comparator) > 50) {
-    color = "orange.png";
+    color = iconOrange;
   } else if (parseInt(comparator) > 25) {
-    color = "yellow.png";
+    color = iconYellow;
   } else {
-    color = "grey.png";
+    color = iconGrey;
   }
 
   return new L.Icon({
-    iconUrl: require("../img/" + color),
+    iconUrl: color,
     iconSize: [40, 40],
   });
 };
