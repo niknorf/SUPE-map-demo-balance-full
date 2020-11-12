@@ -31,16 +31,16 @@ import Contex from "../store/context";
 import PFDinRegularWoff from "../fonts/PFDinTextCondPro-Regular.woff";
 import balance_table from "../data/balance_groups_table.json";
 
-function useWidth() {
-  const theme = useTheme();
-  const keys = [...theme.breakpoints.keys].reverse();
-  return (
-    keys.reduce((output, key) => {
-      const matches = useMediaQuery(theme.breakpoints.up(key));
-      return !output && matches ? key : output;
-    }, null) || "xs"
-  );
-}
+// function useWidth() {
+//   const theme = useTheme();
+//   const keys = [...theme.breakpoints.keys].reverse();
+//   return (
+//     keys.reduce((output, key) => {
+//       const matches = useMediaQuery(theme.breakpoints.up(key));
+//       return !output && matches ? key : output;
+//     }, null) || "xs"
+//   );
+// }
 function createData(balanceGroup, imbalancePercent, imbalanceKwh, isClean) {
   return {
     balanceGroup,
@@ -242,9 +242,9 @@ const BalanceGroup = () => {
     return tableRows;
   };
   let rowsPerPage = 12;
-  let width = useWidth();
+  // let width = useWidth();
 
-  width === "md" ? (rowsPerPage = 12) : (rowsPerPage = 13);
+  // width === "md" ? (rowsPerPage = 12) : (rowsPerPage = 13);
 
   const handleRowClick = (event, balance_index, isClean) => {
     /*Search for the ConsumerBuilding which belongs to selected balance group, in order to get is_clean and branch_id*/
