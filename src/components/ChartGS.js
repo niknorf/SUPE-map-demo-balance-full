@@ -136,14 +136,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const ToggleButton = withStyles({
-//   selected: {
-//     "&$selected": {
-//       borderBottom: '2px solid #252F4A',
-//       backgroundColor: "transparent",
-//     },
-//   }
-// })(MuiToggleButton);
 
 const HouseStatisticsChart = () => {
   const [outMonth, setOutMonth] = useState([]);
@@ -159,13 +151,6 @@ const HouseStatisticsChart = () => {
   const requestOne = axios.get(fiz);
   const requestTwo = axios.get(urik);
   const requestThree = axios.get(house);
-
-  // const handleYearChange = (event, value) => {
-  //   //Cannot be unselected
-  //   if(value !== null){
-  //     setFilterYear(value);
-  //   }
-  // };
 
   useEffect(() => {
     // setLoading(true);

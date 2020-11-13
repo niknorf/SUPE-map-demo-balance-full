@@ -213,7 +213,7 @@ const ShowDataState = () => {
 };
 
 const BuildingCards = () =>{
-  const [cardsData, setCardsData] = useState({floor_num: ''});
+  const [cardsData, setCardsData] = useState([]);
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
@@ -225,8 +225,7 @@ const BuildingCards = () =>{
 
       useEffect(() => {
         if (globalState.fiasId !== "") {
-          fetch("/api/Results/GetBuildFeatClean/fdb3ba07-4915-420c-a9aa-f5e909d3fe16")
-          // fetch("/api/Results/GetBuildFeatClean/" + globalState.fiasId)
+          fetch("/api/Results/GetBuildFeatClean/" + globalState.fiasId)
             .then((res) => res.json())
             .then(
               (result) => {
