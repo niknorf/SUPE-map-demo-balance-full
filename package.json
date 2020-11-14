@@ -12,6 +12,7 @@
     "leaflet": "^1.6.0",
     "match-sorter": "^5.0.0",
     "plotly.js": "^1.55.2",
+    "plotly.js-locales": "^1.57.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-leaflet": "^2.7.0",

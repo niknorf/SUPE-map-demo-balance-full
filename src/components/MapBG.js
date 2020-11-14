@@ -186,7 +186,7 @@ const GeneralMap = () => {
       });
   };
 
-  const callManager = (values) => {
+  const callManager = (values, layerRef) => {
     setLoading(true);
     switch (values.obj_from) {
       case "ts_select":
@@ -201,7 +201,7 @@ const GeneralMap = () => {
           getObjectPolygonByFias(values.fiasId);
         } else {
           console.log("non phantomic");
-          getBalanceIndexObjectsByFias(values.fiasId);
+          getBalanceIndexObjectsByFias(values.fiasId, layerRef);
         }
 
         break;
@@ -211,7 +211,7 @@ const GeneralMap = () => {
     }
   };
 
-  const getBalanceIndexObjectsByFias = (fiasId) => {
+  const getBalanceIndexObjectsByFias = (fiasId, layerRef) => {
     fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
       .then((res) => res.json())
       .then(

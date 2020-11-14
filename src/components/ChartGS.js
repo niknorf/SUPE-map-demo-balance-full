@@ -23,96 +23,13 @@ import LoadingOverlay from "react-loading-overlay";
 import "../css/graphic.css";
 import InfoWindow from "./InfoWindow.js";
 import axios from "axios";
+import localeRu from "plotly.js-locales/ru";
 const Plot = createPlotlyComponent(Plotly);
 
+Plotly.register(localeRu);
+Plotly.setPlotConfig({ locale: "ru" });
+
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  bigContainer: {
-    padding: "0",
-  },
-  formControlBox: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "8px",
-  },
-  reasonText: {
-    margin: "8px",
-  },
-  barPaper: {
-    display: "flex",
-    justifyContent: "space-around",
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-  },
-  chartsContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    padding: "0 16px",
-  },
-  chartsPaper: {
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-    margin: "12px 0",
-  },
-  lastBlockPaper: {
-    marginTop: "12px",
-  },
-  boxStyle: {
-    marginRight: theme.spacing(1),
-    marginTop: theme.spacing(2.5),
-    marginBottom: theme.spacing(2.5),
-    height: 141,
-    width: 200,
-    borderRadius: "4px",
-    boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    wordWrap: "break-word",
-    // flex: 1,
-    // flexWrap: 'wrap'
-  },
-  boxTopText: {
-    position: "absolute",
-    height: "43px",
-    fontFamily: "PF Din Text Cond Pro",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "12px",
-    lineHeight: "14px",
-    marginTop: "16px",
-    marginLeft: "16px",
-    marginRight: "16px",
-    color: "#818E9B",
-    width: 168,
-    display: "inline-block",
-    wordWrap: "break-word",
-  },
-  boxMiddleText: {
-    position: "absolute",
-    height: "58px",
-    marginBottom: "9px",
-    marginLeft: "16px",
-    marginTop: "40px",
-    fontFamily: "PF Din Text Cond Pro",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "48px",
-    lineHeight: "58px",
-    letterSpacing: "0.01em",
-    wordWrap: "break-word",
-  },
-  boxTopIcon: {
-    position: "relative",
-    marginTop: "10px",
-    marginLeft: "10px",
-  },
-  imageIcon: {
-    width: 13.33,
-    height: 13.33,
-  },
   yearsOptionBox: {
     display: "flex",
     flexDirection: "column",
@@ -136,11 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const HouseStatisticsChart = () => {
-  const [outMonth, setOutMonth] = useState([]);
+  const [pskSum, setPskSum] = useState([]);
+  const [pskSeppate, setPskSeppate] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [year, setFilterYear] = useState('2020');
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
@@ -148,18 +64,17 @@ const HouseStatisticsChart = () => {
   let urik = "/api/PSK/GetLegalPSKData/1281/" + globalState.fiasId;
   let house = "/api/PSK/GetCommonPSKData/1281/" + globalState.fiasId;
 
-  const requestOne = axios.get(fiz);
-  const requestTwo = axios.get(urik);
-  const requestThree = axios.get(house);
-
   useEffect(() => {
     // setLoading(true);
     if (globalState.fiasId !== "") {
+      const requestOne = axios.get(fiz);
+      const requestTwo = axios.get(urik);
+      const requestThree = axios.get(house);
       axios
         .all([requestOne, requestTwo, requestThree])
         .then(
           axios.spread((...results) => {
-            setOutMonth(results);
+            setPskSeppate(results);
             setLoading(false);
             // use/access the results
           })
@@ -168,46 +83,83 @@ const HouseStatisticsChart = () => {
           setLoading(false);
           // react on errors.
         });
+
+      fetch("/api/PSK/GetFullPSKData/1281/" + globalState.fiasId)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setPskSum(result);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
     }
   }, [globalState.fiasId]);
 
-  /* Bar charts */
-  var psk_sum = {
-    layout: {
-      autosize: true,
-      title: {
-        text: "",
-      },
-    },
-    data: [
-      {
-        x: [],
-        y: [],
-        marker: { color: "#00CAFF" },
-        type: "bar",
-      },
-    ],
-    config: {
-      modeBarButtonsToRemove: [
-        "pan2d",
-        "select2d",
-        "lasso2d",
-        "resetScale2d",
-        "toggleSpikelines",
-        "hoverClosestCartesian",
-        "hoverCompareCartesian",
-      ],
-      displaylogo: false,
-      responsive: true,
-    },
-  };
+  return globalState.fiasId !== ""
+    ? [
+        // <LoadingOverlay
+        //   active={loading}
+        //   spinner={<CircularProgress style={{ color: "#FFFFFF" }} />}
+        //   text=""
+        //   styles={{
+        //     overla   y: (base) => ({
+        //       ...base,
+        //       background: "rgba(34, 47, 74, 0.3)",
+        //     }),
+        //   }}
+        // >
+        <Grid container direction="column">
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Box style={{ minHeight: "450px" }}>
+              <Typography className={classes.chartTitle}>
+                График показаний по дому согласно статистике гарантирующих
+                поставщиков по годам,кВтч
+              </Typography>
+              <DisplaySummedChart resultData={pskSum} />
+            </Box>
+          </Grid>
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            {/* <Box style={{minHeight: '450px'}}> */}
+            <Typography className={classes.chartTitle}>
+              График суммарных показаний по дому согласно статистике
+              гарантирующих поставщиков , кВтч
+            </Typography>
+            <DisplaySepparateChart resultData={pskSeppate} />
+
+            {/* </Box> */}
+          </Grid>
+        </Grid>,
+        // </LoadingOverlay>,
+      ]
+    : null;
+};
+
+const DisplaySepparateChart = ({ resultData }) => {
+  let empty_data = true;
+
   var psk_seppate = {
     layout: {
       autosize: true,
-      title: {
-        text: "",
+      font: {
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
       },
       barmode: "stack",
+      showlegend: true,
+      // legend: {
+      //   x: 1,
+      //   xanchor: "right",
+      //   traceorder: 'normal',
+      //   y: 1,
+      //   bgcolor: 'transparent',
+      // },
     },
     data: [
       {
@@ -247,103 +199,80 @@ const HouseStatisticsChart = () => {
     },
   };
 
-  return globalState.fiasId !== ""
-    ? [
-        <LoadingOverlay
-          active={loading}
-          spinner={<CircularProgress style={{ color: "#FFFFFF" }} />}
-          text=""
-          styles={{
-            overlay: (base) => ({
-              ...base,
-              background: "rgba(34, 47, 74, 0.3)",
-            }),
-          }}
-        >
-          {/* <Paper elevation={1}> */}
-          <Grid container>
-            <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-              <Box>
-                <Typography className={classes.chartTitle}>
-                  График показаний по дому согласно статистике гарантирующих
-                  поставщиков по годам,кВтч
-                </Typography>
-                <DisplayBarChart
-                  type={psk_sum}
-                  obj_name="input_month"
-                  resultData={outMonth}
-                />
-              </Box>
-            </Grid>
-            <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-              <Box>
-                <Typography className={classes.chartTitle}>
-                  График суммарных показаний по дому согласно статистике
-                  гарантирующих поставщиков , кВтч
-                </Typography>
-                <DisplayBarChart
-                  type={psk_seppate}
-                  obj_name="out_month"
-                  resultData={outMonth}
-                />
-              </Box>
-            </Grid>
-          </Grid>
-          {/* <Box className={classes.yearsOptionBox}>
-        <ToggleButtonGroup
-      value={year}
-      exclusive
-      onChange={handleYearChange}
-      aria-label="text alignment"
-        >
-      <ToggleButton value="2017" aria-label="left aligned" className={classes.yearButton}>
-      2017
-      </ToggleButton>
-      <ToggleButton value="2018" aria-label="centered" className={classes.yearButton}>
-      2018
-      </ToggleButton>
-      <ToggleButton value="2019" aria-label="right aligned" className={classes.yearButton}>
-      2019
-      </ToggleButton>
-      <ToggleButton value="2020" aria-label="justified" className={classes.yearButton}>
-      2020
-      </ToggleButton>
-      </ToggleButtonGroup>
-      </Box> */}
-          {/* </Paper> */}
-        </LoadingOverlay>,
-      ]
-    : null;
-};
-
-const DisplayBarChart = ({ type, obj_name, resultData }) => {
-  let empty_data = true;
-
-  for (let i = 0; i < resultData.length; i++) {
-    if (resultData[i].data.length > 0) {
+  if (resultData.length > 0) {
+    for (let i = 0; i < resultData.length; i++) {
       empty_data = false;
       for (let j = 0; j < resultData[i].data.length; j++) {
-        if (obj_name === "input_month") {
-        //   sum[] += resultData[i].data[j].value;
-        //   // type.data[0].x.push(resultData[i].data[j].datetime);
-        //   // type.data[0].y.push(resultData[i].data[j].value);
-        } else {
-          type.data[i].x.push(resultData[i].data[j].datetime);
-          type.data[i].y.push(resultData[i].data[j].value);
-        }
-      }
-    } else {
-      if (obj_name === "input_month") {
-        empty_data = true;
-        type.data[0].x = [];
-        type.data[0].y = [];
-      } else {
-        empty_data = true;
-        type.data[i].x = [];
-        type.data[i].y = [];
+        psk_seppate.data[i].x.push(resultData[i].data[j].datetime);
+        psk_seppate.data[i].y.push(resultData[i].data[j].value);
       }
     }
+  } else {
+    empty_data = true;
   }
+
+  return empty_data
+    ? [
+        <InfoWindow
+          label="Извините, недостаточно данных для расчета "
+          icon="info"
+        />,
+      ]
+    : [
+        <Plot
+          style={{ width: "100%", height: "100%" }}
+          data={psk_seppate.data}
+          layout={psk_seppate.layout}
+          config={psk_seppate.config}
+        />,
+      ];
+};
+
+const DisplaySummedChart = ({ resultData }) => {
+  let empty_data = false;
+
+  var psk_sum = {
+    layout: {
+      autosize: true,
+      font: {
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
+      },
+    },
+    data: [
+      {
+        x: [],
+        y: [],
+        marker: { color: "#00CAFF" },
+        type: "bar",
+      },
+    ],
+    config: {
+      modeBarButtonsToRemove: [
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "resetScale2d",
+        "toggleSpikelines",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+      ],
+      displaylogo: false,
+      responsive: true,
+    },
+  };
+
+  if (resultData.length > 0) {
+    empty_data = false;
+    for (let i = 0; i < resultData.length; i++) {
+      psk_sum.data[0].x.push(resultData[i].datetime);
+      psk_sum.data[0].y.push(resultData[i].value);
+    }
+  } else {
+    empty_data = true;
+  }
+
   return empty_data
     ? [
         <InfoWindow
@@ -355,9 +284,10 @@ const DisplayBarChart = ({ type, obj_name, resultData }) => {
         <Plot
           style={{ width: "100%", height: "100%" }}
           // useResizeHandler
-          data={type.data}
-          layout={type.layout}
-          config={type.config}
+          data={psk_sum.data}
+          layout={psk_sum.layout}
+          config={psk_sum.config}
+          // locale='de-CH'
         />,
       ];
 };

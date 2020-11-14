@@ -16,6 +16,7 @@ import {
   Grid,
   Tabs,
   Tab,
+  styled
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
@@ -25,22 +26,6 @@ import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js"
 
 const useStyles = makeStyles((theme) => ({
-  imageIcon: {
-    width: 15,
-    height: 15,
-  },
-  iconRoot: {
-    margin: "auto",
-  },
-  table: {
-    minWidth: 150,
-    borderBottom: "none",
-  },
-  root: {
-    flexShrink: 0,
-    marginLeft: theme.spacing(2.5),
-  },
-
   boxPaddingLabel: {
     paddingTop: "16px",
     paddingLeft: "16px",
@@ -103,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "40px",
     fontWeight: "bold",
     textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
-    // paddingTop: "30px",
     paddingBottom: "10px",
     paddingLeft: "12px",
     color: "#FFFFFF",
@@ -115,61 +99,29 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "16px",
     paddingTop: "21px",
   },
-  boxMiddleTextCard: {
-    paddingLeft: "16px",
-    paddingRight: "16px",
-    paddingBottom: "60px",
-    paddingTop: "40px",
-  },
   balanceGroupLabel: {
     fontSize: "14px",
     lineHeight: "17px",
     color: "#252F4A",
   },
-  middleText: {
-    wordWrap: "normal",
-    fontSize: "18px",
-    lineHeight: "23px",
-    color: "#8C949E",
-  },
-
-  paperInfo: {
-    // minHeight:
-    // height: "17vh",
-  },
-
-  tabsContainer: {
-    background: "#F1F2F3",
-    height: "40px",
-    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-    borderRadius: "8px",
-    fontFamily: "PF Din Text Cond Pro",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "12px",
-    lineHeight: "14px",
-    color: "#252F4A",
-    textTransform: "none",
-  },
-
-  // boxStyle: {
-  //   // height: "60vh",
-  //   padding: "15px",
-  //   margin: "auto",
-  // },
 }));
+
+const StyledPaper = styled(Paper)({
+  boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
+  borderRadius: "4px"
+});
 
 const InitialState = () => {
   const classes = useStyles();
   return (
     <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-      <Paper elevation={1} className={classes.paperInfo}>
+      <StyledPaper elevation={1}>
         <Typography className={classes.cornerTextCard}>
           Статистика гарантирующих поставщиков
         </Typography>
         <InfoWindow label="Чтобы посмотреть статистику гарантирующих поставщиков, выберите
         адрес" icon="info" />
-      </Paper>
+      </StyledPaper>
     </Grid>
   );
 };
@@ -191,12 +143,12 @@ const ShowDataState = () => {
           wrap="wrap"
         >
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <StyledPaper elevation={1}>
               <BuildingCards/>
-            </Paper>
+            </StyledPaper>
           </Grid>
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12} style={{ height: "100%" }}>
+            <StyledPaper elevation={1}>
               <Box className={classes.boxPaddingTabs}>
                 <Typography className={classes.graphText}>
                   Юридические лица и общедомовые нужды
@@ -204,7 +156,7 @@ const ShowDataState = () => {
                 {/* Table with urid and  */}
                 <GaranteedSuppliesCompanies />
               </Box>
-            </Paper>
+            </StyledPaper>
           </Grid>
         </Grid>
       </div>
@@ -240,9 +192,6 @@ const BuildingCards = () =>{
             );
         }
       }, [globalState.fiasId]);
-
-      console.log(cardsData.length);
-
 
   return cardsData.length > 0 ? [
     <>
@@ -355,7 +304,6 @@ const BuildingHasGas = (props) =>{
 
 const InfoSectionGS = () => {
   const { globalState } = useContext(Contex);
-
 
   return globalState.fiasId !== "" ? [<ShowDataState />] : [<InitialState />];
 };

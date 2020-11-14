@@ -6,6 +6,7 @@ import {
   Paper,
   Typography,
   Box,
+  styled
 } from "@material-ui/core";
 import {
   ThemeProvider,
@@ -29,18 +30,21 @@ const pfdinRegular = {
   fontStyle: "normal",
   fontDisplay: "swap",
   fontWeight: "400",
+  color: "#252F4A",
   src: `
     local('PFDinTextCondPro-Regular'),
     url(${PFDinRegularWoff}) format('woff')
     `,
 };
 
+const StyledPaper = styled(Paper)({
+  boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
+  borderRadius: "4px"
+});
+
 const theme = createMuiTheme({
   typography: {
     fontFamily: "PFDinTextCondPro-Regular !important",
-  },
-  typographyStyle: {
-    color: "red",
   },
   overrides: {
     MuiCssBaseline: {
@@ -52,37 +56,6 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    width: "100%",
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-  },
-  fixedHeight: {
-    height: 500,
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-    background: "#F5F6F8",
-    paddingLeft: 40,
-    paddingRight: 40,
-    maxWidth: "1292px",
-  },
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "baseline",
-    paddingTop: 30,
-  },
   balanceText: {
     fontSize: "32px",
     lineHeight: "38px",
@@ -90,60 +63,10 @@ const useStyles = makeStyles((theme) => ({
   balanceTextContainer: {
     paddingTop: "40px",
   },
-  balanceGroupSelectors: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    padding: "24px",
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-    marginBottom: "24px",
-  },
-  balaceGroupType: {
-    marginLeft: "40px",
-  },
-  infoSectionStyles: {
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-    height: "100%", //half of the map height
-  },
-  tableContainer: {
-    paddingTop: "24px",
-  },
-  tableSortButton: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  formControl: {
-    width: "100%",
-  },
-  buttonFilter: {
-    backgroundColor: "#4A9CFF",
-    boxShadow: "0px 4px 10px rgba(16, 156, 241, 0.24);",
-    borderRadius: "4px",
-    marginLeft: "24px",
-    letterSpacing: "0.01em;",
-    fontWeight: "bold",
-    textTransform: "none",
-    padding: "0 28px",
-  },
-  adressInputTable: {
-    display: "flex",
-  },
-  filterIcon: {
-    width: "20px",
-    height: "20px",
-  },
-  content: {
-    width: "100%",
-    background: "#F5F6F8",
-  },
-  balancePaper: {
-    height: "100%",
-  },
 }));
 
 const GuaranteedSuppliers = () => {
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const { globalDispach } = useContext(Contex);
 
   useEffect(() => {
@@ -185,7 +108,7 @@ const GuaranteedSuppliers = () => {
           </Grid>
           {/* Filter */}
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <StyledPaper elevation={1}>
               <Container maxWidth="xl">
                 <Grid
                   container
@@ -201,22 +124,22 @@ const GuaranteedSuppliers = () => {
                   </Grid>
                 </Grid>
               </Container>
-            </Paper>
+            </StyledPaper>
           </Grid>
           {/* Info section */}
           <InfoSectionGS/>
           {/* 2 charts */}
           <Grid item lg={6} md={6} sm={6} xl={6} xs={12}>
-            <Paper elevation={1} style={{ height: "100%" }}>
+            <StyledPaper elevation={1} style={{ height: "100%" }}>
               <HouseStatisticsChart />
-            </Paper>
+            </StyledPaper>
           </Grid>
 
           {/* Bottom section */}
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <StyledPaper elevation={1}>
               <BottomSectionGS/>
-            </Paper>
+            </StyledPaper>
           </Grid>
         </Grid>
       </Container>

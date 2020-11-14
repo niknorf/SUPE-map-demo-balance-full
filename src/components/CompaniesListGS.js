@@ -16,49 +16,32 @@ const GaranteedSuppliesCompanies = () => {
   const [rows, setGSContent] = useState([]);
   const { globalState } = useContext(Contex);
 
-  // useEffect(() => {
-  //   if (globalState.fiasId !== "") {
-  //     fetch("/api/Results/GetBalanceResultFull/" + globalState.balance_index)
-  //       .then((res) => res.json())
-  //       .then(
-  //         (result) => {
-  //           setGSContent(result);
-  //         },
-  //         // Note: it's important to handle errors here
-  //         // instead of a catch() block so that we don't swallow
-  //         // exceptions from actual bugs in components.
-  //         (error) => {
-  //           // setLoading(true);
-  //           // setError(error);
-  //         }
-  //       );
-  //   }
-  //   // setLoading(true);
-  // }, [globalState.fiasId]);
+  useEffect(() => {
+    if (globalState.fiasId !== "") {
+      fetch("/api/PSK/GetConsumersPSKData/" + globalState.fiasId)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setGSContent(result);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
+    }
+    // setLoading(true);
+  }, [globalState.fiasId]);
 
   const GaranteedSuppliesCompaniesRows = (row) => {
     return (
-      <TableRow key={row.id}>
+      <TableRow key={row.name}>
         <TableCell component="th" scope="row"  align="left">
           {row.name}
         </TableCell>
-        {/* <TableCell style={{ width: 100 }} align="left"> */}
-          {/* {row.type} */}
-        {/* </TableCell> */}
-        {/* <TableCell style={{ width: 50 }} align="right"> */}
-          {/* href="guaranteedsuppliers" numeric component="a" */}
-          {/* <Link
-            component="button"
-            variant="body2"
-            underline="always"
-            color="primary"
-            onClick={() => {
-              /*redirect to faranteenned syppliers*/
-            }
-          {/* > */}
-            {/* {row.link} */}
-          {/* </Link> */}
-        {/* </TableCell> */}
       </TableRow>
     );
   };
@@ -68,14 +51,14 @@ const GaranteedSuppliesCompanies = () => {
       id: "name",
       numeric: false,
       disablePadding: false,
-      label: "",
+      label: "Название",
     },
   ];
-
 
   return (
     rows.length >0 ? [
     <TableTemplate
+      rowsPerPage={12}
       rows={rows}
       columns={tableColumns}
       rowsSettings={GaranteedSuppliesCompaniesRows}
