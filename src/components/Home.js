@@ -9,6 +9,7 @@ import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
 import BuBdTable from "./BuBdTable";
+import {MainChartCards} from "./MainChartCards";
 import graphOne from "../img/graph-one.png";
 import graphTwo from "../img/graph-two.png";
 import pieChart from "../img/pie-chart.png";
@@ -194,23 +195,10 @@ export default function Home() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={6} spacing={3} className={classes.firstColumn}>
-          <Grid item xs={6}>
-            <Paper
-              className={clsx(classes.pieChartPaper, classes.leftPieChart)}
-            >
-              <img src={pieChart} className={classes.pieChartImage} alt='' />
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper
-              className={clsx(classes.pieChartPaper, classes.rightPieChart)}
-            >
-              <img src={pieChart} className={classes.pieChartImage} alt='' />
-            </Paper>
-          </Grid>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphOne)}>
-              <img src={graphOne} className={classes.graphOneImage} alt='' />
+              {/* <img src={graphOne} className={classes.graphOneImage} alt='' /> */}
+            <MainChartCards/>
             </Paper>
           </Grid>
           <Grid item xs={12} className={classes.graph}>
