@@ -49,7 +49,7 @@ const CreateMainHomeChart = ({ dataObject, object }) => {
       ]
     : [
         <Plot
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "500px" }}
           useResizeHandler
           data={object.data}
           layout={object.layout}

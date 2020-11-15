@@ -636,7 +636,7 @@ const meanValue = '50%';
       ]
     : [
         <Plot
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "500px" }}
           data={type.data}
           layout={type.layout}
           config={type.config}
