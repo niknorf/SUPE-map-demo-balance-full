@@ -10,6 +10,7 @@ import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
 import BuBdTable from "./BuBdTable";
 import {MainChartCards} from "./MainChartCards";
+import {MainChartHome} from "./MainChartHome";
 import graphOne from "../img/graph-one.png";
 import graphTwo from "../img/graph-two.png";
 import pieChart from "../img/pie-chart.png";
@@ -197,13 +198,12 @@ export default function Home() {
         <Grid item xs={6} spacing={3} className={classes.firstColumn}>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphOne)}>
-              {/* <img src={graphOne} className={classes.graphOneImage} alt='' /> */}
             <MainChartCards/>
             </Paper>
           </Grid>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphTwo)}>
-              <img src={graphTwo} className={classes.graphTwoImage} alt='' />
+              <MainChartHome/>
             </Paper>
           </Grid>
         </Grid>
