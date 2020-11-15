@@ -12,6 +12,8 @@ import BlueDot from "../img/blue-dot.svg";
 import YellowDot from "../img/yellow-dot.svg";
 import GreenDot from "../img/green-dot.svg";
 import RedDot from "../img/red-dot.svg";
+import Popup from 'reactjs-popup';
+import '../css/taskPopup.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,11 +94,156 @@ const useStyles = makeStyles((theme) => ({
     width: '13px',
     height: '13px',
     marginRight: '6px'
+  },
+  new: {
+    marginRight: '14px',
+    fontSize: '14px',
+    lineHeight: '42px',
+    fontFamily: "PFDinTextCondPro-Bold !important",
+  },
+  status: {
+    marginRight: '62px',
+    fontSize: '14px',
+    lineHeight: '17px',
+    textDecoration: 'underline'
+  },
+  taskNumPopup: {
+    fontSize: '14px',
+    lineHeight: '17px',
+    fontFamily: "PFDinTextCondPro-Bold !important",
+  },
+  addressPopup: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '44px',
+    paddingBottom: '59px',
+    fontSize: '24px',
+    lineHeight: '23px',
+    color: '#8C949E',
+  },
+  columnsPopup: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  columnTitle: {
+    fontSize: '11px',
+    lineHeight: '13px',
+    color: '#818E9B'
+  },
+  columnContent: {
+    fontSize: '14px',
+    lineHeight: '17px',
+  },
+  fullWidth: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '14px',
+    lineHeight: '18px',
+    marginTop: '24px'
+  },
+  fullWidthTitle: {
+    color: '#818E9B'
+  },
+  buttons: {
+    marginTop: '24px',
+    marginBottom: '16px',
+    display: 'flex'
+  },
+  exitButton: {
+    width: '50%',
+    marginRight: '8px',
+    color: '#4A9CFF',
+    textTransform: 'none',
+    fontWeight: 'bold',
+    '&:hover': {
+      color: '#4A9CFF',
+    },
+  },
+  feedbackButton: {
+    width: '50%',
+    marginLeft: '8px',
+    textTransform: 'none',
+    backgroundColor: '#4A9CFF',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: '#4A9CFF',
+    },
+  },
+  note: {
+    fontSize: '11px',
+    lineHeight: '13px',
+    color: '#818E9B',
+    marginTop: '16px'
   }
 }));
 
 export default function AutoGrid() {
   const classes = useStyles();
+
+  const TaskPopup = () => (
+    <Popup
+      className={classes.pop}
+      trigger={
+        <Paper className={classes.taskCard}>
+          <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
+          <div>
+            <img src={BlueDot} className={classes.taskDot}></img>
+            <span className={classes.taskNumber}>Задание №1334</span>
+          </div>
+          <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+          <div>
+            <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+            <span className={classes.progress}>В работе 10 дней</span>
+          </div>
+        </Paper>
+      }
+      modal
+      nested
+    >
+      {close => (
+        <div className="modal">
+          <div className="content">
+            <div className="top">
+              <img src={BlueDot} className={classes.taskDot}></img>
+              <span className={classes.new}>Новое</span>
+              <span className={classes.status}>Изменить статус</span>
+              <span className={classes.taskNumPopup}>Задание №1334</span>
+            </div>
+            <div className={classes.addressPopup}>
+              <span className={classes.addressText}>ул. Фёдора Абрамова, 19 к1</span>
+            </div>
+            <Grid container spacing={3}>
+              <Grid item xs={6} className={classes.columnsPopup}>
+                <span className={classes.columnTitle}>Дата и время</span>
+                <span className={classes.columnContent}>14:00, 16 Дек 2020</span>
+              </Grid>
+              <Grid item xs={6} className={classes.columnsPopup}>
+                <span className={classes.columnTitle}>Исполнитель</span>
+                <span className={classes.columnContent}>Иванов Константин</span>
+              </Grid>
+            </Grid>
+            <div className={classes.fullWidth}>
+              <span className={classes.fullWidthTitle}>Описание обьекта:</span>
+              <span className={classes.fullWidthContent}>Жилое помещение в многоквартирном доме, находится на первом этаже.</span>
+            </div>
+            <div className={classes.fullWidth}>
+              <span className={classes.fullWidthTitle}>Причина создания заявки:</span>
+              <span className={classes.fullWidthContent}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+            </div>
+            <div className={classes.buttons}>
+              <Button variant="outlined" color="primary" className={classes.exitButton}>
+                Выйти
+              </Button>
+              <Button variant="contained" color="primary" className={classes.feedbackButton}>
+                Обратная связь
+              </Button>
+            </div>
+            <span className={classes.note}>* чтобы отправить обратную связь, измените статус задания на “В процессе”</span>
+          </div>
+        </div>
+      )}
+    </Popup>
+  );
 
   return (
     <div className={classes.root}>
@@ -136,18 +283,7 @@ export default function AutoGrid() {
               <Grid item xs={3}>
                 <img src={BlueDot} className={classes.titleDot}></img>
                 <span className={classes.title}>Новые (3)</span>
-                <Paper className={classes.taskCard}>
-                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
-                  <div>
-                    <img src={BlueDot} className={classes.taskDot}></img>
-                    <span className={classes.taskNumber}>Задание №1334</span>
-                  </div>
-                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
-                  <div>
-                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
-                    <span className={classes.progress}>В работе 10 дней</span>
-                  </div>
-                </Paper>
+                <TaskPopup />
                 <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
                   <div>
@@ -174,7 +310,7 @@ export default function AutoGrid() {
                 </Paper>
               </Grid>
               <Grid item xs={3}>
-              <img src={YellowDot} className={classes.titleDot}></img>
+                <img src={YellowDot} className={classes.titleDot}></img>
                 <span className={classes.title}>В процессе (2)</span>
                 <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
@@ -202,7 +338,7 @@ export default function AutoGrid() {
                 </Paper>
               </Grid>
               <Grid item xs={3}>
-              <img src={GreenDot} className={classes.titleDot}></img>
+                <img src={GreenDot} className={classes.titleDot}></img>
                 <span className={classes.title}>Выполнено (3)</span>
                 <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
@@ -242,7 +378,7 @@ export default function AutoGrid() {
                 </Paper>
               </Grid>
               <Grid item xs={3}>
-              <img src={RedDot} className={classes.titleDot}></img>
+                <img src={RedDot} className={classes.titleDot}></img>
                 <span className={classes.title}>Просрочено (1)</span>
                 <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
@@ -260,7 +396,7 @@ export default function AutoGrid() {
             </Grid>
           </Box>
         </Grid>
-        </Grid>
+      </Grid>
     </div>
-      );
+  );
 }
