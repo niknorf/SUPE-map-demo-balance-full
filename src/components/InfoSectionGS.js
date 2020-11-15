@@ -209,6 +209,7 @@ const BuildingCards = () => {
           <Box className={classes.boxPaddingLabel}>
             <Typography className={classes.balanceGroupLabel}>
               {address_name}
+              {globalState.fiasId}
             </Typography>
           </Box>
           <Box className={classes.boxPaddingCards}>

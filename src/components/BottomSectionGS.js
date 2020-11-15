@@ -122,10 +122,15 @@ const BottomSectionGS = () => {
       api_url = "/api/PSK/GetLegalPSKData/1281/" + globalState.fiasId;
     } else if (legalType === "population") {
       api_url = "/api/DataCompare/GetFizTimeSeries/1281/" + globalState.fiasId;
-    } else if (legalType === "utility" + globalState.fiasId) {
+    } else if (legalType === "utility") {
       api_url = "/api/PSK/GetCommonPSKData/1281/" + globalState.fiasId;
     }
+
     if (globalState.fiasId !== "" && api_url !== "") {
+
+      console.log(api_url, legalType);
+
+      console.log(globalState.fiasId);
       setLoading(true);
       fetch(api_url)
         .then((res) => res.json())
@@ -449,7 +454,9 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
     x:[],
     y:[],
     mode: 'lines',
+    type: 'scatter',
     line: {
+        shape: 'hv',
         color: '#252F4A',
         width: 2
       }
@@ -486,7 +493,7 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
   if (obj_name === "entity") {
     type = urik_seppate;
   }
-
+  console.log();
   if (obj_name === "population") {
     type = fiz_seppate;
   }
@@ -530,27 +537,27 @@ const meanValue = '50%';
         if(average[i].psk_type === obj_name){
           if(average[i].quarter === 1){
             averageTrace.x.push(quarte1Start);
-            averageTrace.x.push(quarte1End);
-            averageTrace.y.push(average[i].mean);
+            // averageTrace.x.push(quarte1End);
+            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
           if(average[i].quarter === 2){
             averageTrace.x.push(quarte2Start);
-            averageTrace.x.push(quarte2End);
-
-            averageTrace.y.push(average[i].mean);
+            // averageTrace.x.push(quarte2End);
+            //
+            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
           if(average[i].quarter === 3){
             averageTrace.x.push(quarte3Start);
-            averageTrace.x.push(quarte3End);
-            averageTrace.y.push(average[i].mean);
+            // averageTrace.x.push(quarte3End);
+            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
           if(average[i].quarter === 4){
             averageTrace.x.push(quarte4Start);
-            averageTrace.x.push(quarte4End);
-            averageTrace.y.push(average[i].mean);
+            // averageTrace.x.push(quarte4End);
+            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
         }
