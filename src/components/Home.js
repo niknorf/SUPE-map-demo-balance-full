@@ -221,7 +221,7 @@ export default function Home() {
             </Grid>
           </Box>
           <Paper className={classes.bubdTable}>
-            <BuBdTable />
+            <BuBdTable rowsPerPage={5}/>
           </Paper>
         </Grid>
       </Grid>
