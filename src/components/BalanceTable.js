@@ -15,14 +15,13 @@ const BalanceGroupList = () => {
   let rowsPerPage = 12;
   let width = useWidth();
 
-  width === "md" ? (rowsPerPage = 12) : (rowsPerPage = 13);
+  width === "md" ? (rowsPerPage = 10) : (rowsPerPage = 11);
 
   useEffect(() => {
       fetch("/api/Results/GetResImbalanceFrontKWH")
         .then((res) => res.json())
         .then(
           (result) => {
-            console.log(result);
             setBgContent(result);
           },
           // Note: it's important to handle errors here
@@ -49,7 +48,7 @@ const BalanceGroupList = () => {
 
   const tableColumns = [
     {
-      id: "balanceGroup",
+      id: "balance_id",
       numeric: true,
       disablePadding: false,
       label: "Балансовая группа",
@@ -72,9 +71,9 @@ const BalanceGroupList = () => {
       <TableRow
         key={row.balance_id}
         hover
-        // onClick={(event) =>
-        //   handleRowClick(event, row.balanceGroup, row.is_clean)
-        // }
+        onClick={(event) =>
+          handleRowClick(event, row.balanceGroup, row.is_clean)
+        }
       >
         <TableCell component="th" scope="row" style={{ width: 400 }}>
           Балансовая группа №{row.balance_id}
@@ -91,16 +90,18 @@ const BalanceGroupList = () => {
 
   const handleRowClick = (event, balance_index, isClean) => {
 
-    globalDispach({
-      type: "FILTERCOMPONENT",
-      isPhantomic: false,
-      balance_index: balance_index,
-      isClean: isClean,
-      objSelected: true,
-      building_address: "",
-      obj_from: "table_click",
-      isInPSK: false,
-    });
+    console.log(balance_index, isClean);
+
+    // globalDispach({
+    //   type: "FILTERCOMPONENT",
+    //   isPhantomic: false,
+    //   balance_index: balance_index,
+    //   isClean: isClean,
+    //   objSelected: true,
+    //   building_address: "",
+    //   obj_from: "table_click",
+    //   isInPSK: false,
+    // });
   };
 
   return rows.length > 0
@@ -110,6 +111,7 @@ const BalanceGroupList = () => {
           columns={tableColumns}
           rowsSettings={BalanceTableRows}
           rowsPerPage={rowsPerPage}
+          orderBy='balance_id'
         />,
       ]
     : [<InfoWindow label="Нет данных" icon="info" />];
