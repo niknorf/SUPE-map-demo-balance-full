@@ -16,6 +16,7 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
+  CircularProgress,
 } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
@@ -31,6 +32,7 @@ import icon_average from "../img/average_icon.svg";
 import icon_area from "../img/area_icon.svg";
 import icon_interval from "../img/interval_icon.svg";
 import localeRu from "plotly.js-locales/ru";
+import LoadingOverlay from "react-loading-overlay";
 const Plot = createPlotlyComponent(Plotly);
 
 Plotly.register(localeRu);
@@ -89,189 +91,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-var fiz_seppate = {
-  layout: {
-    autosize: true,
-    font: {
-          family: "Roboto",
-          size: 12,
-          color: "#A3A3A3",
-        },
-    showlegend: false,
-    barmode: "stack",
-    shapes: [
-      // Mean
-      {
-            type: 'line',
-            xref: 'paper',
-            x0: 0,
-            y0: 0,
-            x1: 0,
-            y1: 0,
-            line: {
-                color: '#EC4141',
-                width: 2,
-            }
-        },
-        // Average
-        {
-                type: 'line',
-                xref: 'paper',
-                x0: 0,
-                y0: 0,
-                x1: 0,
-                y1: 0,
-                line: {
-                    color: '#252F4A',
-                    width: 2,
-                }
-            }]
-  },
-  data: [
-    {
-      x: [],
-      y: [],
-      marker: { color: "#4A9CFF" },
-      type: "bar",
-    }
-
-  ],
-  config: {
-    modeBarButtonsToRemove: [
-      "pan2d",
-      "select2d",
-      "lasso2d",
-      "resetScale2d",
-      "toggleSpikelines",
-      "hoverClosestCartesian",
-      "hoverCompareCartesian",
-    ],
-    displaylogo: false,
-    responsive: true,
-  },
-};
-var urik_seppate = {
-  layout: {
-    autosize: true,
-    font: {
-          family: "Roboto",
-          size: 12,
-          color: "#A3A3A3",
-        },
-    showlegend: false,
-    barmode: "stack",
-    legend: {x: 0.4, y: 1.2},
-    shapes: [
-      // Mean
-      {
-            type: 'line',
-            xref: 'paper',
-            x0: 0,
-            y0: 0,
-            x1: 0,
-            y1: 0,
-            line: {
-                color: '#EC4141',
-                width: 2,
-            }
-        }
-      ]
-  },
-  data: [
-    {
-      x: [],
-      y: [],
-      marker: { color: "#00EBD3" },
-      type: "bar",
-    }
-  ],
-  config: {
-    modeBarButtonsToRemove: [
-      "pan2d",
-      "select2d",
-      "lasso2d",
-      "resetScale2d",
-      "toggleSpikelines",
-      "hoverClosestCartesian",
-      "hoverCompareCartesian",
-    ],
-    displaylogo: false,
-    responsive: true,
-  },
-};
-var house_seppate = {
-  layout: {
-    autosize: true,
-    font: {
-          family: "Roboto",
-          size: 12,
-          color: "#A3A3A3",
-        },
-    showlegend: false,
-    barmode: "stack",
-    shapes: [
-      // Mean
-      {
-            type: 'line',
-            xref: 'paper',
-            x0: 0,
-            y0: 0,
-            x1: 0,
-            y1: 0,
-            line: {
-                color: '#EC4141',
-                width: 2,
-            }
-        },
-        // Average
-        {
-                type: 'line',
-                xref: 'paper',
-                x0: 0,
-                y0: 0,
-                x1: 0,
-                y1: 0,
-                line: {
-                    color: '#252F4A',
-                    width: 2,
-                }
-            }]
-  },
-  data: [
-    {
-      x: [],
-      y: [],
-      marker: { color: "#A9FF94" },
-      type: "bar",
-    }
-  ],
-  config: {
-    modeBarButtonsToRemove: [
-      "pan2d",
-      "select2d",
-      "lasso2d",
-      "resetScale2d",
-      "toggleSpikelines",
-      "hoverClosestCartesian",
-      "hoverCompareCartesian",
-    ],
-    displaylogo: false,
-    responsive: true,
-  },
-};
-
 const BottomSectionGS = () => {
   const [legalType, setLegalTyped] = useState("entity");
   const [outMonth, setOutMonth] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [averageAllData, setAverageAll] = useState([]);
   const [meanAndLimit, setMeanAndLimit] = useState([]);
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
   const [state, setState] = useState({
-    mediana: true,
-    average: true,
-    interval: true,
+    mediana: false,
+    average: false,
+    interval: false,
   });
 
   const { mediana, average, interval } = state;
@@ -294,10 +126,12 @@ const BottomSectionGS = () => {
       api_url = "/api/PSK/GetCommonPSKData/1281/" + globalState.fiasId;
     }
     if (globalState.fiasId !== "" && api_url !== "") {
+      setLoading(true);
       fetch(api_url)
         .then((res) => res.json())
         .then(
           (result) => {
+            setLoading(false);
             setOutMonth(result);
           },
           (error) => {
@@ -307,10 +141,12 @@ const BottomSectionGS = () => {
         );
     }
     if(globalState.fiasId !== ''){
+      setLoading(true);
       fetch("/api/Results/GetFiasStatQuarter/" + globalState.fiasId)
         .then((res) => res.json())
         .then(
           (result) => {
+            setLoading(false);
             setAverageAll(result);
           },
           (error) => {
@@ -323,6 +159,7 @@ const BottomSectionGS = () => {
           .then((res) => res.json())
           .then(
             (result) => {
+              setLoading(false);
               setMeanAndLimit(result);
             },
             (error) => {
@@ -336,6 +173,17 @@ const BottomSectionGS = () => {
 
   return globalState.fiasId !== ""
     ? [
+      <LoadingOverlay
+        active={loading}
+        spinner={<CircularProgress style={{ color: "#252F4A" }} />}
+        text=""
+        styles={{
+          overlay: (base) => ({
+            ...base,
+            background: "rgba(34, 47, 74, 0.3)",
+          }),
+        }}
+      >
         <Grid container>
           <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
             <Box className={classes.boxPaddingLabel}>
@@ -469,7 +317,8 @@ const BottomSectionGS = () => {
                />
             </Box>
           </Grid>
-        </Grid>,
+        </Grid>
+        </LoadingOverlay>,
       ]
     :
       null
@@ -481,16 +330,121 @@ const BottomSectionGS = () => {
 };
 
 const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBoxSelected }) => {
-/*type.data[0] is main data chart
-  type.data[1] is mean
-  type.data[2] is average*/
+  var fiz_seppate = {
+    layout: {
+      autosize: true,
+      font: {
+            family: "Roboto",
+            size: 12,
+            color: "#A3A3A3",
+          },
+      showlegend: false,
+      barmode: "stack",
+      shapes: []
+    },
+    data: [
+      {
+        x: [],
+        y: [],
+        marker: { color: "#4A9CFF" },
+        type: "bar",
+      }
+
+    ],
+    config: {
+      modeBarButtonsToRemove: [
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "resetScale2d",
+        "toggleSpikelines",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+      ],
+      displaylogo: false,
+      responsive: true,
+    },
+  };
+  var urik_seppate = {
+    layout: {
+      autosize: true,
+      font: {
+            family: "Roboto",
+            size: 12,
+            color: "#A3A3A3",
+          },
+      showlegend: false,
+      barmode: "stack",
+      legend: {x: 0.4, y: 1.2},
+      shapes: []
+    },
+    data: [
+      {
+        x: [],
+        y: [],
+        marker: { color: "#00EBD3" },
+        type: "bar",
+      }
+    ],
+    config: {
+      modeBarButtonsToRemove: [
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "resetScale2d",
+        "toggleSpikelines",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+      ],
+      displaylogo: false,
+      responsive: true,
+    },
+  };
+  var house_seppate = {
+    layout: {
+      autosize: true,
+      font: {
+            family: "Roboto",
+            size: 12,
+            color: "#A3A3A3",
+          },
+      showlegend: false,
+      barmode: "stack",
+      shapes: []
+    },
+    data: [
+      {
+        x: [],
+        y: [],
+        marker: { color: "#A9FF94" },
+        type: "bar",
+      }
+    ],
+    config: {
+      modeBarButtonsToRemove: [
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "resetScale2d",
+        "toggleSpikelines",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+      ],
+      displaylogo: false,
+      responsive: true,
+    },
+  };
 
   let type = house_seppate;
   let empty_data = true;
-  let quarte1 = '2020-03-01';
-  let quarte2 = '2020-06-01';
-  let quarte3 = '2020-09-01';
-  let quarte4 = '2020-12-01';
+  let quarte1Start = '2020-01-01';
+  let quarte1End = '2020-03-31';
+  let quarte2Start = '2020-04-01';
+  let quarte2End = '2020-06-30';
+  let quarte3Start = '2020-07-01';
+  let quarte3End = '2020-09-30';
+  let quarte4Start = '2020-10-01';
+  let quarte4End = '2020-12-31';
   let averageTrace = {
     x:[],
     y:[],
@@ -500,6 +454,18 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
         width: 2
       }
   };
+  let meanTrace =  {
+        type: 'line',
+        xref: 'paper',
+        x0: 0,
+        y0: 0,
+        x1: 0,
+        y1: 0,
+        line: {
+            color: '#EC4141',
+            width: 2,
+        }
+    };
   let quaterInterval = {
 
             type: 'rect',
@@ -507,7 +473,7 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
             yref: 'y',
             x0: 0,
             y0: 0,
-            x1: 1,
+            x1: 0,
             y1: 0,
             fillcolor: 'rgba(74, 156, 255, 0.2)',
             line: {
@@ -526,8 +492,6 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
   }
 
 
-
-
 let meanData = 0;
 const meanValue = '50%';
 
@@ -538,11 +502,26 @@ const meanValue = '50%';
               meanData =  meanAndLimit[i].[meanValue];
             }
           }
-          type.layout.shapes[0].y0 = 3000;
-          type.layout.shapes[0].x1 = 1;
-          type.layout.shapes[0].y1 = 3000;
+          meanTrace.y0 = meanData;
+          meanTrace.x1 = 1;
+          meanTrace.y1 = meanData;
+
+          type.layout.shapes.push(meanTrace)
     }
 
+  }else{
+      type.layout.shapes.push({
+            type: 'line',
+            xref: 'paper',
+            x0: 0,
+            y0: 0,
+            x1: 0,
+            y1: 0,
+            line: {
+                color: '#EC4141',
+                width: 2,
+            }
+        });
   }
 
   if(checkBoxSelected.average){
@@ -550,25 +529,44 @@ const meanValue = '50%';
       for(let i=0; i<average.length; i++){
         if(average[i].psk_type === obj_name){
           if(average[i].quarter === 1){
-            averageTrace.x.push(quarte1);
+            averageTrace.x.push(quarte1Start);
+            averageTrace.x.push(quarte1End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
           if(average[i].quarter === 2){
-            averageTrace.x.push(quarte2);
+            averageTrace.x.push(quarte2Start);
+            averageTrace.x.push(quarte2End);
+
+            averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
           if(average[i].quarter === 3){
-            averageTrace.x.push(quarte3);
+            averageTrace.x.push(quarte3Start);
+            averageTrace.x.push(quarte3End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
           if(average[i].quarter === 4){
-            averageTrace.x.push(quarte4);
+            averageTrace.x.push(quarte4Start);
+            averageTrace.x.push(quarte4End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
           }
         }
       }
       type.data.push(averageTrace);
     }
+  }else{
+    type.data.push({
+      x:[],
+      y:[],
+      mode: 'lines',
+      line: {
+          color: '#252F4A',
+          width: 2
+        }
+    })
   }
 
   if(checkBoxSelected.interval){
@@ -582,15 +580,32 @@ const meanValue = '50%';
             }
           }
           quaterInterval.y0 = upper_limit;
-          // quaterInterval.x1 = 1;
+          quaterInterval.x1 = 1;
         quaterInterval.y1 = lower_limit;
     }
 
     type.layout.shapes.push(quaterInterval);
+  }else{
+      type.layout.shapes.push({
+
+                type: 'rect',
+                xref: 'paper',
+                yref: 'y',
+                x0: 0,
+                y0: 0,
+                x1: 0,
+                y1: 0,
+                fillcolor: 'rgba(74, 156, 255, 0.2)',
+                line: {
+                width: 1,
+                color: '#4A9CFF',
+            }
+
+      });
   }
 
 
-
+  //Main chart
   if (resultData.length > 0) {
     empty_data = false;
     for (let i = 0; i < resultData.length; i++) {
@@ -615,7 +630,6 @@ const meanValue = '50%';
     : [
         <Plot
           style={{ width: "100%", height: "100%" }}
-          // useResizeHandler
           data={type.data}
           layout={type.layout}
           config={type.config}

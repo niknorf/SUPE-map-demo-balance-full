@@ -1,14 +1,15 @@
-import { Typography, TableRow, TableCell, Link, Grid } from "@material-ui/core";
+import { Typography, TableRow, TableCell, Grid } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
-import InfoWindow from "./InfoWindow.js"
+import InfoWindow from "./InfoWindow.js";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({}));
 
-function createData(id, name, type, link) {
-  return { id, name, type, link };
+function createData(id, name, type, link, fias) {
+  return { id, name, type, link, fias };
 }
 
 const BalanceGroupContent = () => {
@@ -48,15 +49,20 @@ const BalanceGroupContent = () => {
         <TableCell style={{ width: 50 }} align="right">
           {/* href="guaranteedsuppliers" numeric component="a" */}
           <Link
-            component="button"
-            variant="body2"
-            underline="always"
-            color="primary"
-            onClick={() => {
-              /*redirect to faranteenned syppliers*/
+            to={{
+              pathname: "/guaranteedsuppliers",
+              row,
             }}
-          >
-            {row.link}
+            // component="button"
+            // variant="body2"
+            // underline="always"
+            // color="primary"
+            // onClick=
+            // {() => {
+            //   console.log(row);
+            //   /*redirect to faranteenned syppliers*/
+            // }}
+            >{row.link}
           </Link>
         </TableCell>
       </TableRow>
@@ -102,25 +108,42 @@ const BalanceGroupContent = () => {
       { original: "Junction", rus_translate: "Узел" },
       { original: "LoadBreakSwitch", rus_translate: "Переключатель нагрузки" },
       { original: "LVCabinet", rus_translate: "ГРЩ" },
-      { original: "LVSwitchGear", rus_translate: "Кабельный киоск/разъединитель",},
+      {
+        original: "LVSwitchGear",
+        rus_translate: "Кабельный киоск/разъединитель",
+      },
       { original: "NonConformLoad", rus_translate: "Несогласованная нагрузка" },
       { original: "OperationalLimitSet", rus_translate: "Набор пределов" },
-      { original: "PotentialTransformer", rus_translate: "PotentialTransformer" },
+      {
+        original: "PotentialTransformer",
+        rus_translate: "PotentialTransformer",
+      },
       { original: "PowerTransformer", rus_translate: "Силовой трансформатор" },
       { original: "ProtectionEquipment", rus_translate: "Устройство защиты" },
-      { original: "SubGeographicalRegion", rus_translate: "Географический субрегион" },
+      {
+        original: "SubGeographicalRegion",
+        rus_translate: "Географический субрегион",
+      },
       { original: "Substation", rus_translate: "Подстанция" },
       { original: "Terminal", rus_translate: "Терминал" },
-      { original: "VoltageLevel", rus_translate: "Распределительное устройство" },
+      {
+        original: "VoltageLevel",
+        rus_translate: "Распределительное устройство",
+      },
       { original: "VoltageLimit", rus_translate: "Предел по напряжению" },
-      { original: "SeriesCompensator", rus_translate: "Последовательный компенсатор" },
+      {
+        original: "SeriesCompensator",
+        rus_translate: "Последовательный компенсатор",
+      },
     ];
     let temp = [];
 
     for (let i = 0; i < original.length; i++) {
       let gs_link = "";
+      let fias = "";
       if (original[i].type === "ConsumerBuilding") {
         gs_link = "Посмотреть ГП";
+        fias = original[i].fias;
       }
       if (original[i].type !== "Link") {
         for (let j = 0; j < translation.length; j++) {
@@ -128,24 +151,29 @@ const BalanceGroupContent = () => {
             original[i].type = translation[j].rus_translate;
           }
         }
-        temp.push(createData(i, original[i].name, original[i].type, gs_link));
+        temp.push(
+          createData(i, original[i].name, original[i].type, gs_link, fias)
+        );
       }
     }
 
     setBgContent(temp);
   };
 
-  return (
-    rows.length >0 ? [
-    <TableTemplate
-      rows={rows}
-      columns={tableColumns}
-      rowsSettings={BalanceGroupContentRows}
-    />
-  ] : [
-      <InfoWindow label="Проверить топологию сети - привязку ПУ" icon="info" />
-  ]
-  );
+  return rows.length > 0
+    ? [
+        <TableTemplate
+          rows={rows}
+          columns={tableColumns}
+          rowsSettings={BalanceGroupContentRows}
+        />,
+      ]
+    : [
+        <InfoWindow
+          label="Проверить топологию сети - привязку ПУ"
+          icon="info"
+        />,
+      ];
 };
 
 export { BalanceGroupContent };

@@ -17,7 +17,7 @@ import {
   withStyles,
   useTheme,
 } from "@material-ui/core/styles";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { GraphicGroup, OutInputMonthGraphic } from "./Graphic";
@@ -226,7 +226,7 @@ const BalanceGroup = () => {
           {/* style={{ height: "100%" }} */}
           <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
             <Paper elevation={1} style={{ height: "100%" }}>
-              <BalanceGroupList/>
+              <BalanceGroupList />
             </Paper>
           </Grid>
           {/* Infor section */}

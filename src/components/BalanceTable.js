@@ -1,4 +1,11 @@
-import { Typography, TableRow, TableCell, Link, Grid, useMediaQuery } from "@material-ui/core";
+import {
+  Typography,
+  TableRow,
+  TableCell,
+  Link,
+  Grid,
+  useMediaQuery,
+} from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
@@ -10,7 +17,7 @@ const useStyles = makeStyles((theme) => ({}));
 const BalanceGroupList = () => {
   const classes = useStyles();
   const [rows, setBgContent] = useState([]);
-  const { globalState } = useContext(Contex);
+  const { globalState, globalDispach } = useContext(Contex);
 
   let rowsPerPage = 12;
   let width = useWidth();
@@ -18,20 +25,20 @@ const BalanceGroupList = () => {
   width === "md" ? (rowsPerPage = 10) : (rowsPerPage = 11);
 
   useEffect(() => {
-      fetch("/api/Results/GetResImbalanceFrontKWH")
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setBgContent(result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+    fetch("/api/Results/GetResImbalanceFrontKWH")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setBgContent(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
     // setLoading(true);
   }, []);
 
@@ -71,9 +78,7 @@ const BalanceGroupList = () => {
       <TableRow
         key={row.balance_id}
         hover
-        onClick={(event) =>
-          handleRowClick(event, row.balanceGroup, row.is_clean)
-        }
+        onClick={(event) => handleRowClick(event, row)}
       >
         <TableCell component="th" scope="row" style={{ width: 400 }}>
           Балансовая группа №{row.balance_id}
@@ -88,20 +93,18 @@ const BalanceGroupList = () => {
     );
   };
 
-  const handleRowClick = (event, balance_index, isClean) => {
+  const handleRowClick = (event, row) => {
 
-    console.log(balance_index, isClean);
-
-    // globalDispach({
-    //   type: "FILTERCOMPONENT",
-    //   isPhantomic: false,
-    //   balance_index: balance_index,
-    //   isClean: isClean,
-    //   objSelected: true,
-    //   building_address: "",
-    //   obj_from: "table_click",
-    //   isInPSK: false,
-    // });
+    globalDispach({
+      type: "FILTERCOMPONENT",
+      isPhantomic: false,
+      balance_index: row.balance_id,
+      isClean: row.is_clean,
+      objSelected: true,
+      building_address: "",
+      obj_from: "table_click",
+      isInPSK: false,
+    });
   };
 
   return rows.length > 0
@@ -111,7 +114,7 @@ const BalanceGroupList = () => {
           columns={tableColumns}
           rowsSettings={BalanceTableRows}
           rowsPerPage={rowsPerPage}
-          orderBy='balance_id'
+          orderBy="balance_id"
         />,
       ]
     : [<InfoWindow label="Нет данных" icon="info" />];
