@@ -241,7 +241,6 @@ export default function EnhancedTable(props) {
 
 
   const handleRequestSort = (event, property) => {
-    console.log(property);
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);

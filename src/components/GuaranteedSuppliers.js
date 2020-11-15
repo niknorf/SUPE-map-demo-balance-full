@@ -65,15 +65,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GuaranteedSuppliers = () => {
+const GuaranteedSuppliers = (props) => {
   const classes = useStyles();
   const { globalDispach } = useContext(Contex);
+  const { fias, name} =
+    (props.location && props.location.row) || {};
+
+  // useEffect(() => {
+  //   globalDispach({
+  //     type: "FILTERCOMPONENT",
+  //     fiasId: 'fdb3ba07-4915-420c-a9aa-f5e909d3fe16',
+  //   });
+  // }, []);
 
   useEffect(() => {
-    // globalDispach({
-    //   type: "FILTERCOMPONENT",
-    //   fiasId: 'fdb3ba07-4915-420c-a9aa-f5e909d3fe16',
-    // });
+    globalDispach({
+      type: "FILTERCOMPONENT",
+      fiasId: typeof fias !== 'undefined' ? fias : '',
+      building_address: typeof name !== 'undefined' ? name : ''
+    });
   }, []);
 
   return (

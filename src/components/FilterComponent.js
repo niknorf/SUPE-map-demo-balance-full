@@ -80,6 +80,7 @@ const TsSearchComponent = () => {
 const SearchComponent = () => {
   const { globalDispach } = useContext(Contex);
   const [streets, setStreets] = useState([]);
+  const [loadingState, setLoadingState] = useState(false);
   const [fiasId, setFiasId] = useState('');
 
   const handleStreetChange = (event, value) => {
@@ -111,12 +112,14 @@ const SearchComponent = () => {
 
 
   useEffect(() => {
+    setLoadingState(true)
     fetch("/api/DataCompare/GetBuildingAddressByFiasOnlyPoly")
       .then((res) => res.json())
       .then(
         (result) => {
           /*TODO add loading indicator for whole page*/
           setStreets(result);
+          setLoadingState(false);
         },
         (error) => {
           /*TODO catch errors if any*/
@@ -140,6 +143,8 @@ const SearchComponent = () => {
         options={streets}
         getOptionLabel={(option) => option.address}
         onChange={handleStreetChange}
+        laoding={loadingState}
+        loadingText="Данные загружаются..."
         // disableListWrap
         ListboxComponent={ListboxComponent}
       filterOptions={filterOptions}
