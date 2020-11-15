@@ -17,11 +17,10 @@ import {
   FormGroup,
   FormControlLabel,
 } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
+import Plotly from "plotly.js";
 import clsx from "clsx";
-// import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
 import InfoWindow from "./InfoWindow.js";
 import icon_fiz from "../img/fiz_icon.svg";
@@ -29,11 +28,25 @@ import icon_urik from "../img/urik_icon.svg";
 import icon_house from "../img/house_icon.svg";
 import icon_mean from "../img/mean_icon.svg";
 import icon_average from "../img/average_icon.svg";
+import icon_area from "../img/area_icon.svg";
 import icon_interval from "../img/interval_icon.svg";
-// const Plot = createPlotlyComponent(Plotly);.
-import Plot from 'react-plotly.js'
+import localeRu from "plotly.js-locales/ru";
+const Plot = createPlotlyComponent(Plotly);
 
+Plotly.register(localeRu);
+Plotly.setPlotConfig({ locale: "ru" });
+
+const GreyCheckbox = withStyles({
+  root: {
+    color: "#252F4A",
+    '&$checked': {
+      color: "#252F4A",
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 const useStyles = makeStyles((theme) => ({
+
   chartTitle: {
     fontSize: "14px",
     lineHeight: "14px",
@@ -57,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   boxChartLegend: {
     width: "222px",
-    height: "186px",
+    height: "200px",
     background: "rgba(140, 148, 158, 0.1)",
     paddingTop: "16px",
     paddingLeft: "16px",
@@ -65,7 +78,8 @@ const useStyles = makeStyles((theme) => ({
   },
   chartLegendTextBox:{
     display: 'flex',
-    alignItems: 'baseline'
+    alignItems: 'flex-end'
+
   },
   chartLegendText:{
     color: '#818E9B',
@@ -78,9 +92,12 @@ const useStyles = makeStyles((theme) => ({
 var fiz_seppate = {
   layout: {
     autosize: true,
-    title: {
-      text: "",
-    },
+    font: {
+          family: "Roboto",
+          size: 12,
+          color: "#A3A3A3",
+        },
+    showlegend: false,
     barmode: "stack",
     shapes: [
       // Mean
@@ -136,10 +153,14 @@ var fiz_seppate = {
 var urik_seppate = {
   layout: {
     autosize: true,
-    title: {
-      text: "",
-    },
+    font: {
+          family: "Roboto",
+          size: 12,
+          color: "#A3A3A3",
+        },
+    showlegend: false,
     barmode: "stack",
+    legend: {x: 0.4, y: 1.2},
     shapes: [
       // Mean
       {
@@ -153,20 +174,8 @@ var urik_seppate = {
                 color: '#EC4141',
                 width: 2,
             }
-        },
-        // Average
-        {
-                type: 'line',
-                xref: 'paper',
-                x0: 0,
-                y0: 0,
-                x1: 0,
-                y1: 0,
-                line: {
-                    color: '#252F4A',
-                    width: 2,
-                }
-            }]
+        }
+      ]
   },
   data: [
     {
@@ -193,9 +202,12 @@ var urik_seppate = {
 var house_seppate = {
   layout: {
     autosize: true,
-    title: {
-      text: "",
-    },
+    font: {
+          family: "Roboto",
+          size: 12,
+          color: "#A3A3A3",
+        },
+    showlegend: false,
     barmode: "stack",
     shapes: [
       // Mean
@@ -253,15 +265,13 @@ const BottomSectionGS = () => {
   const [outMonth, setOutMonth] = useState([]);
   const [averageAllData, setAverageAll] = useState([]);
   const [meanAndLimit, setMeanAndLimit] = useState([]);
-  // const [inputMonth, setInputMonth] = useState([]);
-  // const [year, setFilterYear] = useState('2020');
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
   const [state, setState] = useState({
-    mediana: false,
-    average: false,
-    interval: false,
+    mediana: true,
+    average: true,
+    interval: true,
   });
 
   const { mediana, average, interval } = state;
@@ -277,14 +287,14 @@ const BottomSectionGS = () => {
   useEffect(() => {
     let api_url = "";
     if (legalType === "entity") {
-      api_url = "/api/PSK/GetLegalPSKData/1281/";
+      api_url = "/api/PSK/GetLegalPSKData/1281/" + globalState.fiasId;
     } else if (legalType === "population") {
-      api_url = "/api/DataCompare/GetFizTimeSeries/1281/";
-    } else if (legalType === "utility") {
-      api_url = "/api/PSK/GetCommonPSKData/1281/";
+      api_url = "/api/DataCompare/GetFizTimeSeries/1281/" + globalState.fiasId;
+    } else if (legalType === "utility" + globalState.fiasId) {
+      api_url = "/api/PSK/GetCommonPSKData/1281/" + globalState.fiasId;
     }
     if (globalState.fiasId !== "" && api_url !== "") {
-      fetch(api_url + globalState.fiasId)
+      fetch(api_url)
         .then((res) => res.json())
         .then(
           (result) => {
@@ -356,35 +366,36 @@ const BottomSectionGS = () => {
             <FormGroup className={classes.boxPaddingLabel}>
               <FormControlLabel
                 control={
-                  <Checkbox
+                  <GreyCheckbox
                     checked={mediana}
                     onChange={handleChange}
                     name="mediana"
+                    iconStyle={{fill: 'white'}}
                   />
                 }
                 label="Медиана"
               />
               <FormControlLabel
                 control={
-                  <Checkbox
+                  <GreyCheckbox
                     checked={average}
                     onChange={handleChange}
                     name="average"
-                    disabled
+                    iconStyle={{fill: 'white'}}
                   />
                 }
-                label="Среднее (в разработке)"
+                label="Среднее"
               />
               <FormControlLabel
                 control={
-                  <Checkbox
+                  <GreyCheckbox
                     checked={interval}
                     onChange={handleChange}
                     name="interval"
-                    disabled
+                    iconStyle={{fill: 'white'}}
                   />
                 }
-                label="Межквартильный интервал (в разработке)"
+                label="Межквартильный интервал"
               />
             </FormGroup>
             <Box className={classes.boxPaddingLabel}>
@@ -432,6 +443,14 @@ const BottomSectionGS = () => {
                   Среднее
                 </Typography>
               </Box>
+              <Box className={classes.chartLegendTextBox}>
+                <Icon>
+                <img className={classes.imageIcon} src={icon_area} alt="" />
+              </Icon>
+              <Typography className={classes.chartLegendText}>
+                Межквартильный интервал
+              </Typography>
+            </Box>
 
               </Box>
             </Box>
@@ -468,6 +487,35 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
 
   let type = house_seppate;
   let empty_data = true;
+  let quarte1 = '2020-03-01';
+  let quarte2 = '2020-06-01';
+  let quarte3 = '2020-09-01';
+  let quarte4 = '2020-12-01';
+  let averageTrace = {
+    x:[],
+    y:[],
+    mode: 'lines',
+    line: {
+        color: '#252F4A',
+        width: 2
+      }
+  };
+  let quaterInterval = {
+
+            type: 'rect',
+            xref: 'paper',
+            yref: 'y',
+            x0: 0,
+            y0: 0,
+            x1: 1,
+            y1: 0,
+            fillcolor: 'rgba(74, 156, 255, 0.2)',
+            line: {
+            width: 1,
+            color: '#4A9CFF',
+        }
+
+  };
 
   if (obj_name === "entity") {
     type = urik_seppate;
@@ -477,7 +525,10 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
     type = fiz_seppate;
   }
 
-let meanData = 3000;
+
+
+
+let meanData = 0;
 const meanValue = '50%';
 
   if(checkBoxSelected.mediana){
@@ -492,33 +543,53 @@ const meanValue = '50%';
           type.layout.shapes[0].y1 = 3000;
     }
 
-  }else{
-    type.layout.shapes[0].y0 = 0;
-    type.layout.shapes[0].x1 = 0;
-    type.layout.shapes[0].y1 = 0;
   }
 
   if(checkBoxSelected.average){
     if(average.length > 0){
-      // console.log(average);
-          // for(let i = 0; i< meanAndLimit.length; i++){
-          //   if(meanAndLimit[i].cons_type === obj_name){
-          //     meanData =  meanAndLimit[i].[meanValue];
-          //   }
-          // }
-          // type.layout.shapes[0].y0 = 3000;
-          // type.layout.shapes[0].x1 = 1;
-          // type.layout.shapes[0].y1 = 3000;
+      for(let i=0; i<average.length; i++){
+        if(average[i].psk_type === obj_name){
+          if(average[i].quarter === 1){
+            averageTrace.x.push(quarte1);
+            averageTrace.y.push(average[i].mean);
+          }
+          if(average[i].quarter === 2){
+            averageTrace.x.push(quarte2);
+            averageTrace.y.push(average[i].mean);
+          }
+          if(average[i].quarter === 3){
+            averageTrace.x.push(quarte3);
+            averageTrace.y.push(average[i].mean);
+          }
+          if(average[i].quarter === 4){
+            averageTrace.x.push(quarte4);
+            averageTrace.y.push(average[i].mean);
+          }
+        }
+      }
+      type.data.push(averageTrace);
+    }
+  }
+
+  if(checkBoxSelected.interval){
+    let upper_limit = 0;
+    let lower_limit =  0;
+    if(meanAndLimit.length > 0){
+          for(let i = 0; i< meanAndLimit.length; i++){
+            if(meanAndLimit[i].cons_type === obj_name){
+              upper_limit =  meanAndLimit[i].upper_limit;
+              lower_limit =  meanAndLimit[i].lower_limit;
+            }
+          }
+          quaterInterval.y0 = upper_limit;
+          // quaterInterval.x1 = 1;
+        quaterInterval.y1 = lower_limit;
     }
 
-  }else{
-    type.layout.shapes[1].y0 = 0;
-    type.layout.shapes[1].x1 = 0;
-    type.layout.shapes[1].y1 = 0;
+    type.layout.shapes.push(quaterInterval);
   }
-  if(checkBoxSelected.interval){
 
-  }
+
 
   if (resultData.length > 0) {
     empty_data = false;
@@ -532,7 +603,7 @@ const meanValue = '50%';
     type.data[0].y = [];
   }
 
-  console.log(type.layout);
+  // console.log(type.layout);
 
   return empty_data
     ? [

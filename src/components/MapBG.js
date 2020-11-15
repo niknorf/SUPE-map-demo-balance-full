@@ -186,7 +186,7 @@ const GeneralMap = () => {
       });
   };
 
-  const callManager = (values) => {
+  const callManager = (values, layerRef) => {
     setLoading(true);
     switch (values.obj_from) {
       case "ts_select":
@@ -201,7 +201,7 @@ const GeneralMap = () => {
           getObjectPolygonByFias(values.fiasId);
         } else {
           console.log("non phantomic");
-          getBalanceIndexObjectsByFias(values.fiasId);
+          getBalanceIndexObjectsByFias(values.fiasId, layerRef);
         }
 
         break;
@@ -211,45 +211,57 @@ const GeneralMap = () => {
     }
   };
 
-  const getBalanceIndexObjectsByFias = (fiasId) => {
+  const getBalanceIndexObjectsByFias = (fiasId, layerRef) => {
     fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
       .then((res) => res.json())
       .then(
         (result) => {
-          if(result.properties.isPhantomic){
+            if(typeof result.properties !== 'undefined'){
+              layerRef.current.leafletElement.clearLayers().addData(result);
+              setLayer(result);
+              setLoading(false);
+              let bounds = layerRef.current.leafletElement.getBounds();
+              if (bounds.isValid()) {
+                mapRef.current.leafletElement.flyToBounds(bounds);
+              }
 
-            layerRef.current.leafletElement.clearLayers().addData(result);
-            setLayer(result);
-            setLoading(false);
-            let bounds = layerRef.current.leafletElement.getBounds();
-            if (bounds.isValid()) {
-              mapRef.current.leafletElement.flyToBounds(bounds);
-            }
+            }else if(typeof result.balance_id !== 'undefined'){
 
-          }else{
-            fetch("/api/Results/GetBalanceGroupObjects/" + result.balance_index)
-              .then((res) => res.json())
-              .then(
-                (result) => {
-                  layerRef.current.leafletElement.clearLayers().addData(result);
-                  setLayer(result);
-                  setLoading(false);
-                  let bounds = layerRef.current.leafletElement.getBounds();
-                  if (bounds.isValid()) {
-                    // mapRef.current.leafletElement.flyToBounds(bounds);
+              globalDispach({
+                type: "FILTERCOMPONENT",
+                fiasId: fiasId,
+                isPhantomic: false,
+                balance_index: result.balance_id,
+                isClean: result.is_clean,
+                objSelected: true,
+                building_address: '',
+                obj_from: "map_address",
+                isInPSK: false,
+              });
+
+              console.log(result.balance_id);
+              fetch("/api/Results/GetBalanceGroupObjects/" + result.balance_id)
+                .then((res) => res.json())
+                .then(
+                  (result) => {
+                    console.log(result);
+                    layerRef.current.leafletElement.clearLayers().addData(result);
+                    setLayer(result);
+                    setLoading(false);
+                    let bounds = layerRef.current.leafletElement.getBounds();
+                    if (bounds.isValid()) {
+                      mapRef.current.leafletElement.flyToBounds(bounds);
+                    }
+                  },
+                  // Note: it's important to handle errors here
+                  // instead of a catch() block so that we don't swallow
+                  // exceptions from actual bugs in components.
+                  (error) => {
+                    setLoading(true);
+                    setError(error);
                   }
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                  setLoading(true);
-                  setError(error);
-                }
-              );
-          }
-
-
+                );
+            }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow

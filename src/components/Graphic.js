@@ -27,96 +27,13 @@ import LoadingOverlay from "react-loading-overlay";
 import "../css/graphic.css";
 import info_icon from "../img/info_icon.svg";
 import InfoWindow from "./InfoWindow.js"
+import localeRu from "plotly.js-locales/ru";
 const Plot = createPlotlyComponent(Plotly);
 
+Plotly.register(localeRu);
+Plotly.setPlotConfig({ locale: "ru" });
+
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  bigContainer: {
-    padding: "0",
-  },
-  formControlBox: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "8px",
-  },
-  reasonText: {
-    margin: "8px",
-  },
-  barPaper: {
-    display: "flex",
-    justifyContent: "space-around",
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-  },
-  chartsContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    padding: "0 16px",
-  },
-  chartsPaper: {
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-    margin: "12px 0",
-  },
-  lastBlockPaper: {
-    marginTop: "12px",
-  },
-  boxStyle: {
-    marginRight: theme.spacing(1),
-    marginTop: theme.spacing(2.5),
-    marginBottom: theme.spacing(2.5),
-    height: 141,
-    width: 200,
-    borderRadius: "4px",
-    boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    wordWrap: "break-word",
-    // flex: 1,
-    // flexWrap: 'wrap'
-  },
-  boxTopText: {
-    position: "absolute",
-    height: "43px",
-    fontFamily: "PF Din Text Cond Pro",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "12px",
-    lineHeight: "14px",
-    marginTop: "16px",
-    marginLeft: "16px",
-    marginRight: "16px",
-    color: "#818E9B",
-    width: 168,
-    display: "inline-block",
-    wordWrap: "break-word",
-  },
-  boxMiddleText: {
-    position: "absolute",
-    height: "58px",
-    marginBottom: "9px",
-    marginLeft: "16px",
-    marginTop: "40px",
-    fontFamily: "PF Din Text Cond Pro",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "48px",
-    lineHeight: "58px",
-    letterSpacing: "0.01em",
-    wordWrap: "break-word",
-  },
-  boxTopIcon: {
-    position: "relative",
-    marginTop: "10px",
-    marginLeft: "10px",
-  },
-  imageIcon: {
-    width: 13.33,
-    height: 13.33,
-  },
   yearsOptionBox:{
     display: 'flex',
     flexDirection: 'column',
@@ -194,6 +111,11 @@ const GraphicGroup = () => {
   var balance_group_tech_loss = {
     layout: {
       autosize: true,
+      font: {
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
+      },
       title: {
         text: "",
         font: column_title_font,
@@ -224,6 +146,11 @@ const GraphicGroup = () => {
   var meter_avg = {
     layout: {
       autosize: true,
+      font: {
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
+      },
       title: {
         text: "",
         font: column_title_font,

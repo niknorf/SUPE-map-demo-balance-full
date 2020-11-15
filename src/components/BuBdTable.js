@@ -225,14 +225,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
+export default function EnhancedTable(props) {
   const classes = useStyles();
   const [order, setOrder] = useState("desc");
   const [orderBy, setOrderBy] = useState("percent_probability");
   const [selected] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
+  let rowsPageFromProps = 25
+  if(typeof props.rowsPerPage !== 'undefined'){
+    rowsPageFromProps = 5;
+  }
+  const [rowsPerPage, setRowsPerPage] = useState(rowsPageFromProps);
   const { globalDispach } = useContext(Contex);
+
+
 
   const handleRequestSort = (event, property) => {
     console.log(property);

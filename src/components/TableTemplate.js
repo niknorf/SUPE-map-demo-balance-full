@@ -98,14 +98,6 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-//Sent data
-
-
-function createData(balanceGroup, calories, fat) {
-  return { balanceGroup, calories, fat };
-}
-//orderby
-//header width & cells width by default 180
 
 const useStyles2 = makeStyles({
   table: {
@@ -208,7 +200,7 @@ function EnhancedTableHead(props) {
 export default function TableTemplate(props) {
   const [page, setPage] = React.useState(0);
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("balanceGroup");
+  const [orderBy, setOrderBy] = React.useState(props.orderBy);
   const classes = useStyles2();
 
   const rows = props.rows;

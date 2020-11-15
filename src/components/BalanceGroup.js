@@ -24,31 +24,12 @@ import { GraphicGroup, OutInputMonthGraphic } from "./Graphic";
 import { JustificationCards } from "./JustificationCards";
 import { ImbalancePskPu } from "./ImbalancePskPu";
 import { InfoSection } from "./InfoSectionBG";
+import { BalanceGroupList } from "./BalanceTable";
 import { SearchComponent, TsSearchComponent } from "./FilterComponent";
 import TableTemplate from "./TableTemplate";
 import GeneralMap from "./MapBG";
 import Contex from "../store/context";
 import PFDinRegularWoff from "../fonts/PFDinTextCondPro-Regular.woff";
-import balance_table from "../data/balance_groups_table.json";
-
-// function useWidth() {
-//   const theme = useTheme();
-//   const keys = [...theme.breakpoints.keys].reverse();
-//   return (
-//     keys.reduce((output, key) => {
-//       const matches = useMediaQuery(theme.breakpoints.up(key));
-//       return !output && matches ? key : output;
-//     }, null) || "xs"
-//   );
-// }
-function createData(balanceGroup, imbalancePercent, imbalanceKwh, isClean) {
-  return {
-    balanceGroup,
-    imbalancePercent,
-    imbalanceKwh,
-    isClean,
-  };
-}
 
 const pfdinRegular = {
   fontFamily: "PFDinTextCondPro-Regular",
@@ -182,85 +163,6 @@ const useStyles = makeStyles((theme) => ({
 const BalanceGroup = () => {
   const classes = useStyles();
   const { globalDispach } = useContext(Contex);
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const tableColumns = [
-    {
-      id: "balanceGroup",
-      numeric: true,
-      disablePadding: false,
-      label: "Балансовая группа",
-    },
-    {
-      id: "imbalancePercent",
-      numeric: true,
-      disablePadding: true,
-      label: "Небалансы (%)",
-    },
-    {
-      id: "imbalanceKwh",
-      numeric: true,
-      disablePadding: false,
-      label: "Небалансы (кВтч)",
-    },
-  ];
-  const BalanceTableRows = (row) => {
-    return (
-      <TableRow
-        key={row.balanceGroup}
-        hover
-        onClick={(event) =>
-          handleRowClick(event, row.balanceGroup, row.isClean)
-        }
-      >
-        <TableCell component="th" scope="row" style={{ width: 400 }}>
-          Балансовая группа №{row.balanceGroup}
-        </TableCell>
-        <TableCell style={{ width: 40 }} align="right">
-          {(Math.round(row.imbalancePercent * 100) / 100).toFixed(2)}
-        </TableCell>
-        <TableCell style={{ width: 40 }} align="right">
-          {(Math.round(row.imbalanceKwh * 100) / 100).toFixed(2)}
-        </TableCell>
-      </TableRow>
-    );
-  };
-  const BalanceTableData = () => {
-    let tableRows = [];
-    /*TODO change to data from api call*/
-    for (let i = 0; i < balance_table.length; i++) {
-      if (balance_table[i].month === 8 && balance_table[i].year === 2020) {
-        tableRows.push(
-          createData(
-            balance_table[i].balance_id,
-            balance_table[i].imbalance_percent,
-            balance_table[i].imbalance_kwh,
-            true
-          )
-        );
-      }
-    }
-    return tableRows;
-  };
-  let rowsPerPage = 12;
-  // let width = useWidth();
-
-  // width === "md" ? (rowsPerPage = 12) : (rowsPerPage = 13);
-
-  const handleRowClick = (event, balance_index, isClean) => {
-    /*Search for the ConsumerBuilding which belongs to selected balance group, in order to get is_clean and branch_id*/
-    // var building_obj = GetIsCleanByBalanceIndex(balance_index);
-
-    globalDispach({
-      type: "FILTERCOMPONENT",
-      isPhantomic: false,
-      balance_index: balance_index,
-      isClean: isClean,
-      objSelected: true,
-      building_address: "",
-      obj_from: "table_click",
-      isInPSK: false,
-    });
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -324,12 +226,7 @@ const BalanceGroup = () => {
           {/* style={{ height: "100%" }} */}
           <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
             <Paper elevation={1} style={{ height: "100%" }}>
-              <TableTemplate
-                rows={BalanceTableData()}
-                columns={tableColumns}
-                rowsSettings={BalanceTableRows}
-                rowsPerPage={rowsPerPage}
-              />
+              <BalanceGroupList/>
             </Paper>
           </Grid>
           {/* Infor section */}
