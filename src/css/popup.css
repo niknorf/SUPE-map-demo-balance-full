@@ -82,7 +82,7 @@ td:nth-child(even) {
   height: 890px;
 } */
 
-.act-popup-content {
+.popup-content.act-popup-content {
   width: 831px;
 }
 
