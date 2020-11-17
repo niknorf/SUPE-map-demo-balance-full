@@ -380,13 +380,13 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
         </Box>
       </Grid>
       <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
-        <Box className={classes.boxStyle} style={boxStyle(0)}>
+        <Box className={classes.boxStyle} style={boxStyle(indexes.trust_index_psk_urik)}>
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний юридических лиц гарантирующих
             поставщиков
           </Typography>
-          <Typography className={classes.boxMiddleText} style={textStyle(0)}>
-            {textValue(0)}
+          <Typography className={classes.boxMiddleText} style={textStyle(indexes.trust_index_psk_urik)}>
+            {textValue(indexes.trust_index_psk_urik)}
           </Typography>
         </Box>
       </Grid>
