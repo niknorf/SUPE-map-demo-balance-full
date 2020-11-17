@@ -181,7 +181,6 @@ const ShowDataState = () => {
         .then(
           (result) => {
             if (result.length > 0) {
-              console.log(result);
               /*TODO set values*/
               setInputMonth(result[0].input_month);
               setImbalance(result[0].imbalance_kwh);

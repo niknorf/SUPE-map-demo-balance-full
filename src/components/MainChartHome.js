@@ -12,7 +12,7 @@ const CreateMainHomeChart = ({ dataObject, object }) => {
   let emptyData = true;
   let line_chart = {
     x: [],
-    y: [0],
+    y: [],
     mode: "lines",
     line: { shape: "spline" },
     type: "scatter",
@@ -27,7 +27,7 @@ const CreateMainHomeChart = ({ dataObject, object }) => {
   if(dataObject.length > 0){
     emptyData = false;
     for(let i=0; i<dataObject.length; i++){
-      line_chart.x.push(dataObject[i].startWeek);
+      // line_chart.x.push(dataObject[i].startWeek);
       line_chart.x.push(dataObject[i].endWeek);
       line_chart.y.push(dataObject[i].count);
     }
