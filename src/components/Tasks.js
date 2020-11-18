@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +14,7 @@ import GreenDot from "../img/green-dot.svg";
 import RedDot from "../img/red-dot.svg";
 import Popup from 'reactjs-popup';
 import '../css/taskPopup.css';
+import Contex from "../store/context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   paperPanel: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
+    height: '100%',
     padding: '23px 27px'
   },
   tasksContainer: {
@@ -179,23 +180,46 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AutoGrid() {
   const classes = useStyles();
+  const [tasks, setTaskContent] = useState([]);
+  const { globalState, globalDispach } = useContext(Contex);
+
+
+
+  //let firstName = 
+
+  useEffect(() => {
+    fetch("/api/UserTasks")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTaskContent(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
+    // setLoading(true);
+  }, []);
+
+  const taskCount = useRef();
+
+  function count() {
+    console.log(taskCount.current.childNodes.length)
+  }
+
+  // useEffect(() => {
+  //   taskCount.current = taskCount
+  // })
 
   const TaskPopup = () => (
     <Popup
       className={classes.pop}
       trigger={
-        <Paper className={classes.taskCard}>
-          <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
-          <div>
-            <img src={BlueDot} className={classes.taskDot}></img>
-            <span className={classes.taskNumber}>Задание №1334</span>
-          </div>
-          <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
-          <div>
-            <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
-            <span className={classes.progress}>В работе 10 дней</span>
-          </div>
-        </Paper>
+        <Button variant="contained" color="primary">Open</Button>
       }
       modal
       nested
@@ -245,6 +269,8 @@ export default function AutoGrid() {
     </Popup>
   );
 
+  //console.log(tasks);
+
   return (
     <div className={classes.root}>
       <Grid container>
@@ -280,39 +306,31 @@ export default function AutoGrid() {
               </Grid>
             </Grid>
             <Grid container spacing={3}>
-              <Grid item xs={3}>
+              <Grid item xs={3} className={classes.newTasks}>
                 <img src={BlueDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Новые (3)</span>
-                <TaskPopup />
-                <Paper className={classes.taskCard}>
-                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
-                  <div>
-                    <img src={BlueDot} className={classes.taskDot}></img>
-                    <span className={classes.taskNumber}>Задание №1334</span>
-                  </div>
-                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
-                  <div>
-                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
-                    <span className={classes.progress}>В работе 10 дней</span>
-                  </div>
-                </Paper>
-                <Paper className={classes.taskCard}>
-                  <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
-                  <div>
-                    <img src={BlueDot} className={classes.taskDot}></img>
-                    <span className={classes.taskNumber}>Задание №1334</span>
-                  </div>
-                  <span className={classes.description}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
-                  <div>
-                    <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
-                    <span className={classes.progress}>В работе 10 дней</span>
-                  </div>
-                </Paper>
+                <span className={classes.title}>Новые (7)</span>
+                <div ref={taskCount} onLoad={count}>
+                  {tasks.map((task) => (
+                    <Paper className={classes.taskCard}>
+                      <span className={classes.address}>{task.fiasAddress}</span>
+                      <div>
+                        <img src={BlueDot} className={classes.taskDot}></img>
+                        <span className={classes.taskNumber}>Задание №{task.id}</span>
+                      </div>
+                      <span className={classes.description}>{task.descriptionTask}</span>
+                      <div>
+                        <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
+                        <span className={classes.progress}>{task.date}</span>
+                      </div>
+                      {/* <TaskPopup /> */}
+                    </Paper>
+                  ))}
+                </div>
               </Grid>
               <Grid item xs={3}>
                 <img src={YellowDot} className={classes.titleDot}></img>
-                <span className={classes.title}>В процессе (2)</span>
-                <Paper className={classes.taskCard}>
+                <span className={classes.title}>В процессе (0)</span>
+                {/* <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
                   <div>
                     <img src={YellowDot} className={classes.taskDot}></img>
@@ -335,12 +353,12 @@ export default function AutoGrid() {
                     <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
                     <span className={classes.progress}>В работе 10 дней</span>
                   </div>
-                </Paper>
+                </Paper> */}
               </Grid>
               <Grid item xs={3}>
                 <img src={GreenDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Выполнено (3)</span>
-                <Paper className={classes.taskCard}>
+                <span className={classes.title}>Выполнено (0)</span>
+                {/* <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
                   <div>
                     <img src={GreenDot} className={classes.taskDot}></img>
@@ -375,12 +393,12 @@ export default function AutoGrid() {
                     <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
                     <span className={classes.progress}>В работе 10 дней</span>
                   </div>
-                </Paper>
+                </Paper> */}
               </Grid>
               <Grid item xs={3}>
                 <img src={RedDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Просрочено (1)</span>
-                <Paper className={classes.taskCard}>
+                <span className={classes.title}>Просрочено (0)</span>
+                {/* <Paper className={classes.taskCard}>
                   <span className={classes.address}>ул. Фёдора Абрамова, 19 к1</span>
                   <div>
                     <img src={RedDot} className={classes.taskDot}></img>
@@ -391,7 +409,7 @@ export default function AutoGrid() {
                     <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
                     <span className={classes.progress}>В работе 10 дней</span>
                   </div>
-                </Paper>
+                </Paper> */}
               </Grid>
             </Grid>
           </Box>
