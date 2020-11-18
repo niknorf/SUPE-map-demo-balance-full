@@ -26,7 +26,7 @@ import PropTypes from "prop-types";
 import grey_marker from "../img/grey.png";
 import orange_marker from "../img/orange.png";
 import red_marker from "../img/red.png";
-import table_data from "../data/bu_bd.json";
+import table_data from "../data/BU_BD_v2.json";
 import yellow_marker from "../img/yellow.png";
 
 function createData(
@@ -274,7 +274,7 @@ export default function EnhancedTable(props) {
         percent_probability,
         percent_type,
         "Безучетное потребление",
-        "Добавить акт",
+        "Добавить обратную связь",
         "Новое",
         item.SPARK,
         item.TP,

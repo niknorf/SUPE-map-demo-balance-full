@@ -9,8 +9,8 @@ import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
 import BuBdTable from "./BuBdTable";
-import {MainChartCards} from "./MainChartCards";
-import {MainChartHome} from "./MainChartHome";
+import { MainChartCards } from "./MainChartCards";
+import { MainChartHome } from "./MainChartHome";
 import graphOne from "../img/graph-one.png";
 import graphTwo from "../img/graph-two.png";
 import pieChart from "../img/pie-chart.png";
@@ -122,6 +122,14 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "auto",
     },
   },
+  mainChartTitle: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  mainChartTitleText: {
+    fontFamily: "PFDinTextCondPro-Regular !important",
+    color: '#818E9B'
+  }
 }));
 
 export default function Home() {
@@ -198,12 +206,15 @@ export default function Home() {
         <Grid item xs={6} spacing={3} className={classes.firstColumn}>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphOne)}>
-            <MainChartCards/>
+              <MainChartCards />
             </Paper>
           </Grid>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={clsx(classes.graphPaper, classes.graphTwo)}>
-              <MainChartHome/>
+              <MainChartHome />
+              <div className={classes.mainChartTitle}>
+                <span className={classes.mainChartTitleText}>Статитстика создания новых заданий</span>
+              </div>
             </Paper>
           </Grid>
         </Grid>
@@ -211,17 +222,17 @@ export default function Home() {
           <Box className={classes.boxPaper}>
             <Grid container spacing={3}>
               <Grid item xs={6}>
-            <ButtonTasks />
+                <ButtonTasks />
                 <ButtonBuBd />
               </Grid>
               <Grid item xs={6}>
-            <ButtonBalance />
+                <ButtonBalance />
                 <ButtonPost />
               </Grid>
             </Grid>
           </Box>
           <Paper className={classes.bubdTable}>
-            <BuBdTable rowsPerPage={5}/>
+            <BuBdTable rowsPerPage={5} />
           </Paper>
         </Grid>
       </Grid>

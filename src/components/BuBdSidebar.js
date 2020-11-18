@@ -206,7 +206,7 @@ export default function SimplePaper() {
     <Popup
       className="act-popup"
       trigger={<Button variant="contained" color="primary" className={classes.showActButton}>
-      Посмотреть акт
+      Посмотреть обратную связь
     </Button>}
       modal
       nested
@@ -302,14 +302,6 @@ export default function SimplePaper() {
           </Box>
           <Box className={classes.infoItem}>
             <Typography className={classes.property}>
-              Точка присоединения: &nbsp;
-          </Typography>
-            <Typography className={classes.value}>
-              TBA
-          </Typography>
-          </Box>
-          <Box className={classes.infoItem}>
-            <Typography className={classes.property}>
               ТП: &nbsp;
             </Typography>
             <Typography className={classes.value}>
@@ -318,10 +310,26 @@ export default function SimplePaper() {
           </Box>
           <Box className={clsx(classes.infoItem, classes.comment)}>
             <Typography className={classes.property}>
+              Информация: &nbsp;
+            </Typography>
+            <Typography className={classes.value}>
+              {globalState.markerValue.information}
+            </Typography>
+          </Box>
+          <Box className={classes.infoItem}>
+            <Typography className={classes.property}>
+              Количество этажей: &nbsp;
+            </Typography>
+            <Typography className={classes.value}>
+              {globalState.markerValue.floors}
+            </Typography>
+          </Box>
+          <Box className={clsx(classes.infoItem, classes.comment)}>
+            <Typography className={classes.property}>
               Коментарии: &nbsp;
             </Typography>
             <Typography className={classes.value}>
-              на основе анализа актов БУ и БД, небалансов, наличие нежелых помещений
+              {globalState.markerValue.comments}
             </Typography>
           </Box>
         </Box>
