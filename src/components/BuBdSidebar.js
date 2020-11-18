@@ -326,7 +326,7 @@ export default function SimplePaper() {
           </Box>
           <Box className={clsx(classes.infoItem, classes.comment)}>
             <Typography className={classes.property}>
-              Коментарии: &nbsp;
+              Комментарии: &nbsp;
             </Typography>
             <Typography className={classes.value}>
               {globalState.markerValue.comments}
