@@ -278,13 +278,15 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          layerRef.current.leafletElement.clearLayers().addData(result);
-          setLayer(result);
-          setLoading(false);
-          let bounds = layerRef.current.leafletElement.getBounds();
-          if (bounds.isValid()) {
-            mapRef.current.leafletElement.flyToBounds(bounds);
-          }
+          if(layerRef.current !== null){
+            layerRef.current.leafletElement.clearLayers().addData(result);
+            setLayer(result);
+            setLoading(false);
+            let bounds = layerRef.current.leafletElement.getBounds();
+            if (bounds.isValid()) {
+              mapRef.current.leafletElement.flyToBounds(bounds);
+            }
+        }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow

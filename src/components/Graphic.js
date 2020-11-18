@@ -431,7 +431,7 @@ const DisplayBarChart = ({ type, obj_name, resultData }) => {
       <InfoWindow label="Извините, недостаточно данных для расчета " icon="info" />
     ] : [
       <Plot
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "500px" }}
         // useResizeHandler
         data={type.data}
         layout={type.layout}

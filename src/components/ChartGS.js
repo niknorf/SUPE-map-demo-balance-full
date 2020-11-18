@@ -220,7 +220,7 @@ const DisplaySepparateChart = ({ resultData }) => {
       ]
     : [
         <Plot
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "500px" }}
           data={psk_seppate.data}
           layout={psk_seppate.layout}
           config={psk_seppate.config}
@@ -282,7 +282,7 @@ const DisplaySummedChart = ({ resultData }) => {
       ]
     : [
         <Plot
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "500px" }}
           // useResizeHandler
           data={psk_sum.data}
           layout={psk_sum.layout}

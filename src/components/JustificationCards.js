@@ -138,6 +138,7 @@ const column_title_font = {
 
 const JustificationCards = () => {
   const [indexesData, setIndexes] = useState({});
+  const [firstCard, setFirstCard] = useState('');
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
@@ -169,6 +170,22 @@ const JustificationCards = () => {
             // setError(error);
           }
         );
+
+        fetch(
+          "/api/Results/GetBalanceGroupMeterpointStats/" + globalState.balance_index
+        )
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              const found = result.find(element => element.month === 9);
+              setFirstCard(found.percent);
+              // setLoading(false);
+            },
+            (error) => {
+              // setLoading(true);
+              // setError(error);
+            }
+          );
     }
   }, [globalState.balance_index]);
 
@@ -212,6 +229,7 @@ const JustificationCards = () => {
               <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
                 <Box className={classes.paddingsCardBox}>
                   <DisplayPieChart
+                    firstCard={firstCard}
                     month={7}
                     balance_index={globalState.balance_index}
                     indexes={indexesData}
@@ -226,7 +244,7 @@ const JustificationCards = () => {
   );
 };
 
-const DisplayPieChart = ({ month, balance_index, indexes }) => {
+const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
   const classes = useStyles();
 
   /*TODO to remove*/
@@ -326,17 +344,17 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
       <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
         <Box
           className={`${classes.boxStyle}`}
-          style={boxStyle(indexes.percent_transmission_pu, 80, "<")}
+          style={boxStyle(firstCard, 80, "<")}
         >
           <Typography className={classes.boxTopText}>
             Процент передачи показаний приборов технического учета за месяц
           </Typography>
 
           <Typography
-            style={textStyle(indexes.percent_transmission_pu, 80, "<")}
+            style={textStyle(firstCard, 80, "<")}
             className={classes.boxMiddleText}
           >
-            {textValue(indexes.percent_transmission_pu)}
+            {textValue(firstCard)}
           </Typography>
         </Box>
       </Grid>
@@ -380,13 +398,13 @@ const DisplayPieChart = ({ month, balance_index, indexes }) => {
         </Box>
       </Grid>
       <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
-        <Box className={classes.boxStyle} style={boxStyle(0)}>
+        <Box className={classes.boxStyle} style={boxStyle(indexes.trust_index_psk_urik)}>
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний юридических лиц гарантирующих
             поставщиков
           </Typography>
-          <Typography className={classes.boxMiddleText} style={textStyle(0)}>
-            {textValue(0)}
+          <Typography className={classes.boxMiddleText} style={textStyle(indexes.trust_index_psk_urik)}>
+            {textValue(indexes.trust_index_psk_urik)}
           </Typography>
         </Box>
       </Grid>
