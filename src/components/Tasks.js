@@ -211,6 +211,8 @@ export default function AutoGrid() {
     console.log(taskCount.current.childNodes.length)
   }
 
+  // Counter 
+
   // useEffect(() => {
   //   taskCount.current = taskCount
   // })
@@ -225,21 +227,23 @@ export default function AutoGrid() {
       nested
     >
       {close => (
+        
         <div className="modal">
+        {tasks.map((task) => (
           <div className="content">
             <div className="top">
               <img src={BlueDot} className={classes.taskDot}></img>
               <span className={classes.new}>Новое</span>
               <span className={classes.status}>Изменить статус</span>
-              <span className={classes.taskNumPopup}>Задание №1334</span>
+              <span className={classes.taskNumPopup}>Задание №{task.id}</span>
             </div>
             <div className={classes.addressPopup}>
-              <span className={classes.addressText}>ул. Фёдора Абрамова, 19 к1</span>
+              <span className={classes.addressText}>{task.fiasAddress}</span>
             </div>
             <Grid container spacing={3}>
               <Grid item xs={6} className={classes.columnsPopup}>
                 <span className={classes.columnTitle}>Дата и время</span>
-                <span className={classes.columnContent}>14:00, 16 Дек 2020</span>
+                <span className={classes.columnContent}>{task.date}</span>
               </Grid>
               <Grid item xs={6} className={classes.columnsPopup}>
                 <span className={classes.columnTitle}>Исполнитель</span>
@@ -252,7 +256,7 @@ export default function AutoGrid() {
             </div>
             <div className={classes.fullWidth}>
               <span className={classes.fullWidthTitle}>Причина создания заявки:</span>
-              <span className={classes.fullWidthContent}>Возможное безучетно потребление физ. лица. Требуется проверка исполнителя.</span>
+              <span className={classes.fullWidthContent}>{task.descriptionTask}</span>
             </div>
             <div className={classes.buttons}>
               <Button variant="outlined" color="primary" className={classes.exitButton}>
@@ -264,6 +268,7 @@ export default function AutoGrid() {
             </div>
             <span className={classes.note}>* чтобы отправить обратную связь, измените статус задания на “В процессе”</span>
           </div>
+          ))}
         </div>
       )}
     </Popup>
@@ -322,7 +327,7 @@ export default function AutoGrid() {
                         <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
                         <span className={classes.progress}>{task.date}</span>
                       </div>
-                      {/* <TaskPopup /> */}
+                      <TaskPopup />
                     </Paper>
                   ))}
                 </div>
