@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   boxPaper: {
     display: "flex",
   },
-  graph: {
+  graphTwoGrid: {
     marginTop: "24px",
   },
   graphPaper: {
@@ -209,7 +209,7 @@ export default function Home() {
               <MainChartCards />
             </Paper>
           </Grid>
-          <Grid item xs={12} className={classes.graph}>
+          <Grid item xs={12} className={classes.graphTwoGrid}>
             <Paper className={clsx(classes.graphPaper, classes.graphTwo)}>
               <MainChartHome />
               <div className={classes.mainChartTitle}>
