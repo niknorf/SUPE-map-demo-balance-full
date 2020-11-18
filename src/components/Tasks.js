@@ -227,47 +227,48 @@ export default function AutoGrid() {
       nested
     >
       {close => (
-        
-        <div className="modal">
-        {tasks.map((task) => (
-          <div className="content">
-            <div className="top">
-              <img src={BlueDot} className={classes.taskDot}></img>
-              <span className={classes.new}>Новое</span>
-              <span className={classes.status}>Изменить статус</span>
-              <span className={classes.taskNumPopup}>Задание №{task.id}</span>
-            </div>
-            <div className={classes.addressPopup}>
-              <span className={classes.addressText}>{task.fiasAddress}</span>
-            </div>
-            <Grid container spacing={3}>
-              <Grid item xs={6} className={classes.columnsPopup}>
-                <span className={classes.columnTitle}>Дата и время</span>
-                <span className={classes.columnContent}>{task.date}</span>
-              </Grid>
-              <Grid item xs={6} className={classes.columnsPopup}>
-                <span className={classes.columnTitle}>Исполнитель</span>
-                <span className={classes.columnContent}>Иванов Константин</span>
-              </Grid>
-            </Grid>
-            <div className={classes.fullWidth}>
-              <span className={classes.fullWidthTitle}>Описание обьекта:</span>
-              <span className={classes.fullWidthContent}>Жилое помещение в многоквартирном доме, находится на первом этаже.</span>
-            </div>
-            <div className={classes.fullWidth}>
-              <span className={classes.fullWidthTitle}>Причина создания заявки:</span>
-              <span className={classes.fullWidthContent}>{task.descriptionTask}</span>
-            </div>
-            <div className={classes.buttons}>
-              <Button variant="outlined" color="primary" className={classes.exitButton}>
-                Выйти
+        <div>
+          {tasks.map((task) => (
+            <div className="modal">
+              <div className="content">
+                <div className="top">
+                  <img src={BlueDot} className={classes.taskDot}></img>
+                  <span className={classes.new}>Новое</span>
+                  <span className={classes.status}>Изменить статус</span>
+                  <span className={classes.taskNumPopup}>Задание №{task.id}</span>
+                </div>
+                <div className={classes.addressPopup}>
+                  <span className={classes.addressText}>{task.fiasAddress}</span>
+                </div>
+                <Grid container spacing={3}>
+                  <Grid item xs={6} className={classes.columnsPopup}>
+                    <span className={classes.columnTitle}>Дата и время</span>
+                    <span className={classes.columnContent}>{task.date}</span>
+                  </Grid>
+                  <Grid item xs={6} className={classes.columnsPopup}>
+                    <span className={classes.columnTitle}>Исполнитель</span>
+                    <span className={classes.columnContent}>Иванов Константин</span>
+                  </Grid>
+                </Grid>
+                <div className={classes.fullWidth}>
+                  <span className={classes.fullWidthTitle}>Описание обьекта:</span>
+                  <span className={classes.fullWidthContent}>Жилое помещение в многоквартирном доме, находится на первом этаже.</span>
+                </div>
+                <div className={classes.fullWidth}>
+                  <span className={classes.fullWidthTitle}>Причина создания заявки:</span>
+                  <span className={classes.fullWidthContent}>{task.descriptionTask}</span>
+                </div>
+                <div className={classes.buttons}>
+                  <Button variant="outlined" color="primary" className={classes.exitButton}>
+                    Выйти
               </Button>
-              <Button variant="contained" color="primary" className={classes.feedbackButton}>
-                Обратная связь
+                  <Button variant="contained" color="primary" className={classes.feedbackButton}>
+                    Обратная связь
               </Button>
+                </div>
+                <span className={classes.note}>* чтобы отправить обратную связь, измените статус задания на “В процессе”</span>
+              </div>
             </div>
-            <span className={classes.note}>* чтобы отправить обратную связь, измените статус задания на “В процессе”</span>
-          </div>
           ))}
         </div>
       )}
