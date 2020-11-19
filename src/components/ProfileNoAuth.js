@@ -149,13 +149,13 @@ export default function ProfileNoAuth() {
                 </Box>
                 <Box className={classes.data}>
                   <Box>
-                    Константин
+                    Максим
                 </Box>
                   <Box>
                     Владимирович
                 </Box>
                   <Box>
-                    Иванов
+                    Щербаков
                 </Box>
                   <Box>
                     Диспетчер

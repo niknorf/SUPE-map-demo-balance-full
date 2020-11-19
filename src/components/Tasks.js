@@ -277,7 +277,7 @@ export default function AutoGrid() {
         <Grid item xs={3}>
           <Paper className={classes.paperPanel}>
             <AccountCircleOutlinedIcon style={{ fontSize: 39, marginBottom: '16px' }} />
-            <span style={{ fontSize: '20px', lineHeight: '25px', marginBottom: '3px' }}>Сидоров Егор Павлович</span>
+            <span style={{ fontSize: '20px', lineHeight: '25px', marginBottom: '3px' }}>Щербаков Максим Владимирович</span>
             <span style={{ fontSize: '14px', lineHeight: '17px', marginBottom: '21px' }}>Менеджер</span>
           </Paper>
         </Grid>
