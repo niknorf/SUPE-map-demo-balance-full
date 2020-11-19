@@ -214,7 +214,7 @@ export default function SimplePaper() {
       {close => (
         <div className="modal">
           <div className="act-content">
-            <span className="act-title">Акт о неучетном (безучетном) потреблении электроэнергии</span>
+            <span className="act-title">Обратная связь</span>
             <div className="address-box">
               <span class="address">Адрес: </span>
               <span class="address-value">{globalState.markerValue.address}</span>
@@ -252,11 +252,11 @@ export default function SimplePaper() {
               variant="filled"
             />
             <div className="buttons-bottom">
-              <Button className="button-button first" variant="outlined" color="primary">
+              <Button className="button-button first" variant="outlined" color="primary" onClick={() => {close();}}>
                 Вернуться к карте БУ/БД
               </Button>
               <Button className="button-button second" variant="contained" color="primary">
-                Отправить акт
+                Отправить обратную связь
               </Button>
             </div>
             <Typography className="note">
