@@ -45,41 +45,17 @@ const NonPhantomicBuildingstyle = {
 };
 
 const LineStyle = {
-  // fillColor: "rgba(37, 47, 74, 0.24)",
   weight: 2,
   opacity: 1,
   color: "#EC8041", //Outline color
 };
 
 const TStyle = {
-  fillColor: "rgba(37, 47, 74, 0.24)",
+  fillColor: "rgba(140, 148, 158, 0.19)",
   weight: 1,
   opacity: 1,
-  color: "#252F4A", //Outline color
+  color: "#8C949E", //Outline color
   fillOpacity: 0.7,
-};
-
-const PhantomicBuilding = (fiasId, mapRef) => {
-  let final_array = [];
-
-  final_array = GetSingleBuildingByFiasId(fiasId);
-
-  const phantomicLayerAdded = (event) => {
-    let bounds = event.target.getBounds();
-    mapRef.current.leafletElement.fitBounds(bounds);
-  };
-
-  const phantomicLayerRemoved = (event) => {};
-
-  return (
-    <GeoJSON
-      key={fiasId}
-      data={final_array}
-      onAdd={phantomicLayerAdded}
-      onRemove={phantomicLayerRemoved}
-      style={PhantomicBuildingstyle}
-    />
-  );
 };
 
 const DisplayMultipleBalanceGroups = (globalState) => {
@@ -361,8 +337,6 @@ const GeneralMap = () => {
   };
 
   useEffect(() => {
-    // setLoading(true);
-
     callManager(globalState, layerRef);
   }, [globalState.balance_index, globalState.fiasId]);
 
@@ -372,8 +346,10 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          substationsRef.current.leafletElement.clearLayers().addData(result);
-          setSubstation(result);
+          if(substationsRef.current !== null){
+            substationsRef.current.leafletElement.clearLayers().addData(result);
+            setSubstation(result);
+          }
           setLoading(false);
         },
         // Note: it's important to handle errors here
@@ -421,7 +397,7 @@ const GeneralMap = () => {
             key={"ts_polygons"}
             data={substationData}
             ref={substationsRef}
-            style={style_main}
+            style={TStyle}
           />
           <GeoJSON
             key="dynamic_layer"

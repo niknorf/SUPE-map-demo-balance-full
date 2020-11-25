@@ -208,12 +208,17 @@ const BalanceGroup = () => {
                   direction="row"
                   wrap="wrap"
                 >
-                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
+                  <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                    <SearchComponent />
+                  </Grid>
+
+                  {/* Comment out when TSSearch will be working
+                     <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
                     <SearchComponent />
                   </Grid>
                   <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
                     <TsSearchComponent />
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </Container>
             </Paper>

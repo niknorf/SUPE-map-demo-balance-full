@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
@@ -14,12 +14,18 @@ import {
   TableFooter,
   TablePagination,
   TableRow,
+  Link,
+  Button,
+  Icon,
   useMediaQuery,
 } from "@material-ui/core";
+import ReactToPrint from "react-to-print";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
+import icon_print from "../img/printer.svg";
+import "../css/print.css";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -98,7 +104,6 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
 const useStyles2 = makeStyles({
   table: {
     // minHeight: 500,
@@ -120,9 +125,26 @@ const useStyles2 = makeStyles({
   },
   headCellStyle: {
     fontWeight: "bold",
-    lineHeight: '15px',
+    lineHeight: "15px",
     color: "#252F4A",
-    fontFamily: 'PF Din Text Cond Pro'
+    fontFamily: "PF Din Text Cond Pro",
+  },
+  link: {
+    display: "flex",
+    color: "#252F4A",
+    textDecoration: "underline",
+    paddingLeft: "17px",
+    paddingBottom: "17px",
+    paddingTop: "10px",
+    textTransform: "none",
+  },
+
+  linkBox: {
+
+  },
+  imageIcon: {
+    width: 16,
+    height: 16,
   },
 });
 
@@ -198,14 +220,16 @@ function EnhancedTableHead(props) {
 }
 
 export default function TableTemplate(props) {
-  const [page, setPage] = React.useState(0);
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState(props.orderBy);
+  const [page, setPage] = useState(0);
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState(props.orderBy);
+  const componentRef = useRef();
   const classes = useStyles2();
 
   const rows = props.rows;
   const headCells = props.columns;
-  const rowsPerPage = typeof props.rowsPerPage !== 'undefined' ? props.rowsPerPage : 5;
+  const rowsPerPage =
+    typeof props.rowsPerPage !== "undefined" ? props.rowsPerPage : 5;
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -220,8 +244,33 @@ export default function TableTemplate(props) {
     setOrderBy(property);
   };
 
+  const displayNone = {
+    display: "none",
+  };
+
+  function TableToPrint() {
+    let rowsPerPagePrint = 50;
+
+    return (
+      <div style={{ display: "none" }}>
+        <TableContainer className={classes.tableContainer} ref={componentRef}>
+          <Table className={classes.table} aria-label="custom pagination table">
+            <EnhancedTableHead
+              classes={classes}
+              order={order}
+              orderBy={orderBy}
+              rowCount={rows.length}
+              headCells={headCells}
+            />
+            <TableBody>{rows.map((row) => props.rowsSettings(row))}</TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  }
+
   return (
-    // <>
+    <>
       <TableContainer className={classes.tableContainer}>
         <Table className={classes.table} aria-label="custom pagination table">
           <EnhancedTableHead
@@ -239,20 +288,7 @@ export default function TableTemplate(props) {
                   page * rowsPerPage + rowsPerPage
                 )
               : rows
-            ).map((row) => (
-              props.rowsSettings(row)
-              // <TableRow key={row.balanceGroup} hover>
-              //   <TableCell component="th" scope="row" style={{ width: 400 }}>
-              //     Балансовая группа №{row.balanceGroup}
-              //   </TableCell>
-              //   <TableCell style={{ width: 40 }} align="right">
-              //     {(Math.round(row.imbalancePercent *100)/100).toFixed(2)}
-              //   </TableCell>
-              //   <TableCell style={{ width: 40 }} align="right">
-              //     {(Math.round(row.imbalanceKwh *100)/100).toFixed(2)}
-              //   </TableCell>
-              // </TableRow>
-            ))}
+            ).map((row) => props.rowsSettings(row))}
 
             {emptyRows > 0 && (
               <TableRow style={{ height: 54 * emptyRows }}>
@@ -274,6 +310,16 @@ export default function TableTemplate(props) {
           </TableFooter>
         </Table>
       </TableContainer>
-    // </>
+      <TableToPrint />
+      <ReactToPrint
+        trigger={() =>         <Button
+                  className={classes.link}
+                  startIcon={<img className={classes.imageIcon} src={icon_print} alt="" />}
+                >
+                  Распечатать
+                </Button>}
+        content={() => componentRef.current}
+      />
+    </>
   );
 }

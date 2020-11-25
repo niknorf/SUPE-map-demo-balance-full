@@ -21,6 +21,7 @@
     "react-plotly.js": "^2.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
+    "react-to-print": "^2.11.0",
     "react-virtualized": "^9.22.2",
     "reactjs-popup": "^2.0.3",
     "styled-components": "^5.1.1"
