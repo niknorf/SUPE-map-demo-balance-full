@@ -225,7 +225,7 @@ export default function Home() {
             <BuBdTable rowsPerPage={5} topFive={true}/>
           </Paper>
           <Paper className={classes.bubdTable}>
-            <BalanceGroupList rowsPerPage={5} topFive={true} order="desc" orderBy="imbalanceKwh"/>
+            <BalanceGroupList rowsPerPage={5} topFive={true} order="asc" orderBy="imbalanceKwh"/>
           </Paper>
         </Grid>
       </Grid>

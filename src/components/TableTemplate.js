@@ -230,8 +230,20 @@ export default function TableTemplate(props) {
   const headCells = props.columns;
 
   if(typeof props.topFive !== 'undefined' && props.topFive === true){
-    let sortedData = stableSort(rows, getComparator(order, orderBy));
-    rows = sortedData.slice(0, 5)
+    if(orderBy === 'imbalanceKwh'){
+      rows.sort(function(a, b){
+        if(a.imbalance_kwh > b.imbalance_kwh) return -1;
+        if(a.imbalance_kwh < b.imbalance_kwh) return 1;
+
+        return 0;
+
+      });
+      rows = rows.slice(0, 5);
+    }else{
+        let sortedData = stableSort(rows, getComparator(order, orderBy));
+          rows = sortedData.slice(0, 5)
+    }
+
   }
   const rowsPerPage =
     typeof props.rowsPerPage !== "undefined" ? props.rowsPerPage : 5;
