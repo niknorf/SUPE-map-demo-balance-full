@@ -221,13 +221,18 @@ function EnhancedTableHead(props) {
 
 export default function TableTemplate(props) {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState("asc");
+  const [order, setOrder] = useState(props.order);
   const [orderBy, setOrderBy] = useState(props.orderBy);
   const componentRef = useRef();
   const classes = useStyles2();
 
-  const rows = props.rows;
+  let rows = props.rows;
   const headCells = props.columns;
+
+  if(typeof props.topFive !== 'undefined' && props.topFive === true){
+    let sortedData = stableSort(rows, getComparator(order, orderBy));
+    rows = sortedData.slice(0, 5)
+  }
   const rowsPerPage =
     typeof props.rowsPerPage !== "undefined" ? props.rowsPerPage : 5;
 

@@ -14,7 +14,7 @@ import InfoWindow from "./InfoWindow.js";
 
 const useStyles = makeStyles((theme) => ({}));
 
-const BalanceGroupList = () => {
+const BalanceGroupList = (props) => {
   const classes = useStyles();
   const [rows, setBgContent] = useState([]);
   const { globalState, globalDispach } = useContext(Contex);
@@ -23,6 +23,10 @@ const BalanceGroupList = () => {
   let width = useWidth();
 
   width === "md" ? (rowsPerPage = 10) : (rowsPerPage = 11);
+
+  if(typeof props.rowsPerPage !== 'undefined'){
+    rowsPerPage = props.rowsPerPage;
+  }
 
   useEffect(() => {
     fetch("/api/Results/GetResImbalanceFrontKWH")
@@ -56,7 +60,7 @@ const BalanceGroupList = () => {
   const tableColumns = [
     {
       id: "balance_id",
-      numeric: true,
+      numeric: false,
       disablePadding: false,
       label: "Балансовая группа",
     },
@@ -80,7 +84,7 @@ const BalanceGroupList = () => {
         hover
         onClick={(event) => handleRowClick(event, row)}
       >
-        <TableCell component="th" scope="row" style={{ width: 400 }}>
+        <TableCell component="th" scope="row" style={{ width: 400 }} align="left">
           Балансовая группа №{row.balance_id}
         </TableCell>
         <TableCell style={{ width: 40 }} align="right">
@@ -114,7 +118,9 @@ const BalanceGroupList = () => {
           columns={tableColumns}
           rowsSettings={BalanceTableRows}
           rowsPerPage={rowsPerPage}
-          orderBy="balance_id"
+          topFive={props.topFive}
+          order={props.order}
+          orderBy={props.orderBy}
         />,
       ]
     : [<InfoWindow label="Нет данных" icon="info" />];

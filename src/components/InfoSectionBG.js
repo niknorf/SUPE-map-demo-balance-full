@@ -26,7 +26,6 @@ import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { BalanceGroupContent } from "./ISTBalanceGroupContent.js";
-import TableTemplate from "./TableTemplate";
 import { MeteringDevices } from "./ISTMeteringDevices.js";
 import { BDProbability } from "./ISTBUBDProbability.js";
 import Contex from "../store/context";

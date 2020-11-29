@@ -9,6 +9,7 @@ import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
 import BuBdTable from "./BuBdTable";
+import { BalanceGroupList } from "./BalanceTable";
 import { MainChartCards } from "./MainChartCards";
 import { MainChartHome } from "./MainChartHome";
 import graphOne from "../img/graph-one.png";
@@ -107,20 +108,9 @@ const useStyles = makeStyles((theme) => ({
     width: "120%",
   },
   bubdTable: {
+    paddingLeft: "15px",
     marginTop: "24px",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    "& .MuiTable-root": {
-      minWidth: "auto",
-    },
-    "& .MuiTableContainer-root": {
-      paddingRight: 0,
-      display: "flex",
-      flexDirection: "column",
-      overflowY: 'hidden',
-    },
-    "& .MuiTablePagination-toolbar-107": {
-      marginTop: "auto",
-    },
   },
   mainChartTitle: {
     display: 'flex',
@@ -232,7 +222,10 @@ export default function Home() {
             </Grid>
           </Box>
           <Paper className={classes.bubdTable}>
-            <BuBdTable rowsPerPage={5} />
+            <BuBdTable rowsPerPage={5} topFive={true}/>
+          </Paper>
+          <Paper className={classes.bubdTable}>
+            <BalanceGroupList rowsPerPage={5} topFive={true} order="desc" orderBy="imbalanceKwh"/>
           </Paper>
         </Grid>
       </Grid>

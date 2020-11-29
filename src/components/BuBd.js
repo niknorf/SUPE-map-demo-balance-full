@@ -180,7 +180,7 @@ export default function CenteredGrid() {
 
   else if (globalState.isOpenSidebar == false) {
     displayedObject = <Grid item xs={5}>
-      <Paper className={classes.paper}><BuBdTable /></Paper>
+      <Paper className={classes.paper}><BuBdTable rowsPerPage={10} topFive={false}/></Paper>
     </Grid>;
 
     return (

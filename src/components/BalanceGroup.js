@@ -26,7 +26,6 @@ import { ImbalancePskPu } from "./ImbalancePskPu";
 import { InfoSection } from "./InfoSectionBG";
 import { BalanceGroupList } from "./BalanceTable";
 import { SearchComponent, TsSearchComponent } from "./FilterComponent";
-import TableTemplate from "./TableTemplate";
 import GeneralMap from "./MapBG";
 import Contex from "../store/context";
 import PFDinRegularWoff from "../fonts/PFDinTextCondPro-Regular.woff";
@@ -231,7 +230,7 @@ const BalanceGroup = () => {
           {/* style={{ height: "100%" }} */}
           <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
             <Paper elevation={1} style={{ height: "100%" }}>
-              <BalanceGroupList />
+              <BalanceGroupList order="asc" orderBy="balance_id"/>
             </Paper>
           </Grid>
           {/* Infor section */}
