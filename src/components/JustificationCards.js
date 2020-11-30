@@ -177,8 +177,10 @@ const JustificationCards = () => {
           .then((res) => res.json())
           .then(
             (result) => {
-              const found = result.find(element => element.month === 9);
-              setFirstCard(found.percent);
+              if(Array.isArray(result)){
+                const found = result.find(element => element.month === 9);
+                setFirstCard(found.percent);
+              }
               // setLoading(false);
             },
             (error) => {
