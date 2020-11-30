@@ -78,6 +78,12 @@ const GuaranteedSuppliers = (props) => {
   //   });
   // }, []);
 
+  // useEffect(() => {
+  //   globalDispach({
+  //     type: "FILTERCOMPONENT",
+  //     fiasId: '5d3752f0-6899-4ad5-817f-3f32dbad8930',
+  //   });
+  // }, []);
   useEffect(() => {
     globalDispach({
       type: "FILTERCOMPONENT",

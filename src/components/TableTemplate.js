@@ -230,10 +230,10 @@ export default function TableTemplate(props) {
   const headCells = props.columns;
 
   if(typeof props.topFive !== 'undefined' && props.topFive === true){
-    if(orderBy === 'imbalanceKwh'){
+    if(orderBy === 'imbalancePercent'){
       rows.sort(function(a, b){
-        if(a.imbalance_kwh > b.imbalance_kwh) return -1;
-        if(a.imbalance_kwh < b.imbalance_kwh) return 1;
+        if(a.imbalance_percent > b.imbalance_percent) return -1;
+        if(a.imbalance_percent < b.imbalance_percent) return 1;
 
         return 0;
 

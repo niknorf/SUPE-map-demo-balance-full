@@ -128,9 +128,6 @@ const BottomSectionGS = () => {
 
     if (globalState.fiasId !== "" && api_url !== "") {
 
-      console.log(api_url, legalType);
-
-      console.log(globalState.fiasId);
       setLoading(true);
       fetch(api_url)
         .then((res) => res.json())
@@ -456,7 +453,7 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
     mode: 'lines',
     type: 'scatter',
     line: {
-        shape: 'hv',
+        // shape: 'hv',
         color: '#252F4A',
         width: 2
       }
@@ -493,11 +490,9 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
   if (obj_name === "entity") {
     type = urik_seppate;
   }
-  console.log();
   if (obj_name === "population") {
     type = fiz_seppate;
   }
-
 
 let meanData = 0;
 const meanValue = '50%';
@@ -533,32 +528,39 @@ const meanValue = '50%';
 
   if(checkBoxSelected.average){
     if(average.length > 0){
+          average.sort(function(a, b){
+      if(a.quarter > b.quarter) return -1;
+      if(a.quarter < b.quarter) return 1;
+
+      return 0;
+
+    });
       for(let i=0; i<average.length; i++){
         if(average[i].psk_type === obj_name){
           if(average[i].quarter === 1){
+            averageTrace.x.push(quarte1End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.x.push(quarte1Start);
-            // averageTrace.x.push(quarte1End);
-            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
-          }
-          if(average[i].quarter === 2){
+
+          }else if(average[i].quarter === 2){
+            averageTrace.x.push(quarte2End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.x.push(quarte2Start);
-            // averageTrace.x.push(quarte2End);
-            //
-            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
-          }
-          if(average[i].quarter === 3){
+
+          }else if(average[i].quarter === 3){
+            averageTrace.x.push(quarte3End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.x.push(quarte3Start);
-            // averageTrace.x.push(quarte3End);
-            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
-          }
-          if(average[i].quarter === 4){
+
+          }else if(average[i].quarter === 4){
+            averageTrace.x.push(quarte4End);
+            averageTrace.y.push(average[i].mean);
             averageTrace.x.push(quarte4Start);
-            // averageTrace.x.push(quarte4End);
-            // averageTrace.y.push(average[i].mean);
             averageTrace.y.push(average[i].mean);
+
           }
         }
       }
@@ -624,8 +626,6 @@ const meanValue = '50%';
     type.data[0].x = [];
     type.data[0].y = [];
   }
-
-  // console.log(type.layout);
 
   return empty_data
     ? [
