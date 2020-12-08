@@ -192,7 +192,7 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-            if(typeof result.properties !== 'undefined'){
+            if(typeof result.properties !== 'undefined' && layerRef.current !== null){
               layerRef.current.leafletElement.clearLayers().addData(result);
               setLayer(result);
               setLoading(false);
@@ -220,18 +220,17 @@ const GeneralMap = () => {
                 .then((res) => res.json())
                 .then(
                   (result) => {
-                    console.log(result);
-                    layerRef.current.leafletElement.clearLayers().addData(result);
-                    setLayer(result);
-                    setLoading(false);
-                    let bounds = layerRef.current.leafletElement.getBounds();
-                    if (bounds.isValid()) {
-                      mapRef.current.leafletElement.flyToBounds(bounds);
+                    if(layerRef.current !== null){
+                      layerRef.current.leafletElement.clearLayers().addData(result);
+                      setLayer(result);
+                      setLoading(false);
+                      let bounds = layerRef.current.leafletElement.getBounds();
+                      if (bounds.isValid()) {
+                        mapRef.current.leafletElement.flyToBounds(bounds);
+                      }
                     }
+
                   },
-                  // Note: it's important to handle errors here
-                  // instead of a catch() block so that we don't swallow
-                  // exceptions from actual bugs in components.
                   (error) => {
                     setLoading(true);
                     setError(error);
@@ -279,12 +278,14 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          layerRef.current.leafletElement.clearLayers().addData(result);
-          setLayer(result);
-          setLoading(false);
-          let bounds = layerRef.current.leafletElement.getBounds();
-          if (bounds.isValid()) {
-            mapRef.current.leafletElement.flyToBounds(bounds);
+          if(layerRef.current !== null){
+            layerRef.current.leafletElement.clearLayers().addData(result);
+            setLayer(result);
+            setLoading(false);
+            let bounds = layerRef.current.leafletElement.getBounds();
+            if (bounds.isValid()) {
+              mapRef.current.leafletElement.flyToBounds(bounds);
+            }
           }
         },
         // Note: it's important to handle errors here
@@ -306,7 +307,6 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
           if (typeof result.balance_id !== "undefined") {
             balance_group_obj = {
               balance_index: result.balance_id,
