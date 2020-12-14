@@ -112,7 +112,9 @@ export default function CenteredGrid() {
         "http://keycloak.energo.ru/auth/realms/App/protocol/openid-connect/token",
       data: queryString.stringify(params),
       config: {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Access-Control-Allow-Origin": "*"
        },
       },
     })
