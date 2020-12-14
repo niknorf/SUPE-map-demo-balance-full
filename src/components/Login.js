@@ -113,6 +113,7 @@ export default function CenteredGrid() {
       data: queryString.stringify(params),
       config: {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+       },
       },
     })
       .then((response) => {
