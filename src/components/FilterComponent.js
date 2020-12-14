@@ -43,6 +43,7 @@ const TsSearchComponent = () => {
   const handleChange = (event, value) => {
     globalDispach({
       type: "FILTERCOMPONENT",
+      isLoggedIn: true, //TODO check the token
       balance_index_array: value === null ? "" : value.bg_index,
       objSelected: value === null ? false : true,
       obj_from: value === null ? "" : "ts_select",

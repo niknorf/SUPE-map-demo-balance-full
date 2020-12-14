@@ -194,6 +194,7 @@ export default function BuBdTable(props) {
       type: "BUBD",
       isOpenSidebar: true,
       markerValue: row,
+      isLoggedIn: true, //TODO check the token
     });
   };
 

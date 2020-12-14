@@ -447,7 +447,40 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
   let quarte3End = '2020-09-30';
   let quarte4Start = '2020-10-01';
   let quarte4End = '2020-12-31';
-  let averageTrace = {
+  let quater1 = {
+    x:[],
+    y:[],
+    mode: 'lines',
+    type: 'scatter',
+    line: {
+        // shape: 'hv',
+        color: '#252F4A',
+        width: 2
+      }
+  };
+  let quater2 = {
+    x:[],
+    y:[],
+    mode: 'lines',
+    type: 'scatter',
+    line: {
+        // shape: 'hv',
+        color: '#252F4A',
+        width: 2
+      }
+  };
+  let quater3 = {
+    x:[],
+    y:[],
+    mode: 'lines',
+    type: 'scatter',
+    line: {
+        // shape: 'hv',
+        color: '#252F4A',
+        width: 2
+      }
+  };
+  let quater4 = {
     x:[],
     y:[],
     mode: 'lines',
@@ -538,33 +571,33 @@ const meanValue = '50%';
       for(let i=0; i<average.length; i++){
         if(average[i].psk_type === obj_name){
           if(average[i].quarter === 1){
-            averageTrace.x.push(quarte1End);
-            averageTrace.y.push(average[i].mean);
-            averageTrace.x.push(quarte1Start);
-            averageTrace.y.push(average[i].mean);
+            quater1.x.push(quarte1End);
+            quater1.y.push(average[i].mean);
+            quater1.x.push(quarte1Start);
+            quater1.y.push(average[i].mean);
 
           }else if(average[i].quarter === 2){
-            averageTrace.x.push(quarte2End);
-            averageTrace.y.push(average[i].mean);
-            averageTrace.x.push(quarte2Start);
-            averageTrace.y.push(average[i].mean);
+            quater2.x.push(quarte2End);
+            quater2.y.push(average[i].mean);
+            quater2.x.push(quarte2Start);
+            quater2.y.push(average[i].mean);
 
           }else if(average[i].quarter === 3){
-            averageTrace.x.push(quarte3End);
-            averageTrace.y.push(average[i].mean);
-            averageTrace.x.push(quarte3Start);
-            averageTrace.y.push(average[i].mean);
+            quater3.x.push(quarte3End);
+            quater3.y.push(average[i].mean);
+            quater3.x.push(quarte3Start);
+            quater3.y.push(average[i].mean);
 
           }else if(average[i].quarter === 4){
-            averageTrace.x.push(quarte4End);
-            averageTrace.y.push(average[i].mean);
-            averageTrace.x.push(quarte4Start);
-            averageTrace.y.push(average[i].mean);
+            quater4.x.push(quarte4End);
+            quater4.y.push(average[i].mean);
+            quater4.x.push(quarte4Start);
+            quater4.y.push(average[i].mean);
 
           }
         }
       }
-      type.data.push(averageTrace);
+      type.data.push(quater1,quater2,quater3,quater4);
     }
   }else{
     type.data.push({

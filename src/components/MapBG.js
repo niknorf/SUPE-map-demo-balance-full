@@ -51,10 +51,10 @@ const LineStyle = {
 };
 
 const TStyle = {
-  fillColor: "rgba(140, 148, 158, 0.19)",
+  fillColor: "rgba(249, 217, 52, 0.5)",
   weight: 1,
   opacity: 1,
-  color: "#8C949E", //Outline color
+  color: "#F1C010", //Outline color
   fillOpacity: 0.7,
 };
 
@@ -68,6 +68,7 @@ const DisplayMultipleBalanceGroups = (globalState) => {
 
     if (globalState.balance_index_array.length > 1) {
       globalDispach({
+        isLoggedIn: true, //TODO check the token
         type: "FILTERCOMPONENT",
         fiasId: event.sourceTarget.feature.properties.fiasId,
         isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
@@ -204,6 +205,7 @@ const GeneralMap = () => {
             }else if(typeof result.balance_id !== 'undefined'){
 
               globalDispach({
+                isLoggedIn: true, //TODO check the token
                 type: "FILTERCOMPONENT",
                 fiasId: fiasId,
                 isPhantomic: false,
@@ -314,6 +316,7 @@ const GeneralMap = () => {
             };
           }
           globalDispach({
+            isLoggedIn: true, //TODO check the token
             type: "FILTERCOMPONENT",
             kgisId: event.sourceTarget.feature.properties.kgisId,
             fiasId: event.sourceTarget.feature.properties.fiasId,

@@ -101,6 +101,7 @@ const BalanceGroupList = (props) => {
 
     globalDispach({
       type: "FILTERCOMPONENT",
+      isLoggedIn: true, //TODO check the token
       isPhantomic: false,
       balance_index: row.balance_id,
       isClean: row.is_clean,
