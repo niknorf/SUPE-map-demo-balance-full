@@ -193,6 +193,7 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
+          console.log(result);
             if(typeof result.properties !== 'undefined' && layerRef.current !== null){
               layerRef.current.leafletElement.clearLayers().addData(result);
               setLayer(result);
@@ -275,15 +276,23 @@ const GeneralMap = () => {
       );
   };
 
+  const isNull = (inputArray) => {
+  for (var i = 0, len = inputArray.length; i < len; i += 1)
+    if (inputArray[i] !== null)
+      return false;
+  return true;
+}
+
   const getBalanceGroupObjectsByIndex = (balance_index) => {
     fetch("/api/Results/GetBalanceGroupObjects/" + balance_index)
       .then((res) => res.json())
       .then(
         (result) => {
-          if(layerRef.current !== null){
+          setLoading(false);
+          if(layerRef.current !== null && !isNull(result[0].geometry.coordinates)){
             layerRef.current.leafletElement.clearLayers().addData(result);
             setLayer(result);
-            setLoading(false);
+
             let bounds = layerRef.current.leafletElement.getBounds();
             if (bounds.isValid()) {
               mapRef.current.leafletElement.flyToBounds(bounds);
