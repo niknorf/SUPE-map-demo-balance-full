@@ -6,9 +6,7 @@ import {
   Container,
   Icon,
 } from "@material-ui/core";
-import {
-  makeStyles,
-} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import TableTemplate from "./TableTemplate";
 import InfoWindow from "./InfoWindow.js";
@@ -62,16 +60,37 @@ function createData(
     percent_transmission_PU,
     lat,
     lon,
-    kgis_id
-    };
+    kgis_id,
+  };
 }
+
+const tableColumnsShort = [
+  {
+    id: "address",
+    numeric: false,
+    disablePadding: false,
+    label: "Адрес",
+  },
+  {
+    id: "percent_probability",
+    numeric: true,
+    disablePadding: true,
+    label: "Вероятность",
+  },
+  {
+    id: "probability_type",
+    numeric: false,
+    disablePadding: false,
+    label: "Тип вероятности",
+  }
+];
 
 const tableColumns = [
   {
     id: "address",
     numeric: false,
     disablePadding: false,
-    label: "Адрес"
+    label: "Адрес",
   },
   {
     id: "percent_probability",
@@ -89,7 +108,7 @@ const tableColumns = [
     id: "report",
     numeric: false,
     disablePadding: false,
-    label: "Акт"
+    label: "Акт",
   },
   {
     id: "status",
@@ -98,7 +117,6 @@ const tableColumns = [
     label: "Статус задания",
   },
 ];
-
 
 const useStyles = makeStyles((theme) => ({
   markerIcon: {
@@ -135,10 +153,10 @@ export default function BuBdTable(props) {
 
     if (item.percent_probability_BD === 0) {
       percent_probability = item.percent_probability_BU;
-      percent_type = 'BU'
+      percent_type = "BU";
     } else {
       percent_probability = item.percent_probability_BD;
-      percent_type = 'BD'
+      percent_type = "BD";
     }
     rows.push(
       createData(
@@ -180,12 +198,11 @@ export default function BuBdTable(props) {
   };
 
   const tableRowClick = (event, row) => {
-
     row.tp = "данные подгружаются";
-    if(row.type === "BU"){
+    if (row.type === "BU") {
       row.percent_probability_BU = row.percent_probability;
       row.percent_probability_BD = 0;
-    }else{
+    } else {
       row.percent_probability_BD = row.percent_probability;
       row.percent_probability_BU = 0;
     }
@@ -199,48 +216,89 @@ export default function BuBdTable(props) {
   };
 
   const BuBdTableRows = (row) => {
-    return (
-      <TableRow
-        hover
-        tabIndex={-1}
-        key={row.address}
-        classes={{ hover: classes.rowHover }}
-        component={Link}
-        to="/bubd"
-      >
-        <TableCell
-          component="th"
-          scope="row"
-          onClick={(event) => tableRowClick(event, row)}
-          padding="none"
-          align="left"
-        >
-          {row.address}
-        </TableCell>
-        <TableCell align="left" onClick={(event) => tableRowClick(event, row)}>
-          {CreateIcon(classes, row.percent_probability)}
-        </TableCell>
-        <TableCell align="center" onClick={(event) => tableRowClick(event, row)}>{row.probability_type}</TableCell>
-        <TableCell align="center">
-          {" "}
-          <Link underline="always" className={classes.linkStyle}>
-            {row.report}
-          </Link>
-        </TableCell>
-        <TableCell align="center">
-          <Box borderRadius={5} {...defaultProps}>
-            {row.status}
-          </Box>
-        </TableCell>
-      </TableRow>
-    );
+    return props.rowsPerPage === 5
+      ? [
+          <TableRow
+            hover
+            tabIndex={-1}
+            key={row.address}
+            classes={{ hover: classes.rowHover }}
+            component={Link}
+            to="/bubd"
+          >
+            <TableCell
+              component="th"
+              scope="row"
+              onClick={(event) => tableRowClick(event, row)}
+              padding="default"
+              align="left"
+            >
+              {row.address}
+            </TableCell>
+            <TableCell
+              align="left"
+              onClick={(event) => tableRowClick(event, row)}
+            >
+              {CreateIcon(classes, row.percent_probability)}
+            </TableCell>
+            <TableCell
+              align="center"
+              onClick={(event) => tableRowClick(event, row)}
+            >
+              {row.probability_type}
+            </TableCell>
+          </TableRow>,
+        ]
+      : [
+          <TableRow
+            hover
+            tabIndex={-1}
+            key={row.address}
+            classes={{ hover: classes.rowHover }}
+            component={Link}
+            to="/bubd"
+          >
+            <TableCell
+              component="th"
+              scope="row"
+              onClick={(event) => tableRowClick(event, row)}
+              padding="default"
+              align="left"
+            >
+              {row.address}
+            </TableCell>
+            <TableCell
+              align="left"
+              onClick={(event) => tableRowClick(event, row)}
+            >
+              {CreateIcon(classes, row.percent_probability)}
+            </TableCell>
+            <TableCell
+              align="center"
+              onClick={(event) => tableRowClick(event, row)}
+            >
+              {row.probability_type}
+            </TableCell>
+            <TableCell align="center">
+              {" "}
+              <Link underline="always" className={classes.linkStyle}>
+                {row.report}
+              </Link>
+            </TableCell>
+            <TableCell align="center">
+              <Box borderRadius={5} {...defaultProps}>
+                {row.status}
+              </Box>
+            </TableCell>
+          </TableRow>,
+        ];
   };
 
   return rows.length > 0
     ? [
         <TableTemplate
           rows={rows}
-          columns={tableColumns}
+          columns={props.rowsPerPage === 5 ? tableColumnsShort: tableColumns}
           rowsSettings={BuBdTableRows}
           rowsPerPage={props.rowsPerPage}
           orderBy="percent_probability"
