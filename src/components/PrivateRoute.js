@@ -11,7 +11,9 @@ import Home from "./Home";
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { globalState, globalDispach } = useContext(Contex);
 
-  const isLoggedIn = globalState.isLoggedIn;
+  // const isLoggedIn = globalState.isLoggedIn;
+  const isLoggedIn = true;
+
 
   return (
 

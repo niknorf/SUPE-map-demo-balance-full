@@ -109,7 +109,7 @@ export default function CenteredGrid() {
     axios({
       method: "post",
       url:
-        "http://keycloak.energo.ru/auth/realms/App/protocol/openid-connect/token",
+        "https://keycloak.energo.ru/auth/realms/App/protocol/openid-connect/token",
       data: queryString.stringify(params),
       config: {
         headers: {
