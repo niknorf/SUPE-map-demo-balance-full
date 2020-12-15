@@ -183,10 +183,6 @@ export default function AutoGrid() {
   const [tasks, setTaskContent] = useState([]);
   const { globalState, globalDispach } = useContext(Contex);
 
-
-
-  //let firstName = 
-
   useEffect(() => {
     fetch("/api/UserTasks")
       .then((res) => res.json())
@@ -219,7 +215,7 @@ export default function AutoGrid() {
     <Popup
       className={classes.pop}
       trigger={
-        <Button variant="contained" color="primary">Open</Button>
+        <Button variant="contained" color="primary">Показать</Button>
       }
       modal
       nested
@@ -243,7 +239,7 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={6} className={classes.columnsPopup}>
                 <span className={classes.columnTitle}>Исполнитель</span>
-                <span className={classes.columnContent}>Иванов Константин</span>
+                <span className={classes.columnContent}>Волтов Илья Павлович</span>
               </Grid>
             </Grid>
             <div className={classes.fullWidth}>
@@ -277,8 +273,8 @@ export default function AutoGrid() {
         <Grid item xs={3}>
           <Paper className={classes.paperPanel}>
             <AccountCircleOutlinedIcon style={{ fontSize: 39, marginBottom: '16px' }} />
-            <span style={{ fontSize: '20px', lineHeight: '25px', marginBottom: '3px' }}>Щербаков Максим Владимирович</span>
-            <span style={{ fontSize: '14px', lineHeight: '17px', marginBottom: '21px' }}>Менеджер</span>
+            <span style={{ fontSize: '20px', lineHeight: '25px', marginBottom: '3px' }}>Волтов Илья Павлович</span>
+            <span style={{ fontStyle: 'normal', fontWeight: 'normal',fontSize: '14px', lineHeight: '17px', marginBottom: '21px', color: '#8C949E' }}>Менеджер</span>
           </Paper>
         </Grid>
         <Grid item xs>
@@ -322,7 +318,7 @@ export default function AutoGrid() {
                         <CalendarTodayOutlinedIcon className={classes.pregressIcon} />
                         <span className={classes.progress}>{task.date}</span>
                       </div>
-                      {/* <TaskPopup /> */}
+                      <TaskPopup />
                     </Paper>
                   ))}
                 </div>
