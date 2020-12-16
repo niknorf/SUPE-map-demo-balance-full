@@ -149,18 +149,18 @@ const GeneralMap = () => {
   const handleClick = (event) => {
     mapRef.current.leafletElement.fitBounds(event.sourceTarget.getBounds());
 
-      globalDispach({
-        type: "FILTERCOMPONENT",
-        kgisId: event.sourceTarget.feature.properties.kgisId,
-        fiasId: event.sourceTarget.feature.properties.fiasId,
-        isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
-        balance_index: '',
-        isClean: false,
-        objSelected: true,
-        building_address: event.sourceTarget.feature.properties.name,
-        obj_from: "map_address",
-        isInPSK: event.sourceTarget.feature.properties.isInPSK,
-      });
+    globalDispach({
+      type: "FILTERCOMPONENT",
+      kgisId: event.sourceTarget.feature.properties.kgisId,
+      fiasId: event.sourceTarget.feature.properties.fiasId,
+      isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
+      balance_index: "",
+      isClean: false,
+      objSelected: true,
+      building_address: event.sourceTarget.feature.properties.name,
+      obj_from: "map_address",
+      isInPSK: event.sourceTarget.feature.properties.isInPSK,
+    });
   };
 
   const callManager = (values, layerRef) => {
@@ -194,52 +194,54 @@ const GeneralMap = () => {
       .then(
         (result) => {
           console.log(result);
-            if(typeof result.properties !== 'undefined' && layerRef.current !== null){
-              layerRef.current.leafletElement.clearLayers().addData(result);
-              setLayer(result);
-              setLoading(false);
-              let bounds = layerRef.current.leafletElement.getBounds();
-              if (bounds.isValid()) {
-                mapRef.current.leafletElement.flyToBounds(bounds);
-              }
-
-            }else if(typeof result.balance_id !== 'undefined'){
-
-              globalDispach({
-                isLoggedIn: true, //TODO check the token
-                type: "FILTERCOMPONENT",
-                fiasId: fiasId,
-                isPhantomic: false,
-                balance_index: result.balance_id,
-                isClean: result.is_clean,
-                objSelected: true,
-                building_address: '',
-                obj_from: "map_address",
-                isInPSK: false,
-              });
-
-              console.log(result.balance_id);
-              fetch("/api/Results/GetBalanceGroupObjects/" + result.balance_id)
-                .then((res) => res.json())
-                .then(
-                  (result) => {
-                    if(layerRef.current !== null){
-                      layerRef.current.leafletElement.clearLayers().addData(result);
-                      setLayer(result);
-                      setLoading(false);
-                      let bounds = layerRef.current.leafletElement.getBounds();
-                      if (bounds.isValid()) {
-                        mapRef.current.leafletElement.flyToBounds(bounds);
-                      }
-                    }
-
-                  },
-                  (error) => {
-                    setLoading(true);
-                    setError(error);
-                  }
-                );
+          if (
+            typeof result.properties !== "undefined" &&
+            layerRef.current !== null
+          ) {
+            layerRef.current.leafletElement.clearLayers().addData(result);
+            setLayer(result);
+            setLoading(false);
+            let bounds = layerRef.current.leafletElement.getBounds();
+            if (bounds.isValid()) {
+              mapRef.current.leafletElement.flyToBounds(bounds);
             }
+          } else if (typeof result.balance_id !== "undefined") {
+            globalDispach({
+              isLoggedIn: true, //TODO check the token
+              type: "FILTERCOMPONENT",
+              fiasId: fiasId,
+              isPhantomic: false,
+              balance_index: result.balance_id,
+              isClean: result.is_clean,
+              objSelected: true,
+              building_address: "",
+              obj_from: "map_address",
+              isInPSK: false,
+            });
+
+            console.log(result.balance_id);
+            fetch("/api/Results/GetBalanceGroupObjects/" + result.balance_id)
+              .then((res) => res.json())
+              .then(
+                (result) => {
+                  if (layerRef.current !== null) {
+                    layerRef.current.leafletElement
+                      .clearLayers()
+                      .addData(result);
+                    setLayer(result);
+                    setLoading(false);
+                    let bounds = layerRef.current.leafletElement.getBounds();
+                    if (bounds.isValid()) {
+                      mapRef.current.leafletElement.flyToBounds(bounds);
+                    }
+                  }
+                },
+                (error) => {
+                  setLoading(true);
+                  setError(error);
+                }
+              );
+          }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -256,7 +258,7 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          if(layerRef.current !== null){
+          if (layerRef.current !== null) {
             layerRef.current.leafletElement.clearLayers().addData(result);
             setLayer(result);
             setLoading(false);
@@ -264,7 +266,7 @@ const GeneralMap = () => {
             if (bounds.isValid()) {
               mapRef.current.leafletElement.flyToBounds(bounds);
             }
-        }
+          }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -277,11 +279,10 @@ const GeneralMap = () => {
   };
 
   const isNull = (inputArray) => {
-  for (var i = 0, len = inputArray.length; i < len; i += 1)
-    if (inputArray[i] !== null)
-      return false;
-  return true;
-}
+    for (var i = 0, len = inputArray.length; i < len; i += 1)
+      if (inputArray[i] !== null) return false;
+    return true;
+  };
 
   const getBalanceGroupObjectsByIndex = (balance_index) => {
     fetch("/api/Results/GetBalanceGroupObjects/" + balance_index)
@@ -289,13 +290,22 @@ const GeneralMap = () => {
       .then(
         (result) => {
           setLoading(false);
-          if(layerRef.current !== null && !isNull(result[0].geometry.coordinates)){
-            layerRef.current.leafletElement.clearLayers().addData(result);
-            setLayer(result);
 
-            let bounds = layerRef.current.leafletElement.getBounds();
-            if (bounds.isValid()) {
-              mapRef.current.leafletElement.flyToBounds(bounds);
+          if (layerRef.current !== null) {
+            if (
+              Array.isArray(result) &&
+              !!result.length &&
+              !isNull(result[0].geometry.coordinates)
+            ) {
+              layerRef.current.leafletElement.clearLayers().addData(result);
+              setLayer(result);
+
+              let bounds = layerRef.current.leafletElement.getBounds();
+              if (bounds.isValid()) {
+                mapRef.current.leafletElement.flyToBounds(bounds);
+              }
+            } else {
+              layerRef.current.leafletElement.clearLayers();
             }
           }
         },
@@ -358,7 +368,7 @@ const GeneralMap = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          if(substationsRef.current !== null){
+          if (substationsRef.current !== null) {
             substationsRef.current.leafletElement.clearLayers().addData(result);
             setSubstation(result);
           }
