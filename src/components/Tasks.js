@@ -9,9 +9,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import CalendarTodayOutlinedIcon from "@material-ui/icons/CalendarTodayOutlined";
 import BlueDot from "../img/blue-dot.svg";
-import YellowDot from "../img/yellow-dot.svg";
+import YellowDot from "../img/yellow_dot_task.svg";
 import GreenDot from "../img/green-dot.svg";
-import RedDot from "../img/red-dot.svg";
+import RedDot from "../img/red_dot_task.svg";
 import Popup from "reactjs-popup";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -187,6 +187,10 @@ const useStyles = makeStyles((theme) => ({
 export default function AutoGrid() {
   const classes = useStyles();
   const [tasks, setTaskContent] = useState([]);
+  const [newTasks, setNewTasks] = useState(0);
+  const [inProgressTasks, setInProgressTasks] = useState(0);
+  const [doneTasks, setDoneTasks] = useState(0);
+  const [expiredTasks, setExpiredTasks] = useState(0);
   const [open, setOpen] = useState(false);
   const [dialogData, setDialogData] = useState({ userCreator: {} });
   const { globalState, globalDispach } = useContext(Contex);
@@ -204,6 +208,7 @@ export default function AutoGrid() {
       .then((res) => res.json())
       .then(
         (result) => {
+          handleTaskCount(result);
           setTaskContent(result);
         },
         // Note: it's important to handle errors here
@@ -219,6 +224,34 @@ export default function AutoGrid() {
 
   const taskCount = useRef();
 
+  const handleTaskCount = (task_array) => {
+    let newCount = 0;
+    let progressCount = 0;
+    let doneCount = 0;
+    let expiredCount = 0;
+    for (var i = 0; i < task_array.length; ++i) {
+      if (task_array[i].statusTask === 0) {
+        newCount++;
+      }
+      if (task_array[i].statusTask === 1) {
+        progressCount++;
+      }
+      if (task_array[i].statusTask === 2) {
+        doneCount++;
+      }
+      if (task_array[i].statusTask === 3) {
+        expiredCount++;
+      }
+    }
+
+    setExpiredTasks(expiredCount);
+    setDoneTasks(doneCount);
+    setInProgressTasks(progressCount);
+    setNewTasks(newCount)
+
+
+  };
+
   function count() {
     console.log(taskCount.current.childNodes.length);
   }
@@ -228,29 +261,6 @@ export default function AutoGrid() {
     setOpen(true);
     setDialogData(taskData);
   };
-
-  // useEffect(() => {
-  //   taskCount.current = taskCount
-  // })
-
-  // const TaskPopup = () => (
-  //   <Popup
-  //     className={classes.pop}
-  //     trigger={
-  //       <Button variant="contained" color="primary">
-  //         Показать
-  //       </Button>
-  //     }
-  //     modal
-  //     nested
-  //   >
-  //     {(close) => (
-  //
-  //     )}
-  //   </Popup>
-  // );
-
-  //console.log(tasks);
 
   return (
     <div className={classes.root}>
@@ -332,7 +342,7 @@ export default function AutoGrid() {
             <Grid container spacing={3}>
               <Grid item xs={3} className={classes.newTasks}>
                 <img src={BlueDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Новые (7)</span>
+                <span className={classes.title}>Новые ({newTasks})</span>
                 <div ref={taskCount} onLoad={count}>
                   {tasks.map((task) =>
                     task.statusTask === 0
@@ -423,8 +433,7 @@ export default function AutoGrid() {
                         Описание обьекта:
                       </span>
                       <span className={classes.fullWidthContent}>
-                        Жилое помещение в многоквартирном доме, находится на
-                        первом этаже.
+                        Многоквартирный жилой дом
                       </span>
                     </div>
                     <div className={classes.fullWidth}>
@@ -470,7 +479,7 @@ export default function AutoGrid() {
               </Dialog>
               <Grid item xs={3}>
                 <img src={YellowDot} className={classes.titleDot}></img>
-                <span className={classes.title}>В процессе (0)</span>
+                <span className={classes.title}>В процессе ({inProgressTasks})</span>
                 {tasks.map((task) =>
                   task.statusTask === 1
                     ? [
@@ -510,7 +519,7 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={3}>
                 <img src={GreenDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Выполнено (0)</span>
+                <span className={classes.title}>Выполнено ({doneTasks})</span>
                 {tasks.map((task) =>
                   task.statusTask === 2
                     ? [
@@ -550,7 +559,7 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={3}>
                 <img src={RedDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Просрочено (0)</span>
+                <span className={classes.title}>Просрочено ({expiredTasks})</span>
                 {tasks.map((task) =>
                   task.statusTask === 3
                     ? [
