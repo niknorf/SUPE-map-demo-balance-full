@@ -11,7 +11,7 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js";
-import balance_group_items from "../data/balance_result_full_full.json";
+// import balance_group_items from "../data/balance_result_full_full.json";
 import bubd from "../data/BU_BD_v3.json";
 import grey from "../img/grey-dot.svg";
 import orange from "../img/orange-dot.svg";
@@ -36,31 +36,31 @@ const BDProbability = () => {
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
-      // fetch("/api/Results/GetBalanceResultFull/" + globalState.balance_index)
-      //   .then((res) => res.json())
-      //   .then(
-      // (result) => {
-      createRowsData();
-      // },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      // (error) => {
-      // setLoading(true);
-      // setError(error);
-      // }
-      // );
+      fetch("/api/Results/GetBalanceResultFull/" + globalState.balance_index)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            createRowsData(result);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
     }
     // setLoading(true);
   }, [globalState.balance_index]);
 
   const BalanceGroupContentRows = (row) => {
     return (
-      <TableRow key={row.id} style={{ lineHeight: '14px' }}>
+      <TableRow key={row.id} style={{ lineHeight: "14px" }}>
         <TableCell component="th" scope="row" style={{ width: 200 }}>
           {row.address}
         </TableCell>
-        <TableCell style={{ width: 140, fontWeight: 'bold' }} align="right">
+        <TableCell style={{ width: 140, fontWeight: "bold" }} align="right">
           <Icon>
             <img className={classes.imageIcon} src={row.icon} alt="" />
           </Icon>
@@ -105,32 +105,37 @@ const BDProbability = () => {
     },
   ];
 
-  const createRowsData = () => {
+  const createRowsData = (balance_group_items) => {
     let temp = [];
 
     for (var i = 0; i < balance_group_items.length; i++) {
       for (var j = 0; j < bubd.length; j++) {
         let icon = grey;
-        if (balance_group_items[i].branch_id === bubd[j].fias_id) {
-          if (bubd[j].percent_probability_BU > 66) {
-            icon = red;
-          } else if (bubd[j].percent_probability_BU > 33) {
-            icon = orange;
-          } else if (bubd[j].percent_probability_BU > 1) {
-            icon = yellow;
-          } else {
-            icon = grey;
+        if (
+          balance_group_items[i].type === "ConsumerBuilding" &&
+          typeof balance_group_items[i].fias !== "undefined"
+        ) {
+          if (balance_group_items[i].fias === bubd[j].fias_id) {
+            if (bubd[j].percent_probability_BU > 66) {
+              icon = red;
+            } else if (bubd[j].percent_probability_BU > 33) {
+              icon = orange;
+            } else if (bubd[j].percent_probability_BU > 1) {
+              icon = yellow;
+            } else {
+              icon = grey;
+            }
+            //TODO chnage dynamicallt to BU BD
+            temp.push(
+              createData(
+                i,
+                bubd[j].address,
+                bubd[j].percent_probability_BU,
+                "Создать задание",
+                icon
+              )
+            );
           }
-          //TODO chnage dynamicallt to BU BD
-          temp.push(
-            createData(
-              i,
-              bubd[j].address,
-              bubd[j].percent_probability_BU,
-              "Создать задание",
-              icon
-            )
-          );
         }
       }
     }
