@@ -144,6 +144,8 @@ const BDProbability = () => {
           rows={rows}
           columns={tableColumns}
           rowsSettings={BalanceGroupContentRows}
+          orderBy="probability"
+          order="desc"
         />,
       ]
     : [
