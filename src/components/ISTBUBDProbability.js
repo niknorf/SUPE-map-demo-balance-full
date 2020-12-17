@@ -12,7 +12,7 @@ import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js";
 import balance_group_items from "../data/balance_result_full_full.json";
-import bubd from "../data/BU_BD_v2.json";
+import bubd from "../data/BU_BD_v3.json";
 import grey from "../img/grey-dot.svg";
 import orange from "../img/orange-dot.svg";
 import yellow from "../img/yellow-dot.svg";

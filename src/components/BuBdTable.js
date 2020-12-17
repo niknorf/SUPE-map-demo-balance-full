@@ -15,7 +15,7 @@ import Contex from "../store/context";
 import grey_marker from "../img/grey.png";
 import orange_marker from "../img/orange.png";
 import red_marker from "../img/red.png";
-import table_data from "../data/BU_BD_v2.json";
+import table_data from "../data/BU_BD_v3.json";
 import yellow_marker from "../img/yellow.png";
 
 function createData(
@@ -38,7 +38,10 @@ function createData(
   percent_transmission_PU,
   lat,
   lon,
-  kgis_id
+  kgis_id,
+  information,
+  floors,
+  comments
 ) {
   return {
     address,
@@ -61,6 +64,9 @@ function createData(
     lat,
     lon,
     kgis_id,
+    information,
+    floors,
+    comments
   };
 }
 
@@ -179,7 +185,10 @@ export default function BuBdTable(props) {
         item.percent_transmission_PU,
         item.lat,
         item.lon,
-        item.kgis_id
+        item.kgis_id,
+        item.information,
+        item.floors,
+        item.comments
       )
     );
     return rows;

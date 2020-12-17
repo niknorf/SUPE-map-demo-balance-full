@@ -6,7 +6,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import React, { useContext, useEffect, useRef } from "react";
 import Contex from "../store/context";
 import "leaflet/dist/leaflet.css";
-import markers from "../data/BU_BD_v2.json";
+import markers from "../data/BU_BD_v3.json";
 import iconYellow from "../img/yellow.png";
 import iconRed from "../img/red.png";
 import iconGrey from "../img/grey.png";
