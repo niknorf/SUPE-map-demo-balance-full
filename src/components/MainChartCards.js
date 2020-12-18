@@ -150,8 +150,8 @@ const MainChartCards = () => {
     layout: {
       hoverinfo: "none",
       autosize: true,
-      // height: 300,
-      // width: 300,
+      height: 300,
+      width: 350,
     },
     data: [],
     config: {
@@ -178,7 +178,7 @@ const MainChartCards = () => {
               direction="row"
               display="flex"
             >
-                <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+                <Grid item lg={4} md={12} sm={12} xl={4} xs={12}>
                   {/* Cards area */}
                   <Grid
                     container

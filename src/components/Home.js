@@ -99,6 +99,11 @@ const useStyles = makeStyles((theme) => ({
   },
   graphTwoGrid: {
     marginTop: "24px",
+    height: '100%',
+    maxHeight: '955px'
+  },
+  graphTwo: {
+    height: '100%',
   },
   graphPaper: {
     padding: "20px",
@@ -203,7 +208,7 @@ export default function Home() {
             <Paper className={clsx(classes.graphPaper, classes.graphTwo)}>
               <MainChartHome />
               <div className={classes.mainChartTitle}>
-                <span className={classes.mainChartTitleText}>Статитстика создания новых заданий</span>
+                <span className={classes.mainChartTitleText}>Статистика создания новых заданий</span>
               </div>
             </Paper>
           </Grid>
