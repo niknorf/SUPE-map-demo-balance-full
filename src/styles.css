@@ -8,6 +8,10 @@
   width: 68px;
 }
 
+body {
+  color: #252f4a !important;
+}
+
 h2 {
   font-size: 32px;
   line-height: 42px;
