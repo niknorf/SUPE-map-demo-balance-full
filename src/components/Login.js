@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   loginButton: {
     width: "100%",
     backgroundColor: "#4A9CFF",
+    color: 'white',
     textTransform: "none",
     fontWeight: "bold",
     marginTop: "52px",

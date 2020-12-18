@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import {
   ThemeProvider,
   createMuiTheme,
@@ -52,12 +52,13 @@ const useStyles = makeStyles({
 
 export default function App() {
   const classes = useStyles();
+  const location = useLocation();
   return (
     <GlobalStateProvider>
       <div className={classes.container}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Drawer />
+          {location.pathname != "/" ? <Drawer />: null}
           <AppRouter />
         </ThemeProvider>
       </div>
