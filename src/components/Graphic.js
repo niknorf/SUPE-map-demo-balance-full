@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "24px",
     color: "#252F4A",
   },
+  paperShadow: {
+    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
+  },
 }));
 
 const ToggleButton = withStyles({
@@ -192,7 +195,7 @@ const GraphicGroup = () => {
   //     }),
   //   }}
   // >
-  <Paper elevation={1}>
+  <Paper elevation={1} className={classes.paperShadow}>
       <Grid container>
         <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
           <Box>
@@ -358,7 +361,7 @@ const OutInputMonthGraphic = () => {
       }),
     }}
   >
-<Paper elevation={1}>
+<Paper elevation={1} className={classes.paperShadow}>
       <Grid container>
         <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
           <Box>

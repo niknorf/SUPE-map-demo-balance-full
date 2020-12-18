@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "20px",
+    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
+  },
+  paper: {
+    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
   },
   buttonChange: {
     background: "#4A9CFF",
@@ -171,6 +175,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "8px",
     textTransform: "none",
     backgroundColor: "#4A9CFF",
+    color: 'white',
     fontWeight: "bold",
     "&:hover": {
       backgroundColor: "#4A9CFF",

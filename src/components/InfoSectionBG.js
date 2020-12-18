@@ -97,13 +97,16 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "23px",
     color: "#8C949E",
   },
+  paperShadow: {
+    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
+  },
 }));
 
 const InitialState = () => {
   const classes = useStyles();
   return (
     <Grid item lg={12} md={12} sm={6} xl={12} xs={12}>
-      <Paper elevation={1} style={{ height: "100%" }}>
+      <Paper elevation={1} style={{ height: "100%" }} className={classes.paperShadow}>
         <Typography className={classes.cornerTextCard}>
           Балансовая группа
         </Typography>
@@ -129,7 +132,7 @@ const WarningState = ({ label }) => {
       xs={12}
       style={{ height: "100%" }}
     >
-      <Paper elevation={1}>
+      <Paper elevation={1} className={classes.paperShadow}>
         <Typography className={classes.cornerTextCard}>
           Балансовая группа
         </Typography>
@@ -210,7 +213,7 @@ const ShowDataState = () => {
           wrap="wrap"
         >
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <Paper elevation={1} className={classes.paperShadow}>
               <Box className={classes.boxPaddingLabel}>
                 <Typography className={classes.balanceGroupLabel}>
                   Балансовая группа №{balance_id} {address_name}
@@ -251,7 +254,7 @@ const ShowDataState = () => {
             </Paper>
           </Grid>
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <Paper elevation={1} className={classes.paperShadow}>
               <Box className={classes.boxPaddingTabs}>
                 <Tabs
                   value={value}

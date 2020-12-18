@@ -84,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
   },
+  paperShadow: {
+    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
+  },
   fixedHeight: {
     height: 500,
   },
@@ -196,7 +199,7 @@ const BalanceGroup = () => {
           </Grid>
           {/* Filter */}
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <Paper className={classes.paperShadow}>
               <Container maxWidth="xl">
                 <Grid
                   container
@@ -229,7 +232,7 @@ const BalanceGroup = () => {
           {/* Table */}
           {/* style={{ height: "100%" }} */}
           <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
-            <Paper elevation={1} style={{ height: "100%" }}>
+            <Paper style={{ height: "100%" }} className={classes.paperShadow}>
               <BalanceGroupList order="asc" orderBy="balance_id"/>
             </Paper>
           </Grid>
@@ -237,13 +240,13 @@ const BalanceGroup = () => {
           <InfoSection />
           {/* Imbalance graphic */}
           <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
-            <Paper elevation={1} style={{ height: "100%" }}>
+            <Paper  style={{ height: "100%" }} className={classes.paperShadow}>
               <ImbalancePskPu />
             </Paper>
           </Grid>
           {/* 5 values */}
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper elevation={1}>
+            <Paper className={classes.paperShadow}>
               <JustificationCards />
             </Paper>
           </Grid>

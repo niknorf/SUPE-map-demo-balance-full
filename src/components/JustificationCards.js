@@ -129,6 +129,10 @@ const useStyles = makeStyles((theme) => ({
     width: 13.33,
     height: 13.33,
   },
+  cardWidth: {
+    maxWidth: '20%',
+    flexBasis: '20%'
+  }
 }));
 
 const column_title_font = {
@@ -343,7 +347,7 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
 
   return (
     <Grid container spacing={1}>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
         <Box
           className={`${classes.boxStyle}`}
           style={boxStyle(firstCard, 80, "<")}
@@ -360,7 +364,7 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
         <Box
           className={classes.boxStyle}
           style={boxStyle(
@@ -382,7 +386,7 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
         <Box
           className={classes.boxStyle}
           style={boxStyle(indexes.trust_index_psk_fiz, 20)}
@@ -399,7 +403,7 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
         <Box className={classes.boxStyle} style={boxStyle(indexes.trust_index_psk_urik)}>
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний юридических лиц гарантирующих
@@ -410,7 +414,7 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
         <Box
           className={classes.boxStyle}
           style={boxStyle(indexes.trust_index_psk_odn, 20)}

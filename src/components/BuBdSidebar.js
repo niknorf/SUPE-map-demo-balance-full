@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
   showActButton: {
     width: "100%",
     backgroundColor: "#4A9CFF",
+    color: 'white',
     textTransform: "none",
     fontWeight: "bold",
     marginBottom: "11px",
