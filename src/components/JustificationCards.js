@@ -209,9 +209,9 @@ const JustificationCards = () => {
                     </Typography>
                   </Box>
                   <Box className={classes.selectPadding}>
-                    <Typography className={classes.textStyle}>
-                      Значения за: {indexesData.date_month}.{indexesData.date_year}
-                    </Typography>
+                  {indexesData.date_month ? <Typography className={classes.textStyle}>
+                    Значения за: {indexesData.date_month}.{indexesData.date_year}
+                  </Typography>: null}
                     {/* <FormControl className={classes.formControl}>
                       <InputLabel shrink id="demo-simple-select-label">
                         Месяц
