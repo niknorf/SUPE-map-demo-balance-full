@@ -71,13 +71,13 @@ const GuaranteedSuppliers = (props) => {
   const { fias, name} =
     (props.location && props.location.row) || {};
 
-  useEffect(() => {
-    globalDispach({
-      type: "FILTERCOMPONENT",
-      fiasId: 'fdb3ba07-4915-420c-a9aa-f5e909d3fe16',
-      isLoggedIn: true,
-    });
-  }, []);
+  // useEffect(() => {
+  //   globalDispach({
+  //     type: "FILTERCOMPONENT",
+  //     fiasId: 'fdb3ba07-4915-420c-a9aa-f5e909d3fe16',
+  //     isLoggedIn: true,
+  //   });
+  // }, []);
 
   // useEffect(() => {
   //   globalDispach({
@@ -85,14 +85,14 @@ const GuaranteedSuppliers = (props) => {
   //     fiasId: '5d3752f0-6899-4ad5-817f-3f32dbad8930',
   //   });
   // }, []);
-  // useEffect(() => {
-  //   globalDispach({
-  //     type: "FILTERCOMPONENT",
-  //     isLoggedIn: true, //TODO check the token
-  //     fiasId: typeof fias !== 'undefined' ? fias : '',
-  //     building_address: typeof name !== 'undefined' ? name : ''
-  //   });
-  // }, []);
+  useEffect(() => {
+    globalDispach({
+      type: "FILTERCOMPONENT",
+      isLoggedIn: true, //TODO check the token
+      fiasId: typeof fias !== 'undefined' ? fias : '',
+      building_address: typeof name !== 'undefined' ? name : ''
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
