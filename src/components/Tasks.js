@@ -66,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "14px",
     lineHeight: "42px",
   },
+  titleNumber: {
+    color: '#8C949E',
+  },
   taskCard: {
     display: "flex",
     flexDirection: "column",
@@ -305,6 +308,7 @@ export default function AutoGrid() {
                 fontSize: "32px",
                 lineHeight: "38px",
                 marginBottom: "3px",
+                fontFamily: "PFDinTextCondPro-Regular",
               }}
             >
               Задания по северному РЭС
@@ -347,7 +351,7 @@ export default function AutoGrid() {
             <Grid container spacing={3}>
               <Grid item xs={3} className={classes.newTasks}>
                 <img src={BlueDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Новые ({newTasks})</span>
+                <span className={classes.title}>Новые <span className={classes.titleNumber}>({newTasks})</span></span>
                 <div ref={taskCount} onLoad={count}>
                   {tasks.map((task) =>
                     task.statusTask === 0
@@ -484,7 +488,7 @@ export default function AutoGrid() {
               </Dialog>
               <Grid item xs={3}>
                 <img src={YellowDot} className={classes.titleDot}></img>
-                <span className={classes.title}>В процессе ({inProgressTasks})</span>
+                <span className={classes.title}>В процессе <span className={classes.titleNumber}>({inProgressTasks})</span></span>
                 {tasks.map((task) =>
                   task.statusTask === 1
                     ? [
@@ -524,7 +528,7 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={3}>
                 <img src={GreenDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Выполнено ({doneTasks})</span>
+                <span className={classes.title}>Выполнено <span className={classes.titleNumber}>({doneTasks})</span></span>
                 {tasks.map((task) =>
                   task.statusTask === 2
                     ? [
@@ -564,7 +568,7 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={3}>
                 <img src={RedDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Просрочено ({expiredTasks})</span>
+                <span className={classes.title}>Просрочено <span className={classes.titleNumber}>({expiredTasks})</span></span>
                 {tasks.map((task) =>
                   task.statusTask === 3
                     ? [

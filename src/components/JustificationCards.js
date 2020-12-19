@@ -129,9 +129,10 @@ const useStyles = makeStyles((theme) => ({
     width: 13.33,
     height: 13.33,
   },
-  cardWidth: {
+  cardWidth: { 
     maxWidth: '20%',
-    flexBasis: '20%'
+    flexBasis: '20%',
+    minWidth: '210px'
   }
 }));
 
