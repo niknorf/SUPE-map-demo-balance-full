@@ -1,6 +1,6 @@
 import "react-leaflet-markercluster/dist/styles.min.css";
 import "../css/map.css";
-import { Map, TileLayer, Marker, GeoJSON } from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import React, { useContext, useEffect, useRef } from "react";

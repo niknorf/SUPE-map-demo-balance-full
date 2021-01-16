@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import SearchIcon from "@material-ui/icons/Search";
+import {
+  Paper,
+  Grid,
+  Box,
+  Button,
+  TextField
+} from "@material-ui/core";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import CalendarTodayOutlinedIcon from "@material-ui/icons/CalendarTodayOutlined";
 import BlueDot from "../img/blue-dot.svg";
@@ -13,11 +14,7 @@ import YellowDot from "../img/yellow_dot_task.svg";
 import GreenDot from "../img/green-dot.svg";
 import RedDot from "../img/red_dot_task.svg";
 import Popup from "reactjs-popup";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import TaskDialog from "./TaskDialog.js";
 import "../css/taskPopup.css";
 import Contex from "../store/context";
 
@@ -39,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "20px",
-    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
   },
   paper: {
-    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06) !important',
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
   },
   buttonChange: {
     background: "#4A9CFF",
@@ -67,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "42px",
   },
   titleNumber: {
-    color: '#8C949E',
+    color: "#8C949E",
   },
   taskCard: {
     display: "flex",
@@ -178,7 +175,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "8px",
     textTransform: "none",
     backgroundColor: "#4A9CFF",
-    color: 'white',
+    color: "white",
     fontWeight: "bold",
     "&:hover": {
       backgroundColor: "#4A9CFF",
@@ -199,17 +196,10 @@ export default function AutoGrid() {
   const [inProgressTasks, setInProgressTasks] = useState(0);
   const [doneTasks, setDoneTasks] = useState(0);
   const [expiredTasks, setExpiredTasks] = useState(0);
-  const [open, setOpen] = useState(false);
-  const [dialogData, setDialogData] = useState({ userCreator: {} });
+  const [openDialog, setOpen] = useState(false);
+  // const [closeDialog, setClose] = useState(true);
+  const [dialogData, setDialogData] = useState({});
   const { globalState, globalDispach } = useContext(Contex);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   useEffect(() => {
     fetch("/api/UserTasks")
@@ -255,9 +245,7 @@ export default function AutoGrid() {
     setExpiredTasks(expiredCount);
     setDoneTasks(doneCount);
     setInProgressTasks(progressCount);
-    setNewTasks(newCount)
-
-
+    setNewTasks(newCount);
   };
 
   function count() {
@@ -265,9 +253,13 @@ export default function AutoGrid() {
   }
 
   const handleDialogOpen = (taskData) => {
-    console.log(taskData.userCreator.firstName);
     setOpen(true);
     setDialogData(taskData);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+    setDialogData({});
   };
 
   return (
@@ -351,7 +343,10 @@ export default function AutoGrid() {
             <Grid container spacing={3}>
               <Grid item xs={3} className={classes.newTasks}>
                 <img src={BlueDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Новые <span className={classes.titleNumber}>({newTasks})</span></span>
+                <span className={classes.title}>
+                  Новые{" "}
+                  <span className={classes.titleNumber}>({newTasks})</span>
+                </span>
                 <div ref={taskCount} onLoad={count}>
                   {tasks.map((task) =>
                     task.statusTask === 0
@@ -391,104 +386,17 @@ export default function AutoGrid() {
                   )}
                 </div>
               </Grid>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="form-dialog-title"
-              >
-                {/* <DialogContent> */}
-                <div className="modal">
-                  <div className="content">
-                    <div className="top">
-                      <img src={BlueDot} className={classes.taskDot}></img>
-                      <span className={classes.new}>Новое</span>
-                      <span className={classes.status}>Изменить статус</span>
-                      <span className={classes.taskNumPopup}>
-                        Задание №{dialogData.id}
-                      </span>
-                    </div>
-                    <div className={classes.addressPopup}>
-                      <span className={classes.addressText}>
-                        {dialogData.fiasAddress}
-                      </span>
-                    </div>
-                    <Grid container spacing={3}>
-                      <Grid item xs={6} className={classes.columnsPopup}>
-                        <span className={classes.columnTitle}>
-                          Дата и время
-                        </span>
-                        <span className={classes.columnContent}>
-                          {typeof dialogData.date !== "undefined"
-                            ? dialogData.date
-                            : ""}
-                        </span>
-                      </Grid>
-                      <Grid item xs={6} className={classes.columnsPopup}>
-                        <span className={classes.columnTitle}>Исполнитель</span>
-                        <span className={classes.columnContent}>
-                          {typeof dialogData.userCreator.lastName !==
-                          "undefined"
-                            ? dialogData.userCreator.lastName + " "
-                            : ""}{" "}
-                          {typeof dialogData.userCreator.firstName !==
-                          "undefined"
-                            ? dialogData.userCreator.firstName
-                            : ""}
-                        </span>
-                      </Grid>
-                    </Grid>
-                    <div className={classes.fullWidth}>
-                      <span className={classes.fullWidthTitle}>
-                        Описание обьекта:
-                      </span>
-                      <span className={classes.fullWidthContent}>
-                        Многоквартирный жилой дом
-                      </span>
-                    </div>
-                    <div className={classes.fullWidth}>
-                      <span className={classes.fullWidthTitle}>
-                        Причина создания заявки:
-                      </span>
-                      <span className={classes.fullWidthContent}>
-                        {dialogData.descriptionTask}
-                      </span>
-                    </div>
-                    <div className={classes.buttons}>
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        className={classes.exitButton}
-                        onClick={handleClose}
-                      >
-                        Выйти
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.feedbackButton}
-                      >
-                        Обратная связь
-                      </Button>
-                    </div>
-                    <span className={classes.note}>
-                      * чтобы отправить обратную связь, измените статус задания
-                      на “В процессе”
-                    </span>
-                  </div>
-                </div>
-                {/* </DialogContent> */}
-                {/* <DialogActions>
-                  <Button onClick={handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={handleClose} color="primary">
-                    Subscribe
-                  </Button>
-                </DialogActions> */}
-              </Dialog>
+              <TaskDialog
+                isDialogOpen={openDialog}
+                closeDialog={handleDialogClose}
+                dialogData={dialogData}
+              />
+
               <Grid item xs={3}>
                 <img src={YellowDot} className={classes.titleDot}></img>
-                <span className={classes.title}>В процессе <span className={classes.titleNumber}>({inProgressTasks})</span></span>
+                <span className={classes.title}>
+                  В процессе ({inProgressTasks})
+                </span>
                 {tasks.map((task) =>
                   task.statusTask === 1
                     ? [
@@ -503,7 +411,7 @@ export default function AutoGrid() {
                           </span>
                           <div>
                             <img
-                              src={BlueDot}
+                              src={YellowDot}
                               className={classes.taskDot}
                             ></img>
                             <span className={classes.taskNumber}>
@@ -528,7 +436,10 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={3}>
                 <img src={GreenDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Выполнено <span className={classes.titleNumber}>({doneTasks})</span></span>
+                <span className={classes.title}>
+                  Выполнено{" "}
+                  <span className={classes.titleNumber}>({doneTasks})</span>
+                </span>
                 {tasks.map((task) =>
                   task.statusTask === 2
                     ? [
@@ -543,7 +454,7 @@ export default function AutoGrid() {
                           </span>
                           <div>
                             <img
-                              src={BlueDot}
+                              src={GreenDot}
                               className={classes.taskDot}
                             ></img>
                             <span className={classes.taskNumber}>
@@ -568,7 +479,9 @@ export default function AutoGrid() {
               </Grid>
               <Grid item xs={3}>
                 <img src={RedDot} className={classes.titleDot}></img>
-                <span className={classes.title}>Просрочено <span className={classes.titleNumber}>({expiredTasks})</span></span>
+                <span className={classes.title}>
+                  Просрочено ({expiredTasks})
+                </span>
                 {tasks.map((task) =>
                   task.statusTask === 3
                     ? [
@@ -582,10 +495,7 @@ export default function AutoGrid() {
                             {task.fiasAddress}
                           </span>
                           <div>
-                            <img
-                              src={BlueDot}
-                              className={classes.taskDot}
-                            ></img>
+                            <img src={RedDot} className={classes.taskDot}></img>
                             <span className={classes.taskNumber}>
                               Задание №{task.id}
                             </span>

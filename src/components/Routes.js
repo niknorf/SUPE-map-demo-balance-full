@@ -5,8 +5,6 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import HomePage from "./Home.js";
-import LoginPage from "./Login.js";
 import BalanceGroup from "./BalanceGroup";
 import GuaranteedSuppliers from "./GuaranteedSuppliers";
 import BuBd from "./BuBd";

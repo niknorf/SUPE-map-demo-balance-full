@@ -1,7 +1,7 @@
-import { Grid, Paper, Switch, Typography, Box, Icon } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Plotly from "plotly.js";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import InfoWindow from "./InfoWindow.js";
 

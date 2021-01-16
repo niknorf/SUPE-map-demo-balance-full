@@ -1,22 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  Container,
   Grid,
-  Paper,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Box,
   Typography,
-  Icon,
-  Button,
-  ButtonGroup,
   CircularProgress,
 } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
-import clsx from "clsx";
 import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
 import LoadingOverlay from "react-loading-overlay";

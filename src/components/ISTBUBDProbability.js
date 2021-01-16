@@ -1,9 +1,7 @@
 import {
-  Typography,
   TableRow,
   TableCell,
   Link,
-  Grid,
   Icon,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
@@ -11,12 +9,12 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js";
-// import balance_group_items from "../data/balance_result_full_full.json";
 import bubd from "../data/BU_BD_v3.json";
 import grey from "../img/grey-dot.svg";
 import orange from "../img/orange-dot.svg";
 import yellow from "../img/yellow-dot.svg";
 import red from "../img/red-dot.svg";
+import TaskDialog from "./TaskDialog.js"
 
 const useStyles = makeStyles((theme) => ({
   imageIcon: {
@@ -25,14 +23,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(id, address, probability, link, icon) {
-  return { id, address, probability, link, icon };
+function createData(id, address, fias_id, probability, link, icon) {
+  return { id, address, fias_id, probability, link, icon };
 }
 
 const BDProbability = () => {
   const classes = useStyles();
   const [rows, setBgContent] = useState([]);
+  const [openDialog, setOpen] = useState(false);
+  const [dialogData, setDialogData] = useState({});
   const { globalState } = useContext(Contex);
+
+  const handleDialogOpen = (row) => {
+    console.log(row);
+    setOpen(true);
+    setDialogData(row);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+    setDialogData({});
+  };
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
@@ -74,7 +85,7 @@ const BDProbability = () => {
             underline="always"
             color="primary"
             onClick={() => {
-              /*redirect to tasks*/
+            handleDialogOpen(row);
             }}
           >
             {row.link}
@@ -130,6 +141,7 @@ const BDProbability = () => {
               createData(
                 i,
                 bubd[j].address,
+                bubd[j].fias_id,
                 bubd[j].percent_probability_BU,
                 "Создать задание",
                 icon
@@ -152,6 +164,11 @@ const BDProbability = () => {
           orderBy="probability"
           order="desc"
         />,
+        <TaskDialog
+        isDialogOpen={openDialog}
+        closeDialog={handleDialogClose}
+        dialogData={dialogData}
+      />
       ]
     : [
         <InfoWindow

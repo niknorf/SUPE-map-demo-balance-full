@@ -1,11 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { Typography, Grid, Paper, Box, TextField, Button } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import queryString from "querystring";
@@ -97,29 +92,29 @@ export default function CenteredGrid() {
 
   const ButtonLoginClick = (history) => {
 
-    const params = {
-      grant_type: "authorization_code",
-      client_id: "test-client",
-      username: refUsername.current.value,
-      password: redPassword.current.value,
-      // username: "test_local", //TODO remove after testing
-      // password: "admin", //TODO remove after testing
-      grant_type: "password",
-    };
-
-    axios({
-      method: "post",
-      url:
-        "https://keycloak.energo.ru/auth/realms/App/protocol/openid-connect/token",
-      data: queryString.stringify(params),
-      config: {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Access-Control-Allow-Origin": "*"
-       },
-      },
-    })
-      .then((response) => {
+    // const params = {
+    //   grant_type: "authorization_code",
+    //   client_id: "test-client",
+    //   // username: refUsername.current.value,
+    //   // password: redPassword.current.value,
+    //   username: "test_local", //TODO remove after testing
+    //   password: "admin", //TODO remove after testing
+    //   grant_type: "password",
+    // };
+    //
+    // axios({
+    //   method: "post",
+    //   url:
+    //     "https://keycloak.energo.ru/auth/realms/App/protocol/openid-connect/token",
+    //   data: queryString.stringify(params),
+    //   config: {
+    //     headers: {
+    //       "Content-Type": "application/x-www-form-urlencoded",
+    //       "Access-Control-Allow-Origin": "*"
+    //    },
+    //   },
+    // })
+    //   .then((response) => {
         // sessionStorage.setItem("token", response.data.access_token);
         globalDispach({
           isLoggedIn: true,
@@ -135,12 +130,12 @@ export default function CenteredGrid() {
         });
         // console.log(globalDispach.isLoggedIn);
         history.push("/home");
-        console.log(response.data);
-      })
-      .catch((error) => {
-        //TODO show error message invalid credentialds
-        console.error(error);
-      });
+        // console.log(response.data);
+      // })
+      // .catch((error) => {
+      //   //TODO show error message invalid credentialds
+      //   console.error(error);
+      // });
   };
 
   return (

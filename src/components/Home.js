@@ -12,10 +12,6 @@ import BuBdTable from "./BuBdTable";
 import { BalanceGroupList } from "./BalanceTable";
 import { MainChartCards } from "./MainChartCards";
 import { MainChartHome } from "./MainChartHome";
-import graphOne from "../img/graph-one.png";
-import graphTwo from "../img/graph-two.png";
-import pieChart from "../img/pie-chart.png";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {

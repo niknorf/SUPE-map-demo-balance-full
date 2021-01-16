@@ -11,20 +11,9 @@ import React, {
   useState,
   createRef,
 } from "react";
-import {
-  GetBalanceGroupObj,
-  GetAllObjBalanaceId,
-  GetAllBuildingByFiasList,
-  GetAllSubstationsByFiasList,
-  GetPhantomicBuildingsObjects,
-  GetSingleBuildingByFiasId,
-  GetAllLinesBalanaceId,
-  GetBuildingObjBalanaceId,
-} from "../scripts/mapHelpers.js";
 import Contex from "../store/context";
 import buildingsPolygon from "../data/building_polygon.json";
 import axios from "axios";
-import substation_other from "../data/substation_other.json";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -47,7 +36,7 @@ const NonPhantomicBuildingstyle = {
 const LineStyle = {
   weight: 2,
   opacity: 1,
-  color: "#EC8041", //Outline color
+  color: "#252F4A", //Outline color
 };
 
 const TStyle = {
@@ -56,70 +45,6 @@ const TStyle = {
   opacity: 1,
   color: "#F1C010", //Outline color
   fillOpacity: 0.7,
-};
-
-const DisplayMultipleBalanceGroups = (globalState) => {
-  const { globalDispach } = useContext(Contex);
-
-  const handleTsClick = (event) => {
-    let balance_group_obj = GetBalanceGroupObj(
-      event.sourceTarget.feature.properties.fiasId
-    );
-
-    if (globalState.balance_index_array.length > 1) {
-      globalDispach({
-        isLoggedIn: true, //TODO check the token
-        type: "FILTERCOMPONENT",
-        fiasId: event.sourceTarget.feature.properties.fiasId,
-        isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
-        balance_index: balance_group_obj.balance_index,
-        isClean: balance_group_obj.isClean,
-        objSelected: true,
-        building_address: event.sourceTarget.feature.properties.name,
-        obj_from: "ts_select",
-        isInPSK: false,
-      });
-    }
-  };
-
-  const NonPhantomicStyle = {
-    fillColor: "rgba(37, 47, 74, 0.24)",
-    weight: 1,
-    opacity: 1,
-    color: "#252F4A", //Outline color
-    fillOpacity: 0.7,
-  };
-
-  const PhantomicStyle = {
-    fillColor: "rgba(241, 158, 105, 0.4)",
-    weight: 1,
-    opacity: 1,
-    color: "#EC8041", //Outline color
-    fillOpacity: 0.7,
-  };
-
-  var branch_ids = [];
-  var array = [];
-  for (const balance_index of globalState.balance_index_array) {
-    branch_ids.push(GetAllObjBalanaceId(balance_index));
-  }
-
-  for (const obj of branch_ids) {
-    array.push(
-      <GeoJSON
-        key={obj[0]}
-        data={GetAllBuildingByFiasList(obj)}
-        style={(features) => {
-          return features.properties.isPhantomic
-            ? PhantomicStyle
-            : NonPhantomicStyle;
-        }}
-        onClick={handleTsClick}
-      />
-    );
-  }
-
-  return array;
 };
 
 const GeneralMap = () => {
@@ -436,7 +361,7 @@ const GeneralMap = () => {
 const LayerStyle = (param) => {
   let style = TStyle;
 
-  if (param.properties.type === "ACLineSegment") {
+  if (param.properties.type === "Powerline") {
     style = LineStyle;
   } else if (param.properties.isPhantomic === true) {
     style = PhantomicBuildingstyle;

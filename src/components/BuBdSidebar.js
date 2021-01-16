@@ -1,22 +1,23 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import BuBdAct from './BuBdAct';
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
+import {
+  Paper,
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  TextField,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import IconButton from "@material-ui/core/IconButton";
 import Contex from "../store/context";
 import clsx from "clsx";
 import Popup from "reactjs-popup";
 import "../css/popup.css";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   showActButton: {
     width: "100%",
     backgroundColor: "#4A9CFF",
-    color: 'white',
+    color: "white",
     textTransform: "none",
     fontWeight: "bold",
     marginBottom: "11px",

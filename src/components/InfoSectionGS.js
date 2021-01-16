@@ -1,25 +1,12 @@
 import {
   Typography,
-  Container,
   Box,
   Paper,
-  TablePagination,
-  TableFooter,
-  Icon,
-  TableRow,
-  TableHead,
-  IconButton,
-  TableContainer,
-  TableCell,
-  Table,
-  TableBody,
   Grid,
-  Tabs,
-  Tab,
   styled,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { GaranteedSuppliesCompanies } from "./CompaniesListGS.js";
 import Contex from "../store/context";

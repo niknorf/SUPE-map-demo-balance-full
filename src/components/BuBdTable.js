@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import TableTemplate from "./TableTemplate";
 import InfoWindow from "./InfoWindow.js";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Contex from "../store/context";
 import grey_marker from "../img/grey.png";
 import orange_marker from "../img/orange.png";

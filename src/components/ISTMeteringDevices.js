@@ -1,6 +1,6 @@
-import { Typography, TableRow, TableCell, Link, Grid } from "@material-ui/core";
+import { TableRow, TableCell } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js"

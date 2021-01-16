@@ -2,9 +2,7 @@ import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
-  Box,
   TableHead,
-  Paper,
   IconButton,
   TableSortLabel,
   Table,
@@ -14,10 +12,7 @@ import {
   TableFooter,
   TablePagination,
   TableRow,
-  Link,
   Button,
-  Icon,
-  useMediaQuery,
 } from "@material-ui/core";
 import ReactToPrint from "react-to-print";
 import FirstPageIcon from "@material-ui/icons/FirstPage";

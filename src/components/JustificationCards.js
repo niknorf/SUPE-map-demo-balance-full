@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  Container,
   Grid,
-  Paper,
   FormControl,
   InputLabel,
   Select,
@@ -13,13 +11,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
-import clsx from "clsx";
 import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
-import indexesFile from "../data/graphic/indexes.json";
-import full_res from "../data/graphic/res_imbalance_front.json";
 import "../css/graphic.css";
-import info_icon from "../img/info_icon.svg";
 const Plot = createPlotlyComponent(Plotly);
 
 const useStyles = makeStyles((theme) => ({
@@ -129,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     width: 13.33,
     height: 13.33,
   },
-  cardWidth: { 
+  cardWidth: {
     maxWidth: '20%',
     flexBasis: '20%',
     minWidth: '210px'

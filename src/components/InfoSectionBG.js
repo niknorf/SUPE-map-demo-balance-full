@@ -1,35 +1,18 @@
 import {
   Typography,
-  Container,
   Box,
   Paper,
-  TablePagination,
-  TableFooter,
-  Icon,
-  TableRow,
-  TableHead,
-  IconButton,
-  TableContainer,
-  TableCell,
-  Table,
-  TableBody,
   Grid,
   Tabs,
   Tab,
 } from "@material-ui/core";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import LastPageIcon from "@material-ui/icons/LastPage";
 import React, { useContext, useEffect, useState } from "react";
-import full_res from "../data/graphic/res_imbalance_front.json";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { BalanceGroupContent } from "./ISTBalanceGroupContent.js";
 import { MeteringDevices } from "./ISTMeteringDevices.js";
 import { BDProbability } from "./ISTBUBDProbability.js";
 import Contex from "../store/context";
-import balance_group_items from "../data/balance_result_simple.json";
 import InfoWindow from "./InfoWindow.js";
 
 const useStyles = makeStyles((theme) => ({

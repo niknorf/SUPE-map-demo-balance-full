@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  Container,
   Grid,
-  Paper,
   FormControl,
   InputLabel,
   Select,
@@ -10,9 +8,6 @@ import {
   Box,
   Typography,
   Icon,
-  Button,
-  ButtonGroup,
-  TextField,
   Checkbox,
   FormGroup,
   FormControlLabel,
@@ -21,7 +16,6 @@ import {
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
 import Plotly from "plotly.js";
-import clsx from "clsx";
 import createPlotlyComponent from "react-plotly.js/factory";
 import InfoWindow from "./InfoWindow.js";
 import icon_fiz from "../img/fiz_icon.svg";
@@ -30,7 +24,6 @@ import icon_house from "../img/house_icon.svg";
 import icon_mean from "../img/mean_icon.svg";
 import icon_average from "../img/average_icon.svg";
 import icon_area from "../img/area_icon.svg";
-import icon_interval from "../img/interval_icon.svg";
 import localeRu from "plotly.js-locales/ru";
 import LoadingOverlay from "react-loading-overlay";
 const Plot = createPlotlyComponent(Plotly);

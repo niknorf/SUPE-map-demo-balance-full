@@ -1,11 +1,9 @@
 import { Autocomplete } from "@material-ui/lab";
-import { FormControl, TextField, Typography } from "@material-ui/core";
+import { FormControl, TextField } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-// import { GetBalanceGroupObj } from "../scripts/mapHelpers.js";
-import { GetStreetAdresses } from "../scripts/filtersHelpers.js";
 import Contex from "../store/context";
 import ts_balance_dict from "../data/ts_balance_dict.json";
-import { List, AutoSizer } from "react-virtualized";
+import { List } from "react-virtualized";
 import {matchSorter} from 'match-sorter';
 
 const ListboxComponent = React.forwardRef(function ListboxComponent(

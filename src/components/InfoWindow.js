@@ -1,6 +1,6 @@
-import { Grid, Paper, Switch, Typography, Box, Icon } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import React, { useContext, useState, useEffect } from "react";
+import { Typography, Box, Icon } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import info_icon from "../img/info_icon.svg";
 import triangle_icon from "../img/triangle_icon.svg";
 

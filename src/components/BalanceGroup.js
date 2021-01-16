@@ -1,14 +1,9 @@
 import {
   Container,
-  CssBaseline,
   Grid,
-  Link,
   Paper,
   Typography,
   Box,
-  TableCell,
-  TableRow,
-  useMediaQuery,
 } from "@material-ui/core";
 import {
   ThemeProvider,
@@ -17,9 +12,8 @@ import {
   withStyles,
   useTheme,
 } from "@material-ui/core/styles";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import clsx from "clsx";
 import { GraphicGroup, OutInputMonthGraphic } from "./Graphic";
 import { JustificationCards } from "./JustificationCards";
 import { ImbalancePskPu } from "./ImbalancePskPu";

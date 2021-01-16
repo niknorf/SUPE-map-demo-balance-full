@@ -1,9 +1,6 @@
 import {
-  Typography,
   TableRow,
   TableCell,
-  Link,
-  Grid,
   useMediaQuery,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";

@@ -1,12 +1,10 @@
-import { Grid, Paper, Switch, Typography, Box, Icon } from "@material-ui/core";
+import { Grid, Switch, Typography, Box, Icon } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Plotly from "plotly.js";
 import React, { useContext, useState, useEffect } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import clsx from "clsx";
 import Contex from "../store/context";
-import full_res from "../data/graphic/res_imbalance_front.json";
-import full_res_phantom from "../data/graphic/imbalance_phantom.json";
 import phantomic_buildings from "../data/balance_phantom_dict.json";
 import InfoWindow from "./InfoWindow.js"
 
@@ -80,6 +78,7 @@ const OrangeSwitch = withStyles({
   track: {},
 })(Switch);
 
+//TODO Check it from the method
 const IsPhantomicIncluded = (balance_index) => {
   return typeof phantomic_buildings[balance_index] === "undefined"
     ? false
