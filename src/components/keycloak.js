@@ -7,10 +7,10 @@ export const keycloakAuth = (userInfo) => {
   const params = {
     // grant_type: "authorization_code",
     client_id: "test-client",
-    // username: refUsername.current.value,
-    // password: redPassword.current.value,
-    username: "test_local", //TODO remove after testing
-    password: "admin", //TODO remove after testing
+    username: userInfo.username,
+    password: userInfo.password,
+    // username: "test_local", //TODO remove after testing
+    // password: "admin", //TODO remove after testing
     grant_type: "password",
   };
 

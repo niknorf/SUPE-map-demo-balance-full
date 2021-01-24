@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CenteredGrid() {
   const refUsername = useRef("");
-  const redPassword = useRef("");
+  const refPassword = useRef("");
   const [loggedIn, setLoggedIn] = useState(false);
   const classes = useStyles();
   const { globalState, globalDispach } = useContext(Contex);
@@ -98,7 +98,10 @@ export default function CenteredGrid() {
   ));
 
   const ButtonLoginClick = (history) => {
-    keycloakAuth()
+    keycloakAuth({
+      username: refUsername.current.value,
+      password: refPassword.current.value,
+    })
       .then((response) => {
         setSessionCookie(response.data.access_token);
         history.push("/home");
@@ -140,7 +143,7 @@ export default function CenteredGrid() {
                   id="standard-password-input"
                   type="password"
                   label="Пароль"
-                  inputRef={redPassword}
+                  inputRef={refPassword}
                 />
               </form>
               <ButtonLogin />
