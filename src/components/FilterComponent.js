@@ -88,17 +88,18 @@ const SearchComponent = () => {
       isClean: false,
     };
 
+    console.log(value);
+
     if (value !== null) {
       setFiasId(value.fias);
-    //   obj = GetBalanceGroupObj(value.fias);
+      // obj = GetBalanceGroupObj(value.fias);
     }
 
 
     globalDispach({
       type: "FILTERCOMPONENT",
       fiasId: value === null ? "" : value.fias,
-      /*TODO change to value.isPhantomic*/
-      isPhantomic: value === null ? false : obj.balance_index === '' ? true : false,
+      isPhantomic: value === null ? false : value.is_phantomic ? true : false,
       balance_index: value === null ? "" : obj.balance_index,
       isClean: value === null ? "" : obj.isClean,
       objSelected: value === null ? false : true,

@@ -1,41 +1,42 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {Paper, Grid, Typography, Box, Link, Button } from '@material-ui/core';
-import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Grid, Typography, Box, Link, Button } from "@material-ui/core";
+import InfoOutlined from "@material-ui/icons/InfoOutlined";
 import Popup from "reactjs-popup";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { getSessionCookie } from "./cookies";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding: '38px 40px 0',
+    padding: "38px 40px 0",
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'left',
+    textAlign: "left",
   },
   profileInfo: {
-    display: 'flex',
-    marginBottom: '40px',
+    display: "flex",
+    marginBottom: "40px",
   },
   properties: {
-    marginRight: '39px',
-    fontWeight: 'bold',
+    marginRight: "39px",
+    fontWeight: "bold",
   },
   links: {
-    display: 'flex',
-    flexDirection: 'column',
-    fontSize: '14px',
-    lineHeight: '17px'
+    display: "flex",
+    flexDirection: "column",
+    fontSize: "14px",
+    lineHeight: "17px",
   },
   link: {
-    display: 'flex',
-    color: '#252F4A',
-    textDecoration: 'underline',
-    marginBottom: '17px'
+    display: "flex",
+    color: "#252F4A",
+    textDecoration: "underline",
+    marginBottom: "17px",
   },
   outerBox: {
-    padding: '74px 77px 50px;'
+    padding: "74px 77px 50px;",
   },
   close: {
     display: "flex",
@@ -53,10 +54,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function ProfileNoAuth() {
   const classes = useStyles();
+
+  const userInfo = getSessionCookie();
+
+  // const translations = {
+  //   upe_worker: 'Диспечер'
+  // }
+
 
   const Modal = () => (
     <Popup
@@ -80,12 +86,14 @@ export default function ProfileNoAuth() {
             <span className="title">Информация о системе</span>
             <div className="info">
               <table>
-                <tr>
-                </tr>
+                <tr></tr>
                 <tr>
                   <td>Полное наименование:</td>
-                  <td>Информационная система управления передачей электроэнергии с
-                    использованием технологий “больших данных” ПАО «Россети Ленэнерго».</td>
+                  <td>
+                    Информационная система управления передачей электроэнергии с
+                    использованием технологий “больших данных” ПАО «Россети
+                    Ленэнерго».
+                  </td>
                 </tr>
                 <tr>
                   <td>Краткое наименование:</td>
@@ -93,21 +101,23 @@ export default function ProfileNoAuth() {
                 </tr>
                 <tr>
                   <td>Описание:</td>
-                  <td>Система УПЭ адаптирует результаты работы нейросети по обнаружению безучетного/бездоговорного потребления в доступном и удобном для понимания виде, а также преобразует систему задач в электронный формат.
-В системе УПЭ реализован эргономичный человеко-машинного интерфейс в области визуализации и анализа транспорта электроэнергии.</td>
+                  <td>
+                    Система УПЭ адаптирует результаты работы нейросети по
+                    обнаружению безучетного/бездоговорного потребления в
+                    доступном и удобном для понимания виде, а также преобразует
+                    систему задач в электронный формат. В системе УПЭ реализован
+                    эргономичный человеко-машинного интерфейс в области
+                    визуализации и анализа транспорта электроэнергии.
+                  </td>
                 </tr>
                 <tr>
                   <td>Разработчики:</td>
                   <td>
-                    АО "ФИЦ"
-                    info@ftc-energo.ru;
-                    ФГБОУ ВолгГТУ
+                    АО "ФИЦ" info@ftc-energo.ru; ФГБОУ ВолгГТУ
                     maxim.shcherbakov@gmail.com
                   </td>
                 </tr>
-
               </table>
-
             </div>
           </div>
         </div>
@@ -129,32 +139,16 @@ export default function ProfileNoAuth() {
               </Box>
               <Box className={classes.profileInfo}>
                 <Box className={classes.properties}>
-                  <Box>
-                    Имя
-                </Box>
-                  <Box>
-                    Отчество
-                </Box>
-                  <Box>
-                    Фамилия
-                </Box>
-                  <Box>
-                    Роль
-                  </Box>
+                  <Box>Имя</Box>
+                  {/* <Box>Отчество</Box> */}
+                  <Box>Фамилия</Box>
+                  <Box>Роль</Box>
                 </Box>
                 <Box className={classes.data}>
-                  <Box>
-                    Волтов
-                </Box>
-                  <Box>
-                    Илья
-                </Box>
-                  <Box>
-                    Павлович
-                </Box>
-                  <Box>
-                    Диспетчер
-                  </Box>
+                  <Box>{userInfo.given_name}</Box>
+                  <Box>{userInfo.family_name}</Box>
+                  {/* <Box>Павлович</Box> */}
+                  <Box>{userInfo.user_roles.toString()}</Box>
                 </Box>
               </Box>
               <Box className={classes.links}>
@@ -162,15 +156,18 @@ export default function ProfileNoAuth() {
                   <InfoOutlined style={{ fontSize: '17px', marginRight: '6px', color: '#4A9CFF' }} />
                   Информация о системе
                 </Link> */}
-                <Modal/>
-                <Button
-                  className={classes.justificationButton}
-                >
-
-                <Link href="Руководство пользователя.docx" download className={classes.link}>
-                  <InfoOutlined style={{marginRight: '6px', color: '#4A9CFF' }} />
-                  Руководство пользователя
-                </Link>
+                <Modal />
+                <Button className={classes.justificationButton}>
+                  <Link
+                    href="Руководство пользователя.docx"
+                    download
+                    className={classes.link}
+                  >
+                    <InfoOutlined
+                      style={{ marginRight: "6px", color: "#4A9CFF" }}
+                    />
+                    Руководство пользователя
+                  </Link>
                 </Button>
               </Box>
             </Typography>

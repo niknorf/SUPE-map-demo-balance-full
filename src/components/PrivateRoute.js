@@ -5,14 +5,9 @@
 // If not: they are redirected to the login page.
 import React, { useContext } from "react";
 import { Redirect, Route } from "react-router-dom";
-import Contex from "../store/context";
-import Home from "./Home";
+import { getSessionCookie } from "./cookies";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { globalState, globalDispach } = useContext(Contex);
-
-  // const isLoggedIn = globalState.isLoggedIn;
-  const isLoggedIn = true;
 
 
   return (
@@ -21,7 +16,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       exact
       {...rest}
       render={props =>
-        isLoggedIn ? (
+        Object.entries(getSessionCookie()).length > 0 ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: '/', state: { from: props.location } }} />

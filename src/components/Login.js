@@ -1,12 +1,19 @@
 import React, { useState, useRef, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Grid, Paper, Box, TextField, Button } from "@material-ui/core";
+import {
+  Typography,
+  Grid,
+  Paper,
+  Box,
+  TextField,
+  Button,
+} from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
-import queryString from "querystring";
 import BackgoundImage from "../img/login-map.png";
 import logo from "../img/login-logo.png";
 import Contex from "../store/context";
+import { keycloakAuth } from "./keycloak.js";
+import { setSessionCookie } from "./cookies";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   loginButton: {
     width: "100%",
     backgroundColor: "#4A9CFF",
-    color: 'white',
+    color: "white",
     textTransform: "none",
     fontWeight: "bold",
     marginTop: "52px",
@@ -91,51 +98,15 @@ export default function CenteredGrid() {
   ));
 
   const ButtonLoginClick = (history) => {
-
-    // const params = {
-    //   grant_type: "authorization_code",
-    //   client_id: "test-client",
-    //   // username: refUsername.current.value,
-    //   // password: redPassword.current.value,
-    //   username: "test_local", //TODO remove after testing
-    //   password: "admin", //TODO remove after testing
-    //   grant_type: "password",
-    // };
-    //
-    // axios({
-    //   method: "post",
-    //   url:
-    //     "https://keycloak.energo.ru/auth/realms/App/protocol/openid-connect/token",
-    //   data: queryString.stringify(params),
-    //   config: {
-    //     headers: {
-    //       "Content-Type": "application/x-www-form-urlencoded",
-    //       "Access-Control-Allow-Origin": "*"
-    //    },
-    //   },
-    // })
-    //   .then((response) => {
-        // sessionStorage.setItem("token", response.data.access_token);
-        globalDispach({
-          isLoggedIn: true,
-          fiasId: "",
-          isPhantomic: false,
-          balance_index: "",
-          isClean: "",
-          obj_from: "",
-          objSelected: false,
-          data_for_item_not_found: false,
-          isInPSK: false,
-          building_address: "",
-        });
-        // console.log(globalDispach.isLoggedIn);
+    keycloakAuth()
+      .then((response) => {
+        setSessionCookie(response.data.access_token);
         history.push("/home");
-        // console.log(response.data);
-      // })
-      // .catch((error) => {
-      //   //TODO show error message invalid credentialds
-      //   console.error(error);
-      // });
+      })
+      .catch((error) => {
+        //TODO show error message invalid credentialds
+        console.error(error);
+      });
   };
 
   return (

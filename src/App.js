@@ -6,9 +6,10 @@ import {
   makeStyles,
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Drawer from "./components/Drawer";
 import GlobalStateProvider from "./store/GlobalStateProvider";
+import { SessionContext, getSessionCookie } from "./components/cookies.js";
 import AppRouter from "./components/Routes";
 import PFDinRegularWoff from "./fonts/PFDinTextCondPro-Regular.woff";
 
@@ -39,9 +40,9 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: '#4a9cff',
-    }
-  }
+      main: "#4a9cff",
+    },
+  },
 });
 
 const useStyles = makeStyles({
@@ -52,16 +53,24 @@ const useStyles = makeStyles({
 
 export default function App() {
   const classes = useStyles();
-  const location = useLocation();
+  const location = useLocation().pathname;
+  const [session, setSession] = useState({});
+
+  useEffect(() => {
+    setSession(getSessionCookie());
+  }, []);
+
   return (
-    <GlobalStateProvider>
-      <div className={classes.container}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {location.pathname != "/" ? <Drawer />: null}
-          <AppRouter />
-        </ThemeProvider>
-      </div>
-    </GlobalStateProvider>
+    <SessionContext.Provider value={session}>
+      <GlobalStateProvider>
+        <div className={classes.container}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {location !== "/" ? <Drawer /> : null}
+            <AppRouter />
+          </ThemeProvider>
+        </div>
+      </GlobalStateProvider>
+    </SessionContext.Provider>
   );
 }

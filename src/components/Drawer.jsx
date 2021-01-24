@@ -17,6 +17,7 @@ import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import React from "react";
 import clsx from "clsx";
 import PFDinBoldWoff from "../fonts/PFDinTextCondPro-Bold.woff";
+import { removeSessionCookie } from "./cookies.js";
 import logo from "../img/logo.png";
 
 const pfdinBold = {
@@ -84,6 +85,11 @@ const useStyles = makeStyles({
 const Drawer = (props) => {
   const { history } = props;
   const classes = useStyles();
+
+  const handleExitButtonClick = (event) => {
+    removeSessionCookie(history);
+  };
+
   const itemsList = [
     {
       icon: <img src={logo} className={classes.logo} alt="" />,
@@ -126,6 +132,7 @@ const Drawer = (props) => {
           <ListItem
             button
             className={clsx(classes.listItemContainer, classes.exit)}
+            onClick={handleExitButtonClick}
           >
             <ListItemIcon className={classes.listIcon}>
               <ExitToAppIcon style={{ fontSize: "25px" }} />
