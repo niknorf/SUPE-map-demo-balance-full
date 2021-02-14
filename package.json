@@ -2,7 +2,7 @@
   "name": "supe-map-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://172.25.170.245:8010",
+  "proxy": "http://172.25.170.245:8200",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",

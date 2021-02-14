@@ -1,14 +1,9 @@
-import {
-  Typography,
-  Box,
-  Paper,
-  Grid,
-  styled,
-} from "@material-ui/core";
+import { Typography, Box, Paper, Grid, styled } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { GaranteedSuppliesCompanies } from "./CompaniesListGS.js";
+import { GaranteedSuppliesClusters } from "./ClustersListGS.js";
 import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js";
 
@@ -144,7 +139,7 @@ const ShowDataState = () => {
             sm={12}
             xl={12}
             xs={12}
-            style={{ height: "100%" }}
+            // style={{ height: "100%" }}
           >
             <StyledPaper elevation={1}>
               <Box className={classes.boxPaddingTabs}>
@@ -153,6 +148,23 @@ const ShowDataState = () => {
                 </Typography>
                 {/* Table with urid and  */}
                 <GaranteedSuppliesCompanies />
+              </Box>
+            </StyledPaper>
+          </Grid>
+          <Grid
+            item
+            lg={12}
+            md={12}
+            sm={12}
+            xl={12}
+            xs={12}
+            style={{ height: "100%" }}
+          >
+            <StyledPaper elevation={1}>
+              <Box className={classes.boxPaddingTabs}>
+                <Typography className={classes.graphText}>Кластеры</Typography>
+                {/* Table with urid and  */}
+                <GaranteedSuppliesClusters />
               </Box>
             </StyledPaper>
           </Grid>
@@ -168,9 +180,7 @@ const BuildingCards = () => {
   const classes = useStyles();
 
   const address_name =
-    globalState.building_address !== ""
-      ? globalState.building_address
-      : "";
+    globalState.building_address !== "" ? globalState.building_address : "";
 
   useEffect(() => {
     if (globalState.fiasId !== "") {
@@ -267,11 +277,11 @@ const BuildingCards = () => {
       ]
     : [
         <>
-        <Box className={classes.boxPaddingLabel}>
-          <Typography className={classes.balanceGroupLabel}>
-            {address_name}
-          </Typography>
-        </Box>
+          <Box className={classes.boxPaddingLabel}>
+            <Typography className={classes.balanceGroupLabel}>
+              {address_name}
+            </Typography>
+          </Box>
           <InfoWindow label="Нет данных" icon="info" />
         </>,
       ];

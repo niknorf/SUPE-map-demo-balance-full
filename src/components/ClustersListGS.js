@@ -7,22 +7,18 @@ import InfoWindow from "./InfoWindow.js"
 
 const useStyles = makeStyles((theme) => ({}));
 
-function createData(id, name) {
-  return { id, name};
-}
-
-const GaranteedSuppliesCompanies = () => {
+const GaranteedSuppliesClusters = () => {
   const classes = useStyles();
-  const [rows, setGSContent] = useState([]);
+  const [rows, setRows] = useState([]);
   const { globalState } = useContext(Contex);
 
   useEffect(() => {
     if (globalState.fiasId !== "") {
-      fetch("/api/PSK/GetConsumersPSKData/" + globalState.fiasId)
+      fetch("/api/Results/GetFiasClusterMedian/" + globalState.fiasId)
         .then((res) => res.json())
         .then(
           (result) => {
-            setGSContent(result);
+            setRows(result.clusters);
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -36,11 +32,14 @@ const GaranteedSuppliesCompanies = () => {
     // setLoading(true);
   }, [globalState.fiasId]);
 
-  const GaranteedSuppliesCompaniesRows = (row) => {
+  const GaranteedSuppliesClustersRows = (row) => {
     return (
-      <TableRow key={row.name}>
+      <TableRow key={row.cluster}>
         <TableCell component="th" scope="row"  align="left">
-          {row.name}
+          {row.cluster}
+        </TableCell>
+        <TableCell component="th" scope="row"  align="right">
+          {row.value}
         </TableCell>
       </TableRow>
     );
@@ -53,15 +52,21 @@ const GaranteedSuppliesCompanies = () => {
       disablePadding: false,
       label: "Название",
     },
+    {
+      id: "value",
+      numeric: true,
+      disablePadding: false,
+      label: "Значение",
+    }
   ];
 
   return (
-    rows.length >0 ? [
+    rows.length > 0 ? [
     <TableTemplate
-      rowsPerPage={6}
+      rowsPerPage={4}
       rows={rows}
       columns={tableColumns}
-      rowsSettings={GaranteedSuppliesCompaniesRows}
+      rowsSettings={GaranteedSuppliesClustersRows}
     />
   ] : [
       <InfoWindow label="Нет данных" icon="info" />
@@ -69,4 +74,5 @@ const GaranteedSuppliesCompanies = () => {
   );
 };
 
-export { GaranteedSuppliesCompanies };
+
+export { GaranteedSuppliesClusters };
