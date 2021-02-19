@@ -61,7 +61,7 @@ const GaranteedSuppliesClusters = () => {
       id: "value",
       numeric: true,
       disablePadding: false,
-      label: "Значение",
+      label: "Значение, кВтч",
     },
   ];
 
