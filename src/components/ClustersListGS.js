@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
-import InfoWindow from "./InfoWindow.js"
+import InfoWindow from "./InfoWindow.js";
 
 const useStyles = makeStyles((theme) => ({}));
 
@@ -18,7 +18,12 @@ const GaranteedSuppliesClusters = () => {
         .then((res) => res.json())
         .then(
           (result) => {
-            setRows(result.clusters);
+            let modified_result = result.clusters;
+            modified_result.push({
+              cluster: "общее",
+              value: result.fias_median,
+            });
+            setRows(modified_result);
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -35,10 +40,10 @@ const GaranteedSuppliesClusters = () => {
   const GaranteedSuppliesClustersRows = (row) => {
     return (
       <TableRow key={row.cluster}>
-        <TableCell component="th" scope="row"  align="left">
+        <TableCell component="th" scope="row" align="left">
           {row.cluster}
         </TableCell>
-        <TableCell component="th" scope="row"  align="right">
+        <TableCell component="th" scope="row" align="right">
           {row.value}
         </TableCell>
       </TableRow>
@@ -57,22 +62,19 @@ const GaranteedSuppliesClusters = () => {
       numeric: true,
       disablePadding: false,
       label: "Значение",
-    }
+    },
   ];
 
-  return (
-    rows.length > 0 ? [
-    <TableTemplate
-      rowsPerPage={4}
-      rows={rows}
-      columns={tableColumns}
-      rowsSettings={GaranteedSuppliesClustersRows}
-    />
-  ] : [
-      <InfoWindow label="Нет данных" icon="info" />
-  ]
-  );
+  return rows.length > 0
+    ? [
+        <TableTemplate
+          rowsPerPage={5}
+          rows={rows}
+          columns={tableColumns}
+          rowsSettings={GaranteedSuppliesClustersRows}
+        />,
+      ]
+    : [<InfoWindow label="Нет данных" icon="info" />];
 };
-
 
 export { GaranteedSuppliesClusters };

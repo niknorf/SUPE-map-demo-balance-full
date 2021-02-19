@@ -1,10 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  CircularProgress,
-} from "@material-ui/core";
+import { Grid, Box, Typography, CircularProgress } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Contex from "../store/context";
 import Plotly from "plotly.js";
@@ -45,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const HouseStatisticsChart = () => {
   const [pskSum, setPskSum] = useState([]);
+  const [clusterMedian, setClusterMedian] = useState('');
   const [pskSeppate, setPskSeppate] = useState([]);
   const [loading, setLoading] = useState(false);
   const { globalState } = useContext(Contex);
@@ -88,6 +84,20 @@ const HouseStatisticsChart = () => {
             // setError(error);
           }
         );
+      fetch("/api/Results/GetFiasClusterMedian/" + globalState.fiasId)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setClusterMedian(result.fias_median);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setLoading(true);
+            // setError(error);
+          }
+        );
     }
   }, [globalState.fiasId]);
 
@@ -111,7 +121,7 @@ const HouseStatisticsChart = () => {
                 График показаний по дому согласно статистике гарантирующих
                 поставщиков по годам,кВтч
               </Typography>
-              <DisplaySummedChart resultData={pskSum} />
+              <DisplaySummedChart resultData={pskSum} clusterMedian={clusterMedian}/>
             </Box>
           </Grid>
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
@@ -218,12 +228,13 @@ const DisplaySepparateChart = ({ resultData }) => {
       ];
 };
 
-const DisplaySummedChart = ({ resultData }) => {
+const DisplaySummedChart = ({ resultData, clusterMedian }) => {
   let empty_data = false;
 
   var psk_sum = {
     layout: {
       autosize: true,
+      showlegend: false,
       font: {
         family: "Roboto",
         size: 12,
@@ -236,6 +247,23 @@ const DisplaySummedChart = ({ resultData }) => {
         y: [],
         marker: { color: "#00CAFF" },
         type: "bar",
+      },
+      {
+        type: "scatter",
+        x: [],
+        y: [],
+        mode: "markers",
+        text: "Общее значение по кластерам",
+        hoverinfo: "x+y+text",
+        marker: {
+          color: "rgba(156, 165, 196, 0.95)",
+          line: {
+            color: "rgba(156, 165, 196, 1.0)",
+            width: 1,
+          },
+          symbol: "circle",
+          size: 16,
+        },
       },
     ],
     config: {
@@ -259,6 +287,8 @@ const DisplaySummedChart = ({ resultData }) => {
       psk_sum.data[0].x.push(resultData[i].datetime);
       psk_sum.data[0].y.push(resultData[i].value);
     }
+    psk_sum.data[1].x.push(resultData[0].datetime);
+    psk_sum.data[1].y.push(typeof clusterMedian !== 'undefined' ? clusterMedian : '');
   } else {
     empty_data = true;
   }
