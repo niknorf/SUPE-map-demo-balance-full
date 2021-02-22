@@ -113,7 +113,7 @@ const SearchComponent = () => {
 
   useEffect(() => {
     setLoadingState(true)
-    fetch("/api/DataCompare/GetBuildingAddressByFiasOnlyPoly")
+    fetch("/api/PSK/GetCurrentConsumersList")
       .then((res) => res.json())
       .then(
         (result) => {
