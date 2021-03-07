@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Paper,
-  Grid,
-  Box,
-  Button,
-  TextField
-} from "@material-ui/core";
+import { Paper, Grid, Box, Button, TextField } from "@material-ui/core";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import CalendarTodayOutlinedIcon from "@material-ui/icons/CalendarTodayOutlined";
 import BlueDot from "../img/blue-dot.svg";
@@ -14,10 +8,340 @@ import YellowDot from "../img/yellow_dot_task.svg";
 import GreenDot from "../img/green-dot.svg";
 import RedDot from "../img/red_dot_task.svg";
 import Popup from "reactjs-popup";
-import TaskDialog from "./TaskDialog.js";
+import EditTaskDialog from "./EditTaskDialog.js";
 import "../css/taskPopup.css";
 import Contex from "../store/context";
+import { getSessionCookie } from "./cookies";
 
+export default function AutoGrid() {
+  const classes = useStyles();
+  const [tasks, setTaskContent] = useState([]);
+  const [newTasks, setNewTasks] = useState(0);
+  const [inProgressTasks, setInProgressTasks] = useState(0);
+  const [doneTasks, setDoneTasks] = useState(0);
+  const [expiredTasks, setExpiredTasks] = useState(0);
+  const [openTaskDialog, setTaskDialogOpen] = useState(false);
+  const [taskDialogData, setTaskDialogData] = useState({});
+  const { globalState, globalDispach } = useContext(Contex);
+  const userInfo = getSessionCookie();
+
+  useEffect(() => {
+    fetch("/api/UserTasks")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          handleTaskCount(result);
+          setTaskContent(result);
+        },
+        (error) => {
+          // setLoading(true);
+          // setError(error);
+        }
+      );
+    // setLoading(true);
+  }, []);
+
+  const taskCount = useRef();
+
+  const handleTaskCount = (task_array) => {
+    let newCount = 0;
+    let progressCount = 0;
+    let doneCount = 0;
+    let expiredCount = 0;
+    for (var i = 0; i < task_array.length; ++i) {
+      if (task_array[i].statusTask === 0) {
+        newCount++;
+      }
+      if (task_array[i].statusTask === 1) {
+        progressCount++;
+      }
+      if (task_array[i].statusTask === 2) {
+        doneCount++;
+      }
+      if (task_array[i].statusTask === 3) {
+        expiredCount++;
+      }
+    }
+
+    setExpiredTasks(expiredCount);
+    setDoneTasks(doneCount);
+    setInProgressTasks(progressCount);
+    setNewTasks(newCount);
+  };
+
+  const handleTaskDialogOpen = (taskData) => {
+    setTaskDialogOpen(true);
+    setTaskDialogData(taskData);
+  };
+
+  const handleTaskDialogClose = () => {
+    setTaskDialogOpen(false);
+    setTaskDialogData({});
+  };
+
+  return (
+    <div className={classes.root}>
+      <Grid container>
+        <Grid item lg={2} md={2} sm={2} xl={2} xs={3}>
+          <Paper className={classes.paperPanel}>
+            <AccountCircleOutlinedIcon
+              style={{ fontSize: 39, marginBottom: "16px" }}
+            />
+            <div
+              style={{
+                fontSize: "20px",
+                lineHeight: "25px",
+                marginBottom: "3px",
+              }}
+            >
+              {userInfo.name}
+            </div>
+            <div
+              style={{
+                fontStyle: "normal",
+                fontWeight: "normal",
+                fontSize: "14px",
+                lineHeight: "17px",
+                marginBottom: "21px",
+                color: "#8C949E",
+                overflowWrap: 'break-word',
+              }}
+            >
+              {userInfo.user_roles[0]}
+            </div>
+          </Paper>
+        </Grid>
+        <Grid item lg={10} md={10} sm={10} xl={10} xs={9}>
+          <Box className={classes.tasksContainer}>
+            <div
+              style={{
+                fontSize: "32px",
+                lineHeight: "38px",
+                marginBottom: "3px",
+                fontFamily: "PFDinTextCondPro-Regular",
+              }}
+            >
+              Задания по северному РЭС
+            </div>
+            <Grid container spacing={3} className={classes.taskNavigation}>
+              {userInfo.user_roles.includes("upe_manager") && (
+                <Grid item xs={4}>
+                  <Paper className={classes.paperChange}>
+                    <span style={{ fontSize: "14px", lineHeight: "18px" }}>
+                      Период: 1 Октября - 14 Октября
+                    </span>
+                    <Button
+                      variant="contained"
+                      className={classes.buttonChange}
+                      startIcon={<CalendarTodayOutlinedIcon />}
+                    >
+                      Изменить
+                    </Button>
+                  </Paper>
+                </Grid>
+              )}
+              <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                <Paper className={classes.paper}>
+                  <form
+                    className={classes.searchForm}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      id="search_task"
+                      label="Найти задание"
+                      style={{ width: "100%" }}
+                    />
+                  </form>
+                </Paper>
+              </Grid>
+            </Grid>
+            {/* 0 - новая
+                1 - в процессе
+                2 - выполнено
+                3 - просрочено */}
+            <Grid container spacing={3}>
+              <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+                <img src={BlueDot} className={classes.titleDot}></img>
+                <span className={classes.title}>
+                  Новые{" "}
+                  <span className={classes.titleNumber}>({newTasks})</span>
+                </span>
+                <div ref={taskCount}>
+                  {tasks.map((task) =>
+                    task.statusTask === 0
+                      ? [
+                          <Paper
+                            className={classes.taskCard}
+                            onClick={() => {
+                              handleTaskDialogOpen(task);
+                            }}
+                          >
+                            <span className={classes.address}>
+                              {task.fiasAddress}
+                            </span>
+                            <div>
+                              <img
+                                src={BlueDot}
+                                className={classes.taskDot}
+                              ></img>
+                              <span className={classes.taskNumber}>
+                                Задание №{task.id}
+                              </span>
+                            </div>
+                            <span className={classes.description}>
+                              {task.descriptionTask}
+                            </span>
+                            <div>
+                              <CalendarTodayOutlinedIcon
+                                className={classes.pregressIcon}
+                              />
+                              <span className={classes.progress}>
+                                {task.date}
+                              </span>
+                            </div>
+                          </Paper>,
+                        ]
+                      : null
+                  )}
+                </div>
+              </Grid>
+              <EditTaskDialog
+                isDialogOpen={openTaskDialog}
+                closeDialog={handleTaskDialogClose}
+                dialogData={taskDialogData}
+              />
+              <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+                <img src={YellowDot} className={classes.titleDot}></img>
+                <span className={classes.title}>
+                  В процессе ({inProgressTasks})
+                </span>
+                {tasks.map((task) =>
+                  task.statusTask === 1
+                    ? [
+                        <Paper
+                          className={classes.taskCard}
+                          onClick={() => {
+                            handleTaskDialogOpen(task);
+                          }}
+                        >
+                          <span className={classes.address}>
+                            {task.fiasAddress}
+                          </span>
+                          <div>
+                            <img
+                              src={YellowDot}
+                              className={classes.taskDot}
+                            ></img>
+                            <span className={classes.taskNumber}>
+                              Задание №{task.id}
+                            </span>
+                          </div>
+                          <span className={classes.description}>
+                            {task.descriptionTask}
+                          </span>
+                          <div>
+                            <CalendarTodayOutlinedIcon
+                              className={classes.pregressIcon}
+                            />
+                            <span className={classes.progress}>
+                              {task.date}
+                            </span>
+                          </div>
+                        </Paper>,
+                      ]
+                    : null
+                )}
+              </Grid>
+              <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+                <img src={GreenDot} className={classes.titleDot}></img>
+                <span className={classes.title}>
+                  Выполнено{" "}
+                  <span className={classes.titleNumber}>({doneTasks})</span>
+                </span>
+                {tasks.map((task) =>
+                  task.statusTask === 2
+                    ? [
+                        <Paper
+                          className={classes.taskCard}
+                          onClick={() => {
+                            handleTaskDialogOpen(task);
+                          }}
+                        >
+                          <span className={classes.address}>
+                            {task.fiasAddress}
+                          </span>
+                          <div>
+                            <img
+                              src={GreenDot}
+                              className={classes.taskDot}
+                            ></img>
+                            <span className={classes.taskNumber}>
+                              Задание №{task.id}
+                            </span>
+                          </div>
+                          <span className={classes.description}>
+                            {task.descriptionTask}
+                          </span>
+                          <div>
+                            <CalendarTodayOutlinedIcon
+                              className={classes.pregressIcon}
+                            />
+                            <span className={classes.progress}>
+                              {task.date}
+                            </span>
+                          </div>
+                        </Paper>,
+                      ]
+                    : null
+                )}
+              </Grid>
+              <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+                <img src={RedDot} className={classes.titleDot}></img>
+                <span className={classes.title}>
+                  Просрочено ({expiredTasks})
+                </span>
+                {tasks.map((task) =>
+                  task.statusTask === 3
+                    ? [
+                        <Paper
+                          className={classes.taskCard}
+                          onClick={() => {
+                            handleTaskDialogOpen(task);
+                          }}
+                        >
+                          <span className={classes.address}>
+                            {task.fiasAddress}
+                          </span>
+                          <div>
+                            <img src={RedDot} className={classes.taskDot}></img>
+                            <span className={classes.taskNumber}>
+                              Задание №{task.id}
+                            </span>
+                          </div>
+                          <span className={classes.description}>
+                            {task.descriptionTask}
+                          </span>
+                          <div>
+                            <CalendarTodayOutlinedIcon
+                              className={classes.pregressIcon}
+                            />
+                            <span className={classes.progress}>
+                              {task.date}
+                            </span>
+                          </div>
+                        </Paper>,
+                      ]
+                    : null
+                )}
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -188,338 +512,3 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "16px",
   },
 }));
-
-export default function AutoGrid() {
-  const classes = useStyles();
-  const [tasks, setTaskContent] = useState([]);
-  const [newTasks, setNewTasks] = useState(0);
-  const [inProgressTasks, setInProgressTasks] = useState(0);
-  const [doneTasks, setDoneTasks] = useState(0);
-  const [expiredTasks, setExpiredTasks] = useState(0);
-  const [openDialog, setOpen] = useState(false);
-  // const [closeDialog, setClose] = useState(true);
-  const [dialogData, setDialogData] = useState({});
-  const { globalState, globalDispach } = useContext(Contex);
-
-  useEffect(() => {
-    fetch("/api/UserTasks")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          handleTaskCount(result);
-          setTaskContent(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          // setLoading(true);
-          // setError(error);
-        }
-      );
-    // setLoading(true);
-  }, []);
-
-  const taskCount = useRef();
-
-  const handleTaskCount = (task_array) => {
-    let newCount = 0;
-    let progressCount = 0;
-    let doneCount = 0;
-    let expiredCount = 0;
-    for (var i = 0; i < task_array.length; ++i) {
-      if (task_array[i].statusTask === 0) {
-        newCount++;
-      }
-      if (task_array[i].statusTask === 1) {
-        progressCount++;
-      }
-      if (task_array[i].statusTask === 2) {
-        doneCount++;
-      }
-      if (task_array[i].statusTask === 3) {
-        expiredCount++;
-      }
-    }
-
-    setExpiredTasks(expiredCount);
-    setDoneTasks(doneCount);
-    setInProgressTasks(progressCount);
-    setNewTasks(newCount);
-  };
-
-  function count() {
-    console.log(taskCount.current.childNodes.length);
-  }
-
-  const handleDialogOpen = (taskData) => {
-    setOpen(true);
-    setDialogData(taskData);
-  };
-
-  const handleDialogClose = () => {
-    setOpen(false);
-    setDialogData({});
-  };
-
-  return (
-    <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={3}>
-          <Paper className={classes.paperPanel}>
-            <AccountCircleOutlinedIcon
-              style={{ fontSize: 39, marginBottom: "16px" }}
-            />
-            <span
-              style={{
-                fontSize: "20px",
-                lineHeight: "25px",
-                marginBottom: "3px",
-              }}
-            >
-              Волтов Илья Павлович
-            </span>
-            <span
-              style={{
-                fontStyle: "normal",
-                fontWeight: "normal",
-                fontSize: "14px",
-                lineHeight: "17px",
-                marginBottom: "21px",
-                color: "#8C949E",
-              }}
-            >
-              Менеджер
-            </span>
-          </Paper>
-        </Grid>
-        <Grid item xs>
-          <Box className={classes.tasksContainer}>
-            <span
-              style={{
-                fontSize: "32px",
-                lineHeight: "38px",
-                marginBottom: "3px",
-                fontFamily: "PFDinTextCondPro-Regular",
-              }}
-            >
-              Задания по северному РЭС
-            </span>
-            <Grid container spacing={3} className={classes.taskNavigation}>
-              <Grid item xs={4}>
-                <Paper className={classes.paperChange}>
-                  <span style={{ fontSize: "14px", lineHeight: "18px" }}>
-                    Период: 1 Октября - 14 Октября
-                  </span>
-                  <Button
-                    variant="contained"
-                    className={classes.buttonChange}
-                    startIcon={<CalendarTodayOutlinedIcon />}
-                  >
-                    Изменить
-                  </Button>
-                </Paper>
-              </Grid>
-              <Grid item xs={8}>
-                <Paper className={classes.paper}>
-                  <form
-                    className={classes.searchForm}
-                    noValidate
-                    autoComplete="off"
-                  >
-                    <TextField
-                      id="standard-basic"
-                      label="Найти задание"
-                      style={{ width: "100%" }}
-                    />
-                  </form>
-                </Paper>
-              </Grid>
-            </Grid>
-            {/* 0 - новая
-                1 - в процессе
-                2 - выполнено
-                3 - просрочено */}
-            <Grid container spacing={3}>
-              <Grid item xs={3} className={classes.newTasks}>
-                <img src={BlueDot} className={classes.titleDot}></img>
-                <span className={classes.title}>
-                  Новые{" "}
-                  <span className={classes.titleNumber}>({newTasks})</span>
-                </span>
-                <div ref={taskCount} onLoad={count}>
-                  {tasks.map((task) =>
-                    task.statusTask === 0
-                      ? [
-                          <Paper
-                            className={classes.taskCard}
-                            onClick={() => {
-                              handleDialogOpen(task);
-                            }}
-                          >
-                            <span className={classes.address}>
-                              {task.fiasAddress}
-                            </span>
-                            <div>
-                              <img
-                                src={BlueDot}
-                                className={classes.taskDot}
-                              ></img>
-                              <span className={classes.taskNumber}>
-                                Задание №{task.id}
-                              </span>
-                            </div>
-                            <span className={classes.description}>
-                              {task.descriptionTask}
-                            </span>
-                            <div>
-                              <CalendarTodayOutlinedIcon
-                                className={classes.pregressIcon}
-                              />
-                              <span className={classes.progress}>
-                                {task.date}
-                              </span>
-                            </div>
-                          </Paper>,
-                        ]
-                      : null
-                  )}
-                </div>
-              </Grid>
-              <TaskDialog
-                isDialogOpen={openDialog}
-                closeDialog={handleDialogClose}
-                dialogData={dialogData}
-              />
-
-              <Grid item xs={3}>
-                <img src={YellowDot} className={classes.titleDot}></img>
-                <span className={classes.title}>
-                  В процессе ({inProgressTasks})
-                </span>
-                {tasks.map((task) =>
-                  task.statusTask === 1
-                    ? [
-                        <Paper
-                          className={classes.taskCard}
-                          onClick={() => {
-                            handleDialogOpen(task);
-                          }}
-                        >
-                          <span className={classes.address}>
-                            {task.fiasAddress}
-                          </span>
-                          <div>
-                            <img
-                              src={YellowDot}
-                              className={classes.taskDot}
-                            ></img>
-                            <span className={classes.taskNumber}>
-                              Задание №{task.id}
-                            </span>
-                          </div>
-                          <span className={classes.description}>
-                            {task.descriptionTask}
-                          </span>
-                          <div>
-                            <CalendarTodayOutlinedIcon
-                              className={classes.pregressIcon}
-                            />
-                            <span className={classes.progress}>
-                              {task.date}
-                            </span>
-                          </div>
-                        </Paper>,
-                      ]
-                    : null
-                )}
-              </Grid>
-              <Grid item xs={3}>
-                <img src={GreenDot} className={classes.titleDot}></img>
-                <span className={classes.title}>
-                  Выполнено{" "}
-                  <span className={classes.titleNumber}>({doneTasks})</span>
-                </span>
-                {tasks.map((task) =>
-                  task.statusTask === 2
-                    ? [
-                        <Paper
-                          className={classes.taskCard}
-                          onClick={() => {
-                            handleDialogOpen(task);
-                          }}
-                        >
-                          <span className={classes.address}>
-                            {task.fiasAddress}
-                          </span>
-                          <div>
-                            <img
-                              src={GreenDot}
-                              className={classes.taskDot}
-                            ></img>
-                            <span className={classes.taskNumber}>
-                              Задание №{task.id}
-                            </span>
-                          </div>
-                          <span className={classes.description}>
-                            {task.descriptionTask}
-                          </span>
-                          <div>
-                            <CalendarTodayOutlinedIcon
-                              className={classes.pregressIcon}
-                            />
-                            <span className={classes.progress}>
-                              {task.date}
-                            </span>
-                          </div>
-                        </Paper>,
-                      ]
-                    : null
-                )}
-              </Grid>
-              <Grid item xs={3}>
-                <img src={RedDot} className={classes.titleDot}></img>
-                <span className={classes.title}>
-                  Просрочено ({expiredTasks})
-                </span>
-                {tasks.map((task) =>
-                  task.statusTask === 3
-                    ? [
-                        <Paper
-                          className={classes.taskCard}
-                          onClick={() => {
-                            handleDialogOpen(task);
-                          }}
-                        >
-                          <span className={classes.address}>
-                            {task.fiasAddress}
-                          </span>
-                          <div>
-                            <img src={RedDot} className={classes.taskDot}></img>
-                            <span className={classes.taskNumber}>
-                              Задание №{task.id}
-                            </span>
-                          </div>
-                          <span className={classes.description}>
-                            {task.descriptionTask}
-                          </span>
-                          <div>
-                            <CalendarTodayOutlinedIcon
-                              className={classes.pregressIcon}
-                            />
-                            <span className={classes.progress}>
-                              {task.date}
-                            </span>
-                          </div>
-                        </Paper>,
-                      ]
-                    : null
-                )}
-              </Grid>
-            </Grid>
-          </Box>
-        </Grid>
-      </Grid>
-    </div>
-  );
-}

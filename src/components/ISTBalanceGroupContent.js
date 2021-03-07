@@ -1,19 +1,24 @@
-import { TableRow, TableCell, Grid } from "@material-ui/core";
+import { TableRow, TableCell, Grid, Link as LinkDialog } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "./TableTemplate";
 import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js";
+import { getSessionCookie } from "./cookies";
 import { Link } from "react-router-dom";
+import AddTaskDialog from "./AddTaskDialog.js"
 
 const useStyles = makeStyles((theme) => ({}));
 
-function createData(id, name, type, link, fias) {
-  return { id, name, type, link, fias };
+function createData(id, fiasAddress, type, gs_link, fias, task_link) {
+  return { id, fiasAddress, type, gs_link, fias, task_link };
 }
 
 const BalanceGroupContent = () => {
   const classes = useStyles();
+  const userInfo = getSessionCookie();
+  const [openDialog, setOpen] = useState(false);
+  const [dialogData, setDialogData] = useState({});
   const [rows, setBgContent] = useState([]);
   const { globalState } = useContext(Contex);
 
@@ -37,33 +42,48 @@ const BalanceGroupContent = () => {
     // setLoading(true);
   }, [globalState.balance_index]);
 
+  const handleDialogOpen = (row) => {
+    console.log(row);
+    setOpen(true);
+    setDialogData(row);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+    setDialogData({});
+  };
+
   const BalanceGroupContentRows = (row) => {
     return (
       <TableRow key={row.id}>
         <TableCell component="th" scope="row" style={{ width: 200 }}>
-          {row.name}
+          {row.fiasAddress}
         </TableCell>
         <TableCell style={{ width: 100 }} align="left">
           {row.type}
         </TableCell>
         <TableCell style={{ width: 50 }} align="right">
-          {/* href="guaranteedsuppliers" numeric component="a" */}
           <Link
             to={{
               pathname: "/guaranteedsuppliers",
               row,
             }}
-            // component="button"
-            // variant="body2"
-            // underline="always"
-            // color="primary"
-            // onClick=
-            // {() => {
-            //   console.log(row);
-            //   /*redirect to faranteenned syppliers*/
-            // }}
-            >{row.link}
+          >
+            {row.gs_link}
           </Link>
+        </TableCell>
+        <TableCell style={{ width: 50 }} align="right">
+          <LinkDialog
+            component="button"
+            variant="body2"
+            underline="always"
+            color="primary"
+            onClick={() => {
+            handleDialogOpen(row);
+            }}
+          >
+            {row.task_link}
+          </LinkDialog>
         </TableCell>
       </TableRow>
     );
@@ -71,7 +91,7 @@ const BalanceGroupContent = () => {
 
   const tableColumns = [
     {
-      id: "name",
+      id: "fiasAddress",
       numeric: false,
       disablePadding: false,
       label: "Название",
@@ -83,7 +103,13 @@ const BalanceGroupContent = () => {
       label: "Тип",
     },
     {
-      id: "link",
+      id: "gs_link",
+      numeric: false,
+      disablePadding: false,
+      label: "",
+    },
+    {
+      id: "task_link",
       numeric: false,
       disablePadding: false,
       label: "",
@@ -137,12 +163,17 @@ const BalanceGroupContent = () => {
       },
     ];
     let temp = [];
-
+    console.log(userInfo);
     for (let i = 0; i < original.length; i++) {
       let gs_link = "";
+      let task_link = "";
       let fias = "";
       if (original[i].type === "ConsumerBuilding") {
         gs_link = "Посмотреть ГП";
+        //Only upe_analyst role can add the task
+        if (userInfo.user_roles.includes("upe_analyst")) {
+          task_link = "Создать задание";
+        }
         fias = original[i].fias;
       }
       if (original[i].type !== "Link") {
@@ -152,7 +183,14 @@ const BalanceGroupContent = () => {
           }
         }
         temp.push(
-          createData(i, original[i].name, original[i].type, gs_link, fias)
+          createData(
+            i,
+            original[i].name,
+            original[i].type,
+            gs_link,
+            fias,
+            task_link
+          )
         );
       }
     }
@@ -166,6 +204,11 @@ const BalanceGroupContent = () => {
           rows={rows}
           columns={tableColumns}
           rowsSettings={BalanceGroupContentRows}
+        />,
+        <AddTaskDialog
+          isDialogOpen={openDialog}
+          closeDialog={handleDialogClose}
+          dialogData={dialogData}
         />,
       ]
     : [

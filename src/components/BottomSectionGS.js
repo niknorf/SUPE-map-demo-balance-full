@@ -40,49 +40,7 @@ const GreyCheckbox = withStyles({
   },
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-const useStyles = makeStyles((theme) => ({
 
-  chartTitle: {
-    fontSize: "14px",
-    lineHeight: "14px",
-    paddingTop: "30px",
-    paddingLeft: "35px",
-    color: "#252F4A",
-  },
-  imageIcon:{
-    width: 10,
-    height: 10,
-  },
-  balanceGroupLabel: {
-    fontSize: "14px",
-    lineHeight: "17px",
-    color: "#252F4A",
-  },
-  boxPaddingLabel: {
-    paddingTop: "16px",
-    paddingLeft: "16px",
-    paddingBottom: "16px",
-  },
-  boxChartLegend: {
-    width: "222px",
-    height: "200px",
-    background: "rgba(140, 148, 158, 0.1)",
-    paddingTop: "16px",
-    paddingLeft: "16px",
-    paddingBottom: "16px",
-  },
-  chartLegendTextBox:{
-    display: 'flex',
-    alignItems: 'flex-end'
-
-  },
-  chartLegendText:{
-    color: '#818E9B',
-    letterSpacing: '0.01em',
-    lineHeight: '13px',
-    fontSize: '11px',
-  }
-}));
 
 const BottomSectionGS = () => {
   const [legalType, setLegalTyped] = useState("entity");
@@ -669,5 +627,49 @@ const meanValue = '50%';
         />,
       ];
 };
+
+const useStyles = makeStyles((theme) => ({
+
+  chartTitle: {
+    fontSize: "14px",
+    lineHeight: "14px",
+    paddingTop: "30px",
+    paddingLeft: "35px",
+    color: "#252F4A",
+  },
+  imageIcon:{
+    width: 10,
+    height: 10,
+  },
+  balanceGroupLabel: {
+    fontSize: "14px",
+    lineHeight: "17px",
+    color: "#252F4A",
+  },
+  boxPaddingLabel: {
+    paddingTop: "16px",
+    paddingLeft: "16px",
+    paddingBottom: "16px",
+  },
+  boxChartLegend: {
+    width: "222px",
+    height: "200px",
+    background: "rgba(140, 148, 158, 0.1)",
+    paddingTop: "16px",
+    paddingLeft: "16px",
+    paddingBottom: "16px",
+  },
+  chartLegendTextBox:{
+    display: 'flex',
+    alignItems: 'flex-end'
+
+  },
+  chartLegendText:{
+    color: '#818E9B',
+    letterSpacing: '0.01em',
+    lineHeight: '13px',
+    fontSize: '11px',
+  }
+}));
 
 export { BottomSectionGS };

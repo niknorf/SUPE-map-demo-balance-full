@@ -1,13 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Button } from "@material-ui/core";
+import {
+  Grid,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
+import axios from "axios";
 import BlueDot from "../img/blue-dot.svg";
 import YellowDot from "../img/yellow_dot_task.svg";
 import GreenDot from "../img/green-dot.svg";
 import RedDot from "../img/red_dot_task.svg";
 import Dialog from "@material-ui/core/Dialog";
+import queryString from "querystring";
+import { getUserListWithRoles } from "./keycloak";
+import { DateTimePicker } from "@material-ui/pickers";
+import { getSessionCookie } from "./cookies";
 
-const TaskDialog = (props) => {
+const AddTaskDialog = (props) => {
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const [worker, setWorker] = useState();
+  const userInfo = getSessionCookie();
   // const [open, setOpen] = useState(false);
   // const [dialogData, setDialogData] = useState({ userCreator: {} });
   const classes = useStyles();
@@ -23,13 +38,58 @@ const TaskDialog = (props) => {
     },
     descriptionTask: "",
   };
-
+  console.log(userInfo);
   //Check if dialogData exists or not
-  if (typeof props.dialogData !== "undefined" && Object.keys(props.dialogData).length !== 0) {
+  if (
+    typeof props.dialogData !== "undefined" &&
+    Object.keys(props.dialogData).length !== 0
+  ) {
     dialogData = props.dialogData;
   }
+  // getUserListWithRoles();
 
-  console.log(props.dialogData);
+  const user_list = [
+    {
+      lastName: "worker",
+      firstName: "test",
+      id: "887b7bbd-6485-4749-9081-da0704d86dda",
+    },
+  ];
+
+  const handleChange = (event) => {
+    setWorker(event.target.value);
+  };
+
+  const AddTask = () => {
+    const requestOptions = {
+        id: 0,
+        userCreatorId: 8,
+        fiasGUID: "78dfae72-87ed-40d8-b8e4-0114203b3b09",
+        fiasAddress: "194352, г Санкт-Петербург, Выборгский р-н, ул Кустодиева, д 24 литер а",
+        dateString: "20210621",
+        descriptionTask: "string",
+        category: 0,
+        statusTask: 0,
+        executorUsersId: [2]
+    };
+
+    axios({
+      method: "POST",
+      url: '/api/UserTasks/AddTask',
+      data: queryString.stringify(requestOptions),
+      config: {
+        headers: {
+        'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*"
+        },
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Task created");
+        // props.closeDialog;
+      });
+  };
 
   return (
     <Dialog open={props.isDialogOpen} onClose={props.closeDialog}>
@@ -38,10 +98,11 @@ const TaskDialog = (props) => {
           <div className="top">
             <img src={BlueDot} className={classes.taskDot}></img>
             <span className={classes.new}>Новое</span>
-            <span className={classes.status}>Изменить статус</span>
-            <span className={classes.taskNumPopup}>
+            {/* Add only if view the task from task page fix margin */}
+            {/* <span className={classes.status}></span> */}
+            {/* <span className={classes.taskNumPopup}>
               Задание №{dialogData.id}
-            </span>
+            </span> */}
           </div>
           <div className={classes.addressPopup}>
             <span className={classes.addressText}>
@@ -50,17 +111,45 @@ const TaskDialog = (props) => {
           </div>
           <Grid container spacing={3}>
             <Grid item xs={6} className={classes.columnsPopup}>
-              <span className={classes.columnTitle}>Дата и время</span>
-              <span className={classes.columnContent}>
-                {dialogData.date}
-              </span>
+              {/* <span className={classes.columnTitle}>Дата и время</span> */}
+              <DateTimePicker
+                disableToolbar
+                label="Дата и время"
+                variant="inline"
+                value={selectedDate}
+                onChange={handleDateChange}
+              />
+              <span className={classes.columnContent}>{dialogData.date}</span>
             </Grid>
             <Grid item xs={6} className={classes.columnsPopup}>
-              <span className={classes.columnTitle}>Исполнитель</span>
+              <FormControl>
+                <InputLabel
+                  shrink
+                  id="demo-simple-select-placeholder-label-label"
+                >
+                  Исполнитель
+                </InputLabel>
+                <Select
+                  // labelId="demo-simple-select-placeholder-label-label"
+                  id="demo-simple-select-placeholder-label"
+                  value={worker}
+                  onChange={handleChange}
+                  displayEmpty
+                  // className={classes.selectEmpty}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="887b7bbd-6485-4749-9081-da0704d86dda">
+                    worker test
+                  </MenuItem>
+                </Select>
+              </FormControl>
+              {/* <span className={classes.columnTitle}>Исполнитель</span>
               <span className={classes.columnContent}>
-                {dialogData.userCreator.lastName}{" "}
-                {dialogData.userCreator.firstName}
-              </span>
+                {dialogData.userCreator ? dialogData.userCreator.lastName : ""}{" "}
+                {dialogData.userCreator ? dialogData.userCreator.firstName : ""}
+              </span> */}
             </Grid>
           </Grid>
           <div className={classes.fullWidth}>
@@ -90,8 +179,9 @@ const TaskDialog = (props) => {
               variant="contained"
               color="primary"
               className={classes.feedbackButton}
+              onClick={AddTask}
             >
-              Обратная связь
+              Создать задание
             </Button>
           </div>
           <span className={classes.note}>
@@ -191,4 +281,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default TaskDialog;
+export default AddTaskDialog;

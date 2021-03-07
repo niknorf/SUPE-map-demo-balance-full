@@ -14,7 +14,7 @@ import grey from "../img/grey-dot.svg";
 import orange from "../img/orange-dot.svg";
 import yellow from "../img/yellow-dot.svg";
 import red from "../img/red-dot.svg";
-import TaskDialog from "./TaskDialog.js"
+import AddTaskDialog from "./AddTaskDialog.js"
 
 const useStyles = makeStyles((theme) => ({
   imageIcon: {
@@ -164,7 +164,7 @@ const BDProbability = () => {
           orderBy="probability"
           order="desc"
         />,
-        <TaskDialog
+        <AddTaskDialog
         isDialogOpen={openDialog}
         closeDialog={handleDialogClose}
         dialogData={dialogData}

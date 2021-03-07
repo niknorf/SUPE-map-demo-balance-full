@@ -5,6 +5,9 @@ import {
   createMuiTheme,
   makeStyles,
 } from "@material-ui/core/styles";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import ruLocale from "date-fns/locale/ru";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import React, { useState, useEffect } from "react";
 import Drawer from "./components/Drawer";
@@ -64,11 +67,13 @@ export default function App() {
     <SessionContext.Provider value={session}>
       <GlobalStateProvider>
         <div className={classes.container}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ruLocale}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             {location !== "/" ? <Drawer /> : null}
             <AppRouter />
           </ThemeProvider>
+          </MuiPickersUtilsProvider>
         </div>
       </GlobalStateProvider>
     </SessionContext.Provider>
