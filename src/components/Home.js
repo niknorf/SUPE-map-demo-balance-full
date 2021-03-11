@@ -4,14 +4,144 @@ import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import TaskIcon from "../img/task_icon.svg";
+import BuBdIcon from "../img/bubd_icon.svg";
+import BalanceGroupIcon from "../img/balance_group_icon.svg";
+import GsIcon from "../img/gs_icon.svg";
 import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
 import BuBdTable from "./BuBdTable";
-import { BalanceGroupList } from "./BalanceTable";
+import { BalanceGroupTable } from "./BalanceTable";
 import { MainChartCards } from "./MainChartCards";
 import { MainChartHome } from "./MainChartHome";
+
+export default function Home() {
+  const classes = useStyles();
+
+  const ButtonTasks = withRouter(({ history }) => (
+    <button
+      type="button"
+      className={clsx(classes.button, classes.buttonStyle)}
+      onClick={() => {
+        history.push("/tasks");
+      }}
+    >
+      <div className={classes.buttonContainer}>
+        <img src={TaskIcon} className={classes.icon}></img>
+        <div className={classes.btnTextContainer}>
+          <span className={classes.buttonText}>Страница заданий</span>
+        </div>
+      </div>
+    </button>
+  ));
+
+  const ButtonBalance = withRouter(({ history }) => (
+    <button
+      type="button"
+      className={clsx(classes.button, classes.buttonStyle)}
+      onClick={() => {
+        history.push("/balancegroup");
+      }}
+    >
+      <div className={classes.buttonContainer}>
+        <img src={BuBdIcon} className={classes.icon}></img>
+        <div className={classes.btnTextContainer}>
+          <span className={classes.buttonText}>Балансовыe группы</span>
+        </div>
+      </div>
+    </button>
+  ));
+
+  const ButtonBuBd = withRouter(({ history }) => (
+    <button
+      type="button"
+      className={clsx(classes.button, classes.buttonStyle)}
+      onClick={() => {
+        history.push("/bubd");
+      }}
+    >
+      <div className={classes.buttonContainer}>
+        <img src={BalanceGroupIcon} className={classes.icon}></img>
+        <div className={classes.btnTextContainer}>
+          <span className={classes.buttonText}>Карта БУ/БД</span>
+        </div>
+      </div>
+    </button>
+  ));
+
+  const ButtonPost = withRouter(({ history }) => (
+    <button
+      type="button"
+      className={clsx(classes.button, classes.buttonStyle)}
+      onClick={() => {
+        history.push("/guaranteedsuppliers");
+      }}
+    >
+      <div className={classes.buttonContainer}>
+        <img src={GsIcon} className={classes.icon}></img>
+        <div className={classes.btnTextContainer}>
+          <span className={classes.buttonText}>Статистика гарантирующих </span>
+          <span className={classes.buttonText}>поставщиков</span>
+        </div>
+      </div>
+    </button>
+  ));
+
+  return (
+    <div className={classes.root}>
+      <Grid
+        container
+        spacing={3}
+        // alignContent="stretch"
+        // alignItems="stretch"
+        // direction="row"
+        // display="flex"
+      >
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+          <ButtonTasks />
+        </Grid>
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+          <ButtonBuBd />
+        </Grid>
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+          <ButtonBalance />
+        </Grid>
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
+          <ButtonPost />
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item lg={6} md={6} sm={6} xl={6} xs={12} spacing={3} className={classes.firstColumn}>
+          <Grid item xs={12} className={classes.graph}>
+            <Paper className={classes.graphPaper}>
+              <MainChartCards />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} className={classes.graphTwoGrid}>
+            <Paper className={classes.graphPaper}>
+              <MainChartHome />
+              <div className={classes.mainChartTitle}>
+                <span className={classes.mainChartTitleText}>
+                  Статистика создания новых заданий
+                </span>
+              </div>
+            </Paper>
+          </Grid>
+        </Grid>
+        <Grid item lg={6} md={6} sm={6} xl={6} xs={12} spacing={3}>
+          <Paper className={classes.bubdTable}>
+            <BuBdTable rowsPerPage={5} topFive={true} />
+          </Paper>
+          <Paper className={classes.bubdTable}>
+            <BalanceGroupTable/>
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,9 +154,18 @@ const useStyles = makeStyles((theme) => ({
     background: "#F5F6F8",
   },
   buttonContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
+    display: "relative",
+  },
+  btnTextContainer: {
+    position: "absolute",
+    top: "16px",
+    left: "16px",
+    textAlign: 'initial'
+  },
+  icon: {
+    position: "absolute",
+    bottom: "16px",
+    right: "16px",
   },
   button: {
     position: "relative",
@@ -42,19 +181,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
   },
-  buttonTasks: {
-    background: "linear-gradient(127.52deg, #5EDDFF 20.68%, #4A9CFF 80.9%)",
+  buttonStyle: {
+    background: "linear-gradient(127.52deg, #4764B0 20.68%, #252F4A 80.9%)",
     marginBottom: "24px",
-  },
-  buttonBalance: {
-    background: "linear-gradient(122.56deg, #4A91FF 15.82%, #225899 82.63%)",
-    marginBottom: "24px",
-  },
-  ButtonBuBd: {
-    background: "linear-gradient(122.56deg, #4A9CFF 15.82%, #225899 82.63%)",
-  },
-  ButtonPost: {
-    background: 'linear-gradient(127.52deg, #5EDDFF 20.68%, #4A9CFF 80.9%)',
   },
   buttonText: {
     fontFamily: "PFDinTextCondPro-Regular !important",
@@ -63,14 +192,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-flex",
   },
   topButtons: {
-    marginBottom: '24px'
-  },
-  icon: {
-    position: "absolute",
-    top: "15px",
-    left: "14px",
-    width: '30px',
-    height: '30px'
+    marginBottom: "24px",
   },
   pieChartPaper: {
     padding: "30px",
@@ -95,11 +217,11 @@ const useStyles = makeStyles((theme) => ({
   },
   graphTwoGrid: {
     marginTop: "24px",
-    height: '100%',
-    maxHeight: '955px'
+    height: "100%",
+    maxHeight: "955px",
   },
   graphTwo: {
-    height: '100%',
+    height: "100%",
   },
   graphPaper: {
     padding: "20px",
@@ -110,126 +232,15 @@ const useStyles = makeStyles((theme) => ({
   },
   bubdTable: {
     paddingLeft: "15px",
-    marginTop: "24px",
+    marginBottom: "24px",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
   },
   mainChartTitle: {
-    display: 'flex',
-    justifyContent: 'center'
+    display: "flex",
+    justifyContent: "center",
   },
   mainChartTitleText: {
     fontFamily: "PFDinTextCondPro-Regular !important",
-    color: '#818E9B'
-  }
+    color: "#818E9B",
+  },
 }));
-
-export default function Home() {
-  const classes = useStyles();
-
-  const ButtonTasks = withRouter(({ history }) => (
-    <button
-      type="button"
-      className={clsx(classes.button, classes.buttonTasks)}
-      onClick={() => {
-        history.push("/tasks");
-      }}
-    >
-      <WorkOutlineOutlinedIcon className={classes.icon} />
-      <div className={classes.buttonContainer}>
-        <span className={classes.buttonText}>Страница</span>
-        <span className={classes.buttonText}>заданий</span>
-      </div>
-    </button>
-  ));
-
-  const ButtonBalance = withRouter(({ history }) => (
-    <button
-      type="button"
-      className={clsx(classes.button, classes.buttonBalance)}
-      onClick={() => {
-        history.push("/balancegroup");
-      }}
-    >
-      <BarChartIcon className={classes.icon} />
-      <div className={classes.buttonContainer}>
-        <span className={classes.buttonText}>Балансовыe</span>
-        <span className={classes.buttonText}>группы</span>
-      </div>
-    </button>
-  ));
-
-  const ButtonBuBd = withRouter(({ history }) => (
-    <button
-      type="button"
-      className={clsx(classes.button, classes.ButtonBuBd)}
-      onClick={() => {
-        history.push("/bubd");
-      }}
-    >
-      <MapOutlinedIcon className={classes.icon} />
-      <div className={classes.buttonContainer}>
-        <span className={classes.buttonText}>Карта</span>
-        <span className={classes.buttonText}>БУ/БД</span>
-      </div>
-    </button>
-  ));
-
-  const ButtonPost = withRouter(({ history }) => (
-    <button
-      type="button"
-      className={clsx(classes.button, classes.ButtonPost)}
-      onClick={() => {
-        history.push("/guaranteedsuppliers");
-      }}
-    >
-      <HomeOutlinedIcon className={classes.icon} />
-      <div className={classes.buttonContainer}>
-        <span className={classes.buttonText}>Статистика</span>
-        <span className={classes.buttonText}>гарантирующих</span>
-        <span className={classes.buttonText}>поставщиков</span>
-      </div>
-    </button>
-  ));
-
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={6} spacing={3} className={classes.firstColumn}>
-          <Grid item xs={12} className={classes.graph}>
-            <Paper className={clsx(classes.graphPaper, classes.graphOne)}>
-              <MainChartCards />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} className={classes.graphTwoGrid}>
-            <Paper className={clsx(classes.graphPaper, classes.graphTwo)}>
-              <MainChartHome />
-              <div className={classes.mainChartTitle}>
-                <span className={classes.mainChartTitleText}>Статистика создания новых заданий</span>
-              </div>
-            </Paper>
-          </Grid>
-        </Grid>
-        <Grid item xs={6}>
-          <Box className={classes.boxPaper}>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <ButtonTasks />
-                <ButtonBuBd />
-              </Grid>
-              <Grid item xs={6}>
-                <ButtonBalance />
-                <ButtonPost />
-              </Grid>
-            </Grid>
-          </Box>
-          <Paper className={classes.bubdTable}>
-            <BuBdTable rowsPerPage={5} topFive={true}/>
-          </Paper>
-          <Paper className={classes.bubdTable}>
-            <BalanceGroupList rowsPerPage={5} topFive={true} order="asc" orderBy="imbalancePercent"/>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
-  );
-}

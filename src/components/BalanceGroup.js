@@ -227,7 +227,7 @@ const BalanceGroup = () => {
           {/* style={{ height: "100%" }} */}
           <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
             <Paper style={{ height: "100%" }} className={classes.paperShadow}>
-              <BalanceGroupList order="asc" orderBy="balance_id"/>
+              <BalanceGroupList/>
             </Paper>
           </Grid>
           {/* Infor section */}

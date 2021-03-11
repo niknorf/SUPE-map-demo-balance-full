@@ -21,7 +21,7 @@ import { getSessionCookie } from "./cookies";
 
 const AddTaskDialog = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());
-  const [worker, setWorker] = useState();
+  const [worker, setWorker] = useState('0');
   const userInfo = getSessionCookie();
   // const [open, setOpen] = useState(false);
   // const [dialogData, setDialogData] = useState({ userCreator: {} });
@@ -38,7 +38,7 @@ const AddTaskDialog = (props) => {
     },
     descriptionTask: "",
   };
-  console.log(userInfo);
+
   //Check if dialogData exists or not
   if (
     typeof props.dialogData !== "undefined" &&
@@ -50,9 +50,28 @@ const AddTaskDialog = (props) => {
 
   const user_list = [
     {
+      username: 'test_worker',
       lastName: "worker",
       firstName: "test",
       id: "887b7bbd-6485-4749-9081-da0704d86dda",
+    },
+    {
+      username: 'worker-1',
+      lastName: "Савельев",
+      firstName: "Ждан",
+      id: "41cc0209-96b2-478d-adf9-c4f5bd51ba13",
+    },
+    {
+      username: 'worker-2',
+      lastName: "Ермаков",
+      firstName: "Филипп",
+      id: "7f10f1ca-023e-415e-9653-8bed184fe8d5",
+    },
+    {
+      username: 'worker-3',
+      lastName: "Лукин",
+      firstName: "	Юрий",
+      id: "5fdfa174-62c7-4375-b139-4e167a639e94",
     },
   ];
 
@@ -60,23 +79,28 @@ const AddTaskDialog = (props) => {
     setWorker(event.target.value);
   };
 
-  const AddTask = () => {
+  const AddTask = (worker) => {
+
+    console.log(dialogData, worker);
+
+
     const requestOptions = {
         id: 0,
-        userCreatorId: 8,
-        fiasGUID: "78dfae72-87ed-40d8-b8e4-0114203b3b09",
-        fiasAddress: "194352, г Санкт-Петербург, Выборгский р-н, ул Кустодиева, д 24 литер а",
-        dateString: "20210621",
-        descriptionTask: "string",
+        userCreatorId: userInfo.sub,
+        fiasGUID: dialogData.fias,
+        fiasAddress: dialogData.fiasAddress,
+        dateString: new Date(),
+        descriptionTask: "описание 1",
         category: 0,
         statusTask: 0,
-        executorUsersId: [2]
+        executorUsersId: [worker]
     };
 
     axios({
       method: "POST",
       url: '/api/UserTasks/AddTask',
-      data: queryString.stringify(requestOptions),
+      // data: queryString.stringify(requestOptions),
+      data: requestOptions,
       config: {
         headers: {
         'Content-Type': 'application/json',
@@ -86,7 +110,7 @@ const AddTaskDialog = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Task created");
+        console.log(data);
         // props.closeDialog;
       });
   };
@@ -137,19 +161,17 @@ const AddTaskDialog = (props) => {
                   displayEmpty
                   // className={classes.selectEmpty}
                 >
-                  <MenuItem value="">
-                    <em>None</em>
+                  <MenuItem value="0">
+                  Выберите исполнителя
                   </MenuItem>
-                  <MenuItem value="887b7bbd-6485-4749-9081-da0704d86dda">
-                    worker test
-                  </MenuItem>
+                  {user_list.map((user) =>
+                    <MenuItem value={user.id}>
+                      {user.lastName + " " + user.firstName}
+                    </MenuItem>
+                  )}
+
                 </Select>
               </FormControl>
-              {/* <span className={classes.columnTitle}>Исполнитель</span>
-              <span className={classes.columnContent}>
-                {dialogData.userCreator ? dialogData.userCreator.lastName : ""}{" "}
-                {dialogData.userCreator ? dialogData.userCreator.firstName : ""}
-              </span> */}
             </Grid>
           </Grid>
           <div className={classes.fullWidth}>
@@ -179,7 +201,7 @@ const AddTaskDialog = (props) => {
               variant="contained"
               color="primary"
               className={classes.feedbackButton}
-              onClick={AddTask}
+              onClick={(event) => AddTask(worker)}
             >
               Создать задание
             </Button>

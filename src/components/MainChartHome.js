@@ -81,8 +81,6 @@ const MainChartHome = () => {
     layout: {
       hoverinfo: "none",
       autosize: true,
-      //title: "График небалансов между <br>показаниями ПСК и ПУ, в кВтч от ПУ",
-      // width: 550,
     },
     data: [],
     config: {

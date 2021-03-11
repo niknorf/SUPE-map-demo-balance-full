@@ -7,73 +7,6 @@ import Contex from "../store/context";
 import InfoWindow from "./InfoWindow.js";
 
 const Plot = createPlotlyComponent(Plotly);
-const useStyles = makeStyles((theme) => ({
-  paperStyles: {
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-  },
-  boxPaddingLabel: {
-    paddingTop: "16px",
-    paddingLeft: "16px",
-    paddingBottom: "16px",
-  },
-  boxPaddingCards: {
-    paddingLeft: "16px",
-    paddingBottom: "16px",
-    paddingRight: "16px",
-  },
-  boxPaddingTabs: {
-    paddingLeft: "16px",
-    paddingRight: "16px",
-  },
-  boxStyle: {
-    display: "block",
-    background: "linear-gradient(127.52deg, #00CAFF 20.68%, #4A9CFF 80.9%);",
-    borderRadius: "4px",
-    boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    color: "#FFFFFF",
-    minWidth: '180px'
-  },
-  cornerTextCard: {
-    position: "relative",
-    fontSize: "14px",
-    lineHeight: "17px",
-    paddingTop: "16px",
-    paddingLeft: "16px",
-    color: "#252F4A",
-    opacity: "0.25",
-  },
-  cornerTitle: {
-    position: "relative",
-    fontSize: "14px",
-    lineHeight: "17px",
-    paddingTop: "9px",
-    paddingLeft: "12px",
-    paddingRight: "12px",
-    color: "#FFFFFF",
-  },
-  boxValuesText: {
-    position: "relative",
-    fontSize: "28px",
-    lineHeight: "40px",
-    fontWeight: "bold",
-    textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
-    paddingBottom: "10px",
-    paddingLeft: "12px",
-    color: "#FFFFFF",
-  },
-  balanceGroupLabel: {
-    fontSize: "14px",
-    lineHeight: "17px",
-    color: "#252F4A",
-  },
-  middleText: {
-    wordWrap: "normal",
-    fontSize: "18px",
-    lineHeight: "23px",
-    color: "#8C949E",
-  },
-}));
-
 
 const CreatePieTasks = (props) => {
   let data_object = {
@@ -110,7 +43,7 @@ const CreatePieTasks = (props) => {
       ]
     : [
         <Plot
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "300px" }}
           useResizeHandler
           data={props.pieChartData.data}
           layout={props.pieChartData.layout}
@@ -146,8 +79,6 @@ const MainChartCards = () => {
     layout: {
       hoverinfo: "none",
       autosize: true,
-      height: 300,
-      width: 350,
     },
     data: [],
     config: {
@@ -185,7 +116,7 @@ const MainChartCards = () => {
                     direction="column"
                     wrap="wrap"
                   >
-                    <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
                       <Box className={classes.boxStyle}>
                         <Typography className={classes.cornerTitle}>
                           Количество новых заданий
@@ -195,7 +126,7 @@ const MainChartCards = () => {
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
                       <Box className={classes.boxStyle}>
                         <Typography className={classes.cornerTitle}>
                           Количество исполнителей
@@ -205,7 +136,7 @@ const MainChartCards = () => {
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
                       <Box className={classes.boxStyle}>
                         <Typography className={classes.cornerTitle}>
                           Количество завершенных
@@ -226,5 +157,73 @@ const MainChartCards = () => {
             </Grid>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  paperStyles: {
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
+  },
+  boxPaddingLabel: {
+    paddingTop: "16px",
+    paddingLeft: "16px",
+    paddingBottom: "16px",
+  },
+  boxPaddingCards: {
+    paddingLeft: "16px",
+    paddingBottom: "16px",
+    paddingRight: "16px",
+  },
+  boxPaddingTabs: {
+    paddingLeft: "16px",
+    paddingRight: "16px",
+  },
+  boxStyle: {
+    display: "block",
+    border:" 1px solid rgba(140, 148, 158, 0.25)",
+    // background: "linear-gradient(127.52deg, #00CAFF 20.68%, #4A9CFF 80.9%);",
+    borderRadius: "4px",
+    // boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
+    // color: "#FFFFFF",
+    minWidth: '180px'
+  },
+  cornerTextCard: {
+    position: "relative",
+    fontSize: "14px",
+    lineHeight: "17px",
+    paddingTop: "16px",
+    paddingLeft: "16px",
+    color: "#252F4A",
+    opacity: "0.25",
+  },
+  cornerTitle: {
+    position: "relative",
+    fontSize: "14px",
+    lineHeight: "17px",
+    paddingTop: "9px",
+    paddingLeft: "12px",
+    paddingRight: "12px",
+    color: "#252F4A",
+  },
+  boxValuesText: {
+    position: "relative",
+    fontSize: "28px",
+    lineHeight: "40px",
+    fontWeight: "bold",
+    textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
+    paddingBottom: "10px",
+    paddingLeft: "12px",
+    color: "#252F4A",
+  },
+  balanceGroupLabel: {
+    fontSize: "14px",
+    lineHeight: "17px",
+    color: "#252F4A",
+  },
+  middleText: {
+    wordWrap: "normal",
+    fontSize: "18px",
+    lineHeight: "23px",
+    color: "#8C949E",
+  },
+}));
 
 export { MainChartCards };

@@ -134,23 +134,12 @@ const useStyles2 = makeStyles({
     textTransform: "none",
   },
 
-  linkBox: {
-
-  },
+  linkBox: {},
   imageIcon: {
     width: 16,
     height: 16,
   },
 });
-
-// EnhancedTableHead.propTypes = {
-//   classes: PropTypes.object.isRequired,
-//   onRequestSort: PropTypes.func.isRequired,
-//   headCells: PropTypes.object.isRequired,
-//   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
-//   orderBy: PropTypes.string.isRequired,
-//   rowCount: PropTypes.number.isRequired,
-// };
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -163,7 +152,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -183,7 +172,7 @@ function EnhancedTableHead(props) {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
-
+console.log(headCells);
   return (
     <TableHead>
       <TableRow>
@@ -195,18 +184,24 @@ function EnhancedTableHead(props) {
             sortDirection={orderBy === headCell.id ? order : false}
             className={classes.headCellStyle}
           >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </span>
-              ) : null}
-            </TableSortLabel>
+            {typeof order !== "undefined" && typeof orderBy !== "undefined"
+              ? [
+                  <TableSortLabel
+                    active={orderBy === headCell.id}
+                    direction={orderBy === headCell.id ? order : "asc"}
+                    onClick={createSortHandler(headCell.id)}
+                  >
+                    {headCell.label}
+                    {orderBy === headCell.id ? (
+                      <span className={classes.visuallyHidden}>
+                        {order === "desc"
+                          ? "sorted descending"
+                          : "sorted ascending"}
+                      </span>
+                    ) : null}
+                  </TableSortLabel>,
+                ]
+              : headCell.label}
           </TableCell>
         ))}
       </TableRow>
@@ -224,22 +219,6 @@ export default function TableTemplate(props) {
   let rows = props.rows;
   const headCells = props.columns;
 
-  if(typeof props.topFive !== 'undefined' && props.topFive === true){
-    if(orderBy === 'imbalancePercent'){
-      rows.sort(function(a, b){
-        if(a.imbalance_percent > b.imbalance_percent) return -1;
-        if(a.imbalance_percent < b.imbalance_percent) return 1;
-
-        return 0;
-
-      });
-      rows = rows.slice(0, 5);
-    }else{
-        let sortedData = stableSort(rows, getComparator(order, orderBy));
-          rows = sortedData.slice(0, 5)
-    }
-
-  }
   const rowsPerPage =
     typeof props.rowsPerPage !== "undefined" ? props.rowsPerPage : 5;
 
@@ -324,12 +303,16 @@ export default function TableTemplate(props) {
       </TableContainer>
       <TableToPrint />
       <ReactToPrint
-        trigger={() =>         <Button
-                  className={classes.link}
-                  startIcon={<img className={classes.imageIcon} src={icon_print} alt="" />}
-                >
-                  Распечатать
-                </Button>}
+        trigger={() => (
+          <Button
+            className={classes.link}
+            startIcon={
+              <img className={classes.imageIcon} src={icon_print} alt="" />
+            }
+          >
+            Распечатать
+          </Button>
+        )}
         content={() => componentRef.current}
       />
     </>
