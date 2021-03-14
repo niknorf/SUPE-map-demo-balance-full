@@ -5,15 +5,15 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import BalanceGroup from "./BalanceGroup";
-import GuaranteedSuppliers from "./GuaranteedSuppliers";
-import BuBd from "./BuBd";
-import Tasks from "./Tasks";
-import Home from "./Home";
-import Login from "./Login";
-import Profile from "./Profile";
-import PrivateRoute from "./PrivateRoute.js";
-import { getSessionCookie } from "./cookies";
+import BalanceGroup from "pages/BalanceGroup/BalanceGroup.js";
+import GuaranteedSuppliers from "pages/GuaranteedSuppliers/GuaranteedSuppliers.js";
+import BuBd from "pages/BuBd/BuBd.js";
+import Tasks from "pages/Tasks/Tasks.js";
+import Home from "pages/Home/Home.js";
+import Login from "pages/Login/Login.js";
+import Profile from "pages/Profile/Profile.js";
+import PrivateRoute from "components/PrivateRoute.js";
+import { getSessionCookie } from "components/cookies.js";
 
 const AppRouter = () => {
   return (

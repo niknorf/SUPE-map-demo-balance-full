@@ -9,15 +9,15 @@ import {
   FormControl,
 } from "@material-ui/core";
 import axios from "axios";
-import BlueDot from "../img/blue-dot.svg";
-import YellowDot from "../img/yellow_dot_task.svg";
-import GreenDot from "../img/green-dot.svg";
-import RedDot from "../img/red_dot_task.svg";
+import BlueDot from "assets/img/blue_dot_task.svg";
+import YellowDot from "assets/img/yellow_dot_task.svg";
+import GreenDot from "assets/img/green_dot_task.svg";
+import RedDot from "assets/img/red_dot_task.svg";
 import Dialog from "@material-ui/core/Dialog";
 import queryString from "querystring";
 import { getUserListWithRoles } from "./keycloak";
 import { DateTimePicker } from "@material-ui/pickers";
-import { getSessionCookie } from "./cookies";
+import { getSessionCookie } from "components/cookies";
 
 const AddTaskDialog = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());

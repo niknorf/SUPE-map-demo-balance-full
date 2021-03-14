@@ -10,11 +10,11 @@ import DateFnsUtils from '@date-io/date-fns';
 import ruLocale from "date-fns/locale/ru";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import React, { useState, useEffect } from "react";
-import Drawer from "./components/Drawer";
-import GlobalStateProvider from "./store/GlobalStateProvider";
-import { SessionContext, getSessionCookie } from "./components/cookies.js";
-import AppRouter from "./components/Routes";
-import PFDinRegularWoff from "./fonts/PFDinTextCondPro-Regular.woff";
+import Drawer from "components/Drawer";
+import GlobalStateProvider from "store/GlobalStateProvider";
+import { SessionContext, getSessionCookie } from "components/cookies.js";
+import AppRouter from "components/Routes";
+import PFDinRegularWoff from "assets/fonts/PFDinTextCondPro-Regular.woff";
 
 const pfdinRegular = {
   fontFamily: "PFDinTextCondPro-Regular",

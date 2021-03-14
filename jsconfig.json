@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "css/*": ["assets/css*"],
+      "fonts/*": ["assets/fonts*"],
+      "img/*": ["assets/img*"],
+      "BalanceGroup/*": ["./pages/BalanceGroup*"],
+      "BuBd/*": ["pages/BuBd*"],
+      "GuaranteedSuppliers/*": ["pages/GuaranteedSuppliers*"],
+      "Home/*": ["pages/Home*"],
+      "Login/*": ["pages/Login*"],
+      "Profile/*": ["pages/Profile*"],
+      "Tasks/*": ["pages/Tasks*"]
+
+    }
+  },
+  "include": ["src"]
+}

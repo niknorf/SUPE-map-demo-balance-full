@@ -19,8 +19,8 @@ import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import icon_print from "../img/printer.svg";
-import "../css/print.css";
+import icon_print from "assets/img/printer.svg";
+import "assets/css/print.css";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {

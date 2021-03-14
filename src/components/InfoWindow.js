@@ -1,8 +1,8 @@
 import { Typography, Box, Icon } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import info_icon from "../img/info_icon.svg";
-import triangle_icon from "../img/triangle_icon.svg";
+import info_icon from "assets/img/info_icon.svg";
+import triangle_icon from "assets/img/triangle_icon.svg";
 
 const useStyles = makeStyles((theme) => ({
   boxMiddleTextCard: {

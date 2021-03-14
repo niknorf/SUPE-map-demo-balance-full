@@ -5,7 +5,7 @@
 // If not: they are redirected to the login page.
 import React, { useContext } from "react";
 import { Redirect, Route } from "react-router-dom";
-import { getSessionCookie } from "./cookies";
+import { getSessionCookie } from "components/cookies";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 

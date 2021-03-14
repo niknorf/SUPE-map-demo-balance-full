@@ -1,8 +1,8 @@
 import { Autocomplete } from "@material-ui/lab";
 import { FormControl, TextField } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import Contex from "../store/context";
-import ts_balance_dict from "../data/ts_balance_dict.json";
+import Contex from "store/context";
+// import ts_balance_dict from "../data/ts_balance_dict.json";
 import { List } from "react-virtualized";
 import {matchSorter} from 'match-sorter';
 
@@ -34,47 +34,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(
 
   );
 });
-
-const TsSearchComponent = () => {
-  const { globalDispach } = useContext(Contex);
-
-  const handleChange = (event, value) => {
-    globalDispach({
-      type: "FILTERCOMPONENT",
-      isLoggedIn: true, //TODO check the token
-      balance_index_array: value === null ? "" : value.bg_index,
-      objSelected: value === null ? false : true,
-      obj_from: value === null ? "" : "ts_select",
-    });
-  };
-
-  var ts_search = [];
-  for (const key of Object.keys(ts_balance_dict)) {
-    var obj = {};
-    obj.ts_name = key;
-    obj.bg_index = ts_balance_dict[key];
-    ts_search.push(obj);
-  }
-
-  return (
-    <FormControl fullWidth>
-      <Autocomplete
-        id="ts_search"
-        options={ts_search}
-        // getOptionLabel={(option) => option.ts_name}
-        onChange={handleChange}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Трансформаторная подстанция"
-            margin="normal"
-            placeholder="Выберете из списка"
-          />
-        )}
-      />
-    </FormControl>
-  );
-};
 
 const SearchComponent = () => {
   const { globalDispach } = useContext(Contex);
@@ -162,4 +121,4 @@ const SearchComponent = () => {
   );
 };
 
-export { SearchComponent, TsSearchComponent };
+export { SearchComponent };

@@ -16,9 +16,9 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import React from "react";
 import clsx from "clsx";
-import PFDinBoldWoff from "../fonts/PFDinTextCondPro-Bold.woff";
-import { removeSessionCookie } from "./cookies.js";
-import logo from "../img/logo.png";
+import PFDinBoldWoff from "assets/fonts/PFDinTextCondPro-Bold.woff";
+import { removeSessionCookie } from "components/cookies.js";
+import logo from "assets/img/logo.png";
 
 const pfdinBold = {
   fontFamily: "PFDinTextCondPro-Bold",

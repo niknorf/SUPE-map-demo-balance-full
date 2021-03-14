@@ -16,10 +16,10 @@ import {
 import axios from "axios";
 import { Dialog, Link } from "@material-ui/core";
 import queryString from "querystring";
-import { getUserListWithRoles } from "./keycloak";
+import { getUserListWithRoles } from "components/keycloak";
 import { DateTimePicker } from "@material-ui/pickers";
-import { getSessionCookie } from "./cookies";
-import "../css/popup.css";
+import { getSessionCookie } from "components/cookies";
+import "assets/css/popup.css";
 
 //Default values
 let dialogData = {
