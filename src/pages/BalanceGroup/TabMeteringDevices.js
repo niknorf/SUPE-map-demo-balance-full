@@ -69,6 +69,7 @@ const MeteringDevices = () => {
       rows={rows}
       columns={tableColumns}
       rowsSettings={ContentRows}
+      rowsPerPage={6}
     />
   ] : [
       <InfoWindow label="Проверить топологию сети - привязку ПУ" icon="info" />

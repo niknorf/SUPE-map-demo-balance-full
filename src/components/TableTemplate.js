@@ -12,7 +12,7 @@ import {
   TableFooter,
   TablePagination,
   TableRow,
-  Button,
+  Button
 } from "@material-ui/core";
 import ReactToPrint from "react-to-print";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
@@ -22,11 +22,11 @@ import LastPageIcon from "@material-ui/icons/LastPage";
 import icon_print from "assets/img/printer.svg";
 import "assets/css/print.css";
 
-const useStyles1 = makeStyles((theme) => ({
+const useStyles1 = makeStyles(theme => ({
   root: {
     flexShrink: 0,
-    marginLeft: theme.spacing(2),
-  },
+    marginLeft: theme.spacing(2)
+  }
 }));
 
 function TablePaginationActions(props) {
@@ -34,19 +34,19 @@ function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onChangePage } = props;
 
-  const handleFirstPageButtonClick = (event) => {
+  const handleFirstPageButtonClick = event => {
     onChangePage(event, 0);
   };
 
-  const handleBackButtonClick = (event) => {
+  const handleBackButtonClick = event => {
     onChangePage(event, page - 1);
   };
 
-  const handleNextButtonClick = (event) => {
+  const handleNextButtonClick = event => {
     onChangePage(event, page + 1);
   };
 
-  const handleLastPageButtonClick = (event) => {
+  const handleLastPageButtonClick = event => {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
@@ -96,7 +96,7 @@ TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired
 };
 
 const useStyles2 = makeStyles({
@@ -116,13 +116,13 @@ const useStyles2 = makeStyles({
     padding: 0,
     position: "absolute",
     top: 20,
-    width: 1,
+    width: 1
   },
   headCellStyle: {
     fontWeight: "bold",
     lineHeight: "15px",
     color: "#252F4A",
-    fontFamily: "PF Din Text Cond Pro",
+    fontFamily: "PF Din Text Cond Pro"
   },
   link: {
     display: "flex",
@@ -131,14 +131,14 @@ const useStyles2 = makeStyles({
     paddingLeft: "17px",
     paddingBottom: "17px",
     paddingTop: "10px",
-    textTransform: "none",
+    textTransform: "none"
   },
 
   linkBox: {},
   imageIcon: {
     width: 16,
-    height: 16,
-  },
+    height: 16
+  }
 });
 
 function descendingComparator(a, b, orderBy) {
@@ -152,7 +152,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -164,19 +164,19 @@ function stableSort(array, comparator) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis.map(el => el[0]);
 }
 
 function EnhancedTableHead(props) {
   const { classes, order, orderBy, onRequestSort, headCells } = props;
-  const createSortHandler = (property) => (event) => {
+  const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
-console.log(headCells);
+
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
+        {headCells.map(headCell => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
@@ -199,7 +199,7 @@ console.log(headCells);
                           : "sorted ascending"}
                       </span>
                     ) : null}
-                  </TableSortLabel>,
+                  </TableSortLabel>
                 ]
               : headCell.label}
           </TableCell>
@@ -236,7 +236,7 @@ export default function TableTemplate(props) {
   };
 
   const displayNone = {
-    display: "none",
+    display: "none"
   };
 
   function TableToPrint() {
@@ -253,7 +253,7 @@ export default function TableTemplate(props) {
               rowCount={rows.length}
               headCells={headCells}
             />
-            <TableBody>{rows.map((row) => props.rowsSettings(row))}</TableBody>
+            <TableBody>{rows.map(row => props.rowsSettings(row, 'print'))}</TableBody>
           </Table>
         </TableContainer>
       </div>
@@ -279,7 +279,7 @@ export default function TableTemplate(props) {
                   page * rowsPerPage + rowsPerPage
                 )
               : rows
-            ).map((row) => props.rowsSettings(row))}
+            ).map(row => props.rowsSettings(row))}
 
             {emptyRows > 0 && (
               <TableRow style={{ height: 54 * emptyRows }}>
@@ -287,18 +287,22 @@ export default function TableTemplate(props) {
               </TableRow>
             )}
           </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPage={rowsPerPage}
-                count={rows.length}
-                page={page}
-                rowsPerPageOptions={[]}
-                onChangePage={handleChangePage}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
+          {rowsPerPage !== 5
+            ? [
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPage={rowsPerPage}
+                      count={rows.length}
+                      page={page}
+                      rowsPerPageOptions={[]}
+                      onChangePage={handleChangePage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              ]
+            : null}
         </Table>
       </TableContainer>
       <TableToPrint />

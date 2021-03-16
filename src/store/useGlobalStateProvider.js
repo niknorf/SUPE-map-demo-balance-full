@@ -16,8 +16,7 @@ const reducer = (state, action) => {
     isLoading: action.isLoading,
     mapRef: action.mapRef,
     isOpenSidebar: action.isOpenSidebar,
-    markerValue: action.markerValue,
-    isLoggedIn: action.isLoggedIn,
+    markerValue: action.markerValue
   };
 };
 
@@ -37,8 +36,7 @@ const useGlobalState = () => {
     isInPSK: false,
     isOpenSidebar: false,
     building_address: "",
-    markerValue: [],
-    isLoggedIn: false,
+    markerValue: []
   });
 
   return { globalState, globalDispach };

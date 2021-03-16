@@ -89,8 +89,6 @@ const BalanceGroupTable = (props) => {
 
   const handleRowClick = (event, row) => {
     globalDispach({
-      type: "FILTERCOMPONENT",
-      isLoggedIn: true, //TODO check the token
       isPhantomic: false,
       balance_index: row.balance_id,
       isClean: row.is_clean,
@@ -160,15 +158,36 @@ const BalanceGroupTop5Table = () => {
       label: "Небалансы (кВтч)",
     },
   ];
-
-  const BalanceTableRows = (row) => {
+//   <TableRow
+//     key={row.balance_id}
+//     hover
+//     onClick={(event) => handleRowClick(event, row)}
+//   >
+//     <TableCell
+//       component="th"
+//       scope="row"
+//       style={{ width: 400 }}
+//       align="left"
+//     >
+//       Балансовая группа №{row.balance_id}
+//     </TableCell>
+//     <TableCell style={{ width: 40 }} align="right">
+//       {(Math.round(Number(row.imbalance_percent) * 100) / 100).toFixed(2)}
+//     </TableCell>
+//     <TableCell style={{ width: 40 }} align="right">
+//       {(Math.round(Number(row.imbalance_kwh) * 100) / 100).toFixed(2)}
+//     </TableCell>
+//   </TableRow>
+// );
+  const BalanceTableRows = (row, print) => {
     return (
       <TableRow
         key={row.balance_id}
         hover
         classes={{ hover: classes.rowHover }}
         onClick={(event) => handleRowClick(event, row)}
-        component={Link}
+        // Set to undefined if the table goes to print, because otherwise it will print in one line
+        component={print === 'print' ? undefined : Link}
         to="/balancegroup"
       >
         <TableCell
@@ -191,8 +210,6 @@ const BalanceGroupTop5Table = () => {
 
   const handleRowClick = (event, row) => {
     globalDispach({
-      type: "FILTERCOMPONENT",
-      isLoggedIn: true,
       isPhantomic: false,
       balance_index: row.balance_id,
       isClean: row.is_clean,

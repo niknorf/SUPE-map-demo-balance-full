@@ -6,7 +6,7 @@ import Contex from "store/context";
 import InfoWindow from "components/InfoWindow.js";
 import { getSessionCookie } from "components/cookies";
 import { Link } from "react-router-dom";
-import AddTaskDialog from "components/AddTaskDialog.js"
+import AddTaskDialog from "pages/Tasks/AddTaskDialog.js"
 
 const useStyles = makeStyles((theme) => ({}));
 
@@ -204,6 +204,7 @@ const BalanceGroupContent = () => {
           rows={rows}
           columns={tableColumns}
           rowsSettings={BalanceGroupContentRows}
+          rowsPerPage={6}
         />,
         <AddTaskDialog
           isDialogOpen={openDialog}

@@ -20,10 +20,8 @@ const BUBDMap = () => {
   const mapRef = useRef();
   const markerRef = useRef([]);
   const handleChange = (event, value) => {
-    //console.log(event, value);
+
     globalDispach({
-      isLoggedIn: true, //TODO check the token
-      type: "BUBD",
       isOpenSidebar: true,
       markerValue: event.sourceTarget.options.extra_data,
     });

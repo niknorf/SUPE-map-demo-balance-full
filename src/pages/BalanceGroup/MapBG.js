@@ -75,7 +75,6 @@ const GeneralMap = () => {
     mapRef.current.leafletElement.fitBounds(event.sourceTarget.getBounds());
 
     globalDispach({
-      type: "FILTERCOMPONENT",
       kgisId: event.sourceTarget.feature.properties.kgisId,
       fiasId: event.sourceTarget.feature.properties.fiasId,
       isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
@@ -132,8 +131,6 @@ const GeneralMap = () => {
             }
           } else if (typeof result.balance_id !== "undefined") {
             globalDispach({
-              isLoggedIn: true, //TODO check the token
-              type: "FILTERCOMPONENT",
               fiasId: fiasId,
               isPhantomic: false,
               balance_index: result.balance_id,
@@ -260,8 +257,6 @@ const GeneralMap = () => {
             };
           }
           globalDispach({
-            isLoggedIn: true, //TODO check the token
-            type: "FILTERCOMPONENT",
             kgisId: event.sourceTarget.feature.properties.kgisId,
             fiasId: event.sourceTarget.feature.properties.fiasId,
             isPhantomic: event.sourceTarget.feature.properties.isPhantomic,

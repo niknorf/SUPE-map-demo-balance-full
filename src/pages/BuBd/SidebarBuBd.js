@@ -120,9 +120,7 @@ export default function SimplePaper() {
 
   const handleClose = () => {
     globalDispach({
-      type: "BUBD",
       isOpenSidebar: false,
-      isLoggedIn: true, //TODO check the token
     });
   };
 

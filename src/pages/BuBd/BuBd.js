@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, Button, Typography, Icon } from "@material-ui/core";
 import React, { useContext } from "react";
 import BuBdSidebar from "pages/BuBd/SidebarBuBd";
-import BuBdTable from "pages/BuBd/TableBuBd";
+import {BuBdTable} from "pages/BuBd/TableBuBd";
 import Contex from "store/context";
 import MapBuBd from "pages/BuBd/MapBuBd";
 import Popover from '@material-ui/core/Popover';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   paper: {
-    //padding: theme.spacing(2),
+    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },

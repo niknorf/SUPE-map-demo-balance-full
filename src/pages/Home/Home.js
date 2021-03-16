@@ -12,7 +12,7 @@ import GsIcon from "pages/Home/img/gs_icon.svg";
 import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
-import BuBdTable from "pages/BuBd/TableBuBd";
+import { BuBdTop5Table } from "pages/BuBd/TableBuBd";
 import { BalanceGroupTop5Table } from "pages/BalanceGroup/TableBG";
 import { MainChartCards } from "pages/Home/CurrentStatisticsChartHome";
 import { MainChartHome } from "pages/Home/WeeklyStatisticsChartHome";
@@ -132,7 +132,7 @@ export default function Home() {
         </Grid>
         <Grid item lg={6} md={6} sm={6} xl={6} xs={12} spacing={3}>
           <Paper className={classes.bubdTable}>
-            <BuBdTable rowsPerPage={5} topFive={true} />
+            <BuBdTop5Table/>
           </Paper>
           <Paper className={classes.bubdTable}>
             <BalanceGroupTop5Table/>

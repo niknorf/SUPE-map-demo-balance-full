@@ -5,6 +5,7 @@ import React, { useContext, useState, useEffect } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import Contex from "store/context";
 import InfoWindow from "components/InfoWindow.js";
+import { getSessionCookie } from "components/cookies";
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -56,6 +57,7 @@ const MainChartCards = () => {
   const [chartData, setChartData] = useState({});
   const { globalState } = useContext(Contex);
   const classes = useStyles();
+  const userInfo = getSessionCookie();
 
   useEffect(() => {
       fetch("/api/UserTasks/CurrentStatistic")
@@ -126,16 +128,18 @@ const MainChartCards = () => {
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
-                      <Box className={classes.boxStyle}>
-                        <Typography className={classes.cornerTitle}>
-                          Количество исполнителей
-                        </Typography>
-                        <Typography className={classes.boxValuesText}>
-                            {chartData.['Количество исполнителей']}
-                        </Typography>
-                      </Box>
-                    </Grid>
+                    {/* Worker should not see it */}
+                    {userInfo.user_roles.includes("upe_worker") ? null : [                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
+                                          <Box className={classes.boxStyle}>
+                                            <Typography className={classes.cornerTitle}>
+                                              Количество исполнителей
+                                            </Typography>
+                                            <Typography className={classes.boxValuesText}>
+                                                {chartData.['Количество исполнителей']}
+                                            </Typography>
+                                          </Box>
+                                        </Grid>]}
+
                     <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
                       <Box className={classes.boxStyle}>
                         <Typography className={classes.cornerTitle}>

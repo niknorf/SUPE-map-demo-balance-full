@@ -14,7 +14,7 @@ import grey from "pages/BalanceGroup/img/grey-dot.svg";
 import orange from "pages/BalanceGroup/img/orange-dot.svg";
 import yellow from "pages/BalanceGroup/img/yellow-dot.svg";
 import red from "pages/BalanceGroup/img/red-dot.svg";
-import AddTaskDialog from "components/AddTaskDialog.js"
+import AddTaskDialog from "pages/Tasks/AddTaskDialog.js"
 
 const useStyles = makeStyles((theme) => ({
   imageIcon: {
@@ -161,6 +161,7 @@ const BDProbability = () => {
           rows={rows}
           columns={tableColumns}
           rowsSettings={BalanceGroupContentRows}
+          rowsPerPage={6}
           orderBy="probability"
           order="desc"
         />,

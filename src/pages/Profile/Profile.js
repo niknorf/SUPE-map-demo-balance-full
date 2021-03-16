@@ -11,6 +11,11 @@ export default function ProfileNoAuth() {
 
   const userInfo = getSessionCookie();
 
+  const roleTranslator = [];
+  roleTranslator['upe_worker'] = "Исполнитель";
+  roleTranslator['upe_analyst'] = "Аналитик";
+  roleTranslator['upe_manager'] = "Менеджер";
+
   const Modal = () => (
     <Popup
       trigger={
@@ -86,16 +91,14 @@ export default function ProfileNoAuth() {
               </Box>
               <Box className={classes.profileInfo}>
                 <Box className={classes.properties}>
-                  <Box>Имя</Box>
-                  {/* <Box>Отчество</Box> */}
-                  <Box>Фамилия</Box>
+                  <Box>Имя, Фамилия</Box>
+                  {/* <Box>Фамилия</Box> */}
                   <Box>Роль</Box>
                 </Box>
                 <Box className={classes.data}>
-                  <Box>{userInfo.given_name}</Box>
-                  <Box>{userInfo.family_name}</Box>
-                  {/* <Box>Павлович</Box> */}
-                  <Box>{userInfo.user_roles.toString()}</Box>
+                  <Box>{userInfo.given_name + " " + userInfo.family_name} </Box>
+                  {/* <Box> {"\n"}</Box> */}
+                  <Box>{roleTranslator[userInfo.user_roles[2]]}</Box>
                 </Box>
               </Box>
               <Box className={classes.links}>

@@ -12,6 +12,8 @@ import EditTaskDialog from "pages/Tasks/EditTaskDialog.js";
 import "assets/css/taskPopup.css";
 import Contex from "store/context";
 import { getSessionCookie } from "components/cookies";
+import { format, parseISO } from "date-fns";
+import ServicesTasks from "pages/Tasks/api/ServicesTasks";
 
 export default function AutoGrid() {
   const classes = useStyles();
@@ -26,24 +28,22 @@ export default function AutoGrid() {
   const userInfo = getSessionCookie();
 
   useEffect(() => {
-    fetch("/api/UserTasks")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          handleTaskCount(result);
-          setTaskContent(result);
-        },
-        (error) => {
-          // setLoading(true);
-          // setError(error);
-        }
-      );
-    // setLoading(true);
-  }, []);
+    ServicesTasks.getTasksList()
+      .then(result => {
+        handleTaskCount(result);
+        setTaskContent(result);
+      })
+      .catch(error => {});
+  }, [openTaskDialog]);
 
   const taskCount = useRef();
 
-  const handleTaskCount = (task_array) => {
+  const roleTranslator = [];
+  roleTranslator["upe_worker"] = "Исполнитель";
+  roleTranslator["upe_analyst"] = "Аналитик";
+  roleTranslator["upe_manager"] = "Менеджер";
+
+  const handleTaskCount = task_array => {
     let newCount = 0;
     let progressCount = 0;
     let doneCount = 0;
@@ -69,7 +69,7 @@ export default function AutoGrid() {
     setNewTasks(newCount);
   };
 
-  const handleTaskDialogOpen = (taskData) => {
+  const handleTaskDialogOpen = taskData => {
     setTaskDialogOpen(true);
     setTaskDialogData(taskData);
   };
@@ -91,7 +91,7 @@ export default function AutoGrid() {
               style={{
                 fontSize: "20px",
                 lineHeight: "25px",
-                marginBottom: "3px",
+                marginBottom: "3px"
               }}
             >
               {userInfo.name}
@@ -104,10 +104,10 @@ export default function AutoGrid() {
                 lineHeight: "17px",
                 marginBottom: "21px",
                 color: "#8C949E",
-                overflowWrap: 'break-word',
+                overflowWrap: "break-word"
               }}
             >
-              {userInfo.user_roles[0]}
+              {roleTranslator[userInfo.user_roles[2]]}
             </div>
           </Paper>
         </Grid>
@@ -118,7 +118,7 @@ export default function AutoGrid() {
                 fontSize: "32px",
                 lineHeight: "38px",
                 marginBottom: "3px",
-                fontFamily: "PFDinTextCondPro-Regular",
+                fontFamily: "PFDinTextCondPro-Regular"
               }}
             >
               Задания по северному РЭС
@@ -168,7 +168,7 @@ export default function AutoGrid() {
                   <span className={classes.titleNumber}>({newTasks})</span>
                 </span>
                 <div ref={taskCount}>
-                  {tasks.map((task) =>
+                  {tasks.map(task =>
                     task.statusTask === 0
                       ? [
                           <Paper
@@ -197,10 +197,10 @@ export default function AutoGrid() {
                                 className={classes.pregressIcon}
                               />
                               <span className={classes.progress}>
-                                {task.date}
+                                {format(parseISO(task.date), "dd/MM/yyyy")}
                               </span>
                             </div>
-                          </Paper>,
+                          </Paper>
                         ]
                       : null
                   )}
@@ -216,7 +216,7 @@ export default function AutoGrid() {
                 <span className={classes.title}>
                   В процессе ({inProgressTasks})
                 </span>
-                {tasks.map((task) =>
+                {tasks.map(task =>
                   task.statusTask === 1
                     ? [
                         <Paper
@@ -245,10 +245,10 @@ export default function AutoGrid() {
                               className={classes.pregressIcon}
                             />
                             <span className={classes.progress}>
-                              {task.date}
+                              {format(parseISO(task.date), "dd/MM/yyyy")}
                             </span>
                           </div>
-                        </Paper>,
+                        </Paper>
                       ]
                     : null
                 )}
@@ -259,7 +259,7 @@ export default function AutoGrid() {
                   Выполнено{" "}
                   <span className={classes.titleNumber}>({doneTasks})</span>
                 </span>
-                {tasks.map((task) =>
+                {tasks.map(task =>
                   task.statusTask === 2
                     ? [
                         <Paper
@@ -288,10 +288,10 @@ export default function AutoGrid() {
                               className={classes.pregressIcon}
                             />
                             <span className={classes.progress}>
-                              {task.date}
+                              {format(parseISO(task.date), "dd/MM/yyyy")}
                             </span>
                           </div>
-                        </Paper>,
+                        </Paper>
                       ]
                     : null
                 )}
@@ -301,7 +301,7 @@ export default function AutoGrid() {
                 <span className={classes.title}>
                   Просрочено ({expiredTasks})
                 </span>
-                {tasks.map((task) =>
+                {tasks.map(task =>
                   task.statusTask === 3
                     ? [
                         <Paper
@@ -327,10 +327,10 @@ export default function AutoGrid() {
                               className={classes.pregressIcon}
                             />
                             <span className={classes.progress}>
-                              {task.date}
+                              {format(parseISO(task.date), "dd/MM/yyyy")}
                             </span>
                           </div>
-                        </Paper>,
+                        </Paper>
                       ]
                     : null
                 )}
@@ -342,53 +342,54 @@ export default function AutoGrid() {
     </div>
   );
 }
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paperPanel: {
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    padding: "23px 27px",
+    padding: "23px 27px"
   },
   tasksContainer: {
-    padding: "24px",
+    padding: "24px"
   },
   paperChange: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "20px",
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important"
   },
   paper: {
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important"
   },
   buttonChange: {
     background: "#4A9CFF",
     color: "white",
     textTransform: "none",
     "&:hover": {
-      background: "#4A9CFF",
-    },
+      background: "#4A9CFF"
+    }
   },
   searchForm: {
-    padding: "8px 20px 20px",
+    padding: "8px 20px 20px"
   },
   taskNavigation: {
-    marginTop: "11px",
+    marginTop: "11px"
   },
   titleDot: {
     marginRight: "8px",
-    marginLeft: "16px",
+    marginLeft: "16px"
   },
   title: {
     fontSize: "14px",
-    lineHeight: "42px",
+    lineHeight: "42px"
   },
   titleNumber: {
-    color: "#8C949E",
+    color: "#8C949E"
   },
   taskCard: {
     display: "flex",
@@ -396,56 +397,56 @@ const useStyles = makeStyles((theme) => ({
     padding: "16px",
     marginBottom: "17px",
     cursor: "pointer",
-    boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
+    boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)"
   },
   address: {
     fontSize: "10px",
     lineHeight: "12px",
     color: "#8C949E",
-    marginBottom: "5px",
+    marginBottom: "5px"
   },
   taskNumber: {
     fontSize: "16px",
     lineHeight: "20px",
-    marginBottom: "9px",
+    marginBottom: "9px"
   },
   description: {
     fontSize: "14px",
     lineHeight: "17px",
     marginBottom: "11px",
-    fontFamily: "PFDinTextCondPro-Regular !important",
+    fontFamily: "PFDinTextCondPro-Regular !important"
   },
   progress: {
     fontSize: "14px",
     lineHeight: "17px",
     color: "#8C949E",
-    fontFamily: "PFDinTextCondPro-Regular !important",
+    fontFamily: "PFDinTextCondPro-Regular !important"
   },
   taskDot: {
-    marginRight: "6px",
+    marginRight: "6px"
   },
   pregressIcon: {
     color: "#8C949E",
     width: "13px",
     height: "13px",
-    marginRight: "6px",
+    marginRight: "6px"
   },
   new: {
     marginRight: "14px",
     fontSize: "14px",
     lineHeight: "42px",
-    fontFamily: "PFDinTextCondPro-Bold !important",
+    fontFamily: "PFDinTextCondPro-Bold !important"
   },
   status: {
     marginRight: "62px",
     fontSize: "14px",
     lineHeight: "17px",
-    textDecoration: "underline",
+    textDecoration: "underline"
   },
   taskNumPopup: {
     fontSize: "14px",
     lineHeight: "17px",
-    fontFamily: "PFDinTextCondPro-Bold !important",
+    fontFamily: "PFDinTextCondPro-Bold !important"
   },
   addressPopup: {
     display: "flex",
@@ -454,35 +455,35 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "59px",
     fontSize: "24px",
     lineHeight: "23px",
-    color: "#8C949E",
+    color: "#8C949E"
   },
   columnsPopup: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
   },
   columnTitle: {
     fontSize: "11px",
     lineHeight: "13px",
-    color: "#818E9B",
+    color: "#818E9B"
   },
   columnContent: {
     fontSize: "14px",
-    lineHeight: "17px",
+    lineHeight: "17px"
   },
   fullWidth: {
     display: "flex",
     flexDirection: "column",
     fontSize: "14px",
     lineHeight: "18px",
-    marginTop: "24px",
+    marginTop: "24px"
   },
   fullWidthTitle: {
-    color: "#818E9B",
+    color: "#818E9B"
   },
   buttons: {
     marginTop: "24px",
     marginBottom: "16px",
-    display: "flex",
+    display: "flex"
   },
   exitButton: {
     width: "50%",
@@ -491,8 +492,8 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     fontWeight: "bold",
     "&:hover": {
-      color: "#4A9CFF",
-    },
+      color: "#4A9CFF"
+    }
   },
   feedbackButton: {
     width: "50%",
@@ -502,13 +503,13 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontWeight: "bold",
     "&:hover": {
-      backgroundColor: "#4A9CFF",
-    },
+      backgroundColor: "#4A9CFF"
+    }
   },
   note: {
     fontSize: "11px",
     lineHeight: "13px",
     color: "#818E9B",
-    marginTop: "16px",
-  },
+    marginTop: "16px"
+  }
 }));

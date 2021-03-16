@@ -56,7 +56,6 @@ const SearchComponent = () => {
 
 
     globalDispach({
-      type: "FILTERCOMPONENT",
       fiasId: value === null ? "" : value.fias,
       isPhantomic: value === null ? false : value.is_phantomic ? true : false,
       balance_index: value === null ? "" : obj.balance_index,
