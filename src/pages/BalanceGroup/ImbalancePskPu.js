@@ -9,61 +9,6 @@ import phantomic_buildings from "pages/BalanceGroup/data/balance_phantom_dict.js
 import InfoWindow from "components/InfoWindow.js"
 
 const Plot = createPlotlyComponent(Plotly);
-const useStyles = makeStyles((theme) => ({
-  paperStyles: {
-    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
-  },
-  fixedHeight: {
-    //height: 500,
-  },
-  switchRightText: {
-    color: "#F19E69",
-  },
-  switchLeftText: {
-    color: "#818E9B",
-  },
-  pskGrid: {
-    maxWidth: "100%",
-  },
-  swith: {
-    display: "flex",
-    justifyContent: "flex-end",
-    paddingLeft: "16px",
-    paddingRight: "16px",
-    paddingTop: "16px",
-  },
-  graphText: {
-    fontSize: "14px",
-    lineHeight: "14px",
-    paddingLeft: "16px",
-    paddingTop: "16px",
-  },
-  header: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  boxImabalnceGraphic: {
-    // width: "100%",
-    // height: "100%",
-  },
-  boxMiddleTextCard: {
-    paddingLeft: "16px",
-    paddingRight: "16px",
-    paddingBottom: "60px",
-    paddingTop: "40px",
-  },
-  imageIcon: {
-    width: 15,
-    height: 15,
-  },
-  middleText: {
-    wordWrap: "normal",
-    fontSize: "18px",
-    lineHeight: "23px",
-    color: "#8C949E",
-  },
-}));
-
 const OrangeSwitch = withStyles({
   switchBase: {
     color: "#818E9B",
@@ -130,6 +75,16 @@ const CreateImabalancePSK = ({
     },
   };
 
+  let year_2021 = {
+    x: [],
+    y: [],
+    name: "2021",
+    type: "bar",
+    marker: {
+      color: "#A9FF94",
+    },
+  };
+
   if (switchState) {
     if (imbalancePhantomData.length > 0) {
       emptyData = false;
@@ -151,6 +106,11 @@ const CreateImabalancePSK = ({
           if (item.year.toString() === "2020") {
             year_2020.x.push(item.month_rus);
             year_2020.y.push(item.imbalance_phantom_kwh);
+          }
+
+          if (item.year.toString() === "2021") {
+            year_2021.x.push(item.month_rus);
+            year_2021.y.push(item.imbalance_phantom_kwh);
           }
         }
         return item;
@@ -180,6 +140,11 @@ const CreateImabalancePSK = ({
             year_2020.x.push(item.month_rus);
             year_2020.y.push(item.imbalance_kwh);
           }
+
+          if (item.year.toString() === "2021") {
+            year_2021.x.push(item.month_rus);
+            year_2021.y.push(item.imbalance_kwh);
+          }
         }
         return item;
       });
@@ -188,7 +153,7 @@ const CreateImabalancePSK = ({
     }
   }
 
-  object.data.push(year_2017, year_2018, year_2019, year_2020);
+  object.data.push(year_2017, year_2018, year_2019, year_2020, year_2021);
 
   return emptyData
     ? [
@@ -317,5 +282,60 @@ const ImbalancePskPu = () => {
       ]
     : null;
 };
+
+const useStyles = makeStyles((theme) => ({
+  paperStyles: {
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06)",
+  },
+  fixedHeight: {
+    //height: 500,
+  },
+  switchRightText: {
+    color: "#F19E69",
+  },
+  switchLeftText: {
+    color: "#818E9B",
+  },
+  pskGrid: {
+    maxWidth: "100%",
+  },
+  swith: {
+    display: "flex",
+    justifyContent: "flex-end",
+    paddingLeft: "16px",
+    paddingRight: "16px",
+    paddingTop: "16px",
+  },
+  graphText: {
+    fontSize: "14px",
+    lineHeight: "14px",
+    paddingLeft: "16px",
+    paddingTop: "16px",
+  },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  boxImabalnceGraphic: {
+    // width: "100%",
+    // height: "100%",
+  },
+  boxMiddleTextCard: {
+    paddingLeft: "16px",
+    paddingRight: "16px",
+    paddingBottom: "60px",
+    paddingTop: "40px",
+  },
+  imageIcon: {
+    width: 15,
+    height: 15,
+  },
+  middleText: {
+    wordWrap: "normal",
+    fontSize: "18px",
+    lineHeight: "23px",
+    color: "#8C949E",
+  },
+}));
 
 export { ImbalancePskPu };
