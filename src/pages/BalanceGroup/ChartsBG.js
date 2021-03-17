@@ -214,7 +214,7 @@ const OutInputMonthGraphic = () => {
   const [month, setMonth] = useState(7);
   const [outMonth, setOutMonth] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [year, setFilterYear] = useState('2020');
+  const [year, setFilterYear] = useState('2021');
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
@@ -367,6 +367,9 @@ const OutInputMonthGraphic = () => {
       </ToggleButton>
       <ToggleButton value="2020" aria-label="justified" className={classes.yearButton}>
       2020
+      </ToggleButton>
+      <ToggleButton value="2021" aria-label="justified" className={classes.yearButton}>
+      2021
       </ToggleButton>
       </ToggleButtonGroup>
       </Box>
