@@ -44,7 +44,7 @@ const CreateImabalancePSK = ({
     name: "2017",
     type: "bar",
     marker: {
-      color: "#A9FF94",
+      color: "#4A9CFF",
     },
   };
   let year_2018 = {
@@ -53,7 +53,7 @@ const CreateImabalancePSK = ({
     name: "2018",
     type: "bar",
     marker: {
-      color: "#00EBD3",
+      color: "#00CAFF",
     },
   };
   let year_2019 = {
@@ -62,7 +62,7 @@ const CreateImabalancePSK = ({
     name: "2019",
     type: "bar",
     marker: {
-      color: "#00CAFF",
+      color: "#00EBD3",
     },
   };
   let year_2020 = {
@@ -71,7 +71,7 @@ const CreateImabalancePSK = ({
     name: "2020",
     type: "bar",
     marker: {
-      color: "#4A9CFF",
+      color: "#A9FF94",
     },
   };
 
@@ -81,7 +81,7 @@ const CreateImabalancePSK = ({
     name: "2021",
     type: "bar",
     marker: {
-      color: "#A9FF94",
+      color: "#005266",
     },
   };
 
