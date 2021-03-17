@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -10,118 +10,38 @@ import {
   RadioGroup,
   FormControlLabel,
   FormControl,
-  TextField,
+  TextField
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import Contex from "store/context";
 import clsx from "clsx";
 import Popup from "reactjs-popup";
+import AddTaskDialog from "pages/Tasks/AddTaskDialog.js";
 import "assets/css/popup.css";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    "& > *": {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  },
-  paper: {
-    padding: "20px",
-    margin: 0,
-    height: "100vh",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-  },
-  close: {
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  address: {
-    fontSize: "24px",
-    lineHeight: "30px",
-    fontWeight: "bold",
-    marginBottom: "46px",
-  },
-  probability: {
-    fontSize: "14px",
-    lineHeight: "17px",
-    display: "flex",
-  },
-  probabilityText: {
-    color: "#8C949E",
-  },
-  probabilityPercent: {
-    fontWeight: "bold",
-  },
-  justificationButton: {
-    textTransform: "none",
-    textDecoration: "underline",
-    fontSize: "14px",
-    lineHeight: "17px",
-    color: "#252F4A",
-    marginTop: "17px",
-    marginBottom: "24px",
-    justifyContent: "end",
-  },
-  infoItem: {
-    display: "flex",
-    fontSize: "14px",
-    lineHeight: "17px",
-  },
-  property: {
-    color: "#8C949E",
-  },
-  value: {
-    fontWeight: "bold",
-  },
-  comment: {
-    display: "inline",
-  },
-  bottomButtons: {
-    marginTop: "auto",
-  },
-  showActButton: {
-    width: "100%",
-    backgroundColor: "#4A9CFF",
-    color: "white",
-    textTransform: "none",
-    fontWeight: "bold",
-    marginBottom: "11px",
-    boxShadow: "0px 4px 10px rgba(74, 156, 255, 0.33)",
-    "&:hover": {
-      backgroundColor: "#4A9CFF",
-    },
-  },
-  createTaskButton: {
-    width: "100%",
-    backgroundColor: "#FFF",
-    color: "#C2CFE0",
-    textTransform: "none",
-    fontWeight: "bold",
-    border: "1px solid #C2CFE0",
-    boxShadow: "none",
-    "&:hover": {
-      backgroundColor: "#FFF",
-    },
-    actPopup: {
-      width: "800px",
-    },
-  },
-}));
+import { getSessionCookie } from "components/cookies";
 
 export default function SimplePaper() {
+  const [dialogData, setDialogData] = useState({});
+  const [openDialog, setOpen] = useState(false);
   const { globalState, globalDispach } = useContext(Contex);
   const classes = useStyles();
+  const userInfo = getSessionCookie();
 
   const handleClose = () => {
     globalDispach({
-      isOpenSidebar: false,
+      isOpenSidebar: false
     });
+  };
+
+  const handleDialogOpen = row => {
+    setOpen(true);
+    setDialogData(row);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+    setDialogData({});
   };
 
   var description;
@@ -151,7 +71,7 @@ export default function SimplePaper() {
       modal
       nested
     >
-      {(close) => (
+      {close => (
         <div className="modal">
           <button className="close" onClick={close}>
             &times;
@@ -212,135 +132,135 @@ export default function SimplePaper() {
     </Popup>
   );
 
-  const ModalAct = () => (
-    <Popup
-      className="act-popup"
-      trigger={
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.showActButton}
-        >
-          Посмотреть обратную связь
-        </Button>
-      }
-      modal
-      nested
-    >
-      {(close) => (
-        <div className="modal">
-          <div className="act-content">
-            <span className="act-title">Обратная связь</span>
-            <div className="address-box">
-              <span class="address">Адрес: </span>
-              <span class="address-value">
-                {globalState.markerValue.address}
-              </span>
-            </div>
-            <FormControl component="fieldset" className="radio">
-              <RadioGroup
-                row
-                aria-label="position"
-                name="position"
-                defaultValue="top"
-              >
-                <FormControlLabel
-                  value="bd"
-                  control={<Radio color="primary" />}
-                  label="Бездоговорное потребление"
-                />
-                <FormControlLabel
-                  value="bu"
-                  control={<Radio color="primary" />}
-                  label="Безучетное потребление"
-                />
-              </RadioGroup>
-            </FormControl>
-            <form className="act-date-time" noValidate autoComplete="off">
-              <TextField
-                id="standard-basic"
-                className="act-date-time__field one"
-                label="Акт № *"
-                placeholder="Введите данные"
-              />
-              <TextField
-                id="standard-basic"
-                className="act-date-time__field two"
-                label="Дата и время проведения проверки *"
-                placeholder="Введите данные"
-              />
-            </form>
-            <form className="characteristics" noValidate autoComplete="off">
-              <TextField
-                id="standard-basic"
-                className="characteristics__field"
-                label="Характеристики вводных проводов (кабелей)"
-                placeholder="Введите данные"
-              />
-            </form>
-            <FormControl component="fieldset" className="radio tech">
-              <RadioGroup
-                row
-                aria-label="position"
-                name="position"
-                defaultValue="top"
-              >
-                <FormControlLabel
-                  className="tech-first"
-                  value="consumer"
-                  control={<Radio color="primary" />}
-                  label="Технические характеристики проводов (кабелей) предоставлены потребителем"
-                />
-                <FormControlLabel
-                  value="visual"
-                  control={<Radio color="primary" />}
-                  label="Технические характеристики проводов (кабелей) установлены по результатам визуального осмотра"
-                />
-              </RadioGroup>
-            </FormControl>
-            <form className="postavki" noValidate autoComplete="off">
-              <TextField
-                id="standard-basic"
-                className="postavki-field"
-                label="Р (кВт) в точке поставки"
-                placeholder="Введите данные"
-              />
-            </form>
-            <Typography className="comment-label">Комментарии:</Typography>
-            <TextField
-              id="filled-multiline-static"
-              className="comments"
-              multiline
-              rows={6}
-              variant="filled"
-            />
-            <div className="buttons-bottom">
-              <Button
-                className="button-button first"
-                variant="outlined"
-                color="primary"
-                onClick={() => {
-                  close();
-                }}
-              >
-                Вернуться к карте БУ/БД
-              </Button>
-              <Button
-                className="button-button second"
-                variant="contained"
-                color="primary"
-              >
-                Отправить обратную связь
-              </Button>
-            </div>
-            <Typography className="note">
-              * - обязательные для заполнения поля
-            </Typography>
-          </div>
-        </div>
-      )}
-    </Popup>
-  );
+  // const ModalAct = () => (
+  //   <Popup
+  //     className="act-popup"
+  //     trigger={
+  //       <Button
+  //         variant="contained"
+  //         color="primary"
+  //         className={classes.showActButton}
+  //       >
+  //         Посмотреть обратную связь
+  //       </Button>
+  //     }
+  //     modal
+  //     nested
+  //   >
+  //     {(close) => (
+  //       <div className="modal">
+  //         <div className="act-content">
+  //           <span className="act-title">Обратная связь</span>
+  //           <div className="address-box">
+  //             <span class="address">Адрес: </span>
+  //             <span class="address-value">
+  //               {globalState.markerValue.address}
+  //             </span>
+  //           </div>
+  //           <FormControl component="fieldset" className="radio">
+  //             <RadioGroup
+  //               row
+  //               aria-label="position"
+  //               name="position"
+  //               defaultValue="top"
+  //             >
+  //               <FormControlLabel
+  //                 value="bd"
+  //                 control={<Radio color="primary" />}
+  //                 label="Бездоговорное потребление"
+  //               />
+  //               <FormControlLabel
+  //                 value="bu"
+  //                 control={<Radio color="primary" />}
+  //                 label="Безучетное потребление"
+  //               />
+  //             </RadioGroup>
+  //           </FormControl>
+  //           <form className="act-date-time" noValidate autoComplete="off">
+  //             <TextField
+  //               id="standard-basic"
+  //               className="act-date-time__field one"
+  //               label="Акт № *"
+  //               placeholder="Введите данные"
+  //             />
+  //             <TextField
+  //               id="standard-basic"
+  //               className="act-date-time__field two"
+  //               label="Дата и время проведения проверки *"
+  //               placeholder="Введите данные"
+  //             />
+  //           </form>
+  //           <form className="characteristics" noValidate autoComplete="off">
+  //             <TextField
+  //               id="standard-basic"
+  //               className="characteristics__field"
+  //               label="Характеристики вводных проводов (кабелей)"
+  //               placeholder="Введите данные"
+  //             />
+  //           </form>
+  //           <FormControl component="fieldset" className="radio tech">
+  //             <RadioGroup
+  //               row
+  //               aria-label="position"
+  //               name="position"
+  //               defaultValue="top"
+  //             >
+  //               <FormControlLabel
+  //                 className="tech-first"
+  //                 value="consumer"
+  //                 control={<Radio color="primary" />}
+  //                 label="Технические характеристики проводов (кабелей) предоставлены потребителем"
+  //               />
+  //               <FormControlLabel
+  //                 value="visual"
+  //                 control={<Radio color="primary" />}
+  //                 label="Технические характеристики проводов (кабелей) установлены по результатам визуального осмотра"
+  //               />
+  //             </RadioGroup>
+  //           </FormControl>
+  //           <form className="postavki" noValidate autoComplete="off">
+  //             <TextField
+  //               id="standard-basic"
+  //               className="postavki-field"
+  //               label="Р (кВт) в точке поставки"
+  //               placeholder="Введите данные"
+  //             />
+  //           </form>
+  //           <Typography className="comment-label">Комментарии:</Typography>
+  //           <TextField
+  //             id="filled-multiline-static"
+  //             className="comments"
+  //             multiline
+  //             rows={6}
+  //             variant="filled"
+  //           />
+  //           <div className="buttons-bottom">
+  //             <Button
+  //               className="button-button first"
+  //               variant="outlined"
+  //               color="primary"
+  //               onClick={() => {
+  //                 close();
+  //               }}
+  //             >
+  //               Вернуться к карте БУ/БД
+  //             </Button>
+  //             <Button
+  //               className="button-button second"
+  //               variant="contained"
+  //               color="primary"
+  //             >
+  //               Отправить обратную связь
+  //             </Button>
+  //           </div>
+  //           <Typography className="note">
+  //             * - обязательные для заполнения поля
+  //           </Typography>
+  //         </div>
+  //       </div>
+  //     )}
+  //   </Popup>
+  // );
 
   return (
     <div className={classes.root}>
@@ -407,16 +327,124 @@ export default function SimplePaper() {
           </Box>
         </Box>
         <Box className={classes.bottomButtons}>
-          <ModalAct />
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.createTaskButton}
-          >
-            Создать задание
-          </Button>
+          {/* Only analyst can add the task */}
+          {userInfo.user_roles.includes("upe_analyst") && (
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.createTaskButton}
+              onClick={() => {
+                handleDialogOpen({
+                  fias: globalState.markerValue.fias_id,
+                  fiasAddress: globalState.markerValue.address,
+                  information: globalState.markerValue.information
+                });
+              }}
+            >
+              Создать задание
+            </Button>
+          )}
         </Box>
       </Paper>
+      <AddTaskDialog
+        isDialogOpen={openDialog}
+        closeDialog={handleDialogClose}
+        dialogData={dialogData}
+      />
+      ,
     </div>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    "& > *": {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16)
+    }
+  },
+  paper: {
+    padding: "20px",
+    margin: 0,
+    height: "100vh",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  close: {
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+  address: {
+    fontSize: "24px",
+    lineHeight: "30px",
+    fontWeight: "bold",
+    marginBottom: "46px"
+  },
+  probability: {
+    fontSize: "14px",
+    lineHeight: "17px",
+    display: "flex"
+  },
+  probabilityText: {
+    color: "#8C949E"
+  },
+  probabilityPercent: {
+    fontWeight: "bold"
+  },
+  justificationButton: {
+    textTransform: "none",
+    textDecoration: "underline",
+    fontSize: "14px",
+    lineHeight: "17px",
+    color: "#252F4A",
+    marginTop: "17px",
+    marginBottom: "24px",
+    justifyContent: "end"
+  },
+  infoItem: {
+    display: "flex",
+    fontSize: "14px",
+    lineHeight: "17px"
+  },
+  property: {
+    color: "#8C949E"
+  },
+  value: {
+    fontWeight: "bold"
+  },
+  comment: {
+    display: "inline"
+  },
+  bottomButtons: {
+    marginTop: "auto"
+  },
+  showActButton: {
+    width: "100%",
+    backgroundColor: "#4A9CFF",
+    color: "white",
+    textTransform: "none",
+    fontWeight: "bold",
+    marginBottom: "11px",
+    boxShadow: "0px 4px 10px rgba(74, 156, 255, 0.33)",
+    "&:hover": {
+      backgroundColor: "#4A9CFF"
+    }
+  },
+  createTaskButton: {
+    border: "1px solid #4764B0",
+    boxSizing: "border-box",
+    borderRadius: "4px",
+    width: "100%",
+    backgroundColor: "#FFF",
+    color: "#4764B0",
+
+    boxShadow: "none",
+    "&:hover": {
+      backgroundColor: "#FFFFFF"
+    }
+  }
+}));

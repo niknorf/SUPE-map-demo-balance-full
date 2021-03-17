@@ -163,7 +163,6 @@ const BalanceGroupContent = () => {
       },
     ];
     let temp = [];
-    console.log(userInfo);
     for (let i = 0; i < original.length; i++) {
       let gs_link = "";
       let task_link = "";

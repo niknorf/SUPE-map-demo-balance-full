@@ -69,10 +69,9 @@ const AddTaskDialog = props => {
   };
 
   const AddTask = () => {
-
     const requestOptions = {
       id: 0,
-      userCreatorId: "a58adc80-4cb8-4b73-84ff-7bc40a9243d7",
+      userCreatorId: userInfo.sub,
       fiasGUID: dialogData.fias,
       fiasAddress: dialogData.fiasAddress,
       dateString: selectedDate,
@@ -85,7 +84,7 @@ const AddTaskDialog = props => {
     ServicesTasks.createTask(requestOptions)
       .then(result => {
         if (result === "") {
-        props.closeDialog();
+          props.closeDialog();
         }
         console.log(result);
       })
@@ -124,7 +123,7 @@ const AddTaskDialog = props => {
                 value={selectedDate}
                 onChange={handleDateChange}
               />
-              <span className={classes.columnContent}>{dialogData.date}</span>
+              {/* <span className={classes.columnContent}>{dialogData.date}</span> */}
             </Grid>
             <Grid
               item
@@ -221,7 +220,9 @@ const AddTaskDialog = props => {
               Описание обьекта
             </InputLabel>
             <span className={classes.fullWidthContent}>
-              Многоквартирный жилой дом
+              {typeof dialogData.information !== "undefined"
+                ? dialogData.information
+                : "Многоквартирный жилой дом"}
             </span>
           </div>
           <div className={classes.buttons}>

@@ -37,12 +37,12 @@ const tableColumns = [
     disablePadding: false,
     label: "Тип вероятности"
   },
-  {
-    id: "report",
-    numeric: false,
-    disablePadding: false,
-    label: "Акт"
-  },
+  // {
+  //   id: "report",
+  //   numeric: false,
+  //   disablePadding: false,
+  //   label: "Акт"
+  // },
   {
     id: "status",
     numeric: false,
@@ -84,13 +84,13 @@ const BuBdTable = () => {
 
   const tableRowClick = (event, row) => {
     row.tp = "данные подгружаются";
-    if (row.type === "BU") {
-      row.percent_probability_BU = row.percent_probability;
-      row.percent_probability_BD = 0;
-    } else {
-      row.percent_probability_BD = row.percent_probability;
-      row.percent_probability_BU = 0;
-    }
+    // if (row.type === "BU") {
+    //   row.percent_probability_BU = row.percent_probability;
+    //   row.percent_probability_BD = 0;
+    // } else {
+    //   row.percent_probability_BD = row.percent_probability;
+    //   row.percent_probability_BU = 0;
+    // }
 
     globalDispach({
       isOpenSidebar: true,
@@ -106,8 +106,8 @@ const BuBdTable = () => {
         key={row.fias_id}
         classes={{ hover: classes.rowHover }}
         // Set to undefined if the table goes to print, because otherwise it will print in one line
-        component={print === "print" ? undefined : Link}
-        to="/bubd"
+        // component={print === "print" ? undefined : Link}
+        // to="/bubd"
       >
         <TableCell
           component="th"
@@ -124,11 +124,11 @@ const BuBdTable = () => {
         <TableCell align="center" onClick={event => tableRowClick(event, row)}>
           Безучетное потребление
         </TableCell>
-        <TableCell align="center">
+        {/* <TableCell align="center">
           <Link underline="always" className={classes.linkStyle}>
             Добавить обратную связь
           </Link>
-        </TableCell>
+        </TableCell> */}
         <TableCell align="center">
           <Box borderRadius={5} {...defaultProps}>
             Новое
@@ -170,7 +170,7 @@ const CreateIcon = (classes, number) => {
       <Icon className={classes.tableIcon}>
         <img className={classes.markerIcon} src={color} alt="" />
       </Icon>
-      <Typography>{number.toString() + "%"}</Typography>
+      <Typography>{number + "%"}</Typography>
     </Container>
   );
 };
