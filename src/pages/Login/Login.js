@@ -117,8 +117,8 @@ const useStyles = makeStyles(theme => ({
     // width: "500px",
   },
   coverText: {
-    fontSize: "4vw",
-    lineHeight: "4vw",
+    fontSize: "38px",
+    lineHeight: "48px",
     letterSpacing: "0.01em",
     color: "white"
   },
