@@ -70,11 +70,11 @@ const BottomSectionGS = () => {
   useEffect(() => {
     let api_url = "";
     if (legalType === "entity") {
-      api_url = "/api/PSK/GetLegalPSKData/1281/" + globalState.fiasId;
+      api_url = "/api/PSK/GetLegalPSKlastValue?fias=" + globalState.fiasId;
     } else if (legalType === "population") {
       api_url = "/api/DataCompare/GetFizTimeSeries/1281/" + globalState.fiasId;
     } else if (legalType === "utility") {
-      api_url = "/api/PSK/GetCommonPSKData/1281/" + globalState.fiasId;
+      api_url = "/api/PSK/GetCommonPSKlastValue?fias=" + globalState.fiasId;
     }
 
     if (globalState.fiasId !== "" && api_url !== "") {
