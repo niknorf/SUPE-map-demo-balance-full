@@ -43,12 +43,12 @@ const tableColumns = [
   //   disablePadding: false,
   //   label: "Акт"
   // },
-  {
-    id: "status",
-    numeric: false,
-    disablePadding: false,
-    label: "Статус задания"
-  }
+  // {
+  //   id: "status",
+  //   numeric: false,
+  //   disablePadding: false,
+  //   label: "Статус задания"
+  // }
 ];
 
 function manageData() {
@@ -129,11 +129,11 @@ const BuBdTable = () => {
             Добавить обратную связь
           </Link>
         </TableCell> */}
-        <TableCell align="center">
+        {/* <TableCell align="center">
           <Box borderRadius={5} {...defaultProps}>
             Новое
           </Box>
-        </TableCell>
+        </TableCell> */}
       </TableRow>
     );
   };
