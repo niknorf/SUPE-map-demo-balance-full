@@ -1,12 +1,9 @@
 import axios from "axios";
-import { BASE_URL, AUTH_API_CONFIG, LOGIN_API_CONFIG } from "./config";
+
 export default {
   getResImbalanceFront: async function(id) {
     try {
-      const response = await axios.get(
-        BASE_URL + "/api/Results/GetResImbalanceFrontKWH",
-        AUTH_API_CONFIG
-      );
+      const response = await axios.get("/api/Results/GetResImbalanceFrontKWH");
       return response.data;
     } catch (e) {
       return e;
@@ -15,8 +12,7 @@ export default {
   getMeterpointStats: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetBalanceGroupMeterpointStats/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetBalanceGroupMeterpointStats/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -26,12 +22,7 @@ export default {
   getResImbalanceByYear: async function(balance_id, year) {
     try {
       const response = await axios.get(
-        BASE_URL +
-          "/api/Results/GetResImbalanceFrontByYear/" +
-          year +
-          "/" +
-          balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetResImbalanceFrontByYear/" + year + "/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -41,8 +32,7 @@ export default {
   getResImbalanceFront: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetResImbalanceFront/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetResImbalanceFront/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -52,8 +42,7 @@ export default {
   getImbalancePhantom: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetImbalancePhantom/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetImbalancePhantom/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -63,8 +52,7 @@ export default {
   getIndexes: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetResultIndexes/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetResultIndexes/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -74,8 +62,7 @@ export default {
   getHouseBalanceInfo: async function(fias_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetHouseBalanceInfo/" + fias_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetHouseBalanceInfo/" + fias_id
       );
       return response.data;
     } catch (e) {
@@ -85,8 +72,7 @@ export default {
   getBalanceGroupObjects: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetBalanceGroupObjects/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetBalanceGroupObjects/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -96,8 +82,7 @@ export default {
   getBuildingsGeometry: async function(fias_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/GeoData/GetBuildingsGeometry/" + fias_id,
-        AUTH_API_CONFIG
+        "/api/GeoData/GetBuildingsGeometry/" + fias_id
       );
       return response.data;
     } catch (e) {
@@ -106,10 +91,7 @@ export default {
   },
   getSubstationGeometry: async function() {
     try {
-      const response = await axios.get(
-        BASE_URL + "/api/GeoData/GetSubstationGeometry",
-        AUTH_API_CONFIG
-      );
+      const response = await axios.get("/api/GeoData/GetSubstationGeometry");
       return response.data;
     } catch (e) {
       return e;
@@ -118,8 +100,7 @@ export default {
   getBalanceResultFull: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetBalanceResultFull/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetBalanceResultFull/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -129,12 +110,21 @@ export default {
   getMeterpointsInfo: async function(balance_id) {
     try {
       const response = await axios.get(
-        BASE_URL + "/api/Results/GetBalanceGroupMeterpointsInfo/" + balance_id,
-        AUTH_API_CONFIG
+        "/api/Results/GetBalanceGroupMeterpointsInfo/" + balance_id
       );
       return response.data;
     } catch (e) {
       return e;
     }
   },
+  getTaskStatus: async function(fias_id) {
+    try {
+      const response = await axios.get(
+        "/api/UserTasks/TasksForFiasExists/" + fias_id
+      );
+      return response.data;
+    } catch (e) {
+      return e;
+    }
+  }
 };

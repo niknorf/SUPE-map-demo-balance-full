@@ -6,10 +6,11 @@ import { GaranteedSuppliesCompanies } from "./CompaniesListGS.js";
 import { GaranteedSuppliesClusters } from "./ClustersListGS.js";
 import Contex from "store/context";
 import InfoWindow from "components/InfoWindow.js";
+import ServicesGS from "pages/GuaranteedSuppliers/api/ServicesGS";
 
 const StyledPaper = styled(Paper)({
   boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.06) !important",
-  borderRadius: "4px",
+  borderRadius: "4px"
 });
 
 const InitialState = () => {
@@ -32,7 +33,23 @@ const InitialState = () => {
 
 const ShowDataState = () => {
   const classes = useStyles();
+  const [date, setDate] = useState("");
   const { globalState } = useContext(Contex);
+
+  useEffect(() => {
+    if (globalState.fiasId !== "") {
+      ServicesGS.getFiasClusters(globalState.fiasId)
+        .then(result => {
+          if (result.length) {
+            setDate(result[0].date_time);
+          }
+        })
+        .catch(error => {});
+    }
+    // setLoading(true);
+  }, [globalState.fiasId]);
+
+
 
   return (
     <Grid item lg={6} md={6} sm={6} xl={6} xs={12}>
@@ -60,15 +77,15 @@ const ShowDataState = () => {
             xs={12}
             // style={{ height: "100%" }}
           >
-            <StyledPaper elevation={1}>
+            {/* <StyledPaper elevation={1}>
               <Box className={classes.boxPaddingTabs}>
                 <Typography className={classes.graphText}>
                   Юридические лица и общедомовые нужды
                 </Typography>
                 {/* Table with urid and  */}
-                <GaranteedSuppliesCompanies />
-              </Box>
-            </StyledPaper>
+            {/* <GaranteedSuppliesCompanies /> */}
+            {/* </Box> */}
+            {/* </StyledPaper> */}
           </Grid>
           <Grid
             item
@@ -82,6 +99,7 @@ const ShowDataState = () => {
             <StyledPaper elevation={1}>
               <Box className={classes.boxPaddingTabs}>
                 <Typography className={classes.graphText}>Кластеры</Typography>
+                <Typography className={classes.clusterDate}>{date}</Typography>
                 {/* Table with urid and  */}
                 <GaranteedSuppliesClusters />
               </Box>
@@ -104,14 +122,14 @@ const BuildingCards = () => {
   useEffect(() => {
     if (globalState.fiasId !== "") {
       fetch("/api/Results/GetBuildFeatClean/" + globalState.fiasId)
-        .then((res) => res.json())
+        .then(res => res.json())
         .then(
-          (result) => {
+          result => {
             if (result.length > 0) {
               setCardsData(result);
             }
           },
-          (error) => {
+          error => {
             // setLoading(true);
             // setError(error);
           }
@@ -192,7 +210,7 @@ const BuildingCards = () => {
               </Grid>
             </Grid>
           </Box>
-        </>,
+        </>
       ]
     : [
         <>
@@ -202,11 +220,11 @@ const BuildingCards = () => {
             </Typography>
           </Box>
           <InfoWindow label="Нет данных" icon="info" />
-        </>,
+        </>
       ];
 };
 
-const BuildingHasGas = (props) => {
+const BuildingHasGas = props => {
   const classes = useStyles();
   let value = props.value;
 
@@ -219,7 +237,7 @@ const BuildingHasGas = (props) => {
           <Typography className={classes.boxValuesText}>
             {/* {input_month} */}
           </Typography>
-        </Box>,
+        </Box>
       ]
     : [
         <Box className={classes.boxStyleNoGas} style={{ height: "100%" }}>
@@ -229,7 +247,7 @@ const BuildingHasGas = (props) => {
           <Typography className={classes.boxValuesText}>
             {/* {input_month} */}
           </Typography>
-        </Box>,
+        </Box>
       ];
 };
 
@@ -239,20 +257,20 @@ const InfoSectionGS = () => {
   return globalState.fiasId !== "" ? [<ShowDataState />] : [<InitialState />];
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   boxPaddingLabel: {
     paddingTop: "16px",
     paddingLeft: "16px",
-    paddingBottom: "16px",
+    paddingBottom: "16px"
   },
   boxPaddingCards: {
     paddingLeft: "16px",
     paddingBottom: "16px",
-    paddingRight: "16px",
+    paddingRight: "16px"
   },
   boxPaddingTabs: {
     paddingLeft: "16px",
-    paddingRight: "16px",
+    paddingRight: "16px"
   },
   boxStyle: {
     maxWidth: "250px",
@@ -260,7 +278,7 @@ const useStyles = makeStyles((theme) => ({
     background: "linear-gradient(127.52deg, #00CAFF 20.68%, #4A9CFF 80.9%);",
     borderRadius: "4px",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    color: "#FFFFFF",
+    color: "#FFFFFF"
   },
 
   boxStyleGas: {
@@ -269,7 +287,7 @@ const useStyles = makeStyles((theme) => ({
     background: "linear-gradient(127.52deg, #F19E69 20.68%, #4A9CFF 80.9%)",
     borderRadius: "4px",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    color: "#FFFFFF",
+    color: "#FFFFFF"
   },
   boxStyleNoGas: {
     maxWidth: "250px",
@@ -277,7 +295,7 @@ const useStyles = makeStyles((theme) => ({
     background: "linear-gradient(127.52deg, #A0A1A2 20.68%, #4A9CFF 80.9%)",
     borderRadius: "4px",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
-    color: "#FFFFFF",
+    color: "#FFFFFF"
   },
   cornerTextCard: {
     position: "relative",
@@ -286,7 +304,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "16px",
     paddingLeft: "16px",
     color: "#252F4A",
-    opacity: "0.25",
+    opacity: "0.25"
   },
   cornerTitle: {
     position: "relative",
@@ -294,7 +312,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "17px",
     paddingTop: "9px",
     paddingLeft: "12px",
-    color: "#FFFFFF",
+    color: "#FFFFFF"
   },
   boxValuesText: {
     position: "relative",
@@ -304,20 +322,30 @@ const useStyles = makeStyles((theme) => ({
     textShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
     paddingBottom: "10px",
     paddingLeft: "12px",
-    color: "#FFFFFF",
+    color: "#FFFFFF"
   },
   graphText: {
+    display: "inline-block",
     fontSize: "12px",
     lineHeight: "15px",
     fontWeight: "bold",
     paddingLeft: "16px",
-    paddingTop: "21px",
+    paddingTop: "21px"
+  },
+  clusterDate: {
+    display: "inline-block",
+    float: "right",
+    fontSize: "12px",
+    lineHeight: "15px",
+    fontWeight: "bold",
+    paddingLeft: "16px",
+    paddingTop: "21px"
   },
   balanceGroupLabel: {
     fontSize: "14px",
     lineHeight: "17px",
-    color: "#252F4A",
-  },
+    color: "#252F4A"
+  }
 }));
 
 export { InfoSectionGS };

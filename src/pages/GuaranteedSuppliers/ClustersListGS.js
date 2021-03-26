@@ -4,8 +4,9 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import TableTemplate from "components/TableTemplate";
 import Contex from "store/context";
 import InfoWindow from "components/InfoWindow.js";
+import ServicesGS from "pages/GuaranteedSuppliers/api/ServicesGS";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles(theme => ({}));
 
 const GaranteedSuppliesClusters = () => {
   const classes = useStyles();
@@ -14,37 +15,31 @@ const GaranteedSuppliesClusters = () => {
 
   useEffect(() => {
     if (globalState.fiasId !== "") {
-      fetch("/api/Results/GetFiasClusterMedian/" + globalState.fiasId)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            let modified_result = result.clusters;
-            modified_result.push({
-              cluster: "общее",
-              value: result.fias_median,
-            });
-            setRows(modified_result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            // setLoading(true);
-            // setError(error);
+      ServicesGS.getFiasClusters(globalState.fiasId)
+        .then(result => {
+          if (result.length) {
+            setRows(result);
           }
-        );
+        })
+        .catch(error => {});
     }
     // setLoading(true);
   }, [globalState.fiasId]);
 
-  const GaranteedSuppliesClustersRows = (row) => {
+  const GaranteedSuppliesClustersRows = row => {
     return (
-      <TableRow key={row.cluster}>
+      <TableRow key={row.cons_name}>
+        <TableCell component="th" scope="row" align="left">
+          {row.cons_name}
+        </TableCell>
+        <TableCell component="th" scope="row" align="right">
+          {row.value}
+        </TableCell>
         <TableCell component="th" scope="row" align="left">
           {row.cluster}
         </TableCell>
         <TableCell component="th" scope="row" align="right">
-          {row.value}
+          {row.deviation}
         </TableCell>
       </TableRow>
     );
@@ -52,17 +47,29 @@ const GaranteedSuppliesClusters = () => {
 
   const tableColumns = [
     {
-      id: "name",
+      id: "cons_name",
       numeric: false,
       disablePadding: false,
-      label: "Название",
+      label: "Название ЮЛ"
     },
     {
       id: "value",
       numeric: true,
       disablePadding: false,
-      label: "Значение, кВтч",
+      label: "Потребление, кВтч"
     },
+    {
+      id: "cluster",
+      numeric: false,
+      disablePadding: false,
+      label: "Кластер"
+    },
+    {
+      id: "deviation",
+      numeric: true,
+      disablePadding: false,
+      label: "Отклонение от кластера, %"
+    }
   ];
 
   return rows.length > 0
@@ -72,7 +79,7 @@ const GaranteedSuppliesClusters = () => {
           rows={rows}
           columns={tableColumns}
           rowsSettings={GaranteedSuppliesClustersRows}
-        />,
+        />
       ]
     : [<InfoWindow label="Нет данных" icon="info" />];
 };
