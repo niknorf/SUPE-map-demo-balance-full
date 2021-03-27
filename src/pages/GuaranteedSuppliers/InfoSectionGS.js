@@ -16,9 +16,9 @@ const StyledPaper = styled(Paper)({
 const InitialState = () => {
   const classes = useStyles();
   return (
-    <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-      <StyledPaper elevation={1}>
-        <Typography className={classes.cornerTextCard}>
+    <Grid key="initial-state-item" item lg={12} md={12} sm={12} xl={12} xs={12}>
+      <StyledPaper key="initial-state-paper" elevation={1}>
+        <Typography key="initial-state-text" className={classes.cornerTextCard}>
           Статистика гарантирующих поставщиков
         </Typography>
         <InfoWindow
@@ -49,12 +49,11 @@ const ShowDataState = () => {
     // setLoading(true);
   }, [globalState.fiasId]);
 
-
-
   return (
-    <Grid item lg={6} md={6} sm={6} xl={6} xs={12}>
-      <div style={{ height: "100%" }}>
+    <Grid key="info-section-item" item lg={6} md={6} sm={6} xl={6} xs={12}>
+      <div key="info-section-div" style={{ height: "100%" }}>
         <Grid
+          key="info-section-container"
           container
           spacing={3}
           justify="flex-start"
@@ -63,31 +62,21 @@ const ShowDataState = () => {
           direction="row"
           wrap="wrap"
         >
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <StyledPaper elevation={1}>
-              <BuildingCards />
-            </StyledPaper>
-          </Grid>
           <Grid
+            key="building-cards-item"
             item
             lg={12}
             md={12}
             sm={12}
             xl={12}
             xs={12}
-            // style={{ height: "100%" }}
-          >
-            {/* <StyledPaper elevation={1}>
-              <Box className={classes.boxPaddingTabs}>
-                <Typography className={classes.graphText}>
-                  Юридические лица и общедомовые нужды
-                </Typography>
-                {/* Table with urid and  */}
-            {/* <GaranteedSuppliesCompanies /> */}
-            {/* </Box> */}
-            {/* </StyledPaper> */}
+            >
+            <StyledPaper key="building-cards-paper" elevation={1}>
+              <BuildingCards />
+            </StyledPaper>
           </Grid>
           <Grid
+            key="clusters-item"
             item
             lg={12}
             md={12}
@@ -95,11 +84,18 @@ const ShowDataState = () => {
             xl={12}
             xs={12}
             style={{ height: "100%" }}
-          >
-            <StyledPaper elevation={1}>
-              <Box className={classes.boxPaddingTabs}>
-                <Typography className={classes.graphText}>Кластеры</Typography>
-                <Typography className={classes.clusterDate}>{date}</Typography>
+            >
+            <StyledPaper key="clusters-paper" elevation={1}>
+              <Box key="clusters-container" className={classes.boxPaddingTabs}>
+                <Typography key="clusters-text" className={classes.graphText}>
+                  Кластеры
+                </Typography>
+                <Typography
+                  key="clusters-value"
+                  className={classes.clusterDate}
+                >
+                  {date}
+                </Typography>
                 {/* Table with urid and  */}
                 <GaranteedSuppliesClusters />
               </Box>
@@ -109,6 +105,8 @@ const ShowDataState = () => {
       </div>
     </Grid>
   );
+
+
 };
 
 const BuildingCards = () => {
@@ -140,13 +138,17 @@ const BuildingCards = () => {
   return cardsData.length > 0
     ? [
         <>
-          <Box className={classes.boxPaddingLabel}>
-            <Typography className={classes.balanceGroupLabel}>
+          <Box key="address-name-container" className={classes.boxPaddingLabel}>
+            <Typography
+              key="address-name"
+              className={classes.balanceGroupLabel}
+            >
               {address_name}
             </Typography>
           </Box>
-          <Box className={classes.boxPaddingCards}>
+          <Box key="cards-container" className={classes.boxPaddingCards}>
             <Grid
+              key="cards-grid"
               container
               spacing={2}
               justify="flex-start"
@@ -154,58 +156,137 @@ const BuildingCards = () => {
               alignItems="stretch"
               direction="row"
               display="flex"
-            >
-              <Grid item lg={4} md={4} sm={6} xl={4} xs={12}>
-                <Box className={classes.boxStyle}>
-                  <Typography className={classes.cornerTitle}>
+              >
+              {/* Number of floors card */}
+              <Grid
+                key="floors-count-item"
+                item
+                lg={4}
+                md={4}
+                sm={6}
+                xl={4}
+                xs={12}
+                >
+                <Box key="floors-count-container" className={classes.boxStyle}>
+                  <Typography
+                    key="floors-count-text"
+                    className={classes.cornerTitle}
+                  >
                     Количество этажей
                   </Typography>
-                  <Typography className={classes.boxValuesText}>
+                  <Typography
+                    key="floors-count-value"
+                    className={classes.boxValuesText}
+                  >
                     {cardsData[0].floor_num}
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={4} md={4} sm={6} xl={4} xs={12}>
-                <Box className={classes.boxStyle}>
-                  <Typography className={classes.cornerTitle}>
+              {/* Nuumber of flats card */}
+              <Grid
+                key="flats-count-item"
+                item
+                lg={4}
+                md={4}
+                sm={6}
+                xl={4}
+                xs={12}
+                >
+                <Box key="flats-count-container" className={classes.boxStyle}>
+                  <Typography
+                    key="flats-count-text"
+                    className={classes.cornerTitle}
+                  >
                     Количество квартир
                   </Typography>
-                  <Typography className={classes.boxValuesText}>
+                  <Typography
+                    key="flats-count-value"
+                    className={classes.boxValuesText}
+                  >
                     {cardsData[0].flat_num}
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={4} md={4} sm={6} xl={4} xs={12}>
-                <Box className={classes.boxStyle}>
-                  <Typography className={classes.cornerTitle}>
+              {/* Number of lifts card */}
+              <Grid
+                key="lift-count-item"
+                item
+                lg={4}
+                md={4}
+                sm={6}
+                xl={4}
+                xs={12}
+                >
+                <Box key="lift-count-container" className={classes.boxStyle}>
+                  <Typography
+                    key="lift-count-text"
+                    className={classes.cornerTitle}
+                  >
                     Количество лифтов
                   </Typography>
-                  <Typography className={classes.boxValuesText}>
+                  <Typography
+                    key="lift-count-value"
+                    className={classes.boxValuesText}
+                  >
                     {cardsData[0].elev_num}
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={4} md={4} sm={6} xl={4} xs={12}>
-                <Box className={classes.boxStyle}>
-                  <Typography className={classes.cornerTitle}>
+              {/* Construction year card */}
+              <Grid
+                key="construction-year-item"
+                item
+                lg={4}
+                md={4}
+                sm={6}
+                xl={4}
+                xs={12}
+                >
+                <Box
+                  key="construction-year-container"
+                  className={classes.boxStyle}
+                >
+                  <Typography
+                    key="construction-year-text"
+                    className={classes.cornerTitle}
+                  >
                     Год постройки
                   </Typography>
-                  <Typography className={classes.boxValuesText}>
+                  <Typography
+                    key="construction-year-value"
+                    className={classes.boxValuesText}
+                  >
                     {cardsData[0].comm_year}
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={4} md={4} sm={6} xl={4} xs={12}>
-                <Box className={classes.boxStyle}>
-                  <Typography className={classes.cornerTitle}>
+              {/* Living area card */}
+              <Grid
+                key="living-area-item"
+                item
+                lg={4}
+                md={4}
+                sm={6}
+                xl={4}
+                xs={12}
+                >
+                <Box key="living-area-container" className={classes.boxStyle}>
+                  <Typography
+                    key="living-area-text"
+                    className={classes.cornerTitle}
+                  >
                     Жилая площадь
                   </Typography>
-                  <Typography className={classes.boxValuesText}>
+                  <Typography
+                    key="living-area-value"
+                    className={classes.boxValuesText}
+                  >
                     {cardsData[0].living_area}м2
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={4} md={4} sm={6} xl={4} xs={12}>
+              {/* Building gas status card */}
+              <Grid key="gas-item" item lg={4} md={4} sm={6} xl={4} xs={12}>
                 <BuildingHasGas value={cardsData[0].is_gas} />
               </Grid>
             </Grid>
@@ -214,8 +295,11 @@ const BuildingCards = () => {
       ]
     : [
         <>
-          <Box className={classes.boxPaddingLabel}>
-            <Typography className={classes.balanceGroupLabel}>
+          <Box key="address-container" className={classes.boxPaddingLabel}>
+            <Typography
+              key="address-value"
+              className={classes.balanceGroupLabel}
+            >
               {address_name}
             </Typography>
           </Box>
@@ -230,22 +314,24 @@ const BuildingHasGas = props => {
 
   return value === 1
     ? [
-        <Box className={classes.boxStyleGas} style={{ height: "100%" }}>
-          <Typography className={classes.cornerTitle}>
+        <Box
+          key="gas-container"
+          className={classes.boxStyleGas}
+          style={{ height: "100%" }}
+        >
+          <Typography key="gas-text" className={classes.cornerTitle}>
             Газифицировано
-          </Typography>
-          <Typography className={classes.boxValuesText}>
-            {/* {input_month} */}
           </Typography>
         </Box>
       ]
     : [
-        <Box className={classes.boxStyleNoGas} style={{ height: "100%" }}>
-          <Typography className={classes.cornerTitle}>
+        <Box
+          key="nogas-container"
+          className={classes.boxStyleNoGas}
+          style={{ height: "100%" }}
+        >
+          <Typography key="nogas-text" className={classes.cornerTitle}>
             Негазифицировано
-          </Typography>
-          <Typography className={classes.boxValuesText}>
-            {/* {input_month} */}
           </Typography>
         </Box>
       ];
@@ -254,7 +340,9 @@ const BuildingHasGas = props => {
 const InfoSectionGS = () => {
   const { globalState } = useContext(Contex);
 
-  return globalState.fiasId !== "" ? [<ShowDataState />] : [<InitialState />];
+  return globalState.fiasId !== ""
+    ? [<ShowDataState key="show-date-state" />]
+    : [<InitialState key="initial-state" />];
 };
 
 const useStyles = makeStyles(theme => ({

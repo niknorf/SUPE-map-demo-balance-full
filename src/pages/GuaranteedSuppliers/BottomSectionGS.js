@@ -26,6 +26,7 @@ import icon_average from "pages/GuaranteedSuppliers/img/average_icon.svg";
 import icon_area from "pages/GuaranteedSuppliers/img/area_icon.svg";
 import localeRu from "plotly.js-locales/ru";
 import LoadingOverlay from "react-loading-overlay";
+import ServicesGS from "pages/GuaranteedSuppliers/api/ServicesGS";
 const Plot = createPlotlyComponent(Plotly);
 
 Plotly.register(localeRu);
@@ -44,6 +45,10 @@ const GreyCheckbox = withStyles({
 
 const BottomSectionGS = () => {
   const [legalType, setLegalTyped] = useState("entity");
+  //Set -1 as default (Выбрать)
+  const [entityCommonType, setEntityCommonType] = useState("-1");
+  const [entityUtilitList, setEntityCommonList] = useState([]);
+  const [disabledChbx, setDisabledChbx] = useState(false);
   const [outMonth, setOutMonth] = useState([]);
   const [loading, setLoading] = useState(false);
   const [averageAllData, setAverageAll] = useState([]);
@@ -63,9 +68,50 @@ const BottomSectionGS = () => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const handleDropDownChange = (event) => {
+  const handleLegalDropDownChange = (event) => {
     setLegalTyped(event.target.value);
+    setEntityCommonType('-1');
+    setDisabledChbx(false);
   };
+
+  const handleentityCommonDropDownChange = (event) => {
+    setEntityCommonType(event.target.value);
+    setDisabledChbx(false)
+    //Set chbx disable if the value from drop down selected
+    if(event.target.value !== '-1'){
+      setDisabledChbx(true)
+    }
+  };
+
+  useEffect(() => {
+
+    if(globalState.fiasId !== '' && entityCommonType !== '-1'){
+      setLoading(true);
+      if(legalType === "entity"){
+        ServicesGS.getLegalPSKData(globalState.fiasId)
+          .then(result => {
+            setLoading(false);
+            if (result.length) {
+              const filtered_result = result.filter(item => item.cons_name === entityCommonType);
+              setOutMonth(filtered_result);
+            }
+          })
+          .catch(error => {});
+      }else if(legalType === "common"){
+        ServicesGS.getCommonPSKData(globalState.fiasId)
+          .then(result => {
+            setLoading(false);
+            if (result.length) {
+              const filtered_result = result.filter(item => item.cons_name === entityCommonType);
+              setOutMonth(filtered_result);
+            }
+          })
+          .catch(error => {});
+      }
+
+    }
+
+  }, [entityCommonType]);
 
   useEffect(() => {
     let api_url = "";
@@ -73,11 +119,11 @@ const BottomSectionGS = () => {
       api_url = "/api/PSK/GetLegalPSKlastValue?fias=" + globalState.fiasId;
     } else if (legalType === "population") {
       api_url = "/api/DataCompare/GetFizTimeSeries/1281/" + globalState.fiasId;
-    } else if (legalType === "utility") {
+    } else if (legalType === "common") {
       api_url = "/api/PSK/GetCommonPSKlastValue?fias=" + globalState.fiasId;
     }
 
-    if (globalState.fiasId !== "" && api_url !== "") {
+    if (globalState.fiasId !== "" && api_url !== "" && entityCommonType === '-1') {
 
       setLoading(true);
       fetch(api_url)
@@ -93,7 +139,7 @@ const BottomSectionGS = () => {
           }
         );
     }
-    if(globalState.fiasId !== ''){
+    if(globalState.fiasId !== '' && entityCommonType === '-1'){
       setLoading(true);
       fetch("/api/Results/GetFiasStatQuarter/" + globalState.fiasId)
         .then((res) => res.json())
@@ -120,9 +166,19 @@ const BottomSectionGS = () => {
               // setError(error);
             }
           );
+
+          if(legalType === 'entity' || legalType === 'common'){
+            ServicesGS.getConsumersPSKData(globalState.fiasId)
+              .then(result => {
+                if (result.length) {
+                  setEntityCommonList(result);
+                }
+              })
+              .catch(error => {});
+          }
     }
 
-  }, [legalType, globalState.fiasId]);
+  }, [legalType, globalState.fiasId, entityCommonType]);
 
   return globalState.fiasId !== ""
     ? [
@@ -149,25 +205,56 @@ const BottomSectionGS = () => {
                 shrink
                 id="demo-simple-select-placeholder-label-label"
               >
-                Тип абонента
+                Юридические лица (все)
               </InputLabel>
               <FormControl fullWidth>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={legalType}
-                  onChange={handleDropDownChange}
+                  onChange={handleLegalDropDownChange}
                 >
                   <MenuItem value="entity">Юридические лица</MenuItem>
                   <MenuItem value="population">Физические лица</MenuItem>
-                  <MenuItem value="utility">Общедомовые нужды</MenuItem>
+                  <MenuItem value="common">Общедомовые нужды</MenuItem>
                 </Select>
               </FormControl>
             </Box>
+            {/* Add second dropdown but only when Entity or common selected */}
+            {legalType === 'entity' || legalType === 'common' ? [
+              <Box className={classes.boxPaddingLabel}>
+                <InputLabel
+                  shrink
+                  id="demo-simple-select-placeholder-label-label"
+                >
+                  Юридические лица (частный случай)
+                </InputLabel>
+                <FormControl fullWidth>
+                  <Select
+                    labelId="sentityCommonTypeLxabel"
+                    id="entityCommonType"
+                    value={entityCommonType}
+                    onChange={handleentityCommonDropDownChange}
+                  >
+                    <MenuItem value="-1">Выбрать</MenuItem>
+                    {entityUtilitList.map((i, k)=>{
+
+                      return i.type === legalType ? [<MenuItem value={i.name}>{i.name}</MenuItem>] : null;
+
+                    })}
+
+                    {/* <MenuItem value="entity">Юридические лица</MenuItem>
+                    <MenuItem value="population">Физические лица</MenuItem>
+                    <MenuItem value="common">Общедомовые нужды</MenuItem> */}
+                  </Select>
+                </FormControl>
+              </Box>
+            ]: null}
             <FormGroup className={classes.boxPaddingLabel}>
               <FormControlLabel
                 control={
                   <GreyCheckbox
+                    disabled={disabledChbx}
                     checked={mediana}
                     onChange={handleChange}
                     name="mediana"
@@ -179,6 +266,7 @@ const BottomSectionGS = () => {
               <FormControlLabel
                 control={
                   <GreyCheckbox
+                    disabled={disabledChbx}
                     checked={average}
                     onChange={handleChange}
                     name="average"
@@ -190,6 +278,7 @@ const BottomSectionGS = () => {
               <FormControlLabel
                 control={
                   <GreyCheckbox
+                    disabled={disabledChbx}
                     checked={interval}
                     onChange={handleChange}
                     name="interval"

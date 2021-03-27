@@ -101,7 +101,7 @@ const SearchComponent = () => {
         options={streets}
         getOptionLabel={(option) => option.address}
         onChange={handleStreetChange}
-        laoding={loadingState}
+        loading={loadingState}
         loadingText="Данные загружаются..."
         // disableListWrap
         ListboxComponent={ListboxComponent}
