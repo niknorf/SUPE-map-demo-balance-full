@@ -34,9 +34,19 @@ let dialogData = {
   descriptionTask: ""
 };
 
+const feedbackDialogDataDefaults = {
+  type: "0",
+  actNumber: "",
+  // dateTime: new Date(),
+  inputLineParams: "",
+  lineParams: "0",
+  power: "",
+  comment: ""
+};
+
 const FeedbackDialog = props => {
-  const [reason, setReason] = useState("");
-  const [description, setDescription] = useState("");
+  const [feedbackData, setfeedbackData] = useState(feedbackDialogDataDefaults);
+  const [dateTime, handleDateTimePicker] =  useState(new Date());
   const userInfo = getSessionCookie();
   const classes = useStyles();
 
@@ -48,21 +58,24 @@ const FeedbackDialog = props => {
     dialogData = props.dialogData;
   }
 
-  const handleFeedbackReasonChange = event => {
-    setReason(event.target.value);
-  };
+  const handleFeedbackDataChange = e => {
+    const { name, value } = e.target;
 
-  const handleFeedbackDescriptionChange = event => {
-    setDescription(event.target.value);
+    setfeedbackData({
+      ...feedbackData,
+      [name]: value
+    });
   };
 
   const handleFeedbackSend = () => {
     const requestOptions = {
-      descrition: description,
-      reason: reason,
+      ...feedbackData,
       userId: "b72cf0b5-42c9-4d5c-a135-7d0ac4f04d95",
-      taskId: 27
+      taskId: dialogData.id
     };
+
+    requestOptions.lineParams = parseInt(requestOptions.lineParams);
+    requestOptions.type = parseInt(requestOptions.type);
 
     const requestOptionsTask = {
       id: dialogData.id,
@@ -92,21 +105,21 @@ const FeedbackDialog = props => {
       .catch(error => {});
   };
 
-//Load feedbackdata
+  //Load feedbackdata
   useEffect(() => {
     //Load only when the task is completed
-    if(dialogData.statusTask === 2){
+    if (dialogData.statusTask === 2) {
       ServicesTasks.getFeedback(dialogData.id)
         .then(result => {
-          setDescription(result[0].descrition);
-          setReason(result[0].reason)
+          console.log(result);
+          // setDescription(result[0].descrition);
+          // setReason(result[0].reason);
           // props.closeDialog();
           // props.closeTaskDialog();
         })
         .catch(error => {});
     }
-
-    }, [props.isDialogOpen]);
+  }, [props.isDialogOpen]);
 
   return (
     <Dialog open={props.isDialogOpen} onClose={props.closeDialog}>
@@ -118,13 +131,14 @@ const FeedbackDialog = props => {
               Задание №{dialogData.id}
             </span>
             <div className="address-box">
-              <span class="address">Адрес: </span>
+              <span className="address">Адрес: </span>
               <span className={classes.addressText}>
                 {dialogData.fiasAddress}
               </span>
             </div>
             <Grid container spacing={3}>
               <Grid
+                key="compsumption-types-item"
                 item
                 lg={12}
                 md={12}
@@ -134,23 +148,78 @@ const FeedbackDialog = props => {
                 spacing={3}
                 className={classes.columnsPopup}
               >
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    row
+                    aria-label="position"
+                    name="type"
+                    value={feedbackData.type}
+                    onChange={handleFeedbackDataChange}
+                  >
+                    <FormControlLabel
+                      value='0'
+                      control={<Radio color="primary" />}
+                      label="Бездоговорное потребление"
+                    />
+                    <FormControlLabel
+                      value='1'
+                      control={<Radio color="primary" />}
+                      label="Безучетное потребление"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid
+                key="act-number-item"
+                item
+                lg={6}
+                md={6}
+                sm={12}
+                xl={6}
+                xs={12}
+                spacing={3}
+                className={classes.columnsPopup}
+              >
                 <FormControl>
                   <TextField
-                    id="standard-multiline-static"
-                    label="Описание обращения"
-                    multiline
+                    key="act-number-input"
+                    name="actNumber"
+                    label="Акт №"
                     required
-                    rows={2}
-                    value={description}
-                    onChange={handleFeedbackDescriptionChange}
+                    placeholder="Введите данные"
+                    value={feedbackData.actNumber}
+                    onChange={handleFeedbackDataChange}
                     InputLabelProps={{
                       shrink: true
                     }}
-                    defaultValue=""
                   />
                 </FormControl>
               </Grid>
               <Grid
+                key="date-item"
+                item
+                lg={6}
+                md={6}
+                sm={12}
+                xl={6}
+                xs={12}
+                spacing={3}
+                className={classes.columnsPopup}
+              >
+                <FormControl>
+                  <DateTimePicker
+                    key="date-time-datetimepicker"
+                    name="dateTime"
+                    disableToolbar
+                    label="Дата и время проведения проверки"
+                    variant="inline"
+                    value={dateTime}
+                    onChange={handleDateTimePicker}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid
+                key="input-line-params-item"
                 item
                 lg={12}
                 md={12}
@@ -162,99 +231,113 @@ const FeedbackDialog = props => {
               >
                 <FormControl>
                   <TextField
-                    id="standard-multiline-static"
-                    label="Описание причины"
-                    multiline
+                    key="input-line-params-input"
+                    name="inputLineParams"
+                    label="Характеристики вводных проводов (кабелей)"
                     required
-                    rows={2}
-                    value={reason}
-                    onChange={handleFeedbackReasonChange}
+                    placeholder="Введите данные"
+                    value={feedbackData.inputLineParams}
+                    onChange={handleFeedbackDataChange}
                     InputLabelProps={{
                       shrink: true
                     }}
-                    defaultValue=""
+                  />
+                </FormControl>
+              </Grid>
+              <Grid
+                key="line-params-item"
+                item
+                lg={12}
+                md={12}
+                sm={12}
+                xl={12}
+                xs={12}
+                spacing={3}
+                className={classes.columnsPopup}
+              >
+                <FormControl
+                  component="fieldset"
+                  className="radio tech"
+                  key="line-params-form"
+                  name="lineParams"
+                >
+                  <RadioGroup
+                    row
+                    aria-label="line-params-lable"
+                    name="lineParams"
+                    key="line-params-group"
+                    value={feedbackData.lineParams}
+                    onChange={handleFeedbackDataChange}
+                  >
+                    <FormControlLabel
+                      key="line-param-0-radio"
+                      className="tech-first"
+                      value="0"
+                      control={<Radio color="primary" />}
+                      label="Технические характеристики проводов (кабелей) предоставлены потребителем"
+                    />
+                    <FormControlLabel
+                      key="line-param-1-radio"
+                      value="1"
+                      control={<Radio color="primary" />}
+                      label="Технические характеристики проводов (кабелей) установлены по результатам визуального осмотра"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid
+                key="power-item"
+                item
+                lg={12}
+                md={12}
+                sm={12}
+                xl={12}
+                xs={12}
+                spacing={3}
+                className={classes.columnsPopup}
+              >
+                <FormControl>
+                  <TextField
+                    key="power-input"
+                    name="power"
+                    label="Р (кВт) в точке поставки"
+                    required
+                    placeholder="Введите данные"
+                    value={feedbackData.power}
+                    onChange={handleFeedbackDataChange}
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid
+                key="comments-item"
+                item
+                lg={12}
+                md={12}
+                sm={12}
+                xl={12}
+                xs={12}
+                spacing={3}
+                className={classes.columnsPopup}
+              >
+                <FormControl>
+                  <TextField
+                    key="comments-input"
+                    name="comment"
+                    label="Комментарии"
+                    multiline
+                    rows={6}
+                    value={feedbackData.comment}
+                    onChange={handleFeedbackDataChange}
+                    InputLabelProps={{
+                      shrink: true
+                    }}
                   />
                 </FormControl>
               </Grid>
             </Grid>
-
-            {/* <FormControl component="fieldset">
-              <RadioGroup
-                row
-                aria-label="position"
-                name="compsumption_type"
-                defaultValue="bd"
-              >
-                <FormControlLabel
-                  value="bd"
-                  control={<Radio color="primary" />}
-                  label="Бездоговорное потребление"
-                />
-                <FormControlLabel
-                  value="bu"
-                  control={<Radio color="primary" />}
-                  label="Безучетное потребление"
-                />
-              </RadioGroup>
-            </FormControl>
-            <form className="act-date-time" noValidate autoComplete="off">
-              <TextField
-                id="standard-basic"
-                className="act-date-time__field one"
-                label="Акт № *"
-                placeholder="Введите данные"
-              />
-              <TextField
-                id="standard-basic"
-                className="act-date-time__field two"
-                label="Дата и время проведения проверки *"
-                placeholder="Введите данные"
-              />
-            </form>
-            <form className="characteristics" noValidate autoComplete="off">
-              <TextField
-                id="standard-basic"
-                className="characteristics__field"
-                label="Характеристики вводных проводов (кабелей)"
-                placeholder="Введите данные"
-              />
-            </form>
-            <FormControl component="fieldset" className="radio tech">
-              <RadioGroup
-                row
-                aria-label="position"
-                name="position"
-                defaultValue="top"
-              >
-                <FormControlLabel
-                  className="tech-first"
-                  value="consumer"
-                  control={<Radio color="primary" />}
-                  label="Технические характеристики проводов (кабелей) предоставлены потребителем"
-                />
-                <FormControlLabel
-                  value="visual"
-                  control={<Radio color="primary" />}
-                  label="Технические характеристики проводов (кабелей) установлены по результатам визуального осмотра"
-                />
-              </RadioGroup>
-            </FormControl>
-            <form className="postavki" noValidate autoComplete="off">
-              <TextField
-                id="standard-basic"
-                className="postavki-field"
-                label="Р (кВт) в точке поставки"
-                placeholder="Введите данные"
-              />
-            </form>
-            <Typography className="comment-label">Комментарии:</Typography>
-            <TextField
-              id="filled-multiline-static"
-              className="comments"
-              multiline
-              rows={6}
-              variant="filled"
-            /> */}
             <div className="buttons-bottom">
               <Button
                 className="button-button first"

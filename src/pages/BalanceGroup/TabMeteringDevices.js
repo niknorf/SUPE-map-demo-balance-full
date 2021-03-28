@@ -51,7 +51,7 @@ const MeteringDevices = () => {
   const tableColumns = [
     {
       id: "name",
-      numeric: true,
+      numeric: false,
       disablePadding: false,
       label: "Прибор учета (серийный номер)",
     },

@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   boxStyle: {
     display: "block",
-    background: "linear-gradient(127.52deg, #00CAFF 20.68%, #4A9CFF 80.9%);",
+    background: "linear-gradient(127.52deg, #4764B0 20.68%, #252F4A 80.9%)",
     borderRadius: "4px",
     boxShadow: "4px 6px 18px rgba(0, 0, 0, 0.06)",
     color: "#FFFFFF",

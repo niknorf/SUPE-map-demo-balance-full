@@ -16,10 +16,10 @@ const BalanceGroupTable = props => {
   const [rows, setBgContent] = useState([]);
   const { globalState, globalDispach } = useContext(Contex);
 
-  let rowsPerPage = 12;
+  let rowsPerPage = 7;
   let width = useWidth();
 
-  width === "md" ? (rowsPerPage = 10) : (rowsPerPage = 11);
+  // width === "md" ? (rowsPerPage = 7) : (rowsPerPage = 7);
 
   useEffect(() => {
     fetch("/api/Results/GetResImbalanceFrontKWH")
