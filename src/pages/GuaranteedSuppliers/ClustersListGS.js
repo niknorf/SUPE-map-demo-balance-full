@@ -75,7 +75,7 @@ const GaranteedSuppliesClusters = () => {
   return rows.length > 0
     ? [
         <TableTemplate
-          rowsPerPage={5}
+          rowsPerPage={6}
           rows={rows}
           columns={tableColumns}
           rowsSettings={GaranteedSuppliesClustersRows}

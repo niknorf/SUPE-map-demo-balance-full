@@ -5,12 +5,7 @@ import {
   Box,
   Typography,
   Button,
-  IconButton,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  TextField
+  IconButton
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
@@ -21,24 +16,26 @@ import AddTaskDialog from "pages/Tasks/AddTaskDialog.js";
 import "assets/css/popup.css";
 import { getSessionCookie } from "components/cookies";
 
-export default function SimplePaper() {
+//Components returs the sidebar with additional info for the clicked item from the TableBuBd component
+export default function SidebarBuBd() {
   const [dialogData, setDialogData] = useState({});
   const [openDialog, setOpen] = useState(false);
   const { globalState, globalDispach } = useContext(Contex);
   const classes = useStyles();
   const userInfo = getSessionCookie();
 
+//Function handling closing the sidebar
   const handleClose = () => {
     globalDispach({
       isOpenSidebar: false
     });
   };
-
+//Function handles opening the AddTaskDialog
   const handleDialogOpen = row => {
     setOpen(true);
     setDialogData(row);
   };
-
+//Function handles the closing of AddTaskDialog
   const handleDialogClose = () => {
     setOpen(false);
     setDialogData({});
@@ -131,136 +128,6 @@ export default function SimplePaper() {
       )}
     </Popup>
   );
-
-  // const ModalAct = () => (
-  //   <Popup
-  //     className="act-popup"
-  //     trigger={
-  //       <Button
-  //         variant="contained"
-  //         color="primary"
-  //         className={classes.showActButton}
-  //       >
-  //         Посмотреть обратную связь
-  //       </Button>
-  //     }
-  //     modal
-  //     nested
-  //   >
-  //     {(close) => (
-  //       <div className="modal">
-  //         <div className="act-content">
-  //           <span className="act-title">Обратная связь</span>
-  //           <div className="address-box">
-  //             <span class="address">Адрес: </span>
-  //             <span class="address-value">
-  //               {globalState.markerValue.address}
-  //             </span>
-  //           </div>
-  //           <FormControl component="fieldset" className="radio">
-  //             <RadioGroup
-  //               row
-  //               aria-label="position"
-  //               name="position"
-  //               defaultValue="top"
-  //             >
-  //               <FormControlLabel
-  //                 value="bd"
-  //                 control={<Radio color="primary" />}
-  //                 label="Бездоговорное потребление"
-  //               />
-  //               <FormControlLabel
-  //                 value="bu"
-  //                 control={<Radio color="primary" />}
-  //                 label="Безучетное потребление"
-  //               />
-  //             </RadioGroup>
-  //           </FormControl>
-  //           <form className="act-date-time" noValidate autoComplete="off">
-  //             <TextField
-  //               id="standard-basic"
-  //               className="act-date-time__field one"
-  //               label="Акт № *"
-  //               placeholder="Введите данные"
-  //             />
-  //             <TextField
-  //               id="standard-basic"
-  //               className="act-date-time__field two"
-  //               label="Дата и время проведения проверки *"
-  //               placeholder="Введите данные"
-  //             />
-  //           </form>
-  //           <form className="characteristics" noValidate autoComplete="off">
-  //             <TextField
-  //               id="standard-basic"
-  //               className="characteristics__field"
-  //               label="Характеристики вводных проводов (кабелей)"
-  //               placeholder="Введите данные"
-  //             />
-  //           </form>
-  //           <FormControl component="fieldset" className="radio tech">
-  //             <RadioGroup
-  //               row
-  //               aria-label="position"
-  //               name="position"
-  //               defaultValue="top"
-  //             >
-  //               <FormControlLabel
-  //                 className="tech-first"
-  //                 value="consumer"
-  //                 control={<Radio color="primary" />}
-  //                 label="Технические характеристики проводов (кабелей) предоставлены потребителем"
-  //               />
-  //               <FormControlLabel
-  //                 value="visual"
-  //                 control={<Radio color="primary" />}
-  //                 label="Технические характеристики проводов (кабелей) установлены по результатам визуального осмотра"
-  //               />
-  //             </RadioGroup>
-  //           </FormControl>
-  //           <form className="postavki" noValidate autoComplete="off">
-  //             <TextField
-  //               id="standard-basic"
-  //               className="postavki-field"
-  //               label="Р (кВт) в точке поставки"
-  //               placeholder="Введите данные"
-  //             />
-  //           </form>
-  //           <Typography className="comment-label">Комментарии:</Typography>
-  //           <TextField
-  //             id="filled-multiline-static"
-  //             className="comments"
-  //             multiline
-  //             rows={6}
-  //             variant="filled"
-  //           />
-  //           <div className="buttons-bottom">
-  //             <Button
-  //               className="button-button first"
-  //               variant="outlined"
-  //               color="primary"
-  //               onClick={() => {
-  //                 close();
-  //               }}
-  //             >
-  //               Вернуться к карте БУ/БД
-  //             </Button>
-  //             <Button
-  //               className="button-button second"
-  //               variant="contained"
-  //               color="primary"
-  //             >
-  //               Отправить обратную связь
-  //             </Button>
-  //           </div>
-  //           <Typography className="note">
-  //             * - обязательные для заполнения поля
-  //           </Typography>
-  //         </div>
-  //       </div>
-  //     )}
-  //   </Popup>
-  // );
 
   return (
     <div className={classes.root}>
@@ -360,6 +227,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
+    textAlign: 'left',
     "& > *": {
       margin: theme.spacing(1),
       width: theme.spacing(16),
@@ -421,18 +289,6 @@ const useStyles = makeStyles(theme => ({
   },
   bottomButtons: {
     marginTop: "auto"
-  },
-  showActButton: {
-    width: "100%",
-    backgroundColor: "#4A9CFF",
-    color: "white",
-    textTransform: "none",
-    fontWeight: "bold",
-    marginBottom: "11px",
-    boxShadow: "0px 4px 10px rgba(74, 156, 255, 0.33)",
-    "&:hover": {
-      backgroundColor: "#4A9CFF"
-    }
   },
   createTaskButton: {
     border: "1px solid #4764B0",

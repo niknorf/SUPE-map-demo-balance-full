@@ -12,7 +12,7 @@ import GsIcon from "pages/Home/img/gs_icon.svg";
 import React from "react";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import clsx from "clsx";
-import { BuBdTop5Table } from "pages/BuBd/TableBuBd";
+import { TableBuBbTop5 } from "pages/Home/TableBuBbTop5";
 import { BalanceGroupTop5Table } from "pages/BalanceGroup/TableBG";
 import { MainChartCards } from "pages/Home/CurrentStatisticsChartHome";
 import { MainChartHome } from "pages/Home/WeeklyStatisticsChartHome";
@@ -100,28 +100,28 @@ export default function Home() {
         // display="flex"
       >
         <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
-          <ButtonTasks />
+          <ButtonTasks key="home-button-tasks"/>
         </Grid>
         <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
-          <ButtonBuBd />
+          <ButtonBuBd key="home-button-bubd"/>
         </Grid>
         <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
-          <ButtonBalance />
+          <ButtonBalance key="home-button-balance-group"/>
         </Grid>
         <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
-          <ButtonPost />
+          <ButtonPost key="home-button-gs"/>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
-        <Grid item lg={6} md={6} sm={6} xl={6} xs={12} spacing={3} className={classes.firstColumn}>
+        <Grid item lg={6} md={6} sm={6} xl={6} xs={12} className={classes.firstColumn}>
           <Grid item xs={12} className={classes.graph}>
             <Paper className={classes.graphPaper}>
-              <MainChartCards />
+              <MainChartCards key="home-component-main-chart-cards"/>
             </Paper>
           </Grid>
           <Grid item xs={12} className={classes.graphTwoGrid}>
             <Paper className={classes.graphPaper}>
-              <MainChartHome />
+              <MainChartHome key="home-component-main-chart-home"/>
               <div className={classes.mainChartTitle}>
                 <span className={classes.mainChartTitleText}>
                   Статистика создания новых заданий
@@ -130,12 +130,12 @@ export default function Home() {
             </Paper>
           </Grid>
         </Grid>
-        <Grid item lg={6} md={6} sm={6} xl={6} xs={12} spacing={3}>
+        <Grid item lg={6} md={6} sm={6} xl={6} xs={12}>
           <Paper className={classes.bubdTable}>
-            <BuBdTop5Table/>
+            <TableBuBbTop5 key="home-component-main-bubd-top-five"/>
           </Paper>
           <Paper className={classes.bubdTable}>
-            <BalanceGroupTop5Table/>
+            <BalanceGroupTop5Table key="home-component-balance-group-top-five"/>
           </Paper>
         </Grid>
       </Grid>

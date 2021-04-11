@@ -24,6 +24,111 @@ import GeneralMap from "./MapBG";
 import Contex from "store/context";
 import PFDinRegularWoff from "assets/fonts/PFDinTextCondPro-Regular.woff";
 
+const BalanceGroup = () => {
+  const classes = useStyles();
+  const { globalDispach } = useContext(Contex);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="lg">
+        <Grid
+          container
+          spacing={3}
+          alignContent="stretch"
+          alignItems="stretch"
+          direction="row"
+          display="flex"
+        >
+          {/* Title */}
+          <Grid
+            item
+            lg={12}
+            md={12}
+            sm={12}
+            xl={12}
+            xs={12}
+            style={{ height: "100%" }}
+          >
+            <Box className={classes.balanceTextContainer}>
+              <Typography
+                className={classes.balanceText}
+                variant="h2"
+                gutterBottom
+              >
+                Балансовые группы
+              </Typography>
+            </Box>
+          </Grid>
+          {/* Filter */}
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper className={classes.paperShadow}>
+              <Container maxWidth="xl">
+                <Grid
+                  container
+                  spacing={2}
+                  justify="flex-start"
+                  alignContent="center"
+                  alignItems="center"
+                  direction="row"
+                  wrap="wrap"
+                >
+                  <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+                    <SearchComponent />
+                  </Grid>
+
+                  {/* Comment out when TSSearch will be working
+                     <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
+                    <SearchComponent />
+                  </Grid>
+                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
+                    <TsSearchComponent />
+                  </Grid> */}
+                </Grid>
+              </Container>
+            </Paper>
+          </Grid>
+          {/* Map */}
+          <Grid item lg={8} md={7} sm={12} xl={8} xs={12}>
+            <GeneralMap />
+          </Grid>
+          {/* Table */}
+          {/* style={{ height: "100%" }} */}
+          <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
+            <Paper style={{ height: "100%" }} className={classes.paperShadow}>
+              <BalanceGroupTable/>
+            </Paper>
+          </Grid>
+          {/* Infor section */}
+          <InfoSection />
+          {/* Imbalance graphic */}
+          <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
+            <Paper  style={{ height: "100%" }} className={classes.paperShadow}>
+              <ImbalancePskPu />
+            </Paper>
+          </Grid>
+          {/* 5 values */}
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <Paper className={classes.paperShadow}>
+              <JustificationCards />
+            </Paper>
+          </Grid>
+          {/* 4 graphics */}
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <OutInputMonthGraphic />
+          </Grid>
+          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
+            <GraphicGroup />
+          </Grid>
+        </Grid>
+      </Container>
+    </ThemeProvider>
+  );
+};
+
+BalanceGroup.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 const pfdinRegular = {
   fontFamily: "PFDinTextCondPro-Regular",
   fontStyle: "normal",
@@ -155,110 +260,5 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
 }));
-
-const BalanceGroup = () => {
-  const classes = useStyles();
-  const { globalDispach } = useContext(Contex);
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={3}
-          alignContent="stretch"
-          alignItems="stretch"
-          direction="row"
-          display="flex"
-        >
-          {/* Title */}
-          <Grid
-            item
-            lg={12}
-            md={12}
-            sm={12}
-            xl={12}
-            xs={12}
-            style={{ height: "100%" }}
-          >
-            <Box className={classes.balanceTextContainer}>
-              <Typography
-                className={classes.balanceText}
-                variant="h2"
-                gutterBottom
-              >
-                Балансовые группы
-              </Typography>
-            </Box>
-          </Grid>
-          {/* Filter */}
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper className={classes.paperShadow}>
-              <Container maxWidth="xl">
-                <Grid
-                  container
-                  spacing={2}
-                  justify="flex-start"
-                  alignContent="center"
-                  alignItems="center"
-                  direction="row"
-                  wrap="wrap"
-                >
-                  <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-                    <SearchComponent />
-                  </Grid>
-
-                  {/* Comment out when TSSearch will be working
-                     <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
-                    <SearchComponent />
-                  </Grid>
-                  <Grid item lg={5} md={6} sm={12} xl={5} xs={12}>
-                    <TsSearchComponent />
-                  </Grid> */}
-                </Grid>
-              </Container>
-            </Paper>
-          </Grid>
-          {/* Map */}
-          <Grid item lg={8} md={7} sm={12} xl={8} xs={12}>
-            <GeneralMap />
-          </Grid>
-          {/* Table */}
-          {/* style={{ height: "100%" }} */}
-          <Grid item lg={4} md={5} sm={6} xl={4} xs={12}>
-            <Paper style={{ height: "100%" }} className={classes.paperShadow}>
-              <BalanceGroupTable/>
-            </Paper>
-          </Grid>
-          {/* Infor section */}
-          <InfoSection />
-          {/* Imbalance graphic */}
-          <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
-            <Paper  style={{ height: "100%" }} className={classes.paperShadow}>
-              <ImbalancePskPu />
-            </Paper>
-          </Grid>
-          {/* 5 values */}
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <Paper className={classes.paperShadow}>
-              <JustificationCards />
-            </Paper>
-          </Grid>
-          {/* 4 graphics */}
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <OutInputMonthGraphic />
-          </Grid>
-          <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
-            <GraphicGroup />
-          </Grid>
-        </Grid>
-      </Container>
-    </ThemeProvider>
-  );
-};
-
-BalanceGroup.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(useStyles)(BalanceGroup);

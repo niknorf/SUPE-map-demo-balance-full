@@ -3,7 +3,9 @@ export default {
   getLegalPSKData: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/PSK/GetLegalPSKData/1281/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/PSK/GetLegalPSKData/1281/" +
+          fias_id
       );
       return response.data;
     } catch (e) {
@@ -13,7 +15,9 @@ export default {
   getFizTimeSeries: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/DataCompare/GetFizTimeSeries/1281/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/DataCompare/GetFizTimeSeries/1281/" +
+          fias_id
       );
       return response.data;
     } catch (e) {
@@ -23,7 +27,9 @@ export default {
   getCommonPSKData: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/PSK/GetCommonPSKData/1281/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/PSK/GetCommonPSKData/1281/" +
+          fias_id
       );
       return response.data;
     } catch (e) {
@@ -33,7 +39,9 @@ export default {
   getFiasStatQuarter: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetFiasStatQuarter/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/Results/GetFiasStatQuarter/" +
+          fias_id
       );
       return response.data;
     } catch (e) {
@@ -43,7 +51,7 @@ export default {
   getFiasPskStat: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetFiasPskStat/" + fias_id
+        process.env.REACT_APP_API_URL + "/api/Results/GetFiasPskStat/" + fias_id
       );
       return response.data;
     } catch (e) {
@@ -53,7 +61,9 @@ export default {
   getFullPSKData: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/PSK/GetFullPSKData/1281/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/PSK/GetFullPSKData/1281/" +
+          fias_id
       );
       return response.data;
     } catch (e) {
@@ -62,7 +72,9 @@ export default {
   },
   getFiasClusters: async function(fias_id) {
     try {
-      const response = await axios.get("/api/Results/GetClusterRes/" + fias_id);
+      const response = await axios.get(
+        process.env.REACT_APP_API_URL + "/api/Results/GetClusterRes/" + fias_id
+      );
       return response.data;
     } catch (e) {
       return e;
@@ -71,7 +83,9 @@ export default {
   getConsumersPSKData: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/PSK/GetConsumersPSKData/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/PSK/GetConsumersPSKData/" +
+          fias_id
       );
       return response.data;
     } catch (e) {
@@ -81,7 +95,9 @@ export default {
   getBuildFeatClean: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetBuildFeatClean/" + fias_id
+        process.env.REACT_APP_API_URL +
+          "/api/Results/GetBuildFeatClean/" +
+          fias_id
       );
       return response.data;
     } catch (e) {

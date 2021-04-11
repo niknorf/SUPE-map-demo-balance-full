@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   getResImbalanceFront: async function(id) {
     try {
-      const response = await axios.get("/api/Results/GetResImbalanceFrontKWH");
+      const response = await axios.get(process.env.REACT_APP_API_URL + "/api/Results/GetResImbalanceFrontKWH");
       return response.data;
     } catch (e) {
       return e;
@@ -12,7 +12,7 @@ export default {
   getMeterpointStats: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetBalanceGroupMeterpointStats/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetBalanceGroupMeterpointStats/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -22,7 +22,7 @@ export default {
   getResImbalanceByYear: async function(balance_id, year) {
     try {
       const response = await axios.get(
-        "/api/Results/GetResImbalanceFrontByYear/" + year + "/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetResImbalanceFrontByYear/" + year + "/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -32,7 +32,7 @@ export default {
   getResImbalanceFront: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetResImbalanceFront/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetResImbalanceFront/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -42,7 +42,7 @@ export default {
   getImbalancePhantom: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetImbalancePhantom/" + balance_id
+        process.env.REACT_APP_API_URL + "/api/Results/GetImbalancePhantom/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -52,7 +52,7 @@ export default {
   getIndexes: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetResultIndexes/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetResultIndexes/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -62,7 +62,7 @@ export default {
   getHouseBalanceInfo: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetHouseBalanceInfo/" + fias_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetHouseBalanceInfo/" + fias_id
       );
       return response.data;
     } catch (e) {
@@ -72,7 +72,7 @@ export default {
   getBalanceGroupObjects: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetBalanceGroupObjects/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetBalanceGroupObjects/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -82,7 +82,7 @@ export default {
   getBuildingsGeometry: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/GeoData/GetBuildingsGeometry/" + fias_id
+        process.env.REACT_APP_API_URL +"/api/GeoData/GetBuildingsGeometry/" + fias_id
       );
       return response.data;
     } catch (e) {
@@ -91,7 +91,7 @@ export default {
   },
   getSubstationGeometry: async function() {
     try {
-      const response = await axios.get("/api/GeoData/GetSubstationGeometry");
+      const response = await axios.get(process.env.REACT_APP_API_URL + "/api/GeoData/GetSubstationGeometry");
       return response.data;
     } catch (e) {
       return e;
@@ -100,7 +100,7 @@ export default {
   getBalanceResultFull: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetBalanceResultFull/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetBalanceResultFull/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -110,7 +110,7 @@ export default {
   getMeterpointsInfo: async function(balance_id) {
     try {
       const response = await axios.get(
-        "/api/Results/GetBalanceGroupMeterpointsInfo/" + balance_id
+        process.env.REACT_APP_API_URL +"/api/Results/GetBalanceGroupMeterpointsInfo/" + balance_id
       );
       return response.data;
     } catch (e) {
@@ -120,7 +120,7 @@ export default {
   getTaskStatus: async function(fias_id) {
     try {
       const response = await axios.get(
-        "/api/UserTasks/TasksForFiasExists/" + fias_id
+      process.env.REACT_APP_API_URL +  "/api/UserTasks/TasksForFiasExists/" + fias_id
       );
       return response.data;
     } catch (e) {

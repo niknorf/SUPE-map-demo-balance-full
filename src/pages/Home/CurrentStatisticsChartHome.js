@@ -38,12 +38,14 @@ const CreatePieTasks = (props) => {
   return emptyData
     ? [
         <InfoWindow
+          key="info-section-current-statistics-chart-home"
           label="Извините, недостаточно данных для расчета"
           icon="info"
         />,
       ]
     : [
         <Plot
+          key="current-statistics-chart-home"
           style={{ width: "100%", height: "300px" }}
           useResizeHandler
           data={props.pieChartData.data}
@@ -106,8 +108,10 @@ const MainChartCards = () => {
               alignItems="stretch"
               direction="row"
               display="flex"
+              key="current-statistics-grid-container"
             >
-                <Grid item lg={4} md={12} sm={12} xl={4} xs={12}>
+                <Grid item lg={4} md={12} sm={12} xl={4} xs={12}
+                  key="current-statistics-grid-item">
                   {/* Cards area */}
                   <Grid
                     container
@@ -117,19 +121,29 @@ const MainChartCards = () => {
                     alignItems="baseline"
                     direction="column"
                     wrap="wrap"
+                    key="current-statistics-grid-inside-container"
                   >
-                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
-                      <Box className={classes.boxStyle}>
-                        <Typography className={classes.cornerTitle}>
+                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}
+                      key="current-statistics-grid-inside-item"
+                      >
+                      <Box className={classes.boxStyle}
+                        key="current-statistics-grid-inside-box"
+                        >
+                        <Typography className={classes.cornerTitle}
+                          key="current-statistics-tasks-number-text"
+                          >
                           Количество новых заданий
                         </Typography>
-                        <Typography className={classes.boxValuesText}>
+                        <Typography className={classes.boxValuesText}
+                          key="current-statistics-new-tasks-number-text"
+                          >
                           {chartData.['Количество задач']}
                         </Typography>
                       </Box>
                     </Grid>
                     {/* Worker should not see it */}
-                    {userInfo.user_roles.includes("upe_worker") ? null : [                    <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
+                    {userInfo.user_roles.includes("upe_worker") ? null : [
+                       <Grid item lg={12} md={4} sm={4} xl={12} xs={12}>
                                           <Box className={classes.boxStyle}>
                                             <Typography className={classes.cornerTitle}>
                                               Количество исполнителей
@@ -155,6 +169,7 @@ const MainChartCards = () => {
                 <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
                   {/* Pie chart area */}
                   <CreatePieTasks
+                    key="create-pie-tasks"
                     dataObject={chartData}
                     pieChartData={tasks_statistic}/>
                 </Grid>

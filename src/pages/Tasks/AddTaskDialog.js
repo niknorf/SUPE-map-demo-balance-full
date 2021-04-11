@@ -114,7 +114,7 @@ const AddTaskDialog = props => {
               xs={6}
               spacing={3}
               className={classes.columnsPopup}
-            >
+              >
               <DatePicker
                 disableToolbar
                 label="Плановая дата исполнения"
@@ -134,7 +134,7 @@ const AddTaskDialog = props => {
               xs={6}
               spacing={3}
               className={classes.columnsPopup}
-            >
+              >
               <FormControl>
                 <InputLabel shrink id="user_worker_label" required>
                   Исполнитель
@@ -164,7 +164,7 @@ const AddTaskDialog = props => {
               xs={12}
               spacing={3}
               className={classes.columnsPopup}
-            >
+              >
               <FormControl>
                 <InputLabel shrink id="user_category_label" required>
                   Набор действий исполнителя
@@ -197,7 +197,7 @@ const AddTaskDialog = props => {
               xs={12}
               spacing={3}
               className={classes.columnsPopup}
-            >
+              >
               <FormControl>
                 <TextField
                   id="standard-multiline-static"

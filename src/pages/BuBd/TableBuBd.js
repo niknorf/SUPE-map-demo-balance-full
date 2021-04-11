@@ -1,74 +1,154 @@
 import {
   TableCell,
   TableRow,
-  Box,
   Typography,
   Container,
-  Icon
+  Icon,
+  Link as LinkDialog
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@material-ui/core";
+import LoadingOverlay from "react-loading-overlay";
 import TableTemplate from "components/TableTemplate";
 import InfoWindow from "components/InfoWindow.js";
 import React, { useContext, useEffect, useState } from "react";
 import Contex from "store/context";
+import axios from "axios";
+import AddTaskDialog from "pages/Tasks/AddTaskDialog.js";
+import EditTaskDialog from "pages/Tasks/EditTaskDialog.js";
+import ServicesBuBd from "pages/BuBd/api/ServicesBuBd";
+import ServicesTasks from "pages/Tasks/api/ServicesTasks";
 import grey_marker from "pages/BuBd/img/grey.png";
 import orange_marker from "pages/BuBd/img/orange.png";
 import red_marker from "pages/BuBd/img/red.png";
-import table_data from "data/BU_BD_v3.json";
 import yellow_marker from "pages/BuBd/img/yellow.png";
 
-const tableColumns = [
-  {
-    id: "address",
-    numeric: false,
-    disablePadding: false,
-    label: "Адрес"
-  },
-  {
-    id: "percent_probability_BU",
-    numeric: true,
-    disablePadding: true,
-    label: "Вероятность"
-  },
-  {
-    id: "probability_type",
-    numeric: false,
-    disablePadding: false,
-    label: "Тип вероятности"
-  },
-  // {
-  //   id: "report",
-  //   numeric: false,
-  //   disablePadding: false,
-  //   label: "Акт"
-  // },
-  // {
-  //   id: "status",
-  //   numeric: false,
-  //   disablePadding: false,
-  //   label: "Статус задания"
-  // }
-];
-
-function manageData() {
-  let sorted_data = [];
-  table_data.sort((a, b) =>
-    a.percent_probability_BU < b.percent_probability_BU ? 1 : -1
-  );
-  return table_data.splice(0, 5);
-}
-
-const BuBdTable = () => {
+const TableBuBd = () => {
   const [rows, setBuBdData] = useState([]);
+  const [openNewTaskDialog, setNewDialogOpen] = useState(false);
+  const [taskList, setTaskList] = useState({});
+  const [openEditTaskDialog, setEditDialogOpen] = useState(false);
+  const [dialogData, setDialogData] = useState({});
+  const [loading, setLoading] = useState(false);
   const classes = useStyles();
   const { globalDispach } = useContext(Contex);
+//array of table columns
+  const tableColumns = [
+    {
+      id: "address",
+      numeric: false,
+      disablePadding: false,
+      label: "Адрес"
+    },
+    {
+      id: "percent_probability_BU",
+      numeric: true,
+      disablePadding: true,
+      label: "Вероятность"
+    },
+    {
+      id: "probability_type",
+      numeric: false,
+      disablePadding: false,
+      label: "Тип вероятности"
+    },
+    // {
+    //   id: "report",
+    //   numeric: false,
+    //   disablePadding: false,
+    //   label: "Акт"
+    // },
+    {
+      id: "task_status",
+      numeric: false,
+      disablePadding: false,
+      label: "Статус задания"
+    }
+  ];
 
   const rowsPerPage = 11;
 
   useEffect(() => {
-    setBuBdData(table_data);
+    setLoading(true);
+    ServicesBuBd.getBuBd()
+      .then(result => {
+        getStuff(result);
+      })
+      .catch(error => {});
   }, []);
+
+  useEffect(() => {
+    ServicesTasks.getTasksList()
+      .then(result => {
+        setTaskList(result);
+      })
+      .catch(error => {});
+  }, [openEditTaskDialog]);
+
+  const getStuff = async result => {
+    const responses = [];
+    let respose_result;
+
+    for (let i = 0; i < result.length; i++) {
+      respose_result = await axios.get(
+        "/api/UserTasks/TasksForFiasExists/" + result[i].fias_id
+      );
+      responses.push({
+        fias_id: result[i].fias_id,
+        value: respose_result.data
+      });
+    }
+    manageBuBdData(result, responses);
+    setLoading(true);
+  };
+
+  const manageBuBdData = (original, array) => {
+    let temp = [];
+    let tempFiasIds = [];
+
+    for (let i = 0; i < original.length; i++) {
+      for (let j = 0; j < array.length; j++) {
+        if (original[i].fias_id === array[j].fias_id) {
+          if (array[j].value) {
+            original[i].task_status = "Посмотреть задание";
+          } else {
+            original[i].task_status = "Создать задание";
+          }
+        }
+      }
+    }
+    setBuBdData(original);
+  };
+
+  const manageTaskDialog = row => {
+    if (row.task_status === "Посмотреть задание") {
+      handleEditTaskDialogOpen(row);
+    } else if (row.task_status === "Создать задание") {
+      handleNewTaskDialogOpen(row);
+    }
+  };
+
+  const handleNewTaskDialogOpen = row => {
+    setNewDialogOpen(true);
+    setDialogData(row);
+  };
+  const handleEditTaskDialogOpen = row => {
+    setEditDialogOpen(true);
+    let selectedTaskfound = taskList.find(
+      element => element.fiasGUID == row.fias_id
+    );
+    setDialogData(selectedTaskfound);
+  };
+
+  const handleNewTaskDialogClose = () => {
+    setNewDialogOpen(false);
+    setDialogData({});
+  };
+  const handleEditTaskDialogClose = () => {
+    setEditDialogOpen(false);
+    setDialogData({});
+  };
 
   const defaultProps = {
     bgcolor: "rgba(140, 148, 158, 0.1)",
@@ -84,17 +164,9 @@ const BuBdTable = () => {
 
   const tableRowClick = (event, row) => {
     row.tp = "данные подгружаются";
-    // if (row.type === "BU") {
-    //   row.percent_probability_BU = row.percent_probability;
-    //   row.percent_probability_BD = 0;
-    // } else {
-    //   row.percent_probability_BD = row.percent_probability;
-    //   row.percent_probability_BU = 0;
-    // }
-
     globalDispach({
       isOpenSidebar: true,
-      markerValue: row,
+      markerValue: row
     });
   };
 
@@ -118,10 +190,21 @@ const BuBdTable = () => {
         >
           {row.address}
         </TableCell>
-        <TableCell align="left" onClick={event => tableRowClick(event, row)}>
-          {CreateIcon(classes, row.probability_BU === 1 ? row.percent_probability_BU : row.percent_probability_BD)}
+        <TableCell
+          align="left"
+          onClick={event => tableRowClick(event, row)}
+        >
+          {CreateIcon(
+            classes,
+            row.probability_BU === 1
+              ? row.percent_probability_BU
+              : row.percent_probability_BD
+          )}
         </TableCell>
-        <TableCell align="center" onClick={event => tableRowClick(event, row)}>
+        <TableCell
+          align="left"
+          onClick={event => tableRowClick(event, row)}
+        >
           Безучетное потребление
         </TableCell>
         {/* <TableCell align="center">
@@ -129,29 +212,67 @@ const BuBdTable = () => {
             Добавить обратную связь
           </Link>
         </TableCell> */}
-        {/* <TableCell align="center">
-          <Box borderRadius={5} {...defaultProps}>
-            Новое
-          </Box>
-        </TableCell> */}
+        <TableCell style={{ width: 50 }} align="right">
+          <LinkDialog
+            component="button"
+            variant="body2"
+            underline="always"
+            color="primary"
+            onClick={() => {
+              manageTaskDialog(row);
+            }}
+          >
+            {row.task_status}
+          </LinkDialog>
+        </TableCell>
       </TableRow>
     );
   };
 
   return rows.length > 0
     ? [
-        <TableTemplate
-          rows={rows}
-          columns={tableColumns}
-          rowsSettings={BuBdTableRows}
-          rowsPerPage={rowsPerPage}
-          orderBy="percent_probability_BU"
-          order="desc"
+
+          <TableTemplate
+            key='tablebubd-tabletemplate-component'
+            rows={rows}
+            columns={tableColumns}
+            rowsSettings={BuBdTableRows}
+            rowsPerPage={rowsPerPage}
+            orderBy="percent_probability_BU"
+            order="desc"
+          />,
+        <AddTaskDialog
+          key='tablebubd-addtaskdialog-component'
+          isDialogOpen={openNewTaskDialog}
+          closeDialog={handleNewTaskDialogClose}
+          dialogData={dialogData}
+        />,
+        <EditTaskDialog
+          key='tablebubd-edittaskdialog-component'
+          isDialogOpen={openEditTaskDialog}
+          closeDialog={handleEditTaskDialogClose}
+          dialogData={dialogData}
         />
       ]
-    : [<InfoWindow label="Нет данных" icon="info" />];
+    : [
+        <LoadingOverlay
+          key='tablebubd-loadingoverlay-component'
+          active={loading}
+          spinner={<CircularProgress style={{ color: "#252F4A" }} key='tablebubd-circularprogress-component' />}
+          text=""
+          styles={{
+            overlay: base => ({
+              ...base,
+              background: "rgba(34, 47, 74, 0.3)"
+            })
+          }}
+        >
+          <InfoWindow label="Нет данных" icon="info" key='tablebubd-infowindow-component'/>
+        </LoadingOverlay>
+    ];
 };
 
+//Function dynamically creates icon with color based on the percent
 const CreateIcon = (classes, number) => {
   let color = grey_marker;
 
@@ -166,94 +287,15 @@ const CreateIcon = (classes, number) => {
   }
 
   return (
-    <Container className={classes.iconContainer}>
-      <Icon className={classes.tableIcon}>
+    <Container className={classes.iconContainer} key='tablebubd-createicon-container'>
+      <Icon className={classes.tableIcon}  key='tablebubd-createicon-icon'>
         <img className={classes.markerIcon} src={color} alt="" />
       </Icon>
-      <Typography>{number + "%"}</Typography>
+      <Typography  key='tablebubd-createicon-typography'>{number + "%"}</Typography>
     </Container>
   );
 };
 
-const BuBdTop5Table = () => {
-  const [rows, setBuBdData] = useState([]);
-  const classes = useStyles();
-  const { globalState, globalDispach } = useContext(Contex);
-
-  let rowsPerPage = 5;
-
-  useEffect(() => {
-    setBuBdData(manageData());
-  }, []);
-
-  const tableColumns = [
-    {
-      id: "address",
-      numeric: false,
-      disablePadding: false,
-      label: "Адрес"
-    },
-    {
-      id: "percent_probability",
-      numeric: true,
-      disablePadding: false,
-      label: "Вероятность"
-    },
-    {
-      id: "probability_type",
-      numeric: false,
-      disablePadding: false,
-      label: "Тип вероятности"
-    }
-  ];
-
-  const BuBdTableRows = (row, print) => {
-    return (
-      <TableRow
-        key={row.fias_id}
-        hover
-        classes={{ hover: classes.rowHover }}
-        onClick={event => handleRowClick(event, row)}
-        // Set to undefined if the table goes to print, because otherwise it will print in one line
-        component={print === "print" ? undefined : Link}
-        to="/bubd"
-      >
-        <TableCell
-          component="th"
-          scope="row"
-          style={{ width: 400 }}
-          align="left"
-        >
-          {row.address}
-        </TableCell>
-        <TableCell style={{ width: 40 }} align="right">
-          {CreateIcon(classes, row.probability_BU === 1 ? row.percent_probability_BU : row.percent_probability_BD)}
-        </TableCell>
-        <TableCell style={{ width: 40 }} align="right">
-          Безучетное потребление
-        </TableCell>
-      </TableRow>
-    );
-  };
-
-  const handleRowClick = (event, row) => {
-    globalDispach({
-      isOpenSidebar: true,
-      markerValue: row,
-    });
-  };
-
-  return rows.length > 0
-    ? [
-        <TableTemplate
-          rows={rows}
-          columns={tableColumns}
-          rowsSettings={BuBdTableRows}
-          rowsPerPage={5}
-        />
-      ]
-    : [<InfoWindow label="Нет данных" icon="info" />];
-};
 
 const useStyles = makeStyles(theme => ({
   markerIcon: {
@@ -279,4 +321,4 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export { BuBdTop5Table, BuBdTable };
+export { TableBuBd };

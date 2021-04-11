@@ -151,7 +151,7 @@ const BDProbability = () => {
         }
       }
     }
-
+    
     setBgContent(temp);
   };
 

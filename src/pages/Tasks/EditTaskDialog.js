@@ -16,7 +16,6 @@ import RedDot from "assets/img/red_dot_task.svg";
 import { Dialog, Link } from "@material-ui/core";
 import queryString from "querystring";
 import { getUserListWithRoles } from "components/keycloak";
-import { DateTimePicker } from "@material-ui/pickers";
 import { getSessionCookie } from "components/cookies";
 import FeedbackDialog from "components/FeedbackDialog.js";
 import { format, parseISO } from "date-fns";
@@ -306,7 +305,7 @@ const EditTaskDialog = props => {
       <FeedbackDialog
         isDialogOpen={openFeedbackDialog}
         closeDialog={handleFeedbackDialogClose}
-        dialogData={dialogData}        
+        dialogData={dialogData}
         closeTaskDialog={props.closeDialog}
       />
     </>

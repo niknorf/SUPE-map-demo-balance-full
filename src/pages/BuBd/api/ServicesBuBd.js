@@ -1,15 +1,17 @@
 import axios from "axios";
-import { BASE_URL, AUTH_API_CONFIG, LOGIN_API_CONFIG } from "./config";
+
+let API_URL = process.env.REACT_APP_API_URL;
+process.env.NODE_ENV === 'development' ? API_URL = '' : API_URL = process.env.REACT_APP_API_URL;
+
 export default {
-  // getResImbalanceFront: async function(id) {
-  //   try {
-  //     const response = await axios.get(
-  //       BASE_URL + "/api/Results/GetResImbalanceFrontKWH",
-  //       AUTH_API_CONFIG
-  //     );
-  //     return response.data;
-  //   } catch (e) {
-  //     return e;
-  //   }
-  // }
+  getBuBd: async function() {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_API_URL + "/api/Results/GetBuBd"
+      );
+      return response.data;
+    } catch (e) {
+      return e;
+    }
+  }
 };

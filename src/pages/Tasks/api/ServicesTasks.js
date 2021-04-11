@@ -1,9 +1,9 @@
 import axios from "axios";
-// import { BASE_URL, AUTH_API_CONFIG, LOGIN_API_CONFIG } from "./config";
+
 export default {
   getWorkerList: async function() {
     try {
-      const response = await axios.get("/api/UserTasks/Workers");
+      const response = await axios.get(process.env.REACT_APP_API_URL +"/api/UserTasks/Workers");
       return response.data;
     } catch (e) {
       return e;
@@ -11,7 +11,7 @@ export default {
   },
   getTasksList: async function() {
     try {
-      const response = await axios.get("/api/UserTasks");
+      const response = await axios.get( process.env.REACT_APP_API_URL +"/api/UserTasks");
       return response.data;
     } catch (e) {
       return e;
@@ -20,7 +20,7 @@ export default {
   createTask: async function(requestOptions) {
     try {
       const response = await axios.post(
-        "/api/UserTasks/AddTask",
+      process.env.REACT_APP_API_URL + "/api/UserTasks/AddTask",
         requestOptions
       );
       return response.data;
@@ -31,7 +31,7 @@ export default {
   updateTask: async function(requestOptions) {
     try {
       const response = await axios.put(
-        "/api/UserTasks/UpdateTask",
+        process.env.REACT_APP_API_URL + "/api/UserTasks/UpdateTask",
         requestOptions
       );
       return response.data;
@@ -41,7 +41,7 @@ export default {
   },
   createFeedback: async function(requestOptions) {
     try {
-      const response = await axios.post("/api/UserTasks/AddFeedback", null, {
+      const response = await axios.post( process.env.REACT_APP_API_URL + "/api/UserTasks/AddFeedback", null, {
         params: requestOptions
       });
       return response.data;
@@ -52,7 +52,7 @@ export default {
   getFeedback: async function(taskId) {
     try {
       const response = await axios.get(
-        "/api/UserTasks/Feedback?taskId=" + taskId
+        process.env.REACT_APP_API_URL + "/api/UserTasks/Feedback?taskId=" + taskId
       );
       return response.data;
     } catch (e) {

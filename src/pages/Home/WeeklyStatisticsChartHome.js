@@ -49,6 +49,7 @@ const CreateMainHomeChart = ({ dataObject, object }) => {
       ]
     : [
         <Plot
+          key="weekly-statistics-chart-home"
           style={{ width: "100%", height: "500px" }}
           useResizeHandler
           data={object.data}
