@@ -84,6 +84,10 @@ const BottomSectionGS = () => {
   };
 
   useEffect(() => {
+    setEntityCommonType('-1')
+  }, [globalState.fiasId])
+
+  useEffect(() => {
 
     if(globalState.fiasId !== '' && entityCommonType !== '-1'){
       setLoading(true);
