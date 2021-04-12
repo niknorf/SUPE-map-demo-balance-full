@@ -138,7 +138,7 @@ export default function SidebarBuBd() {
           </IconButton>
         </Box>
         <Typography className={classes.address}>
-          {globalState.markerValue.address}
+          {globalState.markerValue.fiasAddress}
         </Typography>
         <Box className={classes.probability}>
           <Typography className={classes.probabilityText}>
@@ -202,8 +202,8 @@ export default function SidebarBuBd() {
               className={classes.createTaskButton}
               onClick={() => {
                 handleDialogOpen({
-                  fias: globalState.markerValue.fias_id,
-                  fiasAddress: globalState.markerValue.address,
+                  fias: globalState.markerValue.fiasGUID,
+                  fiasAddress: globalState.markerValue.fiasAddress,
                   information: globalState.markerValue.information
                 });
               }}

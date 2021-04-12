@@ -14,6 +14,8 @@ import Contex from "store/context";
 import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
 import "assets/css/graphic.css";
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
+
 const Plot = createPlotlyComponent(Plotly);
 
 const useStyles = makeStyles((theme) => ({
@@ -124,10 +126,10 @@ const useStyles = makeStyles((theme) => ({
     height: 13.33,
   },
   cardWidth: {
-    maxWidth: '20%',
-    flexBasis: '20%',
-    minWidth: '210px'
-  }
+    maxWidth: "20%",
+    flexBasis: "20%",
+    minWidth: "210px",
+  },
 }));
 
 const column_title_font = {
@@ -137,7 +139,7 @@ const column_title_font = {
 
 const JustificationCards = () => {
   const [indexesData, setIndexes] = useState({});
-  const [firstCard, setFirstCard] = useState('');
+  const [firstCard, setFirstCard] = useState("");
   const { globalState } = useContext(Contex);
   const classes = useStyles();
 
@@ -153,40 +155,24 @@ const JustificationCards = () => {
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
-      fetch("/api/Results/GetResultIndexes/" + globalState.balance_index)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            if (result === undefined || result.length === 0) {
-              setIndexes(emptyIndexes);
-            } else {
-              setIndexes(result[0]);
-            }
-
-          },
-          (error) => {
-            // setLoading(true);
-            // setError(error);
+      ServicesBG.getIndexes(globalState.balance_index)
+        .then((result) => {
+          if (result === undefined || result.length === 0) {
+            setIndexes(emptyIndexes);
+          } else {
+            setIndexes(result[0]);
           }
-        );
+        })
+        .catch((error) => {});
 
-        fetch(
-          "/api/Results/GetBalanceGroupMeterpointStats/" + globalState.balance_index
-        )
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              if(Array.isArray(result)){
-                const found = result.find(element => element.month === 9);
-                setFirstCard(found.percent);
-              }
-              // setLoading(false);
-            },
-            (error) => {
-              // setLoading(true);
-              // setError(error);
-            }
-          );
+      ServicesBG.getMeterpointStats(globalState.balance_index)
+        .then((result) => {
+          if (Array.isArray(result)) {
+            const found = result.find((element) => element.month === 9);
+            setFirstCard(found.percent);
+          }
+        })
+        .catch((error) => {});
     }
   }, [globalState.balance_index]);
 
@@ -204,9 +190,12 @@ const JustificationCards = () => {
                     </Typography>
                   </Box>
                   <Box className={classes.selectPadding}>
-                  {indexesData.date_month ? <Typography className={classes.textStyle}>
-                    Значения за: {indexesData.date_month}.{indexesData.date_year}
-                  </Typography>: null}
+                    {indexesData.date_month ? (
+                      <Typography className={classes.textStyle}>
+                        Значения за: {indexesData.date_month}.
+                        {indexesData.date_year}
+                      </Typography>
+                    ) : null}
                     {/* <FormControl className={classes.formControl}>
                       <InputLabel shrink id="demo-simple-select-label">
                         Месяц
@@ -342,7 +331,15 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
 
   return (
     <Grid container spacing={1}>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
+      <Grid
+        item
+        lg={3}
+        md={3}
+        sm={6}
+        xl={3}
+        xs={12}
+        className={classes.cardWidth}
+      >
         <Box
           className={`${classes.boxStyle}`}
           style={boxStyle(firstCard, 80, "<")}
@@ -359,7 +356,15 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
+      <Grid
+        item
+        lg={3}
+        md={3}
+        sm={6}
+        xl={3}
+        xs={12}
+        className={classes.cardWidth}
+      >
         <Box
           className={classes.boxStyle}
           style={boxStyle(
@@ -381,7 +386,15 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
+      <Grid
+        item
+        lg={3}
+        md={3}
+        sm={6}
+        xl={3}
+        xs={12}
+        className={classes.cardWidth}
+      >
         <Box
           className={classes.boxStyle}
           style={boxStyle(indexes.trust_index_psk_fiz, 20)}
@@ -398,18 +411,40 @@ const DisplayPieChart = ({ month, balance_index, indexes, firstCard }) => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
-        <Box className={classes.boxStyle} style={boxStyle(indexes.trust_index_psk_urik)}>
+      <Grid
+        item
+        lg={3}
+        md={3}
+        sm={6}
+        xl={3}
+        xs={12}
+        className={classes.cardWidth}
+      >
+        <Box
+          className={classes.boxStyle}
+          style={boxStyle(indexes.trust_index_psk_urik)}
+        >
           <Typography className={classes.boxTopText}>
             Индекс несоответствия показаний юридических лиц гарантирующих
             поставщиков
           </Typography>
-          <Typography className={classes.boxMiddleText} style={textStyle(indexes.trust_index_psk_urik)}>
+          <Typography
+            className={classes.boxMiddleText}
+            style={textStyle(indexes.trust_index_psk_urik)}
+          >
             {textValue(indexes.trust_index_psk_urik)}
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={3} sm={6} xl={3} xs={12} className={classes.cardWidth}>
+      <Grid
+        item
+        lg={3}
+        md={3}
+        sm={6}
+        xl={3}
+        xs={12}
+        className={classes.cardWidth}
+      >
         <Box
           className={classes.boxStyle}
           style={boxStyle(indexes.trust_index_psk_odn, 20)}

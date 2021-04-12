@@ -15,6 +15,7 @@ import orange from "pages/BalanceGroup/img/orange-dot.svg";
 import yellow from "pages/BalanceGroup/img/yellow-dot.svg";
 import red from "pages/BalanceGroup/img/red-dot.svg";
 import AddTaskDialog from "pages/Tasks/AddTaskDialog.js"
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
 
 const useStyles = makeStyles((theme) => ({
   imageIcon: {
@@ -47,20 +48,12 @@ const BDProbability = () => {
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
-      fetch("/api/Results/GetBalanceResultFull/" + globalState.balance_index)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            createRowsData(result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesBG.getBalanceResultFull(globalState.balance_index)
+      .then((result) => {
+        createRowsData(result);
+      })
+      .catch((error) => {});
+
     }
     // setLoading(true);
   }, [globalState.balance_index]);

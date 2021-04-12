@@ -119,19 +119,14 @@ const BuildingCards = () => {
 
   useEffect(() => {
     if (globalState.fiasId !== "") {
-      fetch("/api/Results/GetBuildFeatClean/" + globalState.fiasId)
-        .then(res => res.json())
-        .then(
-          result => {
-            if (result.length > 0) {
-              setCardsData(result);
-            }
-          },
-          error => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+
+      ServicesGS.getBuildFeatClean(globalState.fiasId)
+      .then((result) => {
+        if (result.length > 0) {
+          setCardsData(result);
+        }
+      })
+      .catch((error) => {});
     }
   }, [globalState.fiasId]);
 

@@ -92,7 +92,7 @@ const TableBuBbTop5 = () => {
   const BuBdTableRows = (row, print) => {
     return (
       <TableRow
-        key={row.fias_id}
+        key={row.fiasGUID}
         hover
         classes={{ hover: classes.rowHover }}
         onClick={event => handleRowClick(event, row)}
@@ -106,7 +106,7 @@ const TableBuBbTop5 = () => {
           style={{ width: 400 }}
           align="left"
         >
-          {row.address}
+          {row.fiasAddress}
         </TableCell>
         <TableCell style={{ width: 40 }} align="right">
           {createIcon(

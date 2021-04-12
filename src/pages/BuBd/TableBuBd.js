@@ -92,7 +92,7 @@ const TableBuBd = () => {
 
     for (let i = 0; i < result.length; i++) {
       respose_result = await axios.get(
-        "/api/UserTasks/TasksForFiasExists/" + result[i].fias_id
+        "/api/UserTasks/TasksForFiasExists/" + result[i].fiasGUID
       );
       responses.push({
         fias_id: result[i].fias_id,
@@ -175,7 +175,7 @@ const TableBuBd = () => {
       <TableRow
         hover
         tabIndex={-1}
-        key={row.fias_id}
+        key={row.fiasGUID}
         classes={{ hover: classes.rowHover }}
         // Set to undefined if the table goes to print, because otherwise it will print in one line
         // component={print === "print" ? undefined : Link}
@@ -188,7 +188,7 @@ const TableBuBd = () => {
           padding="default"
           align="left"
         >
-          {row.address}
+          {row.fiasAddress}
         </TableCell>
         <TableCell
           align="left"

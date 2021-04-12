@@ -42,52 +42,11 @@ const BalanceGroupContent = () => {
     if (globalState.balance_index !== "") {
       ServicesBG.getBalanceResultFull(globalState.balance_index)
         .then(result => {
-          // console.log(result);
-
           getStuff(result);
-          // for (let i = 0; i < result.length; i++) {
-          //   if (result[i].type === "ConsumerBuilding") {
-          //
-          //     responses.push(await axios.get("/api/UserTasks/TasksForFiasExists/" + result[i].fias))
-          //     // tempObj.push(result[i].fias);
-          //     // arrayRequests.push(
-          //     //   axios.get("/api/UserTasks/TasksForFiasExists/" + result[i].fias)
-          //     // );
-          //   }
-          // }
-
-          // for(let i=0; i<tempObj.length; i++){
-          //
-          // }
-
-          // console.log(responses);
-
-          // axios
-          //   .all(arrayRequests)
-          //   .then(
-          //     axios.spread((...responses) => {
-          //       console.log(responses);
-          //       // translateText(result);
-          //       // use/access the results
-          //     })
-          //   )
-          //   .catch(errors => {
-          //   });
         })
         .catch(error => {});
     }
   }, [globalState.balance_index]);
-  //
-  // useEffect(() => {
-  //   for (let i = 0; i < fiasIds.length; i++) {
-  //     ServicesBG.getTaskStatus(fiasIds[i])
-  //       .then(result => {
-  //         setTaskStatus(oldArray => [...oldArray, { fias_id: fiasIds[i], status: result }]);
-  //         // console.log(result);
-  //       })
-  //       .catch(error => {});
-  //   }
-  // }, [globalState.balance_index]);
 
   useEffect(() => {
     ServicesTasks.getTasksList()
@@ -106,7 +65,7 @@ const BalanceGroupContent = () => {
     for (let i = 0; i < result.length; i++) {
       if (result[i].type === "ConsumerBuilding") {
         respose_result = await axios.get(
-          "/api/UserTasks/TasksForFiasExists/" + result[i].fias
+          process.env.REACT_APP_API_URL + "/api/UserTasks/TasksForFiasExists/" + result[i].fias
         );
         responses.push({
           fias_id: result[i].fias,

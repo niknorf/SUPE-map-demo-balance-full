@@ -5,8 +5,9 @@ import React, { useContext, useState, useEffect } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import clsx from "clsx";
 import Contex from "store/context";
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
 import phantomic_buildings from "pages/BalanceGroup/data/balance_phantom_dict.json";
-import InfoWindow from "components/InfoWindow.js"
+import InfoWindow from "components/InfoWindow.js";
 
 const Plot = createPlotlyComponent(Plotly);
 const OrangeSwitch = withStyles({
@@ -157,7 +158,10 @@ const CreateImabalancePSK = ({
 
   return emptyData
     ? [
-        <InfoWindow label="Извините, недостаточно данных для расчета" icon="info" />,
+        <InfoWindow
+          label="Извините, недостаточно данных для расчета"
+          icon="info"
+        />,
       ]
     : [
         <Plot
@@ -180,30 +184,19 @@ const ImbalancePskPu = () => {
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
-      fetch("/api/Results/GetResImbalanceFront/" + globalState.balance_index)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setChartData(result);
-          },
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesBG.getResImbalanceFront(globalState.balance_index)
+        .then((result) => {
+          setChartData(result);
+        })
+        .catch((error) => {});
     }
+
     if (globalState.balance_index !== "") {
-      fetch("/api/Results/GetImbalancePhantom/" + globalState.balance_index)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setChartPhantomData(result);
-          },
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesBG.getImbalancePhantom(globalState.balance_index)
+        .then((result) => {
+          setChartPhantomData(result);
+        })
+        .catch((error) => {});
     }
   }, [globalState.balance_index]);
 

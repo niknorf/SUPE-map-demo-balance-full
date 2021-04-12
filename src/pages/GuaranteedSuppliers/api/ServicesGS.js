@@ -1,6 +1,6 @@
 import axios from "axios";
 export default {
-  getLegalPSKData: async function(fias_id) {
+  getLegalPSKData: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -12,7 +12,7 @@ export default {
       return e;
     }
   },
-  getFizTimeSeries: async function(fias_id) {
+  getFizTimeSeries: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -24,7 +24,7 @@ export default {
       return e;
     }
   },
-  getCommonPSKData: async function(fias_id) {
+  getCommonPSKData: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -36,7 +36,7 @@ export default {
       return e;
     }
   },
-  getFiasStatQuarter: async function(fias_id) {
+  getFiasStatQuarter: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -48,7 +48,7 @@ export default {
       return e;
     }
   },
-  getFiasPskStat: async function(fias_id) {
+  getFiasPskStat: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL + "/api/Results/GetFiasPskStat/" + fias_id
@@ -58,7 +58,7 @@ export default {
       return e;
     }
   },
-  getFullPSKData: async function(fias_id) {
+  getFullPSKData: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -70,7 +70,7 @@ export default {
       return e;
     }
   },
-  getFiasClusters: async function(fias_id) {
+  getFiasClusters: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL + "/api/Results/GetClusterRes/" + fias_id
@@ -80,7 +80,7 @@ export default {
       return e;
     }
   },
-  getConsumersPSKData: async function(fias_id) {
+  getConsumersPSKData: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -92,7 +92,7 @@ export default {
       return e;
     }
   },
-  getBuildFeatClean: async function(fias_id) {
+  getBuildFeatClean: async function (fias_id) {
     try {
       const response = await axios.get(
         process.env.REACT_APP_API_URL +
@@ -103,5 +103,17 @@ export default {
     } catch (e) {
       return e;
     }
-  }
+  },
+  getClusterMedian: async function (fias_id) {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_API_URL +
+          "/api/Results/GetFiasClusterMedian/" +
+          fias_id
+      );
+      return response.data;
+    } catch (e) {
+      return e;
+    }
+  },
 };

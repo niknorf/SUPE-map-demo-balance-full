@@ -14,6 +14,7 @@ import { MeteringDevices } from "./TabMeteringDevices.js";
 import { BDProbability } from "./TabBuBdProbability.js";
 import Contex from "store/context";
 import InfoWindow from "components/InfoWindow.js";
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -146,39 +147,16 @@ const ShowDataState = () => {
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
-      // fetch("/api/Results/GetBalanceResultFull/" + globalState.balance_index)
-      //   .then((res) => res.json())
-      //   .then(
-      //     (result) => {
-      //       // translateText(result);
-      //     },
-      //     // Note: it's important to handle errors here
-      //     // instead of a catch() block so that we don't swallow
-      //     // exceptions from actual bugs in components.
-      //     (error) => {
-      //       // setLoading(true);
-      //       // setError(error);
-      //     }
-      //   );
 
-      fetch("/api/Results/GetResImbalanceFrontKWH/" + globalState.balance_index)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            if (result.length > 0) {
-              /*TODO set values*/
-              setInputMonth(result[0].input_month);
-              setImbalance(result[0].imbalance_kwh);
-            }
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesBG.getResImbalanceFrontKWH(globalState.balance_index)
+      .then((result) => {
+        if (result.length > 0) {
+          /*TODO set values*/
+          setInputMonth(result[0].input_month);
+          setImbalance(result[0].imbalance_kwh);
+        }
+      })
+      .catch((error) => {});
     }
     // setLoading(true);
   }, [globalState.balance_index]);

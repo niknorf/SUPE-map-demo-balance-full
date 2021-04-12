@@ -16,7 +16,7 @@ Plotly.setPlotConfig({ locale: "ru" });
 
 const HouseStatisticsChart = () => {
   const [pskSum, setPskSum] = useState([]);
-  const [clusterMedian, setClusterMedian] = useState('');
+  const [clusterMedian, setClusterMedian] = useState("");
   const [pskSeppate, setPskSeppate] = useState([]);
   const [loading, setLoading] = useState(false);
   const { globalState } = useContext(Contex);
@@ -46,34 +46,17 @@ const HouseStatisticsChart = () => {
           // react on errors.
         });
 
-      fetch("/api/PSK/GetFullPSKData/1281/" + globalState.fiasId)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setPskSum(result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
-      fetch("/api/Results/GetFiasClusterMedian/" + globalState.fiasId)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setClusterMedian(result.fias_median);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesGS.getFullPSKData(globalState.fiasId)
+        .then((result) => {
+          setPskSum(result);
+        })
+        .catch((error) => {});
+
+      ServicesGS.getClusterMedian(globalState.fiasId)
+        .then((result) => {
+          setClusterMedian(result.fias_median);
+        })
+        .catch((error) => {});
     }
   }, [globalState.fiasId]);
 
@@ -97,7 +80,10 @@ const HouseStatisticsChart = () => {
                 График показаний по дому согласно статистике гарантирующих
                 поставщиков по годам,кВтч
               </Typography>
-              <DisplaySummedChart resultData={pskSum} clusterMedian={clusterMedian}/>
+              <DisplaySummedChart
+                resultData={pskSum}
+                clusterMedian={clusterMedian}
+              />
             </Box>
           </Grid>
           <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
@@ -264,7 +250,9 @@ const DisplaySummedChart = ({ resultData, clusterMedian }) => {
       psk_sum.data[0].y.push(resultData[i].value);
     }
     psk_sum.data[1].x.push(resultData[0].datetime);
-    psk_sum.data[1].y.push(typeof clusterMedian !== 'undefined' ? clusterMedian : '');
+    psk_sum.data[1].y.push(
+      typeof clusterMedian !== "undefined" ? clusterMedian : ""
+    );
   } else {
     empty_data = true;
   }

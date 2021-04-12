@@ -12,6 +12,7 @@ import React, {
   createRef,
 } from "react";
 import Contex from "store/context";
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
 import buildingsPolygon from "pages/BalanceGroup/data/building_polygon.json";
 import axios from "axios";
 
@@ -113,91 +114,65 @@ const GeneralMap = () => {
   };
 
   const getBalanceIndexObjectsByFias = (fiasId, layerRef) => {
-    fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          if (
-            typeof result.properties !== "undefined" &&
-            layerRef.current !== null
-          ) {
-            layerRef.current.leafletElement.clearLayers().addData(result);
-            setLayer(result);
-            setLoading(false);
-            let bounds = layerRef.current.leafletElement.getBounds();
-            if (bounds.isValid()) {
-              mapRef.current.leafletElement.flyToBounds(bounds);
-            }
-          } else if (typeof result.balance_id !== "undefined") {
-            globalDispach({
-              fiasId: fiasId,
-              isPhantomic: false,
-              balance_index: result.balance_id,
-              isClean: result.is_clean,
-              objSelected: true,
-              building_address: "",
-              obj_from: "map_address",
-              isInPSK: false,
-            });
-
-            console.log(result.balance_id);
-            fetch("/api/Results/GetBalanceGroupObjects/" + result.balance_id)
-              .then((res) => res.json())
-              .then(
-                (result) => {
-                  if (layerRef.current !== null) {
-                    layerRef.current.leafletElement
-                      .clearLayers()
-                      .addData(result);
-                    setLayer(result);
-                    setLoading(false);
-                    let bounds = layerRef.current.leafletElement.getBounds();
-                    if (bounds.isValid()) {
-                      mapRef.current.leafletElement.flyToBounds(bounds);
-                    }
-                  }
-                },
-                (error) => {
-                  setLoading(true);
-                  setError(error);
-                }
-              );
+    ServicesBG.getHouseBalanceInfo(fiasId)
+      .then((result) => {
+        if (
+          typeof result.properties !== "undefined" &&
+          layerRef.current !== null
+        ) {
+          layerRef.current.leafletElement.clearLayers().addData(result);
+          setLayer(result);
+          setLoading(false);
+          let bounds = layerRef.current.leafletElement.getBounds();
+          if (bounds.isValid()) {
+            mapRef.current.leafletElement.flyToBounds(bounds);
           }
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          // setLoading(true);
-          // setError(error);
+        } else if (typeof result.balance_id !== "undefined") {
+          globalDispach({
+            fiasId: fiasId,
+            isPhantomic: false,
+            balance_index: result.balance_id,
+            isClean: result.is_clean,
+            objSelected: true,
+            building_address: "",
+            obj_from: "map_address",
+            isInPSK: false,
+          });
+
+          ServicesBG.getBalanceGroupObjects(result.balance_id)
+            .then((result) => {
+              if (layerRef.current !== null) {
+                layerRef.current.leafletElement.clearLayers().addData(result);
+                setLayer(result);
+                setLoading(false);
+                let bounds = layerRef.current.leafletElement.getBounds();
+                if (bounds.isValid()) {
+                  mapRef.current.leafletElement.flyToBounds(bounds);
+                }
+              }
+            })
+            .catch((error) => {});
         }
-      );
+      })
+      .catch((error) => {});
   };
 
   const getObjectPolygonByFias = (fiasId) => {
-    fetch("/api/GeoData/GetBuildingsGeometry/" + fiasId)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          if (layerRef.current !== null) {
-            layerRef.current.leafletElement.clearLayers().addData(result);
-            setLayer(result);
-            setLoading(false);
-            let bounds = layerRef.current.leafletElement.getBounds();
-            if (bounds.isValid()) {
-              mapRef.current.leafletElement.flyToBounds(bounds);
-            }
-          }
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
+    ServicesBG.getBuildingsGeometry(fiasId)
+      .then((result) => {
+        if (layerRef.current !== null) {
+          layerRef.current.leafletElement.clearLayers().addData(result);
+          setLayer(result);
           setLoading(false);
-          // setError(error);
+          let bounds = layerRef.current.leafletElement.getBounds();
+          if (bounds.isValid()) {
+            mapRef.current.leafletElement.flyToBounds(bounds);
+          }
         }
-      );
+      })
+      .catch((error) => {
+        setLoading(false);
+      });
   };
 
   const isNull = (inputArray) => {
@@ -207,38 +182,29 @@ const GeneralMap = () => {
   };
 
   const getBalanceGroupObjectsByIndex = (balance_index) => {
-    fetch("/api/Results/GetBalanceGroupObjects/" + balance_index)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setLoading(false);
+    ServicesBG.getBalanceGroupObjects(balance_index)
+      .then((result) => {
+        setLoading(false);
 
-          if (layerRef.current !== null) {
-            if (
-              Array.isArray(result) &&
-              !!result.length &&
-              !isNull(result[0].geometry.coordinates)
-            ) {
-              layerRef.current.leafletElement.clearLayers().addData(result);
-              setLayer(result);
+        if (layerRef.current !== null) {
+          if (
+            Array.isArray(result) &&
+            !!result.length &&
+            !isNull(result[0].geometry.coordinates)
+          ) {
+            layerRef.current.leafletElement.clearLayers().addData(result);
+            setLayer(result);
 
-              let bounds = layerRef.current.leafletElement.getBounds();
-              if (bounds.isValid()) {
-                mapRef.current.leafletElement.flyToBounds(bounds);
-              }
-            } else {
-              layerRef.current.leafletElement.clearLayers();
+            let bounds = layerRef.current.leafletElement.getBounds();
+            if (bounds.isValid()) {
+              mapRef.current.leafletElement.flyToBounds(bounds);
             }
+          } else {
+            layerRef.current.leafletElement.clearLayers();
           }
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          // setLoading(true);
-          // setError(error);
         }
-      );
+      })
+      .catch((error) => {});
   };
 
   const getBalanceIndexByFias = (fiasId, event) => {
@@ -246,36 +212,28 @@ const GeneralMap = () => {
       balance_index: "",
       isClean: false,
     };
-    fetch("/api/Results/GetHouseBalanceInfo/" + fiasId)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          if (typeof result.balance_id !== "undefined") {
-            balance_group_obj = {
-              balance_index: result.balance_id,
-              isClean: result.is_clean,
-            };
-          }
-          globalDispach({
-            kgisId: event.sourceTarget.feature.properties.kgisId,
-            fiasId: event.sourceTarget.feature.properties.fiasId,
-            isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
-            balance_index: balance_group_obj.balance_index,
-            isClean: balance_group_obj.isClean,
-            objSelected: true,
-            building_address: event.sourceTarget.feature.properties.name,
-            obj_from: "map_address",
-            isInPSK: event.sourceTarget.feature.properties.isInPSK,
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          // setLoading(true);
-          // setError(error);
+
+    ServicesBG.GetHouseBalanceInfo(fiasId)
+      .then((result) => {
+        if (typeof result.balance_id !== "undefined") {
+          balance_group_obj = {
+            balance_index: result.balance_id,
+            isClean: result.is_clean,
+          };
         }
-      );
+        globalDispach({
+          kgisId: event.sourceTarget.feature.properties.kgisId,
+          fiasId: event.sourceTarget.feature.properties.fiasId,
+          isPhantomic: event.sourceTarget.feature.properties.isPhantomic,
+          balance_index: balance_group_obj.balance_index,
+          isClean: balance_group_obj.isClean,
+          objSelected: true,
+          building_address: event.sourceTarget.feature.properties.name,
+          obj_from: "map_address",
+          isInPSK: event.sourceTarget.feature.properties.isInPSK,
+        });
+      })
+      .catch((error) => {});
   };
 
   useEffect(() => {
@@ -284,24 +242,15 @@ const GeneralMap = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/GeoData/GetSubstationGeometry")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          if (substationsRef.current !== null) {
-            substationsRef.current.leafletElement.clearLayers().addData(result);
-            setSubstation(result);
-          }
-          setLoading(false);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          // setLoading(true);
-          // setError(error);
+    ServicesBG.getSubstationGeometry()
+      .then((result) => {
+        if (substationsRef.current !== null) {
+          substationsRef.current.leafletElement.clearLayers().addData(result);
+          setSubstation(result);
         }
-      );
+        setLoading(false);
+      })
+      .catch((error) => {});
   }, []);
 
   return (

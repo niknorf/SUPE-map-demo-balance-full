@@ -35,13 +35,12 @@ Plotly.setPlotConfig({ locale: "ru" });
 const GreyCheckbox = withStyles({
   root: {
     color: "#252F4A",
-    '&$checked': {
+    "&$checked": {
       color: "#252F4A",
     },
   },
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-
 
 const BottomSectionGS = () => {
   const [legalType, setLegalTyped] = useState("entity");
@@ -70,65 +69,78 @@ const BottomSectionGS = () => {
 
   const handleLegalDropDownChange = (event) => {
     setLegalTyped(event.target.value);
-    setEntityCommonType('-1');
+    setEntityCommonType("-1");
     setDisabledChbx(false);
   };
 
   const handleentityCommonDropDownChange = (event) => {
     setEntityCommonType(event.target.value);
-    setDisabledChbx(false)
+    setDisabledChbx(false);
     //Set chbx disable if the value from drop down selected
-    if(event.target.value !== '-1'){
-      setDisabledChbx(true)
+    if (event.target.value !== "-1") {
+      setDisabledChbx(true);
     }
   };
 
   useEffect(() => {
-    setEntityCommonType('-1')
-  }, [globalState.fiasId])
+    setEntityCommonType("-1");
+  }, [globalState.fiasId]);
 
   useEffect(() => {
-
-    if(globalState.fiasId !== '' && entityCommonType !== '-1'){
+    if (globalState.fiasId !== "" && entityCommonType !== "-1") {
       setLoading(true);
-      if(legalType === "entity"){
+      if (legalType === "entity") {
         ServicesGS.getLegalPSKData(globalState.fiasId)
-          .then(result => {
+          .then((result) => {
             setLoading(false);
             if (result.length) {
-              const filtered_result = result.filter(item => item.cons_name === entityCommonType);
+              const filtered_result = result.filter(
+                (item) => item.cons_name === entityCommonType
+              );
               setOutMonth(filtered_result);
             }
           })
-          .catch(error => {});
-      }else if(legalType === "common"){
+          .catch((error) => {});
+      } else if (legalType === "common") {
         ServicesGS.getCommonPSKData(globalState.fiasId)
-          .then(result => {
+          .then((result) => {
             setLoading(false);
             if (result.length) {
-              const filtered_result = result.filter(item => item.cons_name === entityCommonType);
+              const filtered_result = result.filter(
+                (item) => item.cons_name === entityCommonType
+              );
               setOutMonth(filtered_result);
             }
           })
-          .catch(error => {});
+          .catch((error) => {});
       }
-
     }
-
   }, [entityCommonType]);
 
   useEffect(() => {
     let api_url = "";
     if (legalType === "entity") {
-      api_url = "/api/PSK/GetLegalPSKlastValue?fias=" + globalState.fiasId;
+      api_url =
+        process.env.REACT_APP_API_URL +
+        "/api/PSK/GetLegalPSKlastValue?fias=" +
+        globalState.fiasId;
     } else if (legalType === "population") {
-      api_url = "/api/DataCompare/GetFizTimeSeries/1281/" + globalState.fiasId;
+      api_url =
+        process.env.REACT_APP_API_URL +
+        "/api/DataCompare/GetFizTimeSeries/1281/" +
+        globalState.fiasId;
     } else if (legalType === "common") {
-      api_url = "/api/PSK/GetCommonPSKlastValue?fias=" + globalState.fiasId;
+      api_url =
+        process.env.REACT_APP_API_URL +
+        "/api/PSK/GetCommonPSKlastValue?fias=" +
+        globalState.fiasId;
     }
 
-    if (globalState.fiasId !== "" && api_url !== "" && entityCommonType === '-1') {
-
+    if (
+      globalState.fiasId !== "" &&
+      api_url !== "" &&
+      entityCommonType === "-1"
+    ) {
       setLoading(true);
       fetch(api_url)
         .then((res) => res.json())
@@ -143,250 +155,267 @@ const BottomSectionGS = () => {
           }
         );
     }
-    if(globalState.fiasId !== '' && entityCommonType === '-1'){
+    if (globalState.fiasId !== "" && entityCommonType === "-1") {
       setLoading(true);
-      fetch("/api/Results/GetFiasStatQuarter/" + globalState.fiasId)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setLoading(false);
-            setAverageAll(result);
-          },
-          (error) => {
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesGS.getFiasStatQuarter(globalState.fiasId)
+        .then((result) => {
+          setLoading(false);
+          setAverageAll(result);
+        })
+        .catch((error) => {});
 
-        fetch("/api/Results/GetFiasPskStat/" + globalState.fiasId)
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              setLoading(false);
-              setMeanAndLimit(result);
-            },
-            (error) => {
-              // setLoading(true);
-              // setError(error);
+        ServicesGS.getFiasPskStat(globalState.fiasId)
+        .then((result) => {
+          setLoading(false);
+          setMeanAndLimit(result);
+        })
+        .catch((error) => {});
+
+      if (legalType === "entity" || legalType === "common") {
+        ServicesGS.getConsumersPSKData(globalState.fiasId)
+          .then((result) => {
+            if (result.length) {
+              setEntityCommonList(result);
             }
-          );
-
-          if(legalType === 'entity' || legalType === 'common'){
-            ServicesGS.getConsumersPSKData(globalState.fiasId)
-              .then(result => {
-                if (result.length) {
-                  setEntityCommonList(result);
-                }
-              })
-              .catch(error => {});
-          }
+          })
+          .catch((error) => {});
+      }
     }
-
   }, [legalType, globalState.fiasId, entityCommonType]);
 
   return globalState.fiasId !== ""
     ? [
-      <LoadingOverlay
-        active={loading}
-        spinner={<CircularProgress style={{ color: "#252F4A" }} />}
-        text=""
-        styles={{
-          overlay: (base) => ({
-            ...base,
-            background: "rgba(34, 47, 74, 0.3)",
-          }),
-        }}
-      >
-        <Grid container>
-          <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
-            <Box className={classes.boxPaddingLabel}>
-              <Typography className={classes.balanceGroupLabel}>
-                Анализ
-              </Typography>
-            </Box>
-            <Box className={classes.boxPaddingLabel}>
-              <InputLabel
-                shrink
-                id="demo-simple-select-placeholder-label-label"
-              >
-                Юридические лица (все)
-              </InputLabel>
-              <FormControl fullWidth>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={legalType}
-                  onChange={handleLegalDropDownChange}
-                >
-                  <MenuItem value="entity">Юридические лица</MenuItem>
-                  <MenuItem value="population">Физические лица</MenuItem>
-                  <MenuItem value="common">Общедомовые нужды</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            {/* Add second dropdown but only when Entity or common selected */}
-            {legalType === 'entity' || legalType === 'common' ? [
+        <LoadingOverlay
+          active={loading}
+          spinner={<CircularProgress style={{ color: "#252F4A" }} />}
+          text=""
+          styles={{
+            overlay: (base) => ({
+              ...base,
+              background: "rgba(34, 47, 74, 0.3)",
+            }),
+          }}
+        >
+          <Grid container>
+            <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+              <Box className={classes.boxPaddingLabel}>
+                <Typography className={classes.balanceGroupLabel}>
+                  Анализ
+                </Typography>
+              </Box>
               <Box className={classes.boxPaddingLabel}>
                 <InputLabel
                   shrink
                   id="demo-simple-select-placeholder-label-label"
                 >
-                  Юридические лица (частный случай)
+                  Юридические лица (все)
                 </InputLabel>
                 <FormControl fullWidth>
                   <Select
-                    labelId="sentityCommonTypeLxabel"
-                    id="entityCommonType"
-                    value={entityCommonType}
-                    onChange={handleentityCommonDropDownChange}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={legalType}
+                    onChange={handleLegalDropDownChange}
                   >
-                    <MenuItem value="-1">Выбрать</MenuItem>
-                    {entityUtilitList.map((i, k)=>{
-
-                      return i.type === legalType ? [<MenuItem value={i.name}>{i.name}</MenuItem>] : null;
-
-                    })}
-
-                    {/* <MenuItem value="entity">Юридические лица</MenuItem>
+                    <MenuItem value="entity">Юридические лица</MenuItem>
                     <MenuItem value="population">Физические лица</MenuItem>
-                    <MenuItem value="common">Общедомовые нужды</MenuItem> */}
+                    <MenuItem value="common">Общедомовые нужды</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
-            ]: null}
-            <FormGroup className={classes.boxPaddingLabel}>
-              <FormControlLabel
-                control={
-                  <GreyCheckbox
-                    disabled={disabledChbx}
-                    checked={mediana}
-                    onChange={handleChange}
-                    name="mediana"
-                    iconStyle={{fill: 'white'}}
-                  />
-                }
-                label="Медиана"
-              />
-              <FormControlLabel
-                control={
-                  <GreyCheckbox
-                    disabled={disabledChbx}
-                    checked={average}
-                    onChange={handleChange}
-                    name="average"
-                    iconStyle={{fill: 'white'}}
-                  />
-                }
-                label="Среднее"
-              />
-              <FormControlLabel
-                control={
-                  <GreyCheckbox
-                    disabled={disabledChbx}
-                    checked={interval}
-                    onChange={handleChange}
-                    name="interval"
-                    iconStyle={{fill: 'white'}}
-                  />
-                }
-                label="Межквартильный интервал"
-              />
-            </FormGroup>
-            <Box className={classes.boxPaddingLabel}>
-              <Box className={classes.boxChartLegend}>
-                <Typography className={classes.balanceGroupLabel}>
-                  Обоснование
-                </Typography>
-                <Box className={classes.chartLegendTextBox}>
-                  <Icon>
-                    <img className={classes.imageIcon} src={icon_fiz} alt="" />
-                  </Icon>
-                  <Typography className={classes.chartLegendText}>
-                    Физ.лица
-                  </Typography>
-                </Box>
-                  <Box className={classes.chartLegendTextBox}>
-                  <Icon>
-                  <img className={classes.imageIcon} src={icon_urik} alt="" />
-                </Icon>
-                <Typography className={classes.chartLegendText}>
-                  Юр.лица
-                </Typography>
-            </Box>
-              <Box className={classes.chartLegendTextBox}>
-                <Icon>
-                  <img className={classes.imageIcon} src={icon_house} alt="" />
-                </Icon>
-                <Typography className={classes.chartLegendText}>
-                  Общедомовые нужды
-                </Typography>
-              </Box>
-                <Box className={classes.chartLegendTextBox}>
-                  <Icon>
-                  <img className={classes.imageIcon} src={icon_mean} alt="" />
-                </Icon>
-                <Typography className={classes.chartLegendText}>
-                Медиана
-                </Typography>
-              </Box>
-                <Box className={classes.chartLegendTextBox}>
-                  <Icon>
-                  <img className={classes.imageIcon} src={icon_average} alt="" />
-                </Icon>
-                <Typography className={classes.chartLegendText}>
-                  Среднее
-                </Typography>
-              </Box>
-              <Box className={classes.chartLegendTextBox}>
-                <Icon>
-                <img className={classes.imageIcon} src={icon_area} alt="" />
-              </Icon>
-              <Typography className={classes.chartLegendText}>
-                Межквартильный интервал
-              </Typography>
-            </Box>
+              {/* Add second dropdown but only when Entity or common selected */}
+              {legalType === "entity" || legalType === "common"
+                ? [
+                    <Box className={classes.boxPaddingLabel}>
+                      <InputLabel
+                        shrink
+                        id="demo-simple-select-placeholder-label-label"
+                      >
+                        Юридические лица (частный случай)
+                      </InputLabel>
+                      <FormControl fullWidth>
+                        <Select
+                          labelId="sentityCommonTypeLxabel"
+                          id="entityCommonType"
+                          value={entityCommonType}
+                          onChange={handleentityCommonDropDownChange}
+                        >
+                          <MenuItem value="-1">Выбрать</MenuItem>
+                          {entityUtilitList.map((i, k) => {
+                            return i.type === legalType
+                              ? [<MenuItem value={i.name}>{i.name}</MenuItem>]
+                              : null;
+                          })}
 
+                          {/* <MenuItem value="entity">Юридические лица</MenuItem>
+                    <MenuItem value="population">Физические лица</MenuItem>
+                    <MenuItem value="common">Общедомовые нужды</MenuItem> */}
+                        </Select>
+                      </FormControl>
+                    </Box>,
+                  ]
+                : null}
+              <FormGroup className={classes.boxPaddingLabel}>
+                <FormControlLabel
+                  control={
+                    <GreyCheckbox
+                      disabled={disabledChbx}
+                      checked={mediana}
+                      onChange={handleChange}
+                      name="mediana"
+                      iconStyle={{ fill: "white" }}
+                    />
+                  }
+                  label="Медиана"
+                />
+                <FormControlLabel
+                  control={
+                    <GreyCheckbox
+                      disabled={disabledChbx}
+                      checked={average}
+                      onChange={handleChange}
+                      name="average"
+                      iconStyle={{ fill: "white" }}
+                    />
+                  }
+                  label="Среднее"
+                />
+                <FormControlLabel
+                  control={
+                    <GreyCheckbox
+                      disabled={disabledChbx}
+                      checked={interval}
+                      onChange={handleChange}
+                      name="interval"
+                      iconStyle={{ fill: "white" }}
+                    />
+                  }
+                  label="Межквартильный интервал"
+                />
+              </FormGroup>
+              <Box className={classes.boxPaddingLabel}>
+                <Box className={classes.boxChartLegend}>
+                  <Typography className={classes.balanceGroupLabel}>
+                    Обоснование
+                  </Typography>
+                  <Box className={classes.chartLegendTextBox}>
+                    <Icon>
+                      <img
+                        className={classes.imageIcon}
+                        src={icon_fiz}
+                        alt=""
+                      />
+                    </Icon>
+                    <Typography className={classes.chartLegendText}>
+                      Физ.лица
+                    </Typography>
+                  </Box>
+                  <Box className={classes.chartLegendTextBox}>
+                    <Icon>
+                      <img
+                        className={classes.imageIcon}
+                        src={icon_urik}
+                        alt=""
+                      />
+                    </Icon>
+                    <Typography className={classes.chartLegendText}>
+                      Юр.лица
+                    </Typography>
+                  </Box>
+                  <Box className={classes.chartLegendTextBox}>
+                    <Icon>
+                      <img
+                        className={classes.imageIcon}
+                        src={icon_house}
+                        alt=""
+                      />
+                    </Icon>
+                    <Typography className={classes.chartLegendText}>
+                      Общедомовые нужды
+                    </Typography>
+                  </Box>
+                  <Box className={classes.chartLegendTextBox}>
+                    <Icon>
+                      <img
+                        className={classes.imageIcon}
+                        src={icon_mean}
+                        alt=""
+                      />
+                    </Icon>
+                    <Typography className={classes.chartLegendText}>
+                      Медиана
+                    </Typography>
+                  </Box>
+                  <Box className={classes.chartLegendTextBox}>
+                    <Icon>
+                      <img
+                        className={classes.imageIcon}
+                        src={icon_average}
+                        alt=""
+                      />
+                    </Icon>
+                    <Typography className={classes.chartLegendText}>
+                      Среднее
+                    </Typography>
+                  </Box>
+                  <Box className={classes.chartLegendTextBox}>
+                    <Icon>
+                      <img
+                        className={classes.imageIcon}
+                        src={icon_area}
+                        alt=""
+                      />
+                    </Icon>
+                    <Typography className={classes.chartLegendText}>
+                      Межквартильный интервал
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
+            <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
+              <Box>
+                <Typography className={classes.chartTitle}>
+                  График суммарных показаний по дому согласно статистике
+                  гарантирующих поставщиков , кВтч
+                </Typography>
+                <DisplayBarChart
+                  obj_name={legalType}
+                  resultData={outMonth}
+                  average={averageAllData}
+                  meanAndLimit={meanAndLimit}
+                  checkBoxSelected={state}
+                />
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item lg={6} md={12} sm={12} xl={6} xs={12}>
-            <Box>
-              <Typography className={classes.chartTitle}>
-                График суммарных показаний по дому согласно статистике
-                гарантирующих поставщиков , кВтч
-              </Typography>
-              <DisplayBarChart obj_name={legalType}
-                resultData={outMonth}
-                average={averageAllData}
-                meanAndLimit={meanAndLimit}
-                checkBoxSelected={state}
-               />
-            </Box>
-          </Grid>
-        </Grid>
         </LoadingOverlay>,
       ]
-    :
-      null
-        // <InfoWindow
-        //   label="Извините, недостаточно данных для расчета "
-        //   icon="info"
-        // />,
-      ;
+    : null;
+  // <InfoWindow
+  //   label="Извините, недостаточно данных для расчета "
+  //   icon="info"
+  // />,
 };
 
-const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBoxSelected }) => {
+const DisplayBarChart = ({
+  obj_name,
+  resultData,
+  average,
+  meanAndLimit,
+  checkBoxSelected,
+}) => {
   var fiz_seppate = {
     layout: {
       autosize: true,
       font: {
-            family: "Roboto",
-            size: 12,
-            color: "#A3A3A3",
-          },
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
+      },
       showlegend: false,
       barmode: "stack",
-      shapes: []
+      shapes: [],
     },
     data: [
       {
@@ -394,8 +423,7 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
         y: [],
         marker: { color: "#4A9CFF" },
         type: "bar",
-      }
-
+      },
     ],
     config: {
       modeBarButtonsToRemove: [
@@ -415,14 +443,14 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
     layout: {
       autosize: true,
       font: {
-            family: "Roboto",
-            size: 12,
-            color: "#A3A3A3",
-          },
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
+      },
       showlegend: false,
       barmode: "stack",
-      legend: {x: 0.4, y: 1.2},
-      shapes: []
+      legend: { x: 0.4, y: 1.2 },
+      shapes: [],
     },
     data: [
       {
@@ -430,7 +458,7 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
         y: [],
         marker: { color: "#00EBD3" },
         type: "bar",
-      }
+      },
     ],
     config: {
       modeBarButtonsToRemove: [
@@ -450,13 +478,13 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
     layout: {
       autosize: true,
       font: {
-            family: "Roboto",
-            size: 12,
-            color: "#A3A3A3",
-          },
+        family: "Roboto",
+        size: 12,
+        color: "#A3A3A3",
+      },
       showlegend: false,
       barmode: "stack",
-      shapes: []
+      shapes: [],
     },
     data: [
       {
@@ -464,7 +492,7 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
         y: [],
         marker: { color: "#A9FF94" },
         type: "bar",
-      }
+      },
     ],
     config: {
       modeBarButtonsToRemove: [
@@ -483,85 +511,83 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
 
   let type = house_seppate;
   let empty_data = true;
-  let quarte1Start = '2020-01-01';
-  let quarte1End = '2020-03-31';
-  let quarte2Start = '2020-04-01';
-  let quarte2End = '2020-06-30';
-  let quarte3Start = '2020-07-01';
-  let quarte3End = '2020-09-30';
-  let quarte4Start = '2020-10-01';
-  let quarte4End = '2020-12-31';
+  let quarte1Start = "2020-01-01";
+  let quarte1End = "2020-03-31";
+  let quarte2Start = "2020-04-01";
+  let quarte2End = "2020-06-30";
+  let quarte3Start = "2020-07-01";
+  let quarte3End = "2020-09-30";
+  let quarte4Start = "2020-10-01";
+  let quarte4End = "2020-12-31";
   let quater1 = {
-    x:[],
-    y:[],
-    mode: 'lines',
-    type: 'scatter',
+    x: [],
+    y: [],
+    mode: "lines",
+    type: "scatter",
     line: {
-        // shape: 'hv',
-        color: '#252F4A',
-        width: 2
-      }
+      // shape: 'hv',
+      color: "#252F4A",
+      width: 2,
+    },
   };
   let quater2 = {
-    x:[],
-    y:[],
-    mode: 'lines',
-    type: 'scatter',
+    x: [],
+    y: [],
+    mode: "lines",
+    type: "scatter",
     line: {
-        // shape: 'hv',
-        color: '#252F4A',
-        width: 2
-      }
+      // shape: 'hv',
+      color: "#252F4A",
+      width: 2,
+    },
   };
   let quater3 = {
-    x:[],
-    y:[],
-    mode: 'lines',
-    type: 'scatter',
+    x: [],
+    y: [],
+    mode: "lines",
+    type: "scatter",
     line: {
-        // shape: 'hv',
-        color: '#252F4A',
-        width: 2
-      }
+      // shape: 'hv',
+      color: "#252F4A",
+      width: 2,
+    },
   };
   let quater4 = {
-    x:[],
-    y:[],
-    mode: 'lines',
-    type: 'scatter',
+    x: [],
+    y: [],
+    mode: "lines",
+    type: "scatter",
     line: {
-        // shape: 'hv',
-        color: '#252F4A',
-        width: 2
-      }
+      // shape: 'hv',
+      color: "#252F4A",
+      width: 2,
+    },
   };
-  let meanTrace =  {
-        type: 'line',
-        xref: 'paper',
-        x0: 0,
-        y0: 0,
-        x1: 0,
-        y1: 0,
-        line: {
-            color: '#EC4141',
-            width: 2,
-        }
-    };
+  let meanTrace = {
+    type: "line",
+    xref: "paper",
+    x0: 0,
+    y0: 0,
+    x1: 0,
+    y1: 0,
+    line: {
+      color: "#EC4141",
+      width: 2,
+    },
+  };
   let quaterInterval = {
-
-            type: 'rect',
-            xref: 'paper',
-            yref: 'y',
-            x0: 0,
-            y0: 0,
-            x1: 0,
-            y1: 0,
-            fillcolor: 'rgba(74, 156, 255, 0.2)',
-            line: {
-            width: 1,
-            color: '#4A9CFF',
-        }
-
+    type: "rect",
+    xref: "paper",
+    yref: "y",
+    x0: 0,
+    y0: 0,
+    x1: 0,
+    y1: 0,
+    fillcolor: "rgba(74, 156, 255, 0.2)",
+    line: {
+      width: 1,
+      color: "#4A9CFF",
+    },
   };
 
   if (obj_name === "entity") {
@@ -571,125 +597,116 @@ const DisplayBarChart = ({ obj_name, resultData, average, meanAndLimit, checkBox
     type = fiz_seppate;
   }
 
-let meanData = 0;
-const meanValue = '50%';
+  let meanData = 0;
+  const meanValue = "50%";
 
-  if(checkBoxSelected.mediana){
-    if(meanAndLimit.length > 0){
-          for(let i = 0; i< meanAndLimit.length; i++){
-            if(meanAndLimit[i].cons_type === obj_name){
-              meanData =  meanAndLimit[i].[meanValue];
-            }
-          }
-          meanTrace.y0 = meanData;
-          meanTrace.x1 = 1;
-          meanTrace.y1 = meanData;
+  if (checkBoxSelected.mediana) {
+    if (meanAndLimit.length > 0) {
+      for (let i = 0; i < meanAndLimit.length; i++) {
+        if (meanAndLimit[i].cons_type === obj_name) {
+          meanData = meanAndLimit[i][meanValue];
+        }
+      }
+      meanTrace.y0 = meanData;
+      meanTrace.x1 = 1;
+      meanTrace.y1 = meanData;
 
-          type.layout.shapes.push(meanTrace)
+      type.layout.shapes.push(meanTrace);
     }
-
-  }else{
-      type.layout.shapes.push({
-            type: 'line',
-            xref: 'paper',
-            x0: 0,
-            y0: 0,
-            x1: 0,
-            y1: 0,
-            line: {
-                color: '#EC4141',
-                width: 2,
-            }
-        });
+  } else {
+    type.layout.shapes.push({
+      type: "line",
+      xref: "paper",
+      x0: 0,
+      y0: 0,
+      x1: 0,
+      y1: 0,
+      line: {
+        color: "#EC4141",
+        width: 2,
+      },
+    });
   }
 
-  if(checkBoxSelected.average){
-    if(average.length > 0){
-          average.sort(function(a, b){
-      if(a.quarter > b.quarter) return -1;
-      if(a.quarter < b.quarter) return 1;
+  if (checkBoxSelected.average) {
+    if (average.length > 0) {
+      average.sort(function (a, b) {
+        if (a.quarter > b.quarter) return -1;
+        if (a.quarter < b.quarter) return 1;
 
-      return 0;
-
-    });
-      for(let i=0; i<average.length; i++){
-        if(average[i].psk_type === obj_name){
-          if(average[i].quarter === 1){
+        return 0;
+      });
+      for (let i = 0; i < average.length; i++) {
+        if (average[i].psk_type === obj_name) {
+          if (average[i].quarter === 1) {
             quater1.x.push(quarte1End);
             quater1.y.push(average[i].mean);
             quater1.x.push(quarte1Start);
             quater1.y.push(average[i].mean);
-
-          }else if(average[i].quarter === 2){
+          } else if (average[i].quarter === 2) {
             quater2.x.push(quarte2End);
             quater2.y.push(average[i].mean);
             quater2.x.push(quarte2Start);
             quater2.y.push(average[i].mean);
-
-          }else if(average[i].quarter === 3){
+          } else if (average[i].quarter === 3) {
             quater3.x.push(quarte3End);
             quater3.y.push(average[i].mean);
             quater3.x.push(quarte3Start);
             quater3.y.push(average[i].mean);
-
-          }else if(average[i].quarter === 4){
+          } else if (average[i].quarter === 4) {
             quater4.x.push(quarte4End);
             quater4.y.push(average[i].mean);
             quater4.x.push(quarte4Start);
             quater4.y.push(average[i].mean);
-
           }
         }
       }
-      type.data.push(quater1,quater2,quater3,quater4);
+      type.data.push(quater1, quater2, quater3, quater4);
     }
-  }else{
+  } else {
     type.data.push({
-      x:[],
-      y:[],
-      mode: 'lines',
+      x: [],
+      y: [],
+      mode: "lines",
       line: {
-          color: '#252F4A',
-          width: 2
-        }
-    })
+        color: "#252F4A",
+        width: 2,
+      },
+    });
   }
 
-  if(checkBoxSelected.interval){
+  if (checkBoxSelected.interval) {
     let upper_limit = 0;
-    let lower_limit =  0;
-    if(meanAndLimit.length > 0){
-          for(let i = 0; i< meanAndLimit.length; i++){
-            if(meanAndLimit[i].cons_type === obj_name){
-              upper_limit =  meanAndLimit[i].upper_limit;
-              lower_limit =  meanAndLimit[i].lower_limit;
-            }
-          }
-          quaterInterval.y0 = upper_limit;
-          quaterInterval.x1 = 1;
-        quaterInterval.y1 = lower_limit;
+    let lower_limit = 0;
+    if (meanAndLimit.length > 0) {
+      for (let i = 0; i < meanAndLimit.length; i++) {
+        if (meanAndLimit[i].cons_type === obj_name) {
+          upper_limit = meanAndLimit[i].upper_limit;
+          lower_limit = meanAndLimit[i].lower_limit;
+        }
+      }
+      quaterInterval.y0 = upper_limit;
+      quaterInterval.x1 = 1;
+      quaterInterval.y1 = lower_limit;
     }
 
     type.layout.shapes.push(quaterInterval);
-  }else{
-      type.layout.shapes.push({
-
-                type: 'rect',
-                xref: 'paper',
-                yref: 'y',
-                x0: 0,
-                y0: 0,
-                x1: 0,
-                y1: 0,
-                fillcolor: 'rgba(74, 156, 255, 0.2)',
-                line: {
-                width: 1,
-                color: '#4A9CFF',
-            }
-
-      });
+  } else {
+    type.layout.shapes.push({
+      type: "rect",
+      xref: "paper",
+      yref: "y",
+      x0: 0,
+      y0: 0,
+      x1: 0,
+      y1: 0,
+      fillcolor: "rgba(74, 156, 255, 0.2)",
+      line: {
+        width: 1,
+        color: "#4A9CFF",
+      },
+    });
   }
-
 
   //Main chart
   if (resultData.length > 0) {
@@ -722,7 +739,6 @@ const meanValue = '50%';
 };
 
 const useStyles = makeStyles((theme) => ({
-
   chartTitle: {
     fontSize: "14px",
     lineHeight: "14px",
@@ -730,7 +746,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "35px",
     color: "#252F4A",
   },
-  imageIcon:{
+  imageIcon: {
     width: 10,
     height: 10,
   },
@@ -752,17 +768,16 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "16px",
     paddingBottom: "16px",
   },
-  chartLegendTextBox:{
-    display: 'flex',
-    alignItems: 'flex-end'
-
+  chartLegendTextBox: {
+    display: "flex",
+    alignItems: "flex-end",
   },
-  chartLegendText:{
-    color: '#818E9B',
-    letterSpacing: '0.01em',
-    lineHeight: '13px',
-    fontSize: '11px',
-  }
+  chartLegendText: {
+    color: "#818E9B",
+    letterSpacing: "0.01em",
+    lineHeight: "13px",
+    fontSize: "11px",
+  },
 }));
 
 export { BottomSectionGS };

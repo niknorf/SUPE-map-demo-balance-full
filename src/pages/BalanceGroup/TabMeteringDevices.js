@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import TableTemplate from "components/TableTemplate";
 import Contex from "store/context";
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
 import InfoWindow from "components/InfoWindow.js"
 
 const useStyles = makeStyles((theme) => ({}));
@@ -14,23 +15,14 @@ const MeteringDevices = () => {
 
   useEffect(() => {
     if (globalState.balance_index !== "") {
-      fetch("/api/Results/GetBalanceGroupMeterpointsInfo/" + globalState.balance_index)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            if(Array.isArray(result) && result.length>0){
-                setBgContent(result);
-            }
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            console.log(error);
-            // setLoading(true);
-            // setError(error);
-          }
-        );
+      ServicesBG.getMeterpointsInfo(globalState.balance_index)
+      .then((result) => {
+        if(Array.isArray(result) && result.length>0){
+          setBgContent(result);
+      }
+      })
+      .catch((error) => {});
+
     }
     // setLoading(true);
   }, [globalState.balance_index]);

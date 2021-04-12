@@ -2,7 +2,6 @@ import { Autocomplete } from "@material-ui/lab";
 import { FormControl, TextField } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import Contex from "store/context";
-// import ts_balance_dict from "../data/ts_balance_dict.json";
 import { List } from "react-virtualized";
 import {matchSorter} from 'match-sorter';
 
@@ -71,19 +70,14 @@ const SearchComponent = () => {
 
   useEffect(() => {
     setLoadingState(true)
-    fetch("/api/PSK/GetCurrentConsumersList")
+    fetch(process.env.REACT_APP_API_URL + "/api/PSK/GetCurrentConsumersList")
       .then((res) => res.json())
       .then(
         (result) => {
-          /*TODO add loading indicator for whole page*/
           setStreets(result);
           setLoadingState(false);
         },
-        (error) => {
-          /*TODO catch errors if any*/
-          // setLoading(true);
-          // setError(error);
-        }
+        (error) => {}
       );
   }, []);
 

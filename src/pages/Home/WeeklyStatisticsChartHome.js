@@ -4,7 +4,7 @@ import Plotly from "plotly.js";
 import React, { useState, useEffect } from "react";
 import createPlotlyComponent from "react-plotly.js/factory";
 import InfoWindow from "components/InfoWindow.js";
-
+import ServicesHome from "pages/Home/api/ServicesHome";
 const Plot = createPlotlyComponent(Plotly);
 const useStyles = makeStyles((theme) => ({}));
 
@@ -24,21 +24,20 @@ const CreateMainHomeChart = ({ dataObject, object }) => {
 
   console.log(dataObject);
 
-  if(dataObject.length > 0){
+  if (dataObject.length > 0) {
     emptyData = false;
-    for(let i=0; i<dataObject.length; i++){
+    for (let i = 0; i < dataObject.length; i++) {
       // line_chart.x.push(dataObject[i].startWeek);
       line_chart.x.push(dataObject[i].endWeek);
       line_chart.y.push(dataObject[i].count);
     }
-
-  }else{
+  } else {
     emptyData = true;
   }
 
   // line_chart.x.push();
 
-  object.data.push(line_chart)
+  object.data.push(line_chart);
 
   return emptyData
     ? [
@@ -64,18 +63,11 @@ const MainChartHome = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    fetch("/api/UserTasks/WeekStatistic")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          setChartData(result);
-        },
-        (error) => {
-          // setLoading(true);
-          // setError(error);
-        }
-      );
+    ServicesHome.getWeekStatistic()
+      .then((result) => {
+        setChartData(result);
+      })
+      .catch((error) => {});
   }, []);
 
   var main_home_chart = {

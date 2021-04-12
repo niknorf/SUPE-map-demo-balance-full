@@ -13,7 +13,6 @@ import {
   Typography,
   Radio
 } from "@material-ui/core";
-import axios from "axios";
 import { Dialog, Link } from "@material-ui/core";
 import queryString from "querystring";
 import { getUserListWithRoles } from "components/keycloak";

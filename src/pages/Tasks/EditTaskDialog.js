@@ -8,7 +8,6 @@ import {
   InputLabel,
   FormControl
 } from "@material-ui/core";
-import axios from "axios";
 import BlueDot from "assets/img/blue_dot_task.svg";
 import YellowDot from "assets/img/yellow_dot_task.svg";
 import GreenDot from "assets/img/green_dot_task.svg";

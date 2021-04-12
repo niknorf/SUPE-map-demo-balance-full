@@ -2,7 +2,7 @@ import {
   TableRow,
   TableCell,
   useMediaQuery,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
@@ -10,8 +10,9 @@ import TableTemplate from "components/TableTemplate";
 import { Link } from "react-router-dom";
 import Contex from "store/context";
 import InfoWindow from "components/InfoWindow.js";
+import ServicesBG from "pages/BalanceGroup/api/ServicesBG";
 
-const BalanceGroupTable = props => {
+const BalanceGroupTable = (props) => {
   const classes = useStyles();
   const [rows, setBgContent] = useState([]);
   const { globalState, globalDispach } = useContext(Contex);
@@ -22,17 +23,12 @@ const BalanceGroupTable = props => {
   // width === "md" ? (rowsPerPage = 7) : (rowsPerPage = 7);
 
   useEffect(() => {
-    fetch("/api/Results/GetResImbalanceFrontKWH")
-      .then(res => res.json())
-      .then(
-        result => {
-          setBgContent(result);
-        },
-        error => {
-          // setLoading(true);
-          // setError(error);
-        }
-      );
+    ServicesBG.getResImbalanceFrontKWH()
+      .then((result) => {
+        setBgContent(result);
+      })
+      .catch((error) => {});
+
     // setLoading(true);
   }, []);
 
@@ -52,27 +48,27 @@ const BalanceGroupTable = props => {
       id: "balance_id",
       numeric: false,
       disablePadding: false,
-      label: "Балансовая группа"
+      label: "Балансовая группа",
     },
     {
       id: "imbalance_percent",
       numeric: true,
       disablePadding: true,
-      label: "Небалансы (%)"
+      label: "Небалансы (%)",
     },
     {
       id: "imbalance_kwh",
       numeric: true,
       disablePadding: false,
-      label: "Небалансы (кВтч)"
-    }
+      label: "Небалансы (кВтч)",
+    },
   ];
-  const BalanceTableRows = row => {
+  const BalanceTableRows = (row) => {
     return (
       <TableRow
         key={row.balance_id}
         hover
-        onClick={event => handleRowClick(event, row)}
+        onClick={(event) => handleRowClick(event, row)}
       >
         <TableCell
           component="th"
@@ -101,7 +97,7 @@ const BalanceGroupTable = props => {
       objSelected: true,
       building_address: "",
       obj_from: "table_click",
-      isInPSK: false
+      isInPSK: false,
     });
   };
 
@@ -114,7 +110,7 @@ const BalanceGroupTable = props => {
           rowsPerPage={rowsPerPage}
           order="asc"
           orderBy="balance_id"
-        />
+        />,
       ]
     : [<InfoWindow label="Нет данных" icon="info" />];
 };
@@ -127,20 +123,15 @@ const BalanceGroupTop5Table = () => {
   let rowsPerPage = 5;
 
   useEffect(() => {
-    fetch("/api/Results/GetResImbalanceFrontKWH")
-      .then(res => res.json())
-      .then(
-        result => {
-          result.sort((a, b) =>
-            a.imbalance_percent < b.imbalance_percent ? 1 : -1
-          );
-          setBgData(result.splice(0, 5));
-        },
-        error => {
-          // setLoading(true);
-          // setError(error);
-        }
-      );
+    ServicesBG.getResImbalanceFrontKWH()
+      .then((result) => {
+        result.sort((a, b) =>
+          a.imbalance_percent < b.imbalance_percent ? 1 : -1
+        );
+        setBgData(result.splice(0, 5));
+      })
+      .catch((error) => {});
+
     // setLoading(true);
   }, []);
 
@@ -149,20 +140,20 @@ const BalanceGroupTop5Table = () => {
       id: "balance_id",
       numeric: false,
       disablePadding: false,
-      label: "Балансовая группа"
+      label: "Балансовая группа",
     },
     {
       id: "imbalance_percent",
       numeric: true,
       disablePadding: true,
-      label: "Небалансы (%)"
+      label: "Небалансы (%)",
     },
     {
       id: "imbalance_kwh",
       numeric: true,
       disablePadding: false,
-      label: "Небалансы (кВтч)"
-    }
+      label: "Небалансы (кВтч)",
+    },
   ];
   const BalanceTableRows = (row, print) => {
     return (
@@ -170,7 +161,7 @@ const BalanceGroupTop5Table = () => {
         key={row.balance_id}
         hover
         classes={{ hover: classes.rowHover }}
-        onClick={event => handleRowClick(event, row)}
+        onClick={(event) => handleRowClick(event, row)}
         // Set to undefined if the table goes to print, because otherwise it will print in one line
         component={print === "print" ? undefined : Link}
         to="/balancegroup"
@@ -203,7 +194,7 @@ const BalanceGroupTop5Table = () => {
       objSelected: true,
       building_address: "",
       obj_from: "table_click",
-      isInPSK: false
+      isInPSK: false,
     });
   };
 
@@ -214,23 +205,23 @@ const BalanceGroupTop5Table = () => {
           columns={tableColumns}
           rowsSettings={BalanceTableRows}
           rowsPerPage={5}
-        />
+        />,
       ]
     : [<InfoWindow label="Нет данных" icon="info" />];
 };
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   rowHover: {
     "&:hover": {
-      cursor: "pointer"
+      cursor: "pointer",
     },
-    textDecoration: "none"
+    textDecoration: "none",
   },
   subText: {
     fontSize: "11px",
     lineHeight: "13px",
     letterSpacing: "0.01em",
-    color: "#818E9B"
-  }
+    color: "#818E9B",
+  },
 }));
 
 export { BalanceGroupTop5Table, BalanceGroupTable };

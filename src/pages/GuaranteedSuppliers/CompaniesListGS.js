@@ -18,7 +18,7 @@ const GaranteedSuppliesCompanies = () => {
 
   useEffect(() => {
     if (globalState.fiasId !== "") {
-      fetch("/api/PSK/GetConsumersPSKData/" + globalState.fiasId)
+      fetch(process.env.REACT_APP_API_URL + "/api/PSK/GetConsumersPSKData/" + globalState.fiasId)
         .then((res) => res.json())
         .then(
           (result) => {
